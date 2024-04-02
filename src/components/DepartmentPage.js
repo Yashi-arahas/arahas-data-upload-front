@@ -22,7 +22,6 @@ import "remixicon/fonts/remixicon.css";
 //import BootStrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import PollutionCounts from "./PollutionCounts";
 const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   // State variables and useEffect for data fetching, file upload, etc.
   const [showPopup, setShowPopup] = useState(false);
