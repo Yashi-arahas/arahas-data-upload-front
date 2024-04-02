@@ -1,0 +1,254 @@
+.home {
+  width: 100%;
+  margin: 0;
+  height: 100vh;
+  min-height: calc(100vh - 80px);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+}
+.nav button {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 0.5vw;
+  background-color: #ef7401;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1vw;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 800;
+  box-sizing: border-box;
+  box-shadow: 0 0 20px -10px #000000;
+}
+.nav {
+  width: 100%;
+  z-index: 2;
+  padding: 1vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 4.5vw;
+  background-color: #ffffff;
+  box-shadow:  rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.nav img {
+  height: 2.5vw;
+  width: 7vw;
+}
+.main-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.ani{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50vw;
+}
+.ani .common{
+    height: 15vw;
+    width: 15vw;
+}
+.file{
+    height: 5vw;
+    width: 5vw;
+}
+section .form_data {
+  max-width: 30vw;
+  margin: 4vw auto;
+  padding: 1vw 1vw;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.form_heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form_data h1 {
+  font-size: 2.5vw;
+  color: #ff8009;
+}
+
+.form_data form {
+  width: 100%;
+  padding: 2vw 2vw;
+}
+
+.form_data form .form_input input {
+  width: 100%;
+  padding: 1vw;
+  border: 1px solid #d4d0d0;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 14px;
+  margin-top: 0.5vw;
+  font-size: 1vw;
+}
+
+.form_data form .form_input label {
+  font-size: 1vw;
+  font-weight: 500;
+}
+
+.form_input .two {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.form_data form .form_input input:focus {
+  border: 2px solid rgba(234, 126, 63, 0.921);
+}
+
+.form_data form .form_input input::placeholder {
+  color: #8694a8;
+  font-size: 1vw;
+  font-weight: 500;
+  }
+
+.form_input .showpass {
+  position: relative;
+  top: auto;
+ 
+  
+  cursor: pointer;
+}
+
+form .btn {
+  display: block;
+  width: 100%;
+  padding: 1vw;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: #ec6834;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.5vw;
+  margin-top: 1vw;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+form .btn:hover {
+  background-color: #ff8009;
+}
+
+.form_data form p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form_data form a {
+  text-decoration: none;
+  color: #718096;
+  border-bottom: 2px solid #8694a8;
+}
+.showpass svg {
+  color: #333;
+  font-size: 1.5vw;
+}
+
+.showpass:hover svg {
+  color: #000000;
+}
+/* .form_data .dropdown {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 10vw;
+    margin-bottom: 15px;
+    font-size: 1vw;
+  } */
+  
+  /* .form_data  .dropdown label {
+    color: #ff8009;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 1.25vw;
+  } */
+  
+/* .form_data  .dropdown-menu {
+    outline: none;
+    padding: 1vw;
+    border-radius: 10px;
+    font-size: 1vw;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+  } */
+  
+/* .form_data .dropdown-menu option {
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    font-size: 1vw;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+  } */
+  .form_data .dropdown {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 6vw;
+    font-size: 1vw;
+  }
+  
+  .form_data .dropdown label {
+    color: #ff8009;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 1vw;
+  }
+  
+  .form_data .dropdown-menu {
+    outline: none;
+    /* padding: 1vw; */
+    /* border-radius: 10px; */
+    font-size: 1.05vw;
+    color: #8694a8;
+    /* box-sizing: border-box; */
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .form_data .dropdown-menu option {
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    font-size: 1vw;
+    color: rgba(0, 0, 0, 0.5);
+    /*  */
+ 
+  }
+  
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 1); /* Semi-transparent white background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it's on top of everything */
+  }
+ 
+  

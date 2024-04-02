@@ -1,0 +1,166 @@
+/* CSS for the popup modal */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&Poppins:wght@100;200;300&display=swap");
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+  }
+  
+  .modal-content {
+  font-family: Montserrat, sans-serif;
+  font-weight: 600;
+  padding: 3vw 2vw;
+  box-shadow: 0 0 20px -10px #000000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(5px);
+  animation: animateImage 1s ease 0s 1 normal forwards;
+  }
+ .modal-content h1 {
+    font-size: 2.5vw;
+    color: #ef7401;
+    font-family: Montserrat, sans-serif;
+    font-weight: 800;
+    padding: 1vw;
+  }
+  
+  
+ .form_input input {
+    width: 100%;
+    padding: 1vw;
+    border: 1px solid #d4d0d0;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 0.5vw;
+    margin-bottom: 1vw;
+    font-size: 1vw;
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+  }
+ .form_input label {
+    font-weight: 600;
+    font-size: 1vw;
+    color: #ef7401;
+  }
+  
+  .form_input .two {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+.form_input input:focus {
+    border: 2px solid rgba(66, 153, 225, 0.6);
+  }
+  
+.form_input input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1vw;
+  }
+  
+  /* Password toggle button */
+  .form_input .showpass {
+    position: absolute;
+    right: 1vw;
+    cursor: pointer;
+  }
+  
+  /* Button styles */
+  form .btn {
+    display: block;
+    width: 100%;
+    padding: 1vw;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: #ef7401;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.5vw;
+    margin-top: 1vw;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  form .btn:hover {
+    background-color: #ff9d00;
+  }
+  
+  /* Additional styles for the Visibility icon */
+  .showpass svg {
+    color: #333;
+    font-size: 1.5vw;
+  }
+  
+  .showpass:hover svg {
+    color: #000000;
+  }
+  
+  
+  .close {
+    cursor: pointer;
+    background-color:#000000;
+    box-sizing: border-box;
+    border-radius: 60%;
+    font-size:0.3vw;
+    padding: 0.2vw 0.5vw;
+  }
+  .modal-content span{
+    color: white;
+    font-size: 1.5vw;
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+    
+  }
+  /* Blur effect for the background */
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 10vw;
+    margin-bottom: 15px;
+    font-size: 1vw;
+  }
+  
+  .dropdown label {
+    color: rgba(0, 0, 0, 0.5);
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 1.1vw;
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+  }
+  
+  .dropdown-menu {
+    outline: none;
+    padding: 11px;
+    border: 1px solid #d4d0d0;
+    border-radius: 10px;
+    font-size: 1vw;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+  }
+  
+  .dropdown-menu option {
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    font-size: 1vw;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+  }
