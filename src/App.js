@@ -13,36 +13,36 @@ function App() {
         <Route path='/electricity' element={
           <DepartmentPage
           departmentName="Electricity"
-          apiUrl="http://localhost:8009/data/electricity"
-          uploadUrl="http://localhost:8009/upload/electricity"
+          apiUrl="https://arahas-data-upload-back.onrender.com/data/electricity"
+          uploadUrl="https://arahas-data-upload-back.onrender.com/upload/electricity"
         />
         }></Route>
         <Route path='/tourism' element={
           <DepartmentPage
           departmentName="Tourism"
-        apiUrl="http://localhost:8009/data/tourism"
-        uploadUrl="http://localhost:8009/upload/tourism"
+        apiUrl="https://arahas-data-upload-back.onrender.com/data/tourism"
+        uploadUrl="https://arahas-data-upload-back.onrender.com/upload/tourism"
         />
         }></Route>
         <Route path='/housing' element={
           <DepartmentPage
           departmentName="Housing"
-        apiUrl="http://localhost:8009/data/housing"
-        uploadUrl="http://localhost:8009/upload/housing"
+        apiUrl="https://arahas-data-upload-back.onrender.com/data/housing"
+        uploadUrl="https://arahas-data-upload-back.onrender.com/upload/housing"
         />
         }></Route>
         <Route path='/transport' element={
           <DepartmentPage
           departmentName="Transport"
-        apiUrl="http://localhost:8009/data/transport"
-        uploadUrl="http://localhost:8009/upload/transport"
+        apiUrl="https://arahas-data-upload-back.onrender.com/data/transport"
+        uploadUrl="https://arahas-data-upload-back.onrender.com/upload/transport"
         />
         }></Route>
         <Route path='/environment' element={
           <DepartmentPage
           departmentName="Environment"
-        apiUrl="http://localhost:8009/data/environment"
-        uploadUrl="http://localhost:8009/upload/environment"
+        apiUrl="https://arahas-data-upload-back.onrender.com/data/environment"
+        uploadUrl="https://arahas-data-upload-back.onrender.com/upload/environment"
         />
         }></Route>
         <Route path="/sdg" element={<SDGPage/>}></Route>
