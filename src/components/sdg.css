@@ -45,7 +45,7 @@
   justify-content: center;
   flex-direction: row;
   perspective: 1000px;
-  margin: 0.8rem 3rem;
+  margin: 0.8rem 2rem;
 }
 .sdg-card svg{
   display: flex;
