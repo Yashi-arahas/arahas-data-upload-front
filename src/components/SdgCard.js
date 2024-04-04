@@ -59,12 +59,12 @@ const SdgCard = ({ sdg }) => {
                         </div>
                         <div className='sdg-back'>
                             <span className='progress-text bigger'>{sdg.description}</span>
-                            <span className='progress-text'>
+                            {/* <span className='progress-text'>
                                 (0)
                                 <span>
                                     <img src={inc} style={{ height: "70%", width: "70", position: "relative", top: "15%" }} alt='' />
                                 </span>
-                            </span>
+                            </span> */}
                         </div>
                     </div>
                 </Link>

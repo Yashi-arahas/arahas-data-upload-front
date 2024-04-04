@@ -15,6 +15,8 @@ import so2 from "./images/SO-2.png";
 import TemperatureCharts from "./TemperatureCharts";
 import hot from "./images/hot.png";
 import humid from "./images/hum.png";
+import RainFallCharts from "./RainFallCharts";
+import rain from "./images/rainfall.png";
 
 //import icons
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -22,7 +24,6 @@ import "remixicon/fonts/remixicon.css";
 //import BootStrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import PollutionCounts from "./PollutionCounts";
 const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   // State variables and useEffect for data fetching, file upload, etc.
   const [showPopup, setShowPopup] = useState(false);
@@ -67,16 +68,16 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   const [temptimeStamp, setTempTimeStamp] = useState("");
   const [temperature, setTemperature] = useState("");
   const [humidity, setHumidity] = useState("");
+  const [rainData, setRainData] = useState("");
+  
 
   const handleSubCategory = (subCategory) => {
     setSubCategory(subCategory);
-    console.log(subCategory);
   };
-
-  // Function to handle action selection
+  
   const handleActionSelect = (action) => {
     setSelectedAction(action);
-    setShowPopup(true); // Show the upload popup when an action is selected
+    setShowPopup(true); 
   };
 
   const handleYearChange = (event) => {
@@ -311,21 +312,13 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
         setTempDate(tformattedDate);
         setTemperature(tTemperature);
         setHumidity(tHumidity);
-        const rain_response = await axios.get(apiUrl +"/rainfall");
-        const rYear = [];
-        const rMonth = [];
-        const rTotal = [];
-        const rNormal = [];
+        const rain_response = await axios.get(apiUrl + "/rainfall");
+        const rData = [];
         rain_response.data.data.forEach((item) => {
-          rYear.push(item.Year);
-          rMonth.push(item.Month);
-          rTotal.push(item.Total);
-          rNormal.push(item.rNormal);
-       })
-        
-
+          rData.push(item);
+        });
+        setRainData(rData);
       }
-      
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -387,7 +380,6 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
         <Logo />
       </header>
       <aside id="sidebar" className="sidebar">
-        
         <ul className="sidebar-nav" id="sidebar-nav">
           <li className="nav-items">
             <span className="nav-link">
@@ -513,131 +505,145 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                   <>
                     {subCategory && (
                       <div className="enviro-select z-index-low">
-                        <Select
-                          value={selectedYear}
-                          onChange={handleYearChange}
-                          displayEmpty
-                          className="dropdown-menu"
-                          style={{
-                            height: "2.5rem",
-                            width: "15rem",
-                            fontSize: "1.1rem",
-                          }}
-                        >
-                          <MenuItem value="" disabled>
-                            Select Year
-                          </MenuItem>
-                          <MenuItem value={"2023"}>2023</MenuItem>
-                          <MenuItem value={"2024"}>2024</MenuItem>
-                        </Select>
-                        <Select
-                          value={selectedMonth}
-                          onChange={handleMonthChange}
-                          displayEmpty
-                          className="dropdown-menu"
-                          style={{
-                            height: "2.5rem",
-                            width: "15rem",
-                            fontSize: "1.1rem",
-                          }}
-                        >
-                          <MenuItem value="" disabled>
-                            Select Month
-                          </MenuItem>
-                          <MenuItem value="01">January</MenuItem>
-                          <MenuItem value="02">February</MenuItem>
-                          <MenuItem value="03">March</MenuItem>
-                          <MenuItem value="04">April</MenuItem>
-                          <MenuItem value="05">May</MenuItem>
-                          <MenuItem value="06">June</MenuItem>
-                          <MenuItem value="07">July</MenuItem>
-                          <MenuItem value="08">August</MenuItem>
-                          <MenuItem value="09">September</MenuItem>
-                          <MenuItem value="10">October</MenuItem>
-                          <MenuItem value="11">November</MenuItem>
-                          <MenuItem value="12">December</MenuItem>
-                        </Select>
-                        <Select
-                          value={selectedDate}
-                          onChange={handleDateChange}
-                          displayEmpty
-                          className="dropdown-menu"
-                          style={{
-                            height: "2.5rem",
-                            width: "15rem",
-                            fontSize: "1.1rem",
-                          }}
-                        >
-                          <MenuItem value="" disabled>
-                            Select Date
-                          </MenuItem>
-                          <MenuItem value="1">1</MenuItem>
-                          <MenuItem value="2">2</MenuItem>
-                          <MenuItem value="3">3</MenuItem>
-                          <MenuItem value="4">4</MenuItem>
-                          <MenuItem value="5">5</MenuItem>
-                          <MenuItem value="6">6</MenuItem>
-                          <MenuItem value="7">7</MenuItem>
-                          <MenuItem value="8">8</MenuItem>
-                          <MenuItem value="9">9</MenuItem>
-                          <MenuItem value="10">10</MenuItem>
-                          <MenuItem value="11">11</MenuItem>
-                          <MenuItem value="12">12</MenuItem>
-                          <MenuItem value="13">13</MenuItem>
-                          <MenuItem value="14">14</MenuItem>
-                          <MenuItem value="15">15</MenuItem>
-                          <MenuItem value="16">16</MenuItem>
-                          <MenuItem value="17">17</MenuItem>
-                          <MenuItem value="18">18</MenuItem>
-                          <MenuItem value="19">19</MenuItem>
-                          <MenuItem value="20">20</MenuItem>
-                          <MenuItem value="21">21</MenuItem>
-                          <MenuItem value="22">22</MenuItem>
-                          <MenuItem value="23">23</MenuItem>
-                          <MenuItem value="24">24</MenuItem>
-                          <MenuItem value="25">25</MenuItem>
-                          <MenuItem value="26">26</MenuItem>
-                          <MenuItem value="27">27</MenuItem>
-                          <MenuItem value="28">28</MenuItem>
-                          <MenuItem value="29">29</MenuItem>
-                          <MenuItem value="30">30</MenuItem>
-                          <MenuItem value="31">31</MenuItem>
-                        </Select>
-                        <Select
-                          value={selectedLocation}
-                          onChange={handleLocationChange}
-                          displayEmpty
-                          className="dropdown-menu"
-                          style={{
-                            height: "2.5rem",
-                            width: "25rem",
-                            fontSize: "1.1rem",
-                          }}
-                        >
-                          <MenuItem value="" disabled>
-                            Select Location
-                          </MenuItem>
-                          <MenuItem value="Ayodhya - Civil line,Tiny tots school">
-                            Zone 1
-                          </MenuItem>
-                          <MenuItem value="Ayodhya - Shahadat Ganj">
-                            Zone 2
-                          </MenuItem>
-                          <MenuItem value="Ayodhya-Bank colony near Railway station">
-                            Zone 3
-                          </MenuItem>
-                          <MenuItem value="Ayodhya-near Airport">
-                            Zone 4
-                          </MenuItem>
-                          <MenuItem value="Ayodhya-Ranopali near Kila ayodhya">
-                            Zone 5
-                          </MenuItem>
-                        </Select>
+                        {(subCategory==="Aqi" || subCategory ==="Temperature" || subCategory==="Rainfall") &&(
+                          <Select
+                              value={selectedYear}
+                              onChange={handleYearChange}
+                              displayEmpty
+                              className="dropdown-menu"
+                              style={{
+                                height: "2.5rem",
+                                width: "15rem",
+                                fontSize: "1.1rem",
+                              }}
+                            >
+                              <MenuItem value="" disabled>
+                                Select Year
+                              </MenuItem>
+                              <MenuItem value={"2017"}>2017</MenuItem>
+                              <MenuItem value={"2018"}>2018</MenuItem>
+                              <MenuItem value={"2019"}>2019</MenuItem>
+                              <MenuItem value={"2020"}>2020</MenuItem>
+                              <MenuItem value={"2021"}>2021</MenuItem>
+                              <MenuItem value={"2022"}>2022</MenuItem>
+                              <MenuItem value={"2023"}>2023</MenuItem>
+                              <MenuItem value={"2024"}>2024</MenuItem>
+                            </Select>
+                        )}
+                            
+                        {(subCategory === "Aqi" ||
+                          subCategory === "Temperature") && (
+                            <>
+                              <Select
+                                value={selectedMonth}
+                                onChange={handleMonthChange}
+                                displayEmpty
+                                className="dropdown-menu"
+                                style={{
+                                  height: "2.5rem",
+                                  width: "15rem",
+                                  fontSize: "1.1rem",
+                                }}
+                              >
+                                <MenuItem value="" disabled>
+                                  Select Month
+                                </MenuItem>
+                                <MenuItem value="01">January</MenuItem>
+                                <MenuItem value="02">February</MenuItem>
+                                <MenuItem value="03">March</MenuItem>
+                                <MenuItem value="04">April</MenuItem>
+                                <MenuItem value="05">May</MenuItem>
+                                <MenuItem value="06">June</MenuItem>
+                                <MenuItem value="07">July</MenuItem>
+                                <MenuItem value="08">August</MenuItem>
+                                <MenuItem value="09">September</MenuItem>
+                                <MenuItem value="10">October</MenuItem>
+                                <MenuItem value="11">November</MenuItem>
+                                <MenuItem value="12">December</MenuItem>
+                              </Select>
+                              <Select
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                displayEmpty
+                                className="dropdown-menu"
+                                style={{
+                                  height: "2.5rem",
+                                  width: "15rem",
+                                  fontSize: "1.1rem",
+                                }}
+                              >
+                                <MenuItem value="" disabled>
+                                  Select Date
+                                </MenuItem>
+                                <MenuItem value="1">1</MenuItem>
+                                <MenuItem value="2">2</MenuItem>
+                                <MenuItem value="3">3</MenuItem>
+                                <MenuItem value="4">4</MenuItem>
+                                <MenuItem value="5">5</MenuItem>
+                                <MenuItem value="6">6</MenuItem>
+                                <MenuItem value="7">7</MenuItem>
+                                <MenuItem value="8">8</MenuItem>
+                                <MenuItem value="9">9</MenuItem>
+                                <MenuItem value="10">10</MenuItem>
+                                <MenuItem value="11">11</MenuItem>
+                                <MenuItem value="12">12</MenuItem>
+                                <MenuItem value="13">13</MenuItem>
+                                <MenuItem value="14">14</MenuItem>
+                                <MenuItem value="15">15</MenuItem>
+                                <MenuItem value="16">16</MenuItem>
+                                <MenuItem value="17">17</MenuItem>
+                                <MenuItem value="18">18</MenuItem>
+                                <MenuItem value="19">19</MenuItem>
+                                <MenuItem value="20">20</MenuItem>
+                                <MenuItem value="21">21</MenuItem>
+                                <MenuItem value="22">22</MenuItem>
+                                <MenuItem value="23">23</MenuItem>
+                                <MenuItem value="24">24</MenuItem>
+                                <MenuItem value="25">25</MenuItem>
+                                <MenuItem value="26">26</MenuItem>
+                                <MenuItem value="27">27</MenuItem>
+                                <MenuItem value="28">28</MenuItem>
+                                <MenuItem value="29">29</MenuItem>
+                                <MenuItem value="30">30</MenuItem>
+                                <MenuItem value="31">31</MenuItem>
+                              </Select>
+                              <Select
+                                value={selectedLocation}
+                                onChange={handleLocationChange}
+                                displayEmpty
+                                className="dropdown-menu"
+                                style={{
+                                  height: "2.5rem",
+                                  width: "25rem",
+                                  fontSize: "1.1rem",
+                                }}
+                              >
+                                <MenuItem value="" disabled>
+                                  Select Location
+                                </MenuItem>
+                                <MenuItem value="Ayodhya - Civil line,Tiny tots school">
+                                  Zone 1
+                                </MenuItem>
+                                <MenuItem value="Ayodhya - Shahadat Ganj">
+                                  Zone 2
+                                </MenuItem>
+                                <MenuItem value="Ayodhya-Bank colony near Railway station">
+                                  Zone 3
+                                </MenuItem>
+                                <MenuItem value="Ayodhya-near Airport">
+                                  Zone 4
+                                </MenuItem>
+                                <MenuItem value="Ayodhya-Ranopali near Kila ayodhya">
+                                  Zone 5
+                                </MenuItem>
+                              </Select>
+                            </>
+                          )}
                       </div>
                     )}
-                    {selectedYear && selectedMonth && selectedLocation && (
+                    {departmentName==="Environment" && (
                       <>
-                        {departmentName === "Environment" &&
+                        {selectedYear && selectedMonth && selectedDate && selectedLocation && 
                           subCategory === "Aqi" && (
                             <>
                               <>
@@ -671,11 +677,11 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                 <div className="col-lg-4">
                                   <div className="mini-cards">
                                     <div className="mini-cards-icon">
-                                    <img src={pm25}></img>
-                                    <h1>{average[0].Avg_pm25} μg/m³</h1>
-                                    <h3>Avg PM 2.5 </h3>
+                                      <img src={pm25}></img>
+                                      <h1>{average[0].Avg_pm25} μg/m³</h1>
+                                      <h3>Avg PM 2.5 </h3>
                                     </div>
-                                    
+
                                     <div className="mini-cards-text">
                                       <h3>Outliears:{pollution.pm25}</h3>
                                       <h3>
@@ -695,11 +701,11 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                 <div className="col-lg-4">
                                   <div className="mini-cards">
                                     <div className="mini-cards-icon">
-                                    <img src={pm10}></img>
-                                    <h1>{average[0].Avg_pm10} μg/m³</h1>
-                                    <h3>Avg PM 10 </h3>
+                                      <img src={pm10}></img>
+                                      <h1>{average[0].Avg_pm10} μg/m³</h1>
+                                      <h3>Avg PM 10 </h3>
                                     </div>
-                                    
+
                                     <div className="mini-cards-text">
                                       <h3>Outliears:{pollution.pm10}</h3>
                                       <h3>
@@ -719,11 +725,11 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                 <div className="col-lg-4">
                                   <div className="mini-cards">
                                     <div className="mini-cards-icon">
-                                    <img src={so2}></img>
-                                    <h1>{average[0].Avg_so2} μg/m³</h1>
-                                    <h3>Avg SO2 </h3>
+                                      <img src={so2}></img>
+                                      <h1>{average[0].Avg_so2} μg/m³</h1>
+                                      <h3>Avg SO2 </h3>
                                     </div>
-                                    
+
                                     <div className="mini-cards-text">
                                       <h3>Outliears:{pollution.so2}</h3>
                                       <h3>Healthy Days:{40 - pollution.so2}</h3>
@@ -741,11 +747,11 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                 <div className="col-lg-4">
                                   <div className="mini-cards">
                                     <div className="mini-cards-icon">
-                                    <img src={no2}></img>
-                                    <h1>{average[0].Avg_NO2} μg/m³</h1>
-                                    <h3>Avg NO2 </h3>
-                                      </div>
-                                    
+                                      <img src={no2}></img>
+                                      <h1>{average[0].Avg_NO2} μg/m³</h1>
+                                      <h3>Avg NO2 </h3>
+                                    </div>
+
                                     <div className="mini-cards-text">
                                       <h3>Outliears:{pollution.NO2}</h3>
                                       <h3>Healthy Days:{40 - pollution.NO2}</h3>
@@ -763,15 +769,15 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                 <div className="col-lg-4">
                                   <div className="mini-cards">
                                     <div className="mini-cards-icon">
-                                    <img src={tvoc}></img>
-                                    <h1>0.68 μg/m³</h1>
-                                    <h3>Avg TVOC</h3>
+                                      <img src={tvoc}></img>
+                                      <h1>0.68 μg/m³</h1>
+                                      <h3>Avg TVOC</h3>
                                     </div>
                                     <div className="mini-cards-text">
                                       <h3>Outliears:0</h3>
                                       <h3>Healthy Days:40</h3>
                                     </div>
-                                    
+
                                     <div className="card-hover-info">
                                       <ul>
                                         <li>
@@ -801,16 +807,16 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                               </>
                             </>
                           )}
-                        {departmentName === "Environment" &&
+                        {selectedYear && selectedMonth && selectedDate && selectedLocation &&
                           subCategory === "Temperature" && (
                             <>
                               <>
                                 <div className="col-lg-6">
                                   <div className="mini-cards">
-                                  <div className="mini-cards-icon">
-                                    <img src={hot}></img>
-                                    <h1>25.7</h1>
-                                    <h3>Avg Temperature</h3>
+                                    <div className="mini-cards-icon">
+                                      <img src={hot}></img>
+                                      <h1>25.7</h1>
+                                      <h3>Avg Temperature</h3>
                                     </div>
                                     <div className="mini-cards-text">
                                       <h3>Outliears:0</h3>
@@ -820,10 +826,10 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                 </div>
                                 <div className="col-lg-6">
                                   <div className="mini-cards">
-                                  <div className="mini-cards-icon">
-                                    <img src={humid}></img>
-                                    <h1>25.7</h1>
-                                    <h3>Avg Humidity</h3>
+                                    <div className="mini-cards-icon">
+                                      <img src={humid}></img>
+                                      <h1>25.7</h1>
+                                      <h3>Avg Humidity</h3>
                                     </div>
                                     <div className="mini-cards-text">
                                       <h3>Outliears:0</h3>
@@ -844,6 +850,42 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                   temperature={temperature}
                                   humidity={humidity}
                                 />
+                              </>
+                            </>
+                          )}
+                        {selectedYear &&
+                          subCategory === "Rainfall" && (
+                            <>
+                              <>
+                                <div className="col-lg-6">
+                                  <div className="mini-cards">
+                                    <div className="mini-cards-icon">
+                                      <img src={rain}></img>
+                                      <h1>25.7</h1>
+                                      <h3>Avg Actual Rainfall</h3>
+                                    </div>
+                                    <div className="mini-cards-text">
+                                      <h3>Outliears:0</h3>
+                                      <h3>Healthy Days:40</h3>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="col-lg-6">
+                                  <div className="mini-cards">
+                                    <div className="mini-cards-icon">
+                                      <img src={rain}></img>
+                                      <h1>25.7</h1>
+                                      <h3>Avg Normal Rainfall</h3>
+                                    </div>
+                                    <div className="mini-cards-text">
+                                      <h3>Outliears:0</h3>
+                                      <h3>Healthy Days:40</h3>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                              <>
+                              <RainFallCharts selectedYear ={selectedYear} rainData={rainData}/>
                               </>
                             </>
                           )}
@@ -1024,7 +1066,6 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
             {/* right side bar */}
             <div className="col-lg-3">
               <div className="insights">
-                
                 {departmentName === "Environment" &&
                   selectedLocation &&
                   selectedDate &&
@@ -1032,7 +1073,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                   selectedMonth &&
                   subCategory === "Aqi" && (
                     <>
-                    <h1>Insights</h1>
+                      <h1>Insights</h1>
                       <div className="insights-content">
                         {insights.map((item, index) => (
                           <div key={index}>
@@ -1051,7 +1092,6 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                 )}
               </div>
               <div className="insights">
-                
                 {departmentName === "Environment" &&
                   selectedLocation &&
                   selectedDate &&

@@ -9,6 +9,7 @@ import RegisterModal from "./RegisterModel";
 import Lottie from "lottie-react";
 import file_animation from "./animations/file-processing.json";
 import loding_ani from "./animations/loading.json";
+import Header from "./Header";
 
 const Login = () => {
   const history = useNavigate();
@@ -94,12 +95,7 @@ const Login = () => {
   return (
     <>
       <section className="home">
-        <div className="nav">
-          <img src={logo} alt="Logo" />
-          {/* <div className="demo">
-            <button onClick={handleDemoRequest}>User Register</button>
-          </div> */}
-        </div>
+        <Header/>
         <div className="main-container">
           <div className="ani">
             <Lottie
@@ -149,7 +145,7 @@ const Login = () => {
                     </div>
                   </div>
                 </div>
-                <div className="dropdown">
+                <div className="dropdown-login">
                   <label htmlFor="department">Department</label>
                   <Select
                     name="department"

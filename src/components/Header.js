@@ -9,7 +9,7 @@ function Header() {
           <img
             src={ComapanyLogo}
             alt="Arhas Technologies Logo"
-            className="comapny-logo"
+            className="company-logo"
           />
 
         </nav>
