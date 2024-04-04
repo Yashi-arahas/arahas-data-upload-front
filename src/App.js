@@ -5,6 +5,7 @@ import "./App.css";
 import DepartmentPage from './components/DepartmentPage';
 
 import { Routes, Route } from "react-router-dom";
+import WeatherApi from './components/WeatherApi';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         />
         }></Route>
         <Route path="/sdg" element={<SDGPage/>}></Route>
+        <Route path="/weather" element={<WeatherApi/>}></Route>
       </Routes>
 
   );

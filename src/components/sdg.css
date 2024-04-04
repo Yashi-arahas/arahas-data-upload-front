@@ -129,3 +129,23 @@
   font-size: 2rem;
   font-weight: 700;
 }
+@media screen and (max-width: 1300px) {
+  .sdg-card {
+    width: 8rem;
+    height: 8rem;
+    margin: 0.5rem 1.5rem;
+  }
+  
+  .sdg-logo {
+    height: 4rem;
+    width: 4rem;
+  }
+  
+  .sdg-title {
+    width: 12rem;
+    font-size: 0.8rem;
+  }
+  .page-title{
+    font-size: 2rem;
+  }
+}
