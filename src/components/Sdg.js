@@ -19,61 +19,61 @@ const Sdg = () => {
             title: "Safe and affordable housing",
             link: "/housing",
             photo: house,
-            description: 20,
+            description: 98.35
         },
         {
             title: "Affordable and sustainable transport systems",
             link: "/transport",
             photo: shipped,
-            description: 30,
+            description: 100
         },
         {
             title: "Inclusive and sustainable urbanization",
             link: "#",
             photo: cityscape,
-            description: 50,
+            description: 78.57
         },
         {
             title: "Protect the world's cultural and natural heritage",
             link: "#",
             photo: historic,
-            description: 70,
+            description: 100
         },
         {
             title: "Reduce the adverse effects of natural disasters",
             link: "#",
             photo: disaster,
-            description: 20,
+            description: 20
         },
         {
             title: "Reduce the environmental impacts of cities",
             link: "/environment",
             photo: saveThePlanet,
-            description: 90,
+            description: 64.28
         },
         {
             title: "Provide access to safe and inclusive green and public spaces",
             link: "#",
             photo: city,
-            description: 40,
+            description: 40
         },
         {
             title: "Strong national and regional development planning",
             link: "#",
             photo: planning,
-            description: 60,
+            description: 100
         },
         {
             title: "Implement policies for inclusion, resource efficiency and disaster risk reduction",
             link: "#",
             photo: testament,
-            description: 85,
+            description: 100,
         },
         {
             title: "Tourist Influx",
             link: "/tourism",
             photo: group,
-            description: 10,
+            description: 71.42,
         },
     ];
  

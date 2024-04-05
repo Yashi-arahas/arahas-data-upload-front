@@ -2,23 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 const api = {
   key: "f0bd65116832f50201351b648dbb0584",
-  base: "https://api.openweathermap.org/data/3.0/",
+  base: "https://api.openweathermap.org/data/2.5/",
 };
 
 const WeatherApi = () => {
   const [search, setSearch] = useState("");
+  // const [data,setData]=useState("");
   const searchPressed=()=>{
-        fetch(`${api.base}weather?q=${search}$units=metric&APPID=${api.key}`).then(res=>res.json()).then(result=>{
+        const response =fetch(`${api.base}weather?q=${search}$units=metric&APPID=${api.key}`).then(res=>res.json()).then(result=>{
             console.log(result);
+            
         })
-
-        
-        
   }
 
   return (
     <>
-      <div>
+      <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
         <input
           type="text"
           placeholder="Search..."
@@ -26,6 +25,9 @@ const WeatherApi = () => {
         />
         <button onClick={searchPressed}>Search</button>
       </div>
+      <diV>
+        
+      </diV>
     </>
   );
 };
