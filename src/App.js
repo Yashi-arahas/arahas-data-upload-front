@@ -6,6 +6,7 @@ import DepartmentPage from './components/DepartmentPage';
 
 import { Routes, Route } from "react-router-dom";
 import WeatherApi from './components/WeatherApi';
+import OtherIndicator from './components/OtherIndicator';
 
 function App() {
   return (
@@ -15,7 +16,42 @@ function App() {
           <DepartmentPage
           departmentName="Electricity"
           apiUrl="https://arahas-data-upload-back.onrender.com/data/electricity"
-          uploadUrl="https://arahas-data-upload-back.onrender.com/upload/electricity"
+          uploadUrl="https://arahas-data-upload-back.onrender.com/data/upload/electricity"
+        />
+        }></Route>
+        <Route path='/education' element={
+          <DepartmentPage
+          departmentName="Education"
+          apiUrl="https://arahas-data-upload-back.onrender.com/data/education"
+          uploadUrl="https://arahas-data-upload-back.onrender.com/data/upload/education"
+        />
+        }></Route>
+         <Route path='/health' element={
+          <DepartmentPage
+          departmentName="Health"
+          apiUrl="https://arahas-data-upload-back.onrender.com/data/health"
+          uploadUrl="https://arahas-data-upload-back.onrender.com/data/upload/health"
+        />
+        }></Route>
+         <Route path='/crime' element={
+          <DepartmentPage
+          departmentName="Crime"
+          apiUrl="https://arahas-data-upload-back.onrender.com/data/crime"
+          uploadUrl="https://arahas-data-upload-back.onrender.com/data/upload/crime"
+        />
+        }></Route>
+        <Route path='/sex-ratio' element={
+          <DepartmentPage
+          departmentName="Sex-Ratio"
+          apiUrl="https://arahas-data-upload-back.onrender.com/data/sex-ratio"
+          uploadUrl="https://arahas-data-upload-back.onrender.com/data/upload/sex-ratio"
+        />
+        }></Route>
+        <Route path='/socio-culture' element={
+          <DepartmentPage
+          departmentName="Socio-Cultural-Activities"
+          apiUrl="https://arahas-data-upload-back.onrender.com/data/socio-cultural-activities"
+          uploadUrl="https://arahas-data-upload-back.onrender.com/data/upload/socio-cultural-activities"
         />
         }></Route>
         <Route path='/tourism' element={
@@ -48,6 +84,12 @@ function App() {
         }></Route>
         <Route path="/sdg" element={<SDGPage/>}></Route>
         <Route path="/weather" element={<WeatherApi/>}></Route>
+        <Route path="/more-indicators/electricity" element={<OtherIndicator departmentName={"Electricity"}/>}></Route>
+        <Route path="/more-indicators/sex-ratio" element={<OtherIndicator departmentName={"Sex-Ratio"}/>}></Route>
+        <Route path="/more-indicators/education" element={<OtherIndicator departmentName={"Education"}/>}></Route>
+        <Route path="/more-indicators/crime" element={<OtherIndicator departmentName={"Crime"}/>}></Route>
+        <Route path="/more-indicators/health" element={<OtherIndicator departmentName={"Health"}/>}></Route>
+        <Route path="/more-indicators/socio-culture" element={<OtherIndicator departmentName={"Socio-Cultural-Activities"}/>}></Route>
       </Routes>
 
   );

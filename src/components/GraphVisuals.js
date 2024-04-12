@@ -12,7 +12,7 @@ export const BarChart = ({ title, categories, series, height, width , xtitle }) 
             height: 350,
             toolbar: {
               show: true
-            }
+            },
           },
           dataLabels: {
             enabled: false,
@@ -22,7 +22,7 @@ export const BarChart = ({ title, categories, series, height, width , xtitle }) 
             align: 'center',
             offsetY: 10,
             style: {
-              fontSize: '1vw'
+              fontSize: '0.8rem'
             }
           },
           xaxis: {
@@ -35,7 +35,7 @@ export const BarChart = ({ title, categories, series, height, width , xtitle }) 
           },
           plotOptions: {
             bar: {
-              columnWidth: '20rem', // Adjust the width of the bars as needed
+              columnWidth: '30rem', // Adjust the width of the bars as needed
               endingShape: 'rounded'
             }
           },

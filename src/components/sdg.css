@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 1rem 0 0 0 ;
   background-color: rgb(255, 255, 255);
 }
 .sdg-container {
@@ -48,6 +48,39 @@
   flex-direction: row;
   perspective: 1000px;
   margin: 0.5rem 3rem;
+}
+.not-sdg-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex-direction: row;
+  width: 28rem;
+  height: 14rem;
+  padding: 1rem;
+  margin: 1rem 0.5rem;
+  box-shadow: rgba(0, 0, 0,0.1) 0px 0px 0px 1px;
+}
+.not-sdg-container:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.not-sdg-content{
+  
+  padding: 0.5rem;
+  
+}
+.not-sdg-content img{
+height: 6rem;
+width: 6rem;
+}
+.not-sdg-container h2{
+  color: black;
+  font-size: 1rem;
+  margin-top: 0;
+  text-decoration: none;
+  align-items: center;
+
 }
 .sdg-card svg{
   display: flex;
@@ -148,4 +181,23 @@
   .page-title{
     font-size: 2rem;
   }
+}
+
+.view-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.view-btn button{
+  background-color: #ff8009;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: 1rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  margin-top: 1rem;
 }

@@ -1,0 +1,60 @@
+
+.other-main-container{
+    background-color: #edf9f9;
+    height: 100%;
+    width: 100%;
+    padding: 1rem 0; 
+}
+.other-graphs{
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: white;
+    margin: 0 2rem;
+}
+.other-title h1{
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem;
+    color:#012970;
+}
+.other-mini-graph{
+    padding: 1rem;
+}
+.other-mini-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    flex-direction: row;
+    padding: 1rem;
+    margin: 0.5rem 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.other-mini-card h1{
+    font-size: 1.5rem;
+    color: #717ff5;
+    margin: 0 0 0 2rem;
+}
+.other-mini-card img{
+    height: 5rem;
+    width: 5rem;
+}
+.sub-mini{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
+.sub-mini h2{
+    background-color: #edf9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+.other-mini-card h2{
+    margin: 0.5rem 2rem;
+    font-size: 1.2rem;
+    color: #012970;
+}

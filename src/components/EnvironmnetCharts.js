@@ -14,6 +14,7 @@ const EnvironmentCharts = ({
   enviroSO2,
   enviroAQI,
   enviroNO2,
+  enviroco2
 }) => {
   const [chartData, setChartData] = useState({});
 
@@ -84,6 +85,15 @@ const EnvironmentCharts = ({
           day === date
         );
       }),
+      co2: enviroco2.filter((_, index) => {
+        const [day, monthStr, yearStr] = enviroDate[index].split("-");
+        return (
+          enviroLocation[index] === location &&
+          yearStr === year &&
+          monthStr === month &&
+          day === date
+        );
+      }),
     };
 
     return filteredData;
@@ -109,6 +119,7 @@ const EnvironmentCharts = ({
     enviroSO2,
     enviroAQI,
     enviroNO2,
+    enviroco2
   ]);
 
   return (
@@ -216,6 +227,28 @@ const EnvironmentCharts = ({
                     title={`NO2 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
                     categories={chartData.time}
                     series={[{ name: "NO2", data: chartData.NO2.map(value => parseFloat(value.toFixed(2))) }]}
+                    height={400}
+                    width={700}
+                    xtitle="Time"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {chartData.time && (
+        <div className="row">
+          <div className="cols-lg-10">
+            <div className="graph">
+              <div className="graph-conatiner">
+                <div
+                  className="z-index-low"
+                >
+                  <BarChart
+                    title={`CO2 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
+                    categories={chartData.time}
+                    series={[{ name: "co2", data: chartData.co2.map(value => parseFloat(value.toFixed(2))) }]}
                     height={400}
                     width={700}
                     xtitle="Time"

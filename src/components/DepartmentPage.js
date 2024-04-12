@@ -29,9 +29,8 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [uploadError, setUploadError] = useState(false);
-  const [pastConsumption, setPastConsumption] = useState([]);
-  const [presentConsumption, setPresentConsumption] = useState([]);
-  const [SDG11Target, setSDG11Target] = useState([]);
+  const [connect, setConnections] = useState([]);
+  const [consumption, setConsumption] = useState([]);
   const [categ, setCateg] = useState([]); // State for categories
   const [showModifyPopup, setShowModifyPopup] = useState(false);
   const [touristData, setTouristData] = useState([]); // State for tourist data
@@ -57,6 +56,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   const [enviroso2, setEnviroSO2] = useState("");
   const [enviroAQI, setEnviroAQI] = useState("");
   const [enviroNO2, setEnviroNO2] = useState("");
+  const [enviroco2, setEnviroco2] = useState("");
   const [selectedAction, setSelectedAction] = useState(""); // State for selected action
   const [average, setAverage] = useState({});
   const [insights, setInsights] = useState({});
@@ -69,15 +69,19 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   const [temperature, setTemperature] = useState("");
   const [humidity, setHumidity] = useState("");
   const [rainData, setRainData] = useState("");
-  
+  const [sexRatio, setSexRatio] = useState("");
+  const [socioCulture, setSocioCulture] = useState("");
+  const [crimeData, setCrimeData] = useState("");
+  const [educationData, setEducationData] = useState("");
+  const [healthData, setHealthData] = useState("");
 
   const handleSubCategory = (subCategory) => {
     setSubCategory(subCategory);
   };
-  
+
   const handleActionSelect = (action) => {
     setSelectedAction(action);
-    setShowPopup(true); 
+    setShowPopup(true);
   };
 
   const handleYearChange = (event) => {
@@ -103,22 +107,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
       if (departmentName === "Electricity") {
         const response = await axios.get(apiUrl);
         const data = response.data.data;
-        const pastConsumption = [];
-        const presentConsumption = [];
-        const SDG11Target = [];
-        const categ = [];
-
-        data.forEach((item) => {
-          categ.push(item.category);
-          pastConsumption.push(item.past_consumption);
-          presentConsumption.push(item.present_consumption);
-          SDG11Target.push(item.SDG_11_target);
-        });
-
-        setCateg(categ);
-        setPastConsumption(pastConsumption);
-        setPresentConsumption(presentConsumption);
-        setSDG11Target(SDG11Target);
+        setCateg(data);
       } else if (departmentName === "Tourism") {
         const touristResponse = await axios.get(apiUrl); // Assuming correct URL for tourism data
         const wasteResponse = await axios.get(apiUrl + "/waste");
@@ -168,6 +157,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
         const so2 = [];
         const AQI = [];
         const NO2 = [];
+        const co2=[];
         data.forEach((item) => {
           location.push(item.location);
           timeStamp.push(item.timeStamp);
@@ -180,7 +170,9 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           const day = dateObj.getDate();
 
           // Format the date to dd-mm-yyyy
-          const formatted = `${day}-${month < 10 ? "0" + month : month}-${year}`;
+          const formatted = `${day}-${
+            month < 10 ? "0" + month : month
+          }-${year}`;
           formattedDate.push(formatted);
 
           const hours = dateObj.getHours();
@@ -192,6 +184,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           so2.push(item.so2);
           AQI.push(item.AQI);
           NO2.push(item.NO2);
+          co2.push(item.co2);
         });
         setEnviroLocation(location);
         setEnviroTimeStamp(timeStamp);
@@ -202,6 +195,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
         setEnviroSO2(so2);
         setEnviroAQI(AQI);
         setEnviroNO2(NO2);
+        setEnviroco2(co2);
         // Initialize an object to store counts for each date
         const dateCounts = {};
 
@@ -224,6 +218,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
               pm10: 0,
               so2: 0,
               NO2: 0,
+              co2:0
             };
           }
 
@@ -243,6 +238,9 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           if (item.NO2 > 80) {
             dateCounts[fDate].NO2++;
           }
+          if (item.co2 > 80) {
+            dateCounts[fDate].co2++;
+          }
         });
 
         const pollutantCounts = {
@@ -251,6 +249,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           pm10: 0,
           so2: 0,
           NO2: 0,
+          co2:0
         };
 
         for (const date in dateCounts) {
@@ -268,6 +267,9 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           }
           if (dateCounts[date].NO2 > 0) {
             pollutantCounts.NO2++;
+          }
+          if (dateCounts[date].co2 > 0) {
+            pollutantCounts.co2++;
           }
         }
 
@@ -296,7 +298,9 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           const day = dateObj.getDate();
 
           // Format the date to dd-mm-yyyy
-          const formatted = `${day}-${month < 10 ? "0" + month : month}-${year}`;
+          const formatted = `${day}-${
+            month < 10 ? "0" + month : month
+          }-${year}`;
           tformattedDate.push(formatted);
 
           const hours = dateObj.getHours();
@@ -319,6 +323,17 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
         });
         setRainData(rData);
       }
+      const sex_ratio_response = await axios.get(apiUrl);
+      setSexRatio(sex_ratio_response.data.data);
+      const socio_culture_response = await axios.get(apiUrl);
+      setSocioCulture(socio_culture_response.data.data);
+      const crime_response = await axios.get(apiUrl);
+      setCrimeData(crime_response.data.data);
+      console.log(crime_response.data.data);
+      const health_response = await axios.get(apiUrl);
+      setHealthData(health_response.data.data);
+      const education_response = await axios.get(apiUrl);
+      setEducationData(education_response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -343,15 +358,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
       setUploadError(true);
     }
   };
-  // Prepare data for plotting Tourist Influx graph
-  const prepareTouristData = () => {
-    const Total_Tourist = touristData.map((entry) => ({
-      x: entry.Year,
-      y: entry.Total_Tourists,
-    }));
 
-    return [{ name: "Total Tourist", data: Total_Tourist }];
-  };
   const preparePopulationData = () => {
     const populationChartData = populationData.map((entry) => ({
       name: entry.Type,
@@ -359,16 +366,6 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
     }));
 
     return populationChartData;
-  };
-
-  // Prepare data for plotting Waste Generation graph
-  const prepareWasteData = () => {
-    const Total_Waste = wasteData.map((entry) => ({
-      x: entry.Year,
-      y: entry.Total_Waste_Generated,
-    }));
-
-    return [{ name: "Total Waste Generated", data: Total_Waste }];
   };
 
   return (
@@ -470,7 +467,11 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           onUpload={handleUpload}
           department={departmentName.toLowerCase()}
           action={selectedAction}
-          subCategory={subCategory} // Pass the subCategory as a prop
+          subCategory={
+            departmentName === "Environment"
+              ? subCategory
+              : departmentName.toLowerCase()
+          }
         />
       )}
       {/* Displaying upload success/error messages */}
@@ -505,10 +506,40 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                   <>
                     {subCategory && (
                       <div className="enviro-select z-index-low">
-                        {(subCategory==="Aqi" || subCategory ==="Temperature" || subCategory==="Rainfall") &&(
+                        {(subCategory === "Aqi" ||
+                          subCategory === "Temperature" ||
+                          subCategory === "Rainfall") && (
                           <Select
-                              value={selectedYear}
-                              onChange={handleYearChange}
+                            value={selectedYear}
+                            onChange={handleYearChange}
+                            displayEmpty
+                            className="dropdown-menu"
+                            style={{
+                              height: "2.5rem",
+                              width: "15rem",
+                              fontSize: "1.1rem",
+                            }}
+                          >
+                            <MenuItem value="" disabled>
+                              Select Year
+                            </MenuItem>
+                            <MenuItem value={"2017"}>2017</MenuItem>
+                            <MenuItem value={"2018"}>2018</MenuItem>
+                            <MenuItem value={"2019"}>2019</MenuItem>
+                            <MenuItem value={"2020"}>2020</MenuItem>
+                            <MenuItem value={"2021"}>2021</MenuItem>
+                            <MenuItem value={"2022"}>2022</MenuItem>
+                            <MenuItem value={"2023"}>2023</MenuItem>
+                            <MenuItem value={"2024"}>2024</MenuItem>
+                          </Select>
+                        )}
+
+                        {(subCategory === "Aqi" ||
+                          subCategory === "Temperature") && (
+                          <>
+                            <Select
+                              value={selectedMonth}
+                              onChange={handleMonthChange}
                               displayEmpty
                               className="dropdown-menu"
                               style={{
@@ -518,132 +549,107 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                               }}
                             >
                               <MenuItem value="" disabled>
-                                Select Year
+                                Select Month
                               </MenuItem>
-                              <MenuItem value={"2017"}>2017</MenuItem>
-                              <MenuItem value={"2018"}>2018</MenuItem>
-                              <MenuItem value={"2019"}>2019</MenuItem>
-                              <MenuItem value={"2020"}>2020</MenuItem>
-                              <MenuItem value={"2021"}>2021</MenuItem>
-                              <MenuItem value={"2022"}>2022</MenuItem>
-                              <MenuItem value={"2023"}>2023</MenuItem>
-                              <MenuItem value={"2024"}>2024</MenuItem>
+                              <MenuItem value="01">January</MenuItem>
+                              <MenuItem value="02">February</MenuItem>
+                              <MenuItem value="03">March</MenuItem>
+                              <MenuItem value="04">April</MenuItem>
+                              <MenuItem value="05">May</MenuItem>
+                              <MenuItem value="06">June</MenuItem>
+                              <MenuItem value="07">July</MenuItem>
+                              <MenuItem value="08">August</MenuItem>
+                              <MenuItem value="09">September</MenuItem>
+                              <MenuItem value="10">October</MenuItem>
+                              <MenuItem value="11">November</MenuItem>
+                              <MenuItem value="12">December</MenuItem>
                             </Select>
+                            <Select
+                              value={selectedDate}
+                              onChange={handleDateChange}
+                              displayEmpty
+                              className="dropdown-menu"
+                              style={{
+                                height: "2.5rem",
+                                width: "15rem",
+                                fontSize: "1.1rem",
+                              }}
+                            >
+                              <MenuItem value="" disabled>
+                                Select Date
+                              </MenuItem>
+                              <MenuItem value="1">1</MenuItem>
+                              <MenuItem value="2">2</MenuItem>
+                              <MenuItem value="3">3</MenuItem>
+                              <MenuItem value="4">4</MenuItem>
+                              <MenuItem value="5">5</MenuItem>
+                              <MenuItem value="6">6</MenuItem>
+                              <MenuItem value="7">7</MenuItem>
+                              <MenuItem value="8">8</MenuItem>
+                              <MenuItem value="9">9</MenuItem>
+                              <MenuItem value="10">10</MenuItem>
+                              <MenuItem value="11">11</MenuItem>
+                              <MenuItem value="12">12</MenuItem>
+                              <MenuItem value="13">13</MenuItem>
+                              <MenuItem value="14">14</MenuItem>
+                              <MenuItem value="15">15</MenuItem>
+                              <MenuItem value="16">16</MenuItem>
+                              <MenuItem value="17">17</MenuItem>
+                              <MenuItem value="18">18</MenuItem>
+                              <MenuItem value="19">19</MenuItem>
+                              <MenuItem value="20">20</MenuItem>
+                              <MenuItem value="21">21</MenuItem>
+                              <MenuItem value="22">22</MenuItem>
+                              <MenuItem value="23">23</MenuItem>
+                              <MenuItem value="24">24</MenuItem>
+                              <MenuItem value="25">25</MenuItem>
+                              <MenuItem value="26">26</MenuItem>
+                              <MenuItem value="27">27</MenuItem>
+                              <MenuItem value="28">28</MenuItem>
+                              <MenuItem value="29">29</MenuItem>
+                              <MenuItem value="30">30</MenuItem>
+                              <MenuItem value="31">31</MenuItem>
+                            </Select>
+                            <Select
+                              value={selectedLocation}
+                              onChange={handleLocationChange}
+                              displayEmpty
+                              className="dropdown-menu"
+                              style={{
+                                height: "2.5rem",
+                                width: "25rem",
+                                fontSize: "1.1rem",
+                              }}
+                            >
+                              <MenuItem value="" disabled>
+                                Select Location
+                              </MenuItem>
+                              <MenuItem value="Ayodhya - Civil line,Tiny tots school">
+                                Zone 1
+                              </MenuItem>
+                              <MenuItem value="Ayodhya - Shahadat Ganj">
+                                Zone 2
+                              </MenuItem>
+                              <MenuItem value="Ayodhya-Bank colony near Railway station">
+                                Zone 3
+                              </MenuItem>
+                              <MenuItem value="Ayodhya-near Airport">
+                                Zone 4
+                              </MenuItem>
+                              <MenuItem value="Ayodhya-Ranopali near Kila ayodhya">
+                                Zone 5
+                              </MenuItem>
+                            </Select>
+                          </>
                         )}
-                            
-                        {(subCategory === "Aqi" ||
-                          subCategory === "Temperature") && (
-                            <>
-                              <Select
-                                value={selectedMonth}
-                                onChange={handleMonthChange}
-                                displayEmpty
-                                className="dropdown-menu"
-                                style={{
-                                  height: "2.5rem",
-                                  width: "15rem",
-                                  fontSize: "1.1rem",
-                                }}
-                              >
-                                <MenuItem value="" disabled>
-                                  Select Month
-                                </MenuItem>
-                                <MenuItem value="01">January</MenuItem>
-                                <MenuItem value="02">February</MenuItem>
-                                <MenuItem value="03">March</MenuItem>
-                                <MenuItem value="04">April</MenuItem>
-                                <MenuItem value="05">May</MenuItem>
-                                <MenuItem value="06">June</MenuItem>
-                                <MenuItem value="07">July</MenuItem>
-                                <MenuItem value="08">August</MenuItem>
-                                <MenuItem value="09">September</MenuItem>
-                                <MenuItem value="10">October</MenuItem>
-                                <MenuItem value="11">November</MenuItem>
-                                <MenuItem value="12">December</MenuItem>
-                              </Select>
-                              <Select
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                displayEmpty
-                                className="dropdown-menu"
-                                style={{
-                                  height: "2.5rem",
-                                  width: "15rem",
-                                  fontSize: "1.1rem",
-                                }}
-                              >
-                                <MenuItem value="" disabled>
-                                  Select Date
-                                </MenuItem>
-                                <MenuItem value="1">1</MenuItem>
-                                <MenuItem value="2">2</MenuItem>
-                                <MenuItem value="3">3</MenuItem>
-                                <MenuItem value="4">4</MenuItem>
-                                <MenuItem value="5">5</MenuItem>
-                                <MenuItem value="6">6</MenuItem>
-                                <MenuItem value="7">7</MenuItem>
-                                <MenuItem value="8">8</MenuItem>
-                                <MenuItem value="9">9</MenuItem>
-                                <MenuItem value="10">10</MenuItem>
-                                <MenuItem value="11">11</MenuItem>
-                                <MenuItem value="12">12</MenuItem>
-                                <MenuItem value="13">13</MenuItem>
-                                <MenuItem value="14">14</MenuItem>
-                                <MenuItem value="15">15</MenuItem>
-                                <MenuItem value="16">16</MenuItem>
-                                <MenuItem value="17">17</MenuItem>
-                                <MenuItem value="18">18</MenuItem>
-                                <MenuItem value="19">19</MenuItem>
-                                <MenuItem value="20">20</MenuItem>
-                                <MenuItem value="21">21</MenuItem>
-                                <MenuItem value="22">22</MenuItem>
-                                <MenuItem value="23">23</MenuItem>
-                                <MenuItem value="24">24</MenuItem>
-                                <MenuItem value="25">25</MenuItem>
-                                <MenuItem value="26">26</MenuItem>
-                                <MenuItem value="27">27</MenuItem>
-                                <MenuItem value="28">28</MenuItem>
-                                <MenuItem value="29">29</MenuItem>
-                                <MenuItem value="30">30</MenuItem>
-                                <MenuItem value="31">31</MenuItem>
-                              </Select>
-                              <Select
-                                value={selectedLocation}
-                                onChange={handleLocationChange}
-                                displayEmpty
-                                className="dropdown-menu"
-                                style={{
-                                  height: "2.5rem",
-                                  width: "25rem",
-                                  fontSize: "1.1rem",
-                                }}
-                              >
-                                <MenuItem value="" disabled>
-                                  Select Location
-                                </MenuItem>
-                                <MenuItem value="Ayodhya - Civil line,Tiny tots school">
-                                  Zone 1
-                                </MenuItem>
-                                <MenuItem value="Ayodhya - Shahadat Ganj">
-                                  Zone 2
-                                </MenuItem>
-                                <MenuItem value="Ayodhya-Bank colony near Railway station">
-                                  Zone 3
-                                </MenuItem>
-                                <MenuItem value="Ayodhya-near Airport">
-                                  Zone 4
-                                </MenuItem>
-                                <MenuItem value="Ayodhya-Ranopali near Kila ayodhya">
-                                  Zone 5
-                                </MenuItem>
-                              </Select>
-                            </>
-                          )}
                       </div>
                     )}
-                    {departmentName==="Environment" && (
+                    {departmentName === "Environment" && (
                       <>
-                        {selectedYear && selectedMonth && selectedDate && selectedLocation && 
+                        {selectedYear &&
+                          selectedMonth &&
+                          selectedDate &&
+                          selectedLocation &&
                           subCategory === "Aqi" && (
                             <>
                               <>
@@ -803,11 +809,15 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                   enviroSO2={enviroso2}
                                   enviroAQI={enviroAQI}
                                   enviroNO2={enviroNO2}
+                                  enviroco2={enviroco2}
                                 />
                               </>
                             </>
                           )}
-                        {selectedYear && selectedMonth && selectedDate && selectedLocation &&
+                        {selectedYear &&
+                          selectedMonth &&
+                          selectedDate &&
+                          selectedLocation &&
                           subCategory === "Temperature" && (
                             <>
                               <>
@@ -853,126 +863,316 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                               </>
                             </>
                           )}
-                        {selectedYear &&
-                          subCategory === "Rainfall" && (
+                        {selectedYear && subCategory === "Rainfall" && (
+                          <>
                             <>
-                              <>
-                                <div className="col-lg-6">
-                                  <div className="mini-cards">
-                                    <div className="mini-cards-icon">
-                                      <img src={rain}></img>
-                                      <h1>25.7</h1>
-                                      <h3>Avg Actual Rainfall</h3>
-                                    </div>
-                                    <div className="mini-cards-text">
-                                      <h3>Outliears:0</h3>
-                                      <h3>Healthy Days:40</h3>
-                                    </div>
+                              <div className="col-lg-6">
+                                <div className="mini-cards">
+                                  <div className="mini-cards-icon">
+                                    <img src={rain}></img>
+                                    <h1>25.7</h1>
+                                    <h3>Avg Actual Rainfall</h3>
+                                  </div>
+                                  <div className="mini-cards-text">
+                                    <h3>Outliears:0</h3>
+                                    <h3>Healthy Days:40</h3>
                                   </div>
                                 </div>
-                                <div className="col-lg-6">
-                                  <div className="mini-cards">
-                                    <div className="mini-cards-icon">
-                                      <img src={rain}></img>
-                                      <h1>25.7</h1>
-                                      <h3>Avg Normal Rainfall</h3>
-                                    </div>
-                                    <div className="mini-cards-text">
-                                      <h3>Outliears:0</h3>
-                                      <h3>Healthy Days:40</h3>
-                                    </div>
+                              </div>
+                              <div className="col-lg-6">
+                                <div className="mini-cards">
+                                  <div className="mini-cards-icon">
+                                    <img src={rain}></img>
+                                    <h1>25.7</h1>
+                                    <h3>Avg Normal Rainfall</h3>
+                                  </div>
+                                  <div className="mini-cards-text">
+                                    <h3>Outliears:0</h3>
+                                    <h3>Healthy Days:40</h3>
                                   </div>
                                 </div>
-                              </>
-                              <>
-                              <RainFallCharts selectedYear ={selectedYear} rainData={rainData}/>
-                              </>
+                              </div>
                             </>
-                          )}
+                            <>
+                              <RainFallCharts
+                                selectedYear={selectedYear}
+                                rainData={rainData}
+                              />
+                            </>
+                          </>
+                        )}
                       </>
                     )}
                   </>
                 )}
 
-                {departmentName !== "Environment" && (
-                  <>
-                    <div className="col-lg-3">
-                      <div className="mini-cards">
-                        <h1>parameter1</h1>
+                {departmentName !== "Environment" &&
+                  departmentName !== "Electricity" &&
+                  departmentName !== "Sex-Ratio" &&
+                  departmentName !== "Socio-Cultural-Activities" &&
+                  departmentName !== "Crime" &&
+                  departmentName !== "Health" &&
+                  departmentName !== "Education" && (
+                    <>
+                      <div className="col-lg-3">
+                        <div className="mini-cards">
+                          <h1>parameter1</h1>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="col-lg-3">
-                      <div className="mini-cards">
-                        <h1>parameter2</h1>
+                      <div className="col-lg-3">
+                        <div className="mini-cards">
+                          <h1>parameter2</h1>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="col-lg-3">
-                      <div className="mini-cards">
-                        <h1>parameter3</h1>
+                      <div className="col-lg-3">
+                        <div className="mini-cards">
+                          <h1>parameter3</h1>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="col-lg-3">
-                      <div className="mini-cards">
-                        <h1>parameter4</h1>
+                      <div className="col-lg-3">
+                        <div className="mini-cards">
+                          <h1>parameter4</h1>
+                        </div>
                       </div>
-                    </div>
-                  </>
-                )}
+                    </>
+                  )}
               </div>
               {/* Render charts based on department */}
-              {departmentName === "Electricity" && (
+              {departmentName === "Electricity" && categ.length > 0 && (
                 <div className="row">
-                  {categ.map((category, index) => (
-                    <div className="cols-lg-10">
-                      <div className="graph">
-                        <div className="graph-conatiner">
-                          <div
-                            key={index}
-                            className={` ${showPopup || showModifyPopup ? "z-index-low" : ""}`}
-                          >
-                            <BarChart
-                              title={category}
-                              categories={[
-                                "Past Consumption",
-                                "Present Consumption",
-                                "SDG 11 Target",
-                              ]}
-                              series={[
-                                {
-                                  name: "Past Consumption",
-                                  data: [pastConsumption[index]],
-                                },
-                                {
-                                  name: "Present Consumption",
-                                  data: [presentConsumption[index]],
-                                },
-                                {
-                                  name: "SDG 11 Target",
-                                  data: [SDG11Target[index]],
-                                },
-                              ]}
-                              height={400}
-                              width={600}
-                              xtitle="Year"
-                            />
-                          </div>
+                  <div className="cols-lg-10">
+                    <div className="graph">
+                      <div className="graph-container">
+                        <div
+                          className={`${
+                            showPopup || showModifyPopup ? "z-index-low" : ""
+                          }`}
+                        >
+                          <BarChart
+                            title={"Number of Connections"}
+                            categories={categ.map((item) => item.Type)}
+                            series={categ.map((item) => ({
+                              name: item.Type,
+                              data: [item.No_of_Connections],
+                            }))}
+                            height={400}
+                            width={700}
+                            xtitle=""
+                          />
+                          <BarChart
+                            title={"Electricity Consumption in KWH"}
+                            categories={categ.map((item) => item.Type)}
+                            series={categ.map((item) => ({
+                              name: item.Type,
+                              data: [item.Electric_Consumption],
+                            }))}
+                            height={400}
+                            width={700}
+                            xtitle=""
+                          />
                         </div>
                       </div>
                     </div>
-                  ))}
+                  </div>
                 </div>
               )}
-
+              {departmentName === "Sex-Ratio" && (
+                <div className="row">
+                  <div className="cols-lg-10">
+                    <div className="graph">
+                      <div className="graph-container">
+                        <div
+                          className={`${
+                            showPopup || showModifyPopup ? "z-index-low" : ""
+                          }`}
+                        >
+                          {sexRatio.length > 0 && (
+                            <>
+                              <BarChart
+                                title={"Sex Ratio"}
+                                categories={sexRatio.map((item) => item.Region)}
+                                series={[
+                                  {
+                                    name: "Male",
+                                    data: sexRatio.map((item) => item.Male),
+                                  },
+                                  {
+                                    name: "Female",
+                                    data: sexRatio.map((item) => item.Female),
+                                  },
+                                ]}
+                                height={400}
+                                width={500}
+                                xtitle=""
+                              />
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {departmentName === "Crime" && (
+                <div className="row">
+                  <div className="cols-lg-10">
+                    <div className="graph">
+                      <div className="graph-container">
+                        <div
+                          className={`${
+                            showPopup || showModifyPopup ? "z-index-low" : ""
+                          }`}
+                        >
+                          {crimeData.length > 0 && (
+                            <BarChart
+                              title={crimeData.map((item) => item.Title)}
+                              categories={["Value"]}
+                              series={[
+                                {
+                                  name: "Target Value",
+                                  data: crimeData.map(
+                                    (item) => item.Target_Value
+                                  ),
+                                },
+                                {
+                                  name: "Current Value",
+                                  data: crimeData.map(
+                                    (item) => item.Current_Value
+                                  ),
+                                },
+                              ]}
+                              height={400}
+                              width={700}
+                              xtitle=""
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {departmentName === "Health" && (
+                <div className="row">
+                  <div className="cols-lg-10">
+                    <div className="graph">
+                      <div className="graph-container">
+                        <div
+                          className={`${
+                            showPopup || showModifyPopup ? "z-index-low" : ""
+                          }`}
+                        >
+                          {healthData.length > 0 && (
+                            <BarChart
+                              title={healthData.map((item) => item.Title)}
+                              categories={["Value"]}
+                              series={[
+                                {
+                                  name: "Target Value",
+                                  data: healthData.map(
+                                    (item) => item.Target_Value
+                                  ),
+                                },
+                                {
+                                  name: "Current Value",
+                                  data: healthData.map(
+                                    (item) => item.Current_Value
+                                  ),
+                                },
+                              ]}
+                              height={400}
+                              width={700}
+                              xtitle=""
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {departmentName === "Education" && (
+                <div className="row">
+                  <div className="cols-lg-10">
+                    <div className="graph">
+                      <div className="graph-container">
+                        <div
+                          className={`${
+                            showPopup || showModifyPopup ? "z-index-low" : ""
+                          }`}
+                        >
+                          {educationData.length > 0 && (
+                            <BarChart
+                              title={educationData.map((item) => item.Title)}
+                              categories={["Value"]}
+                              series={[
+                                {
+                                  name: "Target Value",
+                                  data: educationData.map(
+                                    (item) => item.Target_Value
+                                  ),
+                                },
+                                {
+                                  name: "Current Value",
+                                  data: educationData.map(
+                                    (item) => item.Current_Value
+                                  ),
+                                },
+                              ]}
+                              height={400}
+                              width={800}
+                              xtitle=""
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {departmentName === "Socio-Cultural-Activities" && (
+                <div className="row">
+                  <div className="cols-lg-10">
+                    <div className="graph">
+                      <div className="graph-container">
+                        <div
+                          className={`${
+                            showPopup || showModifyPopup ? "z-index-low" : ""
+                          }`}
+                        >
+                          {socioCulture.length > 0 && (
+                            <BarChart
+                              title={"Socio Cultural Activities"}
+                              categories={socioCulture.map(
+                                (item) => item.Category
+                              )}
+                              series={socioCulture.map((item) => ({
+                                name: item.Category,
+                                data: [item.Population],
+                              }))}
+                              height={400}
+                              width={700}
+                              xtitle=""
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
               {departmentName === "Housing" && (
                 <div className="row">
                   <div className="cols-lg-10">
                     <div className="graph">
                       <div className="graph-conatiner">
                         <div
-                          className={` ${showPopup || showModifyPopup ? "z-index-low" : ""}`}
+                          className={` ${
+                            showPopup || showModifyPopup ? "z-index-low" : ""
+                          }`}
                         >
                           <BarChart
                             title="Population Data"
@@ -1006,23 +1206,37 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                     <div className="graph">
                       <div className="graph-conatiner">
                         <div
-                          className={` ${showPopup || showModifyPopup ? "z-index-low" : ""}`}
+                          className={` ${
+                            showPopup || showModifyPopup ? "z-index-low" : ""
+                          }`}
                         >
                           <BarChart
-                            title="Tourist Poplulation (in Lakhs)"
-                            categories={touristData.map((entry) => entry.Year)}
-                            series={prepareTouristData()}
-                            height={400}
+                            title={"Tourist Population in Lakhs"}
+                            categories={touristData.map((item) =>
+                              item.Year.toString()
+                            )}
+                            series={touristData.map((item) => ({
+                              name: item.Year.toString(),
+                              data: [item.Total_Tourists],
+                            }))}
+                            height={350}
                             width={600}
                             xtitle="Year"
+                            stacked={false}
                           />
                           <BarChart
-                            title="Tourist Waste Generation (in MT)"
-                            categories={wasteData.map((entry) => entry.Year)}
-                            series={prepareWasteData()}
-                            height={400}
+                            title={"Tourist Waste Generation in MT"}
+                            categories={wasteData.map((item) =>
+                              item.Year.toString()
+                            )}
+                            series={wasteData.map((item) => ({
+                              name: item.Year.toString(),
+                              data: [item.Total_Waste_Generated],
+                            }))}
+                            height={350}
                             width={600}
                             xtitle="Year"
+                            stacked={false}
                           />
                         </div>
                       </div>
@@ -1038,7 +1252,9 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                         <div className="graph-conatiner">
                           <div
                             key={index}
-                            className={` ${showPopup || showModifyPopup ? "z-index-low" : ""}`}
+                            className={` ${
+                              showPopup || showModifyPopup ? "z-index-low" : ""
+                            }`}
                           >
                             <BarChart
                               title={name}
@@ -1064,60 +1280,81 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
               )}
             </div>
             {/* right side bar */}
-            <div className="col-lg-3">
-              <div className="insights">
-                {departmentName === "Environment" &&
-                  selectedLocation &&
-                  selectedDate &&
-                  selectedYear &&
-                  selectedMonth &&
-                  subCategory === "Aqi" && (
-                    <>
-                      <h1>Insights</h1>
-                      <div className="insights-content">
-                        {insights.map((item, index) => (
-                          <div key={index}>
-                            <ul className="insights-text">
-                              <li>{item.Insights}</li>
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  )}
-                {departmentName !== "Environment" && (
-                  <>
-                    <h1>Insights</h1>
-                  </>
-                )}
-              </div>
-              <div className="insights">
-                {departmentName === "Environment" &&
-                  selectedLocation &&
-                  selectedDate &&
-                  selectedYear &&
-                  selectedMonth &&
-                  subCategory === "Aqi" && (
-                    <>
-                      <div className="insights-content">
-                        <h1>Recommendations</h1>
-                        {insights.map((item, index) => (
-                          <div key={index}>
-                            <ul className="insights-text">
-                              <li> {item.Recommendations}</li>
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  )}
-                {departmentName !== "Environment" && (
-                  <>
-                    <h1>Recommendations</h1>
-                  </>
-                )}
-              </div>
-            </div>
+            {departmentName !== "Electricity" &&
+              departmentName !== "Sex-Ratio" &&
+              departmentName !== "Socio-Cultural-Activities" &&
+              departmentName !== "Crime" &&
+              departmentName !== "Health" &&
+              departmentName !== "Education" && (
+                <>
+                  <div className="col-lg-3">
+                    <div className="insights">
+                      {departmentName === "Environment" &&
+                        selectedLocation &&
+                        selectedDate &&
+                        selectedYear &&
+                        selectedMonth &&
+                        subCategory === "Aqi" && (
+                          <>
+                            <h1>Insights</h1>
+                            <div className="insights-content">
+                              {insights.map((item, index) => (
+                                <div key={index}>
+                                  <ul className="insights-text">
+                                    <li>{item.Insights}</li>
+                                  </ul>
+                                </div>
+                              ))}
+                            </div>
+                          </>
+                        )}
+                      {departmentName !== "Environment" &&
+                        departmentName !== "Electricity" &&
+                        departmentName !== "Sex-Ratio" &&
+                        departmentName !== "Socio-Cultural-Activities" &&
+                        departmentName !== "Crime" &&
+                        departmentName !== "Health" &&
+                        departmentName !== "Education" && (
+                          <>
+                            <h1>Insights</h1>
+                          </>
+                        )}
+                    </div>
+                    <div className="insights">
+                      {departmentName === "Environment" &&
+                        selectedLocation &&
+                        selectedDate &&
+                        selectedYear &&
+                        selectedMonth &&
+                        subCategory === "Aqi" && (
+                          <>
+                            <div className="insights-content">
+                              <h1>Recommendations</h1>
+                              {insights.map((item, index) => (
+                                <div key={index}>
+                                  <ul className="insights-text">
+                                    <li> {item.Recommendations}</li>
+                                  </ul>
+                                </div>
+                              ))}
+                            </div>
+                          </>
+                        )}
+                      {departmentName !== "Environment" &&
+                        departmentName !== "Electricity" &&
+                        departmentName !== "Sex-Ratio" &&
+                        departmentName !== "Socio-Cultural-Activities" &&
+                        departmentName !== "Crime" &&
+                        departmentName !== "Health" &&
+                        departmentName !== "Education" && (
+                          <>
+                            <h1>Recommendations</h1>
+                          </>
+                        )}
+                    </div>
+                  </div>
+                </>
+              )}
           </div>
         </section>
       </main>
