@@ -46,6 +46,7 @@ export const BarChart = ({ title, group, categories, series, height, width, xtit
             }
           },
           xaxis: {
+            tickPlacement:'on',
             categories: categories,
             labels:{
               style:{

@@ -25,13 +25,13 @@
 }
 .other-title h1{
     text-align: center;
-    font-size: 2rem;
+    font-size: 2vw;
     margin: 1rem 2rem;
     color:#012970;
 }
 .other-title img{
-    height: 4rem;
-    width: 4rem;
+    height: 4vw;
+    width: 4vw;
 }
  .other-mini-graph{
     padding: 1rem;
@@ -45,7 +45,7 @@
     flex-direction: column;
    
     background-color: #edf9f9;
-    padding: 1.5rem;
+    padding: 2vw;
     box-shadow: rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 .other-graph-container{
@@ -53,14 +53,23 @@
     align-items: center;
     justify-content: space-around;
     flex-direction: row;
+    
 }
 .extra{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width:38%;
+    width:35%;
 }
+@media screen and (max-width: 1099px) {
+    .other-graph-container{
+        flex-direction: column;
+    }
+    .extra{
+        width: 100%;
+    }
+  }
 .Percentage{
     display: flex;
     align-items: center;
@@ -72,11 +81,11 @@
     margin: 1rem;
 }
 .Percentage img{
-    height: 4rem;
-    width: 4rem;
+    height: 4vw;
+    width: 4vw;
 }
 .extra h1{
-    font-size: 1rem;
+    font-size: 1vw;
  }
 .other-mini-card{
     display: flex;

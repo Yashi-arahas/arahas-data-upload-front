@@ -134,7 +134,7 @@ const OtherIndicator = ({ departmentName }) => {
                         },
                       ]}
                       height={400}
-                      width={700}
+                      width={500}
                       xtitle="Location"
                       ytitle={
                         item.Title === "Number of Females /1000 males"
