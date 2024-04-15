@@ -4,6 +4,8 @@ import axios from "axios";
 import { BarChart, PieChart, LineChart } from "./GraphVisuals";
 import "./OtherIndicators.css";
 import renewable from "./images/renewable-energy.png";
+import genderimg from "./images/gender.png";
+import arrowpos from "./images/arrow.svg";
 
 const OtherIndicator = ({ departmentName }) => {
   const [electricity, setElectricity] = useState("");
@@ -78,10 +80,14 @@ const OtherIndicator = ({ departmentName }) => {
                 <BarChart
                   title={"Number of Connections"}
                   categories={electricity.map((item) => item.Type)}
-                  series={electricity.map((item) => ({
-                    name: item.Type,
-                    data: [item.No_of_Connections],
-                  }))}
+                  series={[
+                    {
+                      name: "Number of Connections",
+                      data: electricity.map(
+                        (item) => item.Electric_Consumption
+                      ),
+                    },
+                  ]}
                   height={350}
                   width={600}
                   xtitle=""
@@ -91,10 +97,14 @@ const OtherIndicator = ({ departmentName }) => {
                 <BarChart
                   title={"Electricity Consumption in KWH"}
                   categories={electricity.map((item) => item.Type)}
-                  series={electricity.map((item) => ({
-                    name: item.Type,
-                    data: [item.Electric_Consumption],
-                  }))}
+                  series={[
+                    {
+                      name: "Electricity Consumption",
+                      data: electricity.map(
+                        (item) => item.Electric_Consumption
+                      ),
+                    },
+                  ]}
                   height={350}
                   width={600}
                   xtitle=""
@@ -106,34 +116,57 @@ const OtherIndicator = ({ departmentName }) => {
         {departmentName === "Sex-Ratio" && sexRatio.length > 0 && (
           <div className="other-main-container">
             <div className="other-title">
-              <h1>Sex Ratio</h1>
+              <img src={genderimg}></img>
+              <h1>Gender Equality</h1>
             </div>
             <div className="other-graphs">
-              <div className="other-mini-graph">
-                <>
-                  <BarChart
-                    title={"Sex Ratio"}
-                    categories={sexRatio.map((item) => item.Region)}
-                    series={[
-                      {
-                        name: "Male",
-                        data: sexRatio.map((item) => item.Male),
-                      },
-                      {
-                        name: "Female",
-                        data: sexRatio.map((item) => item.Female),
-                      },
-                    ]}
-                    height={400}
-                    width={500}
-                    xtitle=""
-                  />
-                  
-                </>
-              </div>
+              {sexRatio.map((item, index) => (
+                <div key={index} className="other-mini-graph">
+                  <div className="other-graph-container">
+                    <BarChart
+                      title={item.Title}
+                      group={"one"}
+                      categories={["Ayodhya", "India"]}
+                      series={[
+                        {
+                          name: item.Title,
+                          data: [item.Ayodhya, item.India],
+                        },
+                      ]}
+                      height={400}
+                      width={700}
+                      xtitle="Location"
+                      ytitle={
+                        item.Title === "Number of Females /1000 males"
+                          ? "Number of Females"
+                          : "Female Participation Rate"
+                      }
+                    />
+                    <div className="extra">
+                      <div className="Percentage">
+                        <img src={arrowpos}></img>
+                        <h5>
+                          {" "}
+                          Gap:{" "}
+                          {(
+                            ((item.India - item.Ayodhya) / item.India) *
+                            100
+                          ).toFixed(2)}
+                          %
+                        </h5>
+                      </div>
+
+                      <div className="Insights">
+                        <h1>{item.Insights}</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}
+
         {departmentName === "Socio-Cultural-Activities" &&
           socioCulture.length > 0 && (
             <div className="other-main-container">
@@ -143,15 +176,18 @@ const OtherIndicator = ({ departmentName }) => {
               <div className="other-graphs">
                 <div className="other-mini-graph">
                   <BarChart
-                    title={"Socio Cultural Activities"}
+                    title={"Population served/unit area"}
                     categories={socioCulture.map((item) => item.Category)}
-                    series={socioCulture.map((item) => ({
-                      name: item.Category,
-                      data: [item.Population],
-                    }))}
+                    series={[
+                      {
+                        name: "Population served/unit area",
+                        data: socioCulture.map((item) => item.Population),
+                      },
+                    ]}
                     height={400}
                     width={700}
                     xtitle=""
+                    ytitle="Population served/unit area "
                   />
                 </div>
               </div>
@@ -169,13 +205,14 @@ const OtherIndicator = ({ departmentName }) => {
                   categories={["Value"]}
                   series={[
                     {
-                      name: "Target Value",
-                      data: crimeData.map((item) => item.Target_Value),
-                    },
-                    {
                       name: "Current Value",
                       data: crimeData.map((item) => item.Current_Value),
                     },
+                    {
+                      name: "Target Value",
+                      data: crimeData.map((item) => item.Target_Value),
+                    },
+                    
                   ]}
                   height={400}
                   width={700}
@@ -196,17 +233,18 @@ const OtherIndicator = ({ departmentName }) => {
                   title={healthData.map((item) => item.Title)}
                   categories={["Value"]}
                   series={[
-                    {
-                      name: "Target Value",
-                      data: healthData.map((item) => item.Target_Value),
-                    },
+                    
                     {
                       name: "Current Value",
                       data: healthData.map((item) => item.Current_Value),
                     },
+                    {
+                      name: "Target Value",
+                      data: healthData.map((item) => item.Target_Value),
+                    },
                   ]}
                   height={400}
-                  width={850}
+                  width={700}
                   xtitle=""
                 />
               </div>
@@ -224,17 +262,18 @@ const OtherIndicator = ({ departmentName }) => {
                   title={educationData.map((item) => item.Title)}
                   categories={["Value"]}
                   series={[
-                    {
-                      name: "Target Value",
-                      data: educationData.map((item) => item.Target_Value),
-                    },
+                    
                     {
                       name: "Current Value",
                       data: educationData.map((item) => item.Current_Value),
                     },
+                    {
+                      name: "Target Value",
+                      data: educationData.map((item) => item.Target_Value),
+                    },
                   ]}
                   height={400}
-                  width={900}
+                  width={700}
                   xtitle=""
                 />
               </div>

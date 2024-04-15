@@ -1,14 +1,34 @@
 import React from 'react';
 import ApexCharts from 'react-apexcharts';
 
+// Define the colors array
+const colors = [
+  "#DDA63A", // Zero Hunger
+  "#4C9F38", // Good Health and Well-being
+  "#ff3a21", // Gender Equality
+  "#26BDE2", // Clean Water
+  "#fcc30b", // Affordable and Clean Energy
+  "#a21942", // Decent Work and Economic Growth
+  "#fd6925", // Industry, Innovation, and Infrastructure
+  "#fd9d24", // Sustainable Cities and Communities
+  "#DD1367", // Reduced Inequalities
+  "#BF8B2E", // Responsible Consumption and Production
+  "#3F7E44", // Climate Action
+  "#0A97D9", // Life Below Water
+  "#56c02b", // Life on Land
+  "#00689D", // Peace, Justice, and Strong Institutions
+  "#19486A", // Partnerships for the Goals
+];
+
 // Function to render a bar chart
-export const BarChart = ({ title, categories, series, height, width , xtitle }) => {
+export const BarChart = ({ title, group, categories, series, height, width, xtitle, ytitle }) => {
   return (
     <div className='chart-container z-index-low'>
       <ApexCharts className='chart'
         options={{
           chart: {
             type: 'bar',
+            group:group,
             height: 350,
             toolbar: {
               show: true
@@ -20,26 +40,32 @@ export const BarChart = ({ title, categories, series, height, width , xtitle }) 
           title: {
             text: title,
             align: 'center',
-            offsetY: 10,
+            offsetY: 7,
             style: {
               fontSize: '0.8rem'
             }
           },
           xaxis: {
-            tickPlacement: 'on',
-            type: 'category',
-            categories,
-            title: {
-              text: xtitle
-            },
+            categories: categories,
+            labels:{
+              style:{
+                fontSize:"0.6rem"
+              }
+            }
+            
+          },
+          yaxis:{
+            title:{
+              offsetX:0,
+              text:ytitle
+            }
           },
           plotOptions: {
             bar: {
-              columnWidth: '30rem', // Adjust the width of the bars as needed
               endingShape: 'rounded'
             }
           },
-          // colors: ['#08415C', '#CC2936', '#E09190', '#4CA8BD', '#70AE6E', '#826754'],
+          colors, // Include the colors array here
         }}
         series={series}
         type="bar"
@@ -59,6 +85,7 @@ export const PieChart = ({ title, labels, series, height }) => {
         options={{
           chart: {
             type: 'pie',
+            group:'same',
             height: height,
             toolbar: {
               show: true
@@ -79,7 +106,7 @@ export const PieChart = ({ title, labels, series, height }) => {
               fontSize: '1vw'
             }
           },
-          // colors: ['#08415C','#CC2936','#E09190','#4CA8BD','#70AE6E','#826754'],
+          colors, // Include the colors array here
           responsive: [{
             breakpoint: 480,
             options: {
@@ -105,8 +132,9 @@ export const PieChart = ({ title, labels, series, height }) => {
     </div>
   );
 };
+
 // Function to render a line chart
-export const LineChart = ({ title, categories, series, height, width, xtitle, ytitle }) => {
+export const LineChart = ({ title, group,categories, series, height, width, xtitle, ytitle }) => {
   return (
     <div className='chart-container z-index-low'>
       <ApexCharts className='chart'
@@ -114,6 +142,7 @@ export const LineChart = ({ title, categories, series, height, width, xtitle, yt
           chart: {
             type: 'line',
             height: height,
+            group:group,
             toolbar: {
               show: true
             }
@@ -139,7 +168,7 @@ export const LineChart = ({ title, categories, series, height, width, xtitle, yt
               text: ytitle
             }
           },
-          // colors: ['#08415C', '#CC2936', '#E09190', '#4CA8BD', '#70AE6E', '#826754'],
+          colors, // Include the colors array here
         }}
         series={series}
         type="line"
@@ -159,6 +188,7 @@ export const AreaChart = ({ title, categories, series, height, width, xtitle, yt
           chart: {
             type: 'area',
             height: height,
+            group:'same',
             toolbar: {
               show: true
             }
@@ -184,7 +214,7 @@ export const AreaChart = ({ title, categories, series, height, width, xtitle, yt
               text: ytitle
             }
           },
-          // colors: ['#08415C', '#CC2936', '#E09190', '#4CA8BD', '#70AE6E', '#826754'],
+          colors, // Include the colors array here
         }}
         series={series}
         type="area"

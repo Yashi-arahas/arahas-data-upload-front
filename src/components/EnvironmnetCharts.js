@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BarChart } from "./GraphVisuals"; // Import chart components
+import { BarChart, LineChart } from "./GraphVisuals"; // Import chart components
 
 const EnvironmentCharts = ({
   selectedYear,
@@ -14,14 +14,13 @@ const EnvironmentCharts = ({
   enviroSO2,
   enviroAQI,
   enviroNO2,
-  enviroco2
+  enviroco2,
 }) => {
   const [chartData, setChartData] = useState({});
 
   const filterDataByLocation = (location, year, month, date) => {
     // Filter data based on the selected location, year, month, and date
     const filteredData = {
-        
       date: enviroDate.filter((dateString, index) => {
         const [day, monthStr, yearStr] = dateString.split("-");
         return (
@@ -95,7 +94,7 @@ const EnvironmentCharts = ({
         );
       }),
     };
-
+    filteredData.refCO2 = Array(filteredData.time.length).fill(400);
     return filteredData;
   };
 
@@ -119,117 +118,30 @@ const EnvironmentCharts = ({
     enviroSO2,
     enviroAQI,
     enviroNO2,
-    enviroco2
+    enviroco2,
   ]);
 
   return (
     <div>
       {/* Render charts based on chartData */}
       {/* Example: Bar chart for PM2.5 */}
-      
-       {chartData.time && (
+
+      {chartData.time && (
         <div className="row">
           <div className="cols-lg-10">
             <div className="graph">
               <div className="graph-conatiner">
-                <div
-                  className="z-index-low"
-                >
+                <div className="z-index-low">
                   <BarChart
                     title={`AQI for ${selectedDate}-${selectedMonth}-${selectedYear}`}
                     categories={chartData.time}
-                    series={[{ name: "AQI", data: chartData.AQI }]}
+                    series={[{ name: "AQI", data: chartData.AQI },
+                    { name: "Safe Limit", data: Array(chartData.time.length).fill(300) }]}
                     height={400}
                     width={700}
                     xtitle="Time"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-       {chartData.time && (
-        <div className="row">
-          <div className="cols-lg-10">
-            <div className="graph">
-              <div className="graph-conatiner">
-                <div
-                  className="z-index-low"
-                >
-                  <BarChart
-                    title={`PM2.5 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
-                    categories={chartData.time}
-                    series={[{ name: "PM2.5", data: chartData.pm25.map(value => parseFloat(value.toFixed(2))) }]}
-                    height={400}
-                    width={700}
-                    xtitle="Time"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-       {chartData.time && (
-        <div className="row">
-          <div className="cols-lg-10">
-            <div className="graph">
-              <div className="graph-conatiner">
-                <div
-                  className="z-index-low"
-                >
-                  <BarChart
-                    title={`PM10 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
-                    categories={chartData.time}
-                    series={[{ name: "PM 10", data: chartData.pm10.map(value => parseFloat(value.toFixed(2))) }]}
-                    height={400}
-                    width={700}
-                    xtitle="Time"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-       {chartData.time && (
-        <div className="row">
-          <div className="cols-lg-10">
-            <div className="graph">
-              <div className="graph-conatiner">
-                <div
-                  className="z-index-low"
-                >
-                  <BarChart
-                    title={`SO2 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
-                    categories={chartData.time}
-                    series={[{ name: "SO2", data: chartData.so2.map(value => parseFloat(value.toFixed(2))) }]}
-                    height={400}
-                    width={700}
-                    xtitle="Time"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-       {chartData.time && (
-        <div className="row">
-          <div className="cols-lg-10">
-            <div className="graph">
-              <div className="graph-conatiner">
-                <div
-                  className="z-index-low"
-                >
-                  <BarChart
-                    title={`NO2 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
-                    categories={chartData.time}
-                    series={[{ name: "NO2", data: chartData.NO2.map(value => parseFloat(value.toFixed(2))) }]}
-                    height={400}
-                    width={700}
-                    xtitle="Time"
+                    ytitle="AQI Value"
+                    
                   />
                 </div>
               </div>
@@ -242,16 +154,142 @@ const EnvironmentCharts = ({
           <div className="cols-lg-10">
             <div className="graph">
               <div className="graph-conatiner">
-                <div
-                  className="z-index-low"
-                >
+                <div className="z-index-low">
                   <BarChart
-                    title={`CO2 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
+                    title={`PM2.5 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
                     categories={chartData.time}
-                    series={[{ name: "co2", data: chartData.co2.map(value => parseFloat(value.toFixed(2))) }]}
+                    series={[
+                      {
+                        name: "PM2.5",
+                        data: chartData.pm25.map((value) =>
+                          parseFloat(value.toFixed(2))
+                        ),
+                      },
+                      { name: "Safe Limit", data: Array(chartData.time.length).fill(60) }
+                    ]}
                     height={400}
                     width={700}
                     xtitle="Time"
+                    ytitle="PM2.5 Value"
+                    
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {chartData.time && (
+        <div className="row">
+          <div className="cols-lg-10">
+            <div className="graph">
+              <div className="graph-conatiner">
+                <div className="z-index-low">
+                  <BarChart
+                    title={`PM10 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
+                    categories={chartData.time}
+                    series={[
+                      {
+                        name: "PM 10",
+                        data: chartData.pm10.map((value) =>
+                          parseFloat(value.toFixed(2))
+                        ),
+                      },
+                      { name: "Safe Limit", data: Array(chartData.time.length).fill(100) }
+                    ]}
+                    height={400}
+                    width={700}
+                    xtitle="Time"
+                    ytitle="PM10 Value"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {chartData.time && (
+        <div className="row">
+          <div className="cols-lg-10">
+            <div className="graph">
+              <div className="graph-conatiner">
+                <div className="z-index-low">
+                  <BarChart
+                    title={`SO2 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
+                    categories={chartData.time}
+                    series={[
+                      {
+                        name: "SO2",
+                        data: chartData.so2.map((value) =>
+                          parseFloat(value.toFixed(2))
+                        ),
+                      },
+                      { name: "Safe Limit", data: Array(chartData.time.length).fill(80) }
+                    ]}
+                    height={400}
+                    width={700}
+                    xtitle="Time"
+                    ytitle="So2 Value"
+                    
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {chartData.time && (
+        <div className="row">
+          <div className="cols-lg-10">
+            <div className="graph">
+              <div className="graph-conatiner">
+                <div className="z-index-low">
+                  <BarChart
+                    title={`NO2 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
+                    categories={chartData.time}
+                    series={[
+                      {
+                        name: "NO2",
+                        data: chartData.NO2.map((value) =>
+                          parseFloat(value.toFixed(2))
+                        ),
+                      },
+                      { name: "Safe Limit", data: Array(chartData.time.length).fill(80) }
+                    ]}
+                    height={400}
+                    width={700}
+                    xtitle="Time"
+                    ytitle="No2 Value"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {chartData.time && (
+        <div className="row">
+          <div className="cols-lg-10">
+            <div className="graph">
+              <div className="graph-conatiner">
+                <div className="z-index-low">
+                  <LineChart
+                    title={`CO2 Levels for ${selectedDate}-${selectedMonth}-${selectedYear}`}
+                    categories={chartData.time}
+                    series={[
+                      
+                      {
+                        name: "Co2",
+                        data: chartData.co2.map((value) =>
+                          parseFloat(value.toFixed(2))
+                        ),
+                      },
+                      { name: "Safe Limits", data: chartData.refCO2 },
+                    ]}
+                    height={400}
+                    width={700}
+                    xtitle="Time"
+                    ytitle="CO2 value"
                   />
                 </div>
               </div>

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./DepartmentPage.css";
 import FileUploadPopup from "./upload-popup/FileUploadPopup";
-import { BarChart, PieChart } from "./GraphVisuals"; // Import BarChart component
+import { BarChart, PieChart } from "./GraphVisuals";
 import Logo from "./HeaderLogo";
 import { Select, MenuItem } from "@mui/material";
 import EnvironmentCharts from "./EnvironmnetCharts";
 import AQI from "./images/AQI.png";
-import tvoc from "./images/tvoc.png";
+import co2 from "./images/carbon-dioxide.png";
 import no2 from "./images/No-2.png";
 import pm25 from "./images/pm2.5.png";
 import pm10 from "./images/pm10.png";
@@ -29,12 +29,10 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [uploadError, setUploadError] = useState(false);
-  const [connect, setConnections] = useState([]);
-  const [consumption, setConsumption] = useState([]);
-  const [categ, setCateg] = useState([]); // State for categories
+  const [categ, setCateg] = useState([]);
   const [showModifyPopup, setShowModifyPopup] = useState(false);
-  const [touristData, setTouristData] = useState([]); // State for tourist data
-  const [wasteData, setWasteData] = useState([]); // State for showing the modification popup
+  const [touristData, setTouristData] = useState([]);
+  const [wasteData, setWasteData] = useState([]);
   const [populationData, setPopulationData] = useState([]);
   const [vehical, setVehcialName] = useState([]);
   const [year1, setYearOne] = useState([]);
@@ -57,7 +55,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   const [enviroAQI, setEnviroAQI] = useState("");
   const [enviroNO2, setEnviroNO2] = useState("");
   const [enviroco2, setEnviroco2] = useState("");
-  const [selectedAction, setSelectedAction] = useState(""); // State for selected action
+  const [selectedAction, setSelectedAction] = useState("");
   const [average, setAverage] = useState({});
   const [insights, setInsights] = useState({});
   const [subCategory, setSubCategory] = useState("");
@@ -109,7 +107,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
         const data = response.data.data;
         setCateg(data);
       } else if (departmentName === "Tourism") {
-        const touristResponse = await axios.get(apiUrl); // Assuming correct URL for tourism data
+        const touristResponse = await axios.get(apiUrl);
         const wasteResponse = await axios.get(apiUrl + "/waste");
         setTouristData(touristResponse.data.data);
         setWasteData(wasteResponse.data.data);
@@ -157,27 +155,27 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
         const so2 = [];
         const AQI = [];
         const NO2 = [];
-        const co2=[];
+        const co2 = [];
         data.forEach((item) => {
           location.push(item.location);
           timeStamp.push(item.timeStamp);
           time.push(item.time);
-
-          // Parse the date string correctly
           const dateObj = new Date(item.date);
           const year = dateObj.getFullYear();
-          const month = dateObj.getMonth() + 1; // getMonth() returns 0-based month index
+          const month = dateObj.getMonth() + 1;
           const day = dateObj.getDate();
-
-          // Format the date to dd-mm-yyyy
           const formatted = `${day}-${
             month < 10 ? "0" + month : month
           }-${year}`;
           formattedDate.push(formatted);
-
-          const hours = dateObj.getHours();
-          const minutes = dateObj.getMinutes() + 1;
-          const formattedTimeStr = `${hours}:${minutes}`;
+          const localDateObj = new Date(
+            dateObj.getTime() + dateObj.getTimezoneOffset() * 60000
+          );
+          const hours = localDateObj.getHours();
+          const minutes = localDateObj.getMinutes();
+          const formattedTimeStr = `${hours}:${
+            minutes < 10 ? "0" + minutes : minutes
+          }`;
           formattedTime.push(formattedTimeStr);
           pm25.push(item.pm25);
           pm10.push(item.pm10);
@@ -186,6 +184,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           NO2.push(item.NO2);
           co2.push(item.co2);
         });
+        console.log(formattedTime);
         setEnviroLocation(location);
         setEnviroTimeStamp(timeStamp);
         setEnviroTime(formattedTime);
@@ -196,21 +195,13 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
         setEnviroAQI(AQI);
         setEnviroNO2(NO2);
         setEnviroco2(co2);
-        // Initialize an object to store counts for each date
         const dateCounts = {};
-
-        // Iterate through the data to calculate counts
         data.forEach((item) => {
-          // Get the formatted date (without time)
           const dObj = new Date(item.date);
           const y = dObj.getFullYear();
-          const m = dObj.getMonth() + 1; // getMonth() returns 0-based month index
+          const m = dObj.getMonth() + 1;
           const d = dObj.getDate();
-
-          // Format the date to dd-mm-yyyy
           const fDate = `${d}-${m < 10 ? "0" + m : m}-${y}`;
-
-          // Check if the date exists in the counts, if not initialize it
           if (!dateCounts[fDate]) {
             dateCounts[fDate] = {
               AQI: 0,
@@ -218,11 +209,9 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
               pm10: 0,
               so2: 0,
               NO2: 0,
-              co2:0
+              co2: 0,
             };
           }
-
-          // Increment counts if thresholds are exceeded
           if (item.AQI > 300) {
             dateCounts[fDate].AQI++;
           }
@@ -249,7 +238,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           pm10: 0,
           so2: 0,
           NO2: 0,
-          co2:0
+          co2: 0,
         };
 
         for (const date in dateCounts) {
@@ -294,10 +283,8 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           ttime.push(item.time);
           const dateObj = new Date(item.date);
           const year = dateObj.getFullYear();
-          const month = dateObj.getMonth() + 1; // getMonth() returns 0-based month index
+          const month = dateObj.getMonth() + 1;
           const day = dateObj.getDate();
-
-          // Format the date to dd-mm-yyyy
           const formatted = `${day}-${
             month < 10 ? "0" + month : month
           }-${year}`;
@@ -325,6 +312,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
       }
       const sex_ratio_response = await axios.get(apiUrl);
       setSexRatio(sex_ratio_response.data.data);
+      console.log(sex_ratio_response.data);
       const socio_culture_response = await axios.get(apiUrl);
       setSocioCulture(socio_culture_response.data.data);
       const crime_response = await axios.get(apiUrl);
@@ -775,9 +763,9 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                 <div className="col-lg-4">
                                   <div className="mini-cards">
                                     <div className="mini-cards-icon">
-                                      <img src={tvoc}></img>
-                                      <h1>0.68 μg/m³</h1>
-                                      <h3>Avg TVOC</h3>
+                                      <img src={co2}></img>
+                                      <h1>561 ppm</h1>
+                                      <h3>Avg CO2</h3>
                                     </div>
                                     <div className="mini-cards-text">
                                       <h3>Outliears:0</h3>
@@ -979,41 +967,50 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                   </div>
                 </div>
               )}
-              {departmentName === "Sex-Ratio" && (
+              {departmentName === "Sex-Ratio" && sexRatio.length > 0 && (
                 <div className="row">
-                  <div className="cols-lg-10">
-                    <div className="graph">
-                      <div className="graph-container">
-                        <div
-                          className={`${
-                            showPopup || showModifyPopup ? "z-index-low" : ""
-                          }`}
-                        >
-                          {sexRatio.length > 0 && (
-                            <>
+                  {Object.keys(sexRatio).map((key, index) => {
+                    const { Title, Ayodhya, India } = sexRatio[key];
+
+                    return (
+                      <div key={index} className="cols-lg-10">
+                        <div className="graph">
+                          <div className="graph-container">
+                            <div
+                              className={
+                                showPopup || showModifyPopup
+                                  ? "z-index-low"
+                                  : ""
+                              }
+                            >
                               <BarChart
-                                title={"Sex Ratio"}
-                                categories={sexRatio.map((item) => item.Region)}
+                                title={Title}
+                                categories={["Location"]}
                                 series={[
                                   {
-                                    name: "Male",
-                                    data: sexRatio.map((item) => item.Male),
+                                    name: "Ayodhya",
+                                    data: [Ayodhya],
                                   },
                                   {
-                                    name: "Female",
-                                    data: sexRatio.map((item) => item.Female),
+                                    name: "India",
+                                    data: [India],
                                   },
                                 ]}
                                 height={400}
-                                width={500}
-                                xtitle=""
+                                width={700}
+                                xtitle="Location"
+                                ytitle={
+                                  Title === "Number of Females /1000 males"
+                                    ? "Number of Females"
+                                    : "Female Participation Rate"
+                                }
                               />
-                            </>
-                          )}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               )}
               {departmentName === "Crime" && (
@@ -1145,14 +1142,18 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                         >
                           {socioCulture.length > 0 && (
                             <BarChart
-                              title={"Socio Cultural Activities"}
+                              title={"Population served Per Unit Area"}
                               categories={socioCulture.map(
                                 (item) => item.Category
                               )}
-                              series={socioCulture.map((item) => ({
-                                name: item.Category,
-                                data: [item.Population],
-                              }))}
+                              series={[
+                                {
+                                  name: "Population served Per Unit Area",
+                                  data: socioCulture.map(
+                                    (item) => item.Population
+                                  ),
+                                },
+                              ]}
                               height={400}
                               width={700}
                               xtitle=""
@@ -1215,10 +1216,14 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                             categories={touristData.map((item) =>
                               item.Year.toString()
                             )}
-                            series={touristData.map((item) => ({
-                              name: item.Year.toString(),
-                              data: [item.Total_Tourists],
-                            }))}
+                            series={[
+                              {
+                                name: "Tourist Population in Lakhs",
+                                data: touristData.map(
+                                  (item) => item.Total_Tourists
+                                ),
+                              },
+                            ]}
                             height={350}
                             width={600}
                             xtitle="Year"
@@ -1229,10 +1234,14 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                             categories={wasteData.map((item) =>
                               item.Year.toString()
                             )}
-                            series={wasteData.map((item) => ({
-                              name: item.Year.toString(),
-                              data: [item.Total_Waste_Generated],
-                            }))}
+                            series={[
+                              {
+                                name: "Tourist Waste Generated",
+                                data: wasteData.map(
+                                  (item) => item.Total_Waste_Generated
+                                ),
+                              },
+                            ]}
                             height={350}
                             width={600}
                             xtitle="Year"
@@ -1258,14 +1267,9 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                           >
                             <BarChart
                               title={name}
-                              categories={[]}
+                              categories={["2016-2017","2017-2018","2018-2019","2019-2020","2020-2021","2021-2022"]}
                               series={[
-                                { name: "2016-2017", data: [year1[index]] },
-                                { name: "2017-2018", data: [year2[index]] },
-                                { name: "2018-2019", data: [year3[index]] },
-                                { name: "2019-2020", data: [year4[index]] },
-                                { name: "2020-2021", data: [year5[index]] },
-                                { name: "2021-2022", data: [year6[index]] },
+                                { name: "Year", data: [year1[index],year2[index], year3[index], year4[index], year5[index] ,year6[index]]}
                               ]}
                               height={400}
                               width={600}
