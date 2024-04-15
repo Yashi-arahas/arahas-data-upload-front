@@ -145,7 +145,7 @@ const OtherIndicator = ({ departmentName }) => {
                     <div className="extra">
                       <div className="Percentage">
                         <img src={arrowpos}></img>
-                        <h5>
+                        <h1>
                           {" "}
                           Gap:{" "}
                           {(
@@ -153,7 +153,7 @@ const OtherIndicator = ({ departmentName }) => {
                             100
                           ).toFixed(2)}
                           %
-                        </h5>
+                        </h1>
                       </div>
 
                       <div className="Insights">
