@@ -41,7 +41,7 @@ const RainFallCharts = ({
                     { name: "Normal Rainfall", data: chartData.map(data => data.Normal) }
                   ]}
                   height={400}
-                  width={700}
+                  width={500}
                   xtitle="Month"
                   ytitle="Amount"
                 />

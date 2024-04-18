@@ -138,7 +138,7 @@ const EnvironmentCharts = ({
                     series={[{ name: "AQI", data: chartData.AQI },
                     { name: "Safe Limit", data: Array(chartData.time.length).fill(300) }]}
                     height={400}
-                    width={700}
+                    width={500}
                     xtitle="Time"
                     ytitle="AQI Value"
                     
@@ -168,7 +168,7 @@ const EnvironmentCharts = ({
                       { name: "Safe Limit", data: Array(chartData.time.length).fill(60) }
                     ]}
                     height={400}
-                    width={700}
+                    width={500}
                     xtitle="Time"
                     ytitle="PM2.5 Value"
                     
@@ -198,7 +198,7 @@ const EnvironmentCharts = ({
                       { name: "Safe Limit", data: Array(chartData.time.length).fill(100) }
                     ]}
                     height={400}
-                    width={700}
+                    width={500}
                     xtitle="Time"
                     ytitle="PM10 Value"
                   />
@@ -227,7 +227,7 @@ const EnvironmentCharts = ({
                       { name: "Safe Limit", data: Array(chartData.time.length).fill(80) }
                     ]}
                     height={400}
-                    width={700}
+                    width={500}
                     xtitle="Time"
                     ytitle="So2 Value"
                     
@@ -257,7 +257,7 @@ const EnvironmentCharts = ({
                       { name: "Safe Limit", data: Array(chartData.time.length).fill(80) }
                     ]}
                     height={400}
-                    width={700}
+                    width={500}
                     xtitle="Time"
                     ytitle="No2 Value"
                   />
@@ -287,7 +287,7 @@ const EnvironmentCharts = ({
                       { name: "Safe Limits", data: chartData.refCO2 },
                     ]}
                     height={400}
-                    width={700}
+                    width={500}
                     xtitle="Time"
                     ytitle="CO2 value"
                   />

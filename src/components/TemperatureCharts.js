@@ -97,7 +97,7 @@ const TemperatureCharts = ({
                     categories={chartData.time}
                     series={[{ name: "Temperature", data: chartData.temperature.map(value => parseFloat(value.toFixed(2))) }]}
                     height={400}
-                    width={700}
+                    width={500}
                     xtitle="Time"
                     ytitle='Temperature'
                   />
@@ -120,7 +120,7 @@ const TemperatureCharts = ({
                     categories={chartData.time}
                     series={[{ name: "Humidity", data: chartData.humidity.map(value => parseFloat(value.toFixed(2))) }]}
                     height={400}
-                    width={700}
+                    width={500}
                     xtitle="Time"
                     ytitle='Humidity'
                   />

@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from "./components/Login";
 import SDGPage from "./components/Sdg";
+import AdminPage from "./components/Admin";
 import "./App.css";
 import DepartmentPage from './components/DepartmentPage';
 
@@ -83,6 +84,7 @@ function App() {
         />
         }></Route>
         <Route path="/sdg" element={<SDGPage/>}></Route>
+        <Route path="/admin" element={<AdminPage/>}></Route>
         <Route path="/weather" element={<WeatherApi/>}></Route>
         <Route path="/more-indicators/electricity" element={<OtherIndicator departmentName={"Electricity"}/>}></Route>
         <Route path="/more-indicators/sex-ratio" element={<OtherIndicator departmentName={"Sex-Ratio"}/>}></Route>

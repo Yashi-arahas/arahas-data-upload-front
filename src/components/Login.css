@@ -42,14 +42,39 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
+}  
+.ani-container {
+  position: relative; /* Make the container a positioning context */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50vw;
 }
-.ani{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 50vw;
+
+.ani-container h1 {
+  font-size: 3.3vw;
+  position: absolute; /* Position the text absolutely */
+  top: 50%; /* Position it 50% from the top */
+  left: 50%; /* Position it 50% from the left */
+  transform: translate(-50%, -50%); /* Center it properly */
+  z-index: 10;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 1vw;
+  font-weight: 800;
+  color: #ef7401;
+  width: 55vw;
 }
+
+.ani-container img {
+  width: 42vw;
+  height: 42vw;
+}
+
+
+
 .ani .common{
     height: 15vw;
     width: 15vw;
@@ -60,15 +85,19 @@
 }
 section .form_data {
   max-width: 30vw;
-  margin: 4vw auto;
-  padding: 1vw 1vw;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(5px);
+  margin: 2vw auto;
+  padding: 1vw 1vw 1vw 1vw;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  box-shadow: rgba(27, 31, 35, 0.15) 0px 0px 5px 1px;
+  background-image: url("./images/esg-img.png");
+  background-position: center;
+  background-size: 70%;
+  background-blend-mode:color-dodge;
+  background-repeat: no-repeat;
 }
 
 .form_heading {
@@ -77,14 +106,20 @@ section .form_data {
   align-items: center;
 }
 
+.form_heading img{
+  height: 6vw;
+  width: 8vw;
+  padding: 1vw;
+}
 .form_data h1 {
   font-size: 2.5vw;
   color: #ff8009;
+  font-weight: 700;
 }
 
 .form_data form {
   width: 100%;
-  padding: 2vw 2vw;
+  padding: 1vw 2vw 1vw 2vw;
 }
 
 .form_data form .form_input input {
@@ -93,9 +128,8 @@ section .form_data {
   border: 1px solid #d4d0d0;
   border-radius: 5px;
   outline: none;
-  margin-bottom: 14px;
-  margin-top: 0.5vw;
   font-size: 1vw;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .form_data form .form_input label {
@@ -127,20 +161,24 @@ section .form_data {
   cursor: pointer;
 }
 
-form .btn {
+form .login-btn {
   display: block;
   width: 100%;
-  padding: 1vw;
+  padding: 0.8vw;
   border: none;
   outline: none;
   border-radius: 5px;
-  background-color: #ec6834;
+  background-color: #ef7401;
   color: #fff;
   font-weight: 600;
-  font-size: 1.5vw;
-  margin-top: 1vw;
+  font-size: 1.3vw;
+  margin-top: 2vw;
   cursor: pointer;
   transition: all 0.3s;
+}
+.form-img{
+  width: 32vw;
+  height: 8vw;
 }
 
 form .btn:hover {
@@ -205,8 +243,9 @@ form .btn:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 5rem;
-    font-size: 1rem;
+    height: 5vw;
+    font-size: 1vw;
+    
   }
   
   .form_data .dropdown-login label {
@@ -223,6 +262,7 @@ form .btn:hover {
     /* border-radius: 10px; */
     font-size: 1.05vw;
     color: #8694a8;
+    background-color: rgba(255, 255, 255, 0.8);
     /* box-sizing: border-box; */
     cursor: pointer;
     font-weight: 500;
@@ -243,7 +283,8 @@ form .btn:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 1); /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.8);
+     /* Semi-transparent white background */
     display: flex;
     justify-content: center;
     align-items: center;

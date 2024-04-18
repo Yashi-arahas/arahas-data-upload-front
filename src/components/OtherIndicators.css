@@ -3,38 +3,51 @@
     background-color: #edf9f9;
     height: 100%;
     width: 100%;
-    padding: 1rem 0; 
+    padding: 1vw 0; 
 }
 .other-graphs{
-    padding: 1rem;
+    padding: 1vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
     background-color: white;
-    margin: 0 1rem;
+    margin: 0 1vw;
 }
 .other-title{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    background-color: white;
-    margin: 1rem;
-    padding: 0.5rem;
+   
 }
 .other-title h1{
     text-align: center;
     font-size: 2vw;
-    margin: 1rem 2rem;
+    margin: 0rem 2vw;
     color:#012970;
 }
-.other-title img{
+.other-heading h2{
+    text-align: center;
+    font-size: 1.1vw;
+    margin: 1vw 2vw;
+    color:#717ff5;
+}
+.other-heading img{
     height: 4vw;
     width: 4vw;
 }
+.other-heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    margin: 1vw;
+    padding: 1vw;
+}
  .other-mini-graph{
-    padding: 1rem;
+    padding: 1vw;
     height: 80%;
 }
 
@@ -43,9 +56,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-   
+    width: 30vw;
     background-color: #edf9f9;
-    padding: 2vw;
+    padding: 1vw;
+    margin: 0 2vw;
     box-shadow: rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 .Insights h1{
@@ -56,14 +70,14 @@
     align-items: center;
     justify-content: space-around;
     flex-direction: row;
-    
 }
 .extra{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width:35%;
+    width:30vw;
+    margin: 1vw 0vw 1vw 5vw;
 }
 .extra .Percentage h1{
     font-size: 1.2vw;
@@ -82,9 +96,9 @@
     justify-content: center;
     flex-direction: row;
     background-color: #edf9f9;
-    padding: 0.5rem 1rem;
+    padding: 0.5vw 1vw;
     box-shadow: rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    margin: 1rem;
+    margin: 1vw;
 }
 .Percentage img{
     height: 4vw;
@@ -97,18 +111,18 @@
     justify-content: center;
     background-color: white;
     flex-direction: row;
-    padding: 1rem;
-    margin: 0.5rem 2rem;
+    padding: 1vw;
+    margin: 0.5vw 2vw;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .other-mini-card h1{
-    font-size: 1.5rem;
+    font-size: 1.5vw;
     color: #717ff5;
-    margin: 0 0 0 2rem;
+    margin: 0 0 0 2vw;
 }
 .other-mini-card img{
-    height: 5rem;
-    width: 5rem;
+    height: 5vw;
+    width: 5vw;
 }
 .sub-mini{
     display: flex;
@@ -119,10 +133,10 @@
 .sub-mini h2{
     background-color: #edf9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+    padding: 1vw;
 }
 .other-mini-card h2{
-    margin: 0.5rem 2rem;
-    font-size: 1.2rem;
+    margin: 0.5vw 2vw;
+    font-size: 1.2vw;
     color: #012970;
 }

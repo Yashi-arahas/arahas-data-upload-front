@@ -1,0 +1,121 @@
+.admin-main-conatiner{
+    background-color: #edf9f9;
+    display: flex;
+    align-items: center;
+    justify-content: top;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 1vw;
+    min-height: 90vh;
+}
+.admin-heading img{
+    height: 5vw;
+    width: 5vw;
+    margin-right: 2vw ;
+}
+.admin-heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 1vw;
+}
+.admin-heading h1{
+    font-size: 2vw;
+    color:#012970;
+    font-weight: 700;
+    align-items: center;
+}
+.admin-select{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 70%;
+    z-index: 0;
+}
+.admin-modules{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    flex-direction: row;
+    margin: 2vw 0 ;
+    padding: 1rem;
+    width: 100%;
+}
+.module-score{
+    width: 40%;
+    
+}
+.module-score .module-single-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.module-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    
+}
+.module-single-card{
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: row;
+    padding: 1vw;
+    margin: 1vw;
+    box-sizing: border-box;
+    box-shadow: 0 0 12px -7px rgba(0,0,0,0.7);
+    width: 90%;
+}
+.module-single-card h1{
+    font-size: 1.5vw;
+    color: #012970;
+    font-weight: 600;
+    margin: auto 1vw;
+}
+.module-content{
+    width:40%;
+    display:flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+}
+.Module-rating{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.Module-rating h1{
+    font-size: 1vw;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.5vw 1.1vw;
+}
+.module-single-card img{
+    height: 5vw;
+    width: 5vw;
+    margin: 1vw 2vw;
+}
+.module-score .module-single-card img{
+    height: 10vw;
+    width: 10vw;
+    margin: 1vw 2vw;
+}
+.module-select{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.module-select .dropdown-menu{
+    margin: 0.5vw;
+}

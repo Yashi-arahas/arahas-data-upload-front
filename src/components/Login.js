@@ -9,7 +9,10 @@ import RegisterModal from "./RegisterModel";
 import Lottie from "lottie-react";
 import file_animation from "./animations/file-processing.json";
 import loding_ani from "./animations/loading.json";
+import sustain_city from "./images/city-sustain.jpg"
+import form_img from "./images/form-img.png"
 import Header from "./Header";
+import esg_img from "./images/esg-img.png"
 
 const Login = () => {
   const history = useNavigate();
@@ -46,10 +49,9 @@ const Login = () => {
           history("/housing");
         } else if (department === "Land_management") {
           history("/land-management");
-        } else if (department ==="Urban_heritage") {
+        } else if (department === "Urban_heritage") {
           history("/urban-heritage");
-        }
-        else{
+        } else {
           history("/tourism");
         }
         setLoading(false); // Reset loading after redirection
@@ -74,11 +76,14 @@ const Login = () => {
     } else {
       try {
         setLoading(true); // Set loading to true during authentication
-        const response = await axios.post("https://arahas-data-upload-back.onrender.com/login", {
-          email,
-          password,
-          department,
-        });
+        const response = await axios.post(
+          "https://arahas-data-upload-back.onrender.com/login",
+          {
+            email,
+            password,
+            department,
+          }
+        );
         handleLoginResponse(response);
       } catch (error) {
         console.error("Login Error:", error);
@@ -95,19 +100,20 @@ const Login = () => {
   return (
     <>
       <section className="home">
-        <Header/>
+        <Header />
         <div className="main-container">
-          <div className="ani">
-            <Lottie
-              animationData={file_animation}
-              style={{ width: "50vw", height: "40vw" }}
-            />
+          <div className="ani-container">
+          <h1>City Sustainability Index</h1>
+            <img src ={sustain_city}></img>
+             
+              
           </div>
-
           <div className="form-container">
             <div className="form_data">
               <div className="form_heading">
+              {/* <img src={esg_img}></img> */}
                 <h1>Login</h1>
+                
               </div>
 
               <form>
@@ -154,7 +160,7 @@ const Login = () => {
                     onChange={setVal}
                     className="dropdown-menu"
                     displayEmpty
-                    style={{height:"3.5vw", padding:"0vw"}}
+                    style={{ height: "3.5vw", padding: "0vw", width: "24vw" }}
                   >
                     <MenuItem value="" disabled>
                       Select your department
@@ -167,11 +173,13 @@ const Login = () => {
                     <MenuItem value="Tourism">Tourism</MenuItem>
                   </Select>
                 </div>
-                <button className="btn" onClick={loginuser}>
+                <button className="login-btn" onClick={loginuser}>
                   Login
                 </button>
                 {error && <p className="error-message">{error}</p>}
+                
               </form>
+              {/* <img src ={form_img} className="form-img"></img> */}
             </div>
           </div>
         </div>

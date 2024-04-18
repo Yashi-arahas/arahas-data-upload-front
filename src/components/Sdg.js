@@ -90,37 +90,38 @@ const Sdg = () => {
       description: 71.42,
     },
     {
-      title: "Achieve gender equality and empower all women and girls",
+      title: "Shakti Samriddhi",
       link: "/more-indicators/sex-ratio",
       photo: sex_ratio,
-      description: 30,
+      description: 20,
     },
     {
-      title: "Ensure access to affordable, reliable, sustainable and modern energy for all",
+      title: "Prakriti Urja",
       link: "/more-indicators/electricity",
       photo: electricity,
       description: 70,
     },
     {
-      title: "Socio Cultural Activities",
+      title: "Kala Sanskriti",
       link: "/more-indicators/socio-culture",
       photo: socio,
       description: 90,
     },
     {
-      title: "Promote peaceful and inclusive societies for sustainable development, provide access to justice for all and build effective, accountable and inclusive institutions at all levels",
+      title: "Samajik Samriddhi",
+      // "",
       link: "/more-indicators/crime",
       photo: crime,
       description: 90,
     },
     {
-      title: " Ensure healthy lives and promote well-being for all at all ages",
+      title: "Swasthya Sambhava",
       link: "/more-indicators/health",
       photo: health,
       description: 90,
     },
     {
-      title: "Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all",
+      title: "Vidya Samavesh",
       link: "/more-indicators/education",
       photo: education,
       description: 90,
@@ -160,7 +161,7 @@ const Sdg = () => {
           {showMore &&
             sdgs
               .slice(10)
-              .map((sdg, index) => <OtherCard sdg={sdg} key={10 + index} />)}
+              .map((sdg, index) => <OtherCard sdg={sdg} key={10 + index}/>)}
         </div>
         {showMore && (
           <div className="view-btn">
