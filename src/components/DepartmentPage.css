@@ -229,6 +229,13 @@
     color: #4154f1;
     text-align: center;
 }
+.row .insights h2{
+    font-size: 1.3vw;
+    margin-bottom: 0;
+    font-weight:700;
+    color: #4154f1;
+    text-align: center;
+}
 .row .insights {
     height: 25vw; /* Adjust the maximum height as needed */
     overflow-y: auto;
@@ -330,29 +337,55 @@
 }
 .mini-cards h3{
     font-size: 0.8vw;
-    margin-bottom: 0;
     font-weight: 600;
     color:#012970;
-    padding: 0.2vw;
+    margin-top: 0.5vw;
+    text-align: center;
 }
-.graph{
+.graph {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-wrap: wrap; /* Enable wrapping for the flex items */
     height: 100%;
     width: 100%;
-    background-color: white;
-    margin: 1vw 0;
-    
+
 }
-.chart{
+
+.graph-container {
+    width: 100%; /* Adjust width to fit two graphs in one row with some spacing */
+    margin: 0.5vw; /* Adjust margin for spacing between graphs */
+}
+
+.chart {
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     padding: 1.5vw;
-    margin: 1vw;
     border-radius: 10px;
-  }
+    margin: 0; /* Remove margin to ensure charts fit properly */
+}
+
+.graph-big{
+    display: flex;
+    align-items:center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+    padding: 1vw;
+}
+.main-graph{
+    display: flex;
+    align-items:center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: white;
+    margin: 1vw 0;
+}
+
+
+
   .chart:hover{
     box-shadow: 0 0 12px -4px rgba(0,0,0,0.7);
   }

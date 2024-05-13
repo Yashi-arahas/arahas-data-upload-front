@@ -44,10 +44,7 @@
     padding: 1rem;
     width: 100%;
 }
-.module-score{
-    width: 40%;
-    
-}
+
 .module-score .module-single-card {
     display: flex;
     align-items: center;
@@ -59,19 +56,19 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
+    width: 70vw;
     
 }
 .module-single-card{
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: left;
     flex-direction: row;
     padding: 1vw;
     margin: 1vw;
     box-sizing: border-box;
     box-shadow: 0 0 12px -7px rgba(0,0,0,0.7);
-    width: 90%;
+    
 }
 .module-single-card h1{
     font-size: 1.5vw;
@@ -80,18 +77,30 @@
     margin: auto 1vw;
 }
 .module-content{
-    width:40%;
+    display:flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: column;
+    padding: 1vw;
+}
+.module-content-1{
     display:flex;
     align-items: center;
     justify-content: left;
     flex-direction: row;
+    width: 25vw;
 }
+/* .module-content ul {
+    list-style: none;
+} */
 .Module-rating{
-    width: 60%;
+    width: 30vw;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    margin: 1vw;
+   
 }
 .Module-rating h1{
     font-size: 1vw;
@@ -102,12 +111,16 @@
 }
 .module-single-card img{
     height: 5vw;
-    width: 5vw;
-    margin: 1vw 2vw;
+    width: 7vw;
+    margin: 1vw 1vw;
+}
+.module-score{
+    width: 25vw;
+    
 }
 .module-score .module-single-card img{
-    height: 10vw;
-    width: 10vw;
+    height: 8vw;
+    width: 12vw;
     margin: 1vw 2vw;
 }
 .module-select{
@@ -118,4 +131,41 @@
 }
 .module-select .dropdown-menu{
     margin: 0.5vw;
+}
+.Module-rating-big{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 15vw;
+}
+.Module-rating-1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1vw;
+    height: 40vw;
+}
+.Module-rating-1 img{
+    height: 5vw;
+    width: 7vw;
+}
+.Module-rating-1 h1{
+    font-size: 1.2vw;
+
+}
+.module-right{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    flex-direction: column;
+    width: 20vw;
+}
+.module-single-card ul{
+    margin: 2vw;
+}
+.module-single-card ul li{
+    font-size: 1vw;
+    font-weight: 800;
 }

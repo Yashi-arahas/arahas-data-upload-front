@@ -4,6 +4,7 @@ import SDGPage from "./components/Sdg";
 import AdminPage from "./components/Admin";
 import "./App.css";
 import DepartmentPage from './components/DepartmentPage';
+import AqiPage from "./components/Environment/AqiReport"
 
 import { Routes, Route } from "react-router-dom";
 import WeatherApi from './components/WeatherApi';
@@ -83,6 +84,7 @@ function App() {
         uploadUrl="https://arahas-data-upload-back.onrender.com/upload/environment"
         />
         }></Route>
+        
         <Route path="/sdg" element={<SDGPage/>}></Route>
         <Route path="/admin" element={<AdminPage/>}></Route>
         <Route path="/weather" element={<WeatherApi/>}></Route>
@@ -92,6 +94,7 @@ function App() {
         <Route path="/more-indicators/crime" element={<OtherIndicator departmentName={"Crime"}/>}></Route>
         <Route path="/more-indicators/health" element={<OtherIndicator departmentName={"Health"}/>}></Route>
         <Route path="/more-indicators/socio-culture" element={<OtherIndicator departmentName={"Socio-Cultural-Activities"}/>}></Route>
+        <Route path="/aqi" element={<AqiPage/>}></Route>
       </Routes>
 
   );

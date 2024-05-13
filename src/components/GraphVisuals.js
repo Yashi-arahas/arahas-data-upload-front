@@ -1,10 +1,14 @@
 import React from 'react';
 import ApexCharts from 'react-apexcharts';
+import CanvasJSReact from '@canvasjs/react-charts';
+const CanvasJS = CanvasJSReact.CanvasJS;
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 // Define the colors array
 const colors = [
-  "#DDA63A", // Zero Hunger
-  "#4C9F38", // Good Health and Well-being
+  // Zero Hunger
+  "#4C9F38",
+  "#DDA63A",  // Good Health and Well-being
   "#ff3a21", // Gender Equality
   "#26BDE2", // Clean Water
   "#fcc30b", // Affordable and Clean Energy
@@ -76,6 +80,119 @@ export const BarChart = ({ title, group, categories, series, height, width, xtit
     </div>
   );
 };
+export const ParetoChart = ({ title, categories, data, height, width, xtitle, ytitle }) => {
+  // Adjust column width and add padding
+  const columnWidth = Math.min(40, 200 / data.length); // Set maximum column width to 40
+  const padding = {
+    left: 80, // Padding from left
+    right: 40, // Padding from right
+    top: 10, // Padding from top
+    bottom: 10 // Padding from bottom
+  };
+
+  const options = {
+    animationEnabled: true,
+    title: {
+      text: title,
+      fontSize: 18,
+      margin: 40
+    },
+    axisX: {
+      title: xtitle,
+      titleFontSize: 15,
+      interval: 1
+    },
+    axisY: {
+      title: ytitle,
+      includeZero: true,
+      titleFontSize: 15,
+      titleFontColor: "red",
+      padding: 40 // Corrected property name
+    },
+    toolTip: {
+      shared: true
+    },
+    data: [{
+      type: "column",
+      name: "Column",
+      showInLegend: true,
+      indexLabel: "{y}",
+      indexLabelPlacement: "inside",
+      indexLabelOrientation: "horizontal",
+      indexLabelFontWeight: "bold",
+      indexLabelFontSize: 10,
+      indexLabelFontColor: "white",
+      dataPoints: data.map((value, index) => ({ label: categories[index], y: value })),
+      columnWidth: columnWidth
+    }, {
+      type: "line",
+      name: "Line",
+      showInLegend: true,
+      indexLabel: "{y}",
+      indexLabelPlacement: "outside",
+      indexLabelFontWeight: "bold",
+      indexLabelFontSize: 10,
+      indexLabelFontColor: "red",
+      dataPoints: data.map((value, index) => ({ label: categories[index], y: value }))
+    }],
+    padding: padding // Add padding
+  };
+
+  return (
+    <div>
+      <CanvasJSChart options={options} height={height} width={width} />
+    </div>
+  );
+};
+
+
+export const LineBar = ({ title, categories, chartSeries, height, width, xtitle, ytitle }) => {
+  const options = {
+    series:chartSeries,
+    chart: {
+      height: height,
+      type: 'line',
+    },
+    stroke: {
+      width: [0, 4],
+    },
+    title: {
+      text: title,
+      align: 'center',
+      offsetY: 20,
+      style: {
+        fontSize: '1vw',
+      },
+    },
+    xaxis: {
+      type: 'category',
+      categories: categories,
+      title: {
+        text: xtitle,
+      },
+    },
+    yaxis: [
+      {
+        title: {
+          text: ytitle,
+        },
+      },
+      {
+        opposite: true,
+        title: {
+          text: '',
+        },
+      },
+    ],
+  };
+
+  return (
+    <div className="chart-container">
+      <ApexCharts options={options} series={options.series} type="line" height={height} width={width} />
+    </div>
+  );
+};
+
 
 
 // Function to render a pie chart
@@ -97,14 +214,16 @@ export const PieChart = ({ title, labels, series, height }) => {
             onItemHover: {
               highlightDataSeries: true
             },
+            fontSize:"10"
           },
           labels: labels,
+          
           title: {
             text: title,
             align: 'center',
             offsetY: 10,
             style: {
-              fontSize: '1vw'
+              fontSize: '0.8vw'
             }
           },
           colors, // Include the colors array here
@@ -115,14 +234,14 @@ export const PieChart = ({ title, labels, series, height }) => {
                 width: 200
               },
               legend: {
-                position: 'bottom'
+                position: 'bottom',
               }
             }
           }],
           dataLabels: {
             offsetY: 20, // Adjust the offset as needed
             style: {
-              fontSize: '1vw' // Adjust the font size as needed
+              fontSize: '0.6vw' // Adjust the font size as needed
             }
           }
         }}
@@ -134,8 +253,7 @@ export const PieChart = ({ title, labels, series, height }) => {
   );
 };
 
-// Function to render a line chart
-export const LineChart = ({ title, group,categories, series, height, width, xtitle, ytitle }) => {
+export const LineChart = ({ title, group, categories, series, height, width, xtitle, ytitle }) => {
   return (
     <div className='chart-container z-index-low'>
       <ApexCharts className='chart'
@@ -143,7 +261,7 @@ export const LineChart = ({ title, group,categories, series, height, width, xtit
           chart: {
             type: 'line',
             height: height,
-            group:group,
+            group: group,
             toolbar: {
               show: true
             }
@@ -151,9 +269,10 @@ export const LineChart = ({ title, group,categories, series, height, width, xtit
           title: {
             text: title,
             align: 'center',
-            offsetY: 20,
+            offsetY: 10,
+            offsetX: -60,
             style: {
-              fontSize: '1vw'
+              fontSize: '0.7vw'
             }
           },
           xaxis: {
@@ -161,15 +280,33 @@ export const LineChart = ({ title, group,categories, series, height, width, xtit
             type: 'category',
             categories: categories,
             title: {
-              text: xtitle
+              text: xtitle,
+              style:{
+                fontSize: "0.5vw",
+                fontWeight:800
+              },
+              offsetY:10
+              
             },
+            labels: {
+              style: {
+                fontSize: "0.5vw" // Adjust the font size of categories
+              }
+            }
           },
           yaxis: {
             title: {
-              text: ytitle
+              text: ytitle,
+              style:{
+                fontSize: "0.5vw",
+                fontWeight:800
+              }
             }
           },
-          colors, // Include the colors array here
+          colors,
+          stroke:{
+            width:1
+          }
         }}
         series={series}
         type="line"

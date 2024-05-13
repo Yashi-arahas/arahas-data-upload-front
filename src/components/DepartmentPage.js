@@ -17,6 +17,19 @@ import hot from "./images/hot.png";
 import humid from "./images/hum.png";
 import RainFallCharts from "./RainFallCharts";
 import rain from "./images/rainfall.png";
+import slum from "./images/slum.png";
+import pop from "./images/pop.png";
+import increase_pop from "./images/increase-pop.png";
+import land_use from "./images/land-use.png";
+import road from "./images/intersection.png";
+import traffic from "./images/traffic-jam.png";
+import accident from "./images/accident.png";
+import peak_time from "./images/future.png";
+import tourist from "./images/traveler.png";
+import waste from "./images/food-waste.png";
+import AqiReport from "./Environment/AqiReport";
+import AQIChart from "./Environment/AQIChart";
+
 
 //import icons
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -24,6 +37,8 @@ import "remixicon/fonts/remixicon.css";
 //import BootStrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
+import zIndex from "@mui/material/styles/zIndex";
+import AqiMap from "./Environment/Maps/AqiMap";
 const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   // State variables and useEffect for data fetching, file upload, etc.
   const [showPopup, setShowPopup] = useState(false);
@@ -353,7 +368,11 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   const preparePopulationData = () => {
     const populationChartData = populationData.map((entry) => ({
       name: entry.Type,
-      data: [entry.Past_data, entry.Current_data, entry.Future_data],
+      data: [
+        (entry.Past_data / 100000).toFixed(2),
+        (entry.Current_data / 100000).toFixed(2),
+        (entry.Future_data / 100000).toFixed(2),
+      ],
     }));
 
     return populationChartData;
@@ -520,7 +539,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                   <>
                     {subCategory && (
                       <div className="enviro-select z-index-low">
-                        {(subCategory === "Aqi" ||
+                        {(
                           subCategory === "Temperature" ||
                           subCategory === "Rainfall") && (
                           <Select
@@ -548,7 +567,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                           </Select>
                         )}
 
-                        {(subCategory === "Aqi" ||
+                        {(
                           subCategory === "Temperature") && (
                           <>
                             <Select
@@ -660,176 +679,166 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                     )}
                     {departmentName === "Environment" && (
                       <>
-                        {selectedYear &&
-                          selectedMonth &&
-                          selectedDate &&
-                          selectedLocation &&
+                        {
                           subCategory === "Aqi" && (
                             <>
-                            {average.length>0 && (
-                              <>
-                              
-                              <div className="col-lg-4">
-                                <div className="mini-cards">
-                                  <div className="mini-cards-icon">
-                                    <img src={AQI}></img>
-                                    <h1>{average[0].Avg_AQI}</h1>
-                                    <h3>Avg AQI </h3>
-                                  </div>
-                                  <div className="mini-cards-text">
-                                    <h3>Outliears:{pollution.AQI}</h3>
-                                    <h3>Healthy Days:{40 - pollution.AQI}</h3>
-                                  </div>
+                            <AqiReport/>
+                              {average.length > 0 && (
+                                <>
+                                  <div className="col-lg-4">
+                                    <div className="mini-cards">
+                                      <div className="mini-cards-icon">
+                                        <img src={AQI}></img>
+                                        <h1>{average[0].Avg_AQI}</h1>
+                                        <h3>Avg AQI </h3>
+                                      </div>
+                                      <div className="mini-cards-text">
+                                        <h3>Outliears:{pollution.AQI}</h3>
+                                        <h3>
+                                          Healthy Days:{40 - pollution.AQI}
+                                        </h3>
+                                      </div>
 
-                                  <div className="card-hover-info">
-                                    <ul>
-                                      <li>0-50 (Good)</li>
-                                      <li>51-100 (Moderate)</li>
-                                      <li>
-                                        101-150 (Unhealthy for sensitive
-                                        groups)
-                                      </li>
-                                      <li>151-200 (Unhealthy)</li>
-                                      <li>201-300 (Very Unhealthy)</li>
-                                      <li>301-500 (Hazardous)</li>
-                                    </ul>
+                                      <div className="card-hover-info">
+                                        <ul>
+                                          <li>0-50 (Good)</li>
+                                          <li>51-100 (Moderate)</li>
+                                          <li>
+                                            101-150 (Unhealthy for sensitive
+                                            groups)
+                                          </li>
+                                          <li>151-200 (Unhealthy)</li>
+                                          <li>201-300 (Very Unhealthy)</li>
+                                          <li>301-500 (Hazardous)</li>
+                                        </ul>
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                              <div className="col-lg-4">
-                                <div className="mini-cards">
-                                  <div className="mini-cards-icon">
-                                    <img src={pm25}></img>
-                                    <h1>{average[0].Avg_pm25} μg/m³</h1>
-                                    <h3>Avg PM 2.5 </h3>
-                                  </div>
+                                  <div className="col-lg-4">
+                                    <div className="mini-cards">
+                                      <div className="mini-cards-icon">
+                                        <img src={pm25}></img>
+                                        <h1>{average[0].Avg_pm25} μg/m³</h1>
+                                        <h3>Avg PM 2.5 </h3>
+                                      </div>
 
-                                  <div className="mini-cards-text">
-                                    <h3>Outliears:{pollution.pm25}</h3>
-                                    <h3>
-                                      Healthy Days:{40 - pollution.pm25}
-                                    </h3>
+                                      <div className="mini-cards-text">
+                                        <h3>Outliears:{pollution.pm25}</h3>
+                                        <h3>
+                                          Healthy Days:{40 - pollution.pm25}
+                                        </h3>
+                                      </div>
+                                      <div className="card-hover-info">
+                                        <ul>
+                                          <li>
+                                            Safe Exposure Levels: 0-60 micro
+                                            grams per cubic meter
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
                                   </div>
-                                  <div className="card-hover-info">
-                                    <ul>
-                                      <li>
-                                        Safe Exposure Levels: 0-60 micro grams
-                                        per cubic meter
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-lg-4">
-                                <div className="mini-cards">
-                                  <div className="mini-cards-icon">
-                                    <img src={pm10}></img>
-                                    <h1>{average[0].Avg_pm10} μg/m³</h1>
-                                    <h3>Avg PM 10 </h3>
-                                  </div>
+                                  <div className="col-lg-4">
+                                    <div className="mini-cards">
+                                      <div className="mini-cards-icon">
+                                        <img src={pm10}></img>
+                                        <h1>{average[0].Avg_pm10} μg/m³</h1>
+                                        <h3>Avg PM 10 </h3>
+                                      </div>
 
-                                  <div className="mini-cards-text">
-                                    <h3>Outliears:{pollution.pm10}</h3>
-                                    <h3>
-                                      Healthy Days:{40 - pollution.pm10}
-                                    </h3>
+                                      <div className="mini-cards-text">
+                                        <h3>Outliears:{pollution.pm10}</h3>
+                                        <h3>
+                                          Healthy Days:{40 - pollution.pm10}
+                                        </h3>
+                                      </div>
+                                      <div className="card-hover-info">
+                                        <ul>
+                                          <li>
+                                            Safe Exposure Levels: 0-100 micro
+                                            grams per cubic meter
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
                                   </div>
-                                  <div className="card-hover-info">
-                                    <ul>
-                                      <li>
-                                        Safe Exposure Levels: 0-100 micro
-                                        grams per cubic meter
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-lg-4">
-                                <div className="mini-cards">
-                                  <div className="mini-cards-icon">
-                                    <img src={so2}></img>
-                                    <h1>{average[0].Avg_so2} μg/m³</h1>
-                                    <h3>Avg SO2 </h3>
-                                  </div>
+                                  <div className="col-lg-4">
+                                    <div className="mini-cards">
+                                      <div className="mini-cards-icon">
+                                        <img src={so2}></img>
+                                        <h1>{average[0].Avg_so2} μg/m³</h1>
+                                        <h3>Avg SO2 </h3>
+                                      </div>
 
-                                  <div className="mini-cards-text">
-                                    <h3>Outliears:{pollution.so2}</h3>
-                                    <h3>Healthy Days:{40 - pollution.so2}</h3>
+                                      <div className="mini-cards-text">
+                                        <h3>Outliears:{pollution.so2}</h3>
+                                        <h3>
+                                          Healthy Days:{40 - pollution.so2}
+                                        </h3>
+                                      </div>
+                                      <div className="card-hover-info">
+                                        <ul>
+                                          <li>
+                                            Safe Exposure Levels: 0-80 micro
+                                            grams per cubic meter
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
                                   </div>
-                                  <div className="card-hover-info">
-                                    <ul>
-                                      <li>
-                                        Safe Exposure Levels: 0-80 micro grams
-                                        per cubic meter
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-lg-4">
-                                <div className="mini-cards">
-                                  <div className="mini-cards-icon">
-                                    <img src={no2}></img>
-                                    <h1>{average[0].Avg_NO2} μg/m³</h1>
-                                    <h3>Avg NO2 </h3>
-                                  </div>
+                                  <div className="col-lg-4">
+                                    <div className="mini-cards">
+                                      <div className="mini-cards-icon">
+                                        <img src={no2}></img>
+                                        <h1>{average[0].Avg_NO2} μg/m³</h1>
+                                        <h3>Avg NO2 </h3>
+                                      </div>
 
-                                  <div className="mini-cards-text">
-                                    <h3>Outliears:{pollution.NO2}</h3>
-                                    <h3>Healthy Days:{40 - pollution.NO2}</h3>
+                                      <div className="mini-cards-text">
+                                        <h3>Outliears:{pollution.NO2}</h3>
+                                        <h3>
+                                          Healthy Days:{40 - pollution.NO2}
+                                        </h3>
+                                      </div>
+                                      <div className="card-hover-info">
+                                        <ul>
+                                          <li>
+                                            Safe Exposure Levels: 0-80 micro
+                                            grams per cubic meter
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
                                   </div>
-                                  <div className="card-hover-info">
-                                    <ul>
-                                      <li>
-                                        Safe Exposure Levels: 0-80 micro grams
-                                        per cubic meter
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-lg-4">
-                                <div className="mini-cards">
-                                  <div className="mini-cards-icon">
-                                    <img src={co2}></img>
-                                    <h1>561 ppm</h1>
-                                    <h3>Avg CO2</h3>
-                                  </div>
-                                  <div className="mini-cards-text">
-                                    <h3>Outliears:0</h3>
-                                    <h3>Healthy Days:40</h3>
-                                  </div>
+                                  <div className="col-lg-4">
+                                    <div className="mini-cards">
+                                      <div className="mini-cards-icon">
+                                        <img src={co2}></img>
+                                        <h1>561 ppm</h1>
+                                        <h3>Avg CO2</h3>
+                                      </div>
+                                      <div className="mini-cards-text">
+                                        <h3>Outliears:0</h3>
+                                        <h3>Healthy Days:40</h3>
+                                      </div>
 
-                                  <div className="card-hover-info">
-                                    <ul>
-                                      <li>
-                                        Safe Exposure Levels: 0.3 to 0.5 micro
-                                        grams per cubic meter
-                                      </li>
-                                    </ul>
+                                      <div className="card-hover-info">
+                                        <ul>
+                                          <li>
+                                            Safe Exposure Levels: 0.3 to 0.5
+                                            micro grams per cubic meter
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                    
                                   </div>
-                                </div>
-                              </div>
-                            </>
-                            )}
-                              
-                              <>
-                                <EnvironmentCharts
-                                  selectedYear={selectedYear}
-                                  selectedMonth={selectedMonth}
-                                  selectedDate={selectedDate}
-                                  selectedLocation={selectedLocation}
-                                  enviroLocation={envirolocation}
-                                  enviroDate={envirodate}
-                                  envirotime={envirotime}
-                                  enviroPM25={enviropm25}
-                                  enviroPM10={enviropm10}
-                                  enviroSO2={enviroso2}
-                                  enviroAQI={enviroAQI}
-                                  enviroNO2={enviroNO2}
-                                  enviroco2={enviroco2}
-                                />
-                              </>
+                                  <>
+                                    <AQIChart envirolocation={envirolocation} enviroDate={envirodate} envirotime={envirotime} enviroPM25={enviropm25} enviroPM10={enviropm10} enviroSO2={enviroso2} enviroNO2={enviroNO2} enviroco2={enviroco2} enviroAQI={enviroAQI}/>
+                                    </>
+                                </>
+                              )}
+
                             </>
                           )}
                         {selectedYear &&
@@ -921,6 +930,145 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                         )}
                       </>
                     )}
+                    
+                  </>
+                )}
+                {departmentName === "Housing" && (
+                  <>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={pop}></img>
+                          <h1>672861</h1>
+                          <h3>Current Population</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={increase_pop}></img>
+                          <h1>69.84%</h1>
+                          <h3>Projected population increase by 2031</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={land_use}></img>
+                          <h1>2841.37 ha</h1>
+                          <h3>Land consumption projected by 2031</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={slum}></img>
+                          <h1>41</h1>
+                          <h3>Identified Slum sites</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+                {departmentName === "Transport" && (
+                  <>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={land_use}></img>
+                          <h1>18.2%</h1>
+                          <h3>Current use of proposed land in transport</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={accident}></img>
+                          <h1>50.8%</h1>
+                          <h3>Decrease in Road Accidents</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={road}></img>
+                          <h1>63% good</h1>
+                          <h3>Road condition</h3>
+                        </div>
+                        <div className="card-hover-info" style={{zIndex:1000}}>
+                        <PieChart
+                              title="Road Condition"
+                              labels={["Good", "Average", "Poor"]}
+                              series={[63, 24.9, 12.1]}
+                              height={300}
+                            />
+              
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={traffic}></img>
+                          <h1>30</h1>
+                          <h3>Number of traffic jam points</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+                {departmentName === "Tourism" && (
+                  <>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={increase_pop}></img>
+                          <h1>215%</h1>
+                          <h3>Increase in Tourist</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={waste}></img>
+                          <h1>25%</h1>
+                          <h3>Increase in Waste</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={tourist}></img>
+                          <h1>2.01%</h1>
+                          <h3>Percentage Foreign tourist share with state </h3>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <div className="col-lg-3">
+                      <div className="mini-cards">
+                        <div className="mini-cards-icon">
+                          <img src={peak_time}></img>
+                          <h1>3</h1>
+                          <h3>Peak Seasons</h3>
+                        </div>
+                        <div className="card-hover-info" style={{zIndex:1000}}>
+                          <ul>
+                            <li>September to April</li>
+                            <li>Ram navami mela</li>
+                            <li>Parikramas</li>
+                          </ul>
+              
+                        </div>
+                      </div>
+                    </div>
                   </>
                 )}
 
@@ -930,7 +1078,9 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                   departmentName !== "Socio-Cultural-Activities" &&
                   departmentName !== "Crime" &&
                   departmentName !== "Health" &&
-                  departmentName !== "Education" && (
+                  departmentName !== "Education" &&
+                  departmentName !== "Housing" &&
+                  departmentName !== "Transport" && departmentName!=="Tourism"&&(
                     <>
                       <div className="col-lg-3">
                         <div className="mini-cards">
@@ -1124,83 +1274,90 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                       </div>
                     );
                   })}
-                  {doctorData.length>0 && (
+                  {doctorData.length > 0 && (
                     <>
-                     <div className="cols-lg-10">
-                    <div className="graph">
-                      <div className="graph-container">
-                        <div
-                          className={
-                            showPopup || showModifyPopup ? "z-index-low" : ""
-                          }
-                        >
-                          <BarChart
-                            title={"Birth and Death Rate"}
-                            categories={doctorData.map((item) => item.Year)}
-                            series={[
-                              {
-                                name: "Birth",
-                                data: doctorData.map((item) => item.Birth),
-                              },
-                              {
-                                name: "Death",
-                                data: doctorData.map((item) => item.Death),
-                              },
-                            ]}
-                            height={400}
-                            width={500}
-                            xtitle=""
-                            ytitle="Number of Birth/Death"
-                          />
+                      <div className="cols-lg-10">
+                        <div className="graph">
+                          <div className="graph-container">
+                            <div
+                              className={
+                                showPopup || showModifyPopup
+                                  ? "z-index-low"
+                                  : ""
+                              }
+                            >
+                              <BarChart
+                                title={"Birth and Death Rate"}
+                                categories={doctorData.map((item) => item.Year)}
+                                series={[
+                                  {
+                                    name: "Birth",
+                                    data: doctorData.map((item) => item.Birth),
+                                  },
+                                  {
+                                    name: "Death",
+                                    data: doctorData.map((item) => item.Death),
+                                  },
+                                ]}
+                                height={400}
+                                width={500}
+                                xtitle=""
+                                ytitle="Number of Birth/Death"
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="cols-lg-10">
-                    <div className="graph">
-                      <div className="graph-container">
-                        <div
-                          className={
-                            showPopup || showModifyPopup ? "z-index-low" : ""
-                          }
-                        >
-                          <LineChart
-                            title={"Number of cases of various diseases"}
-                            categories={doctorData.map((item) => item.Year)}
-                            series={[
-                              {
-                                name: "Malaria",
-                                data: doctorData.map((item) => item.Malaria),
-                              },
-                              {
-                                name: "J.E.",
-                                data: doctorData.map((item) => item.JE),
-                              },
-                              {
-                                name: "A.E.S.",
-                                data: doctorData.map((item) => item.AES),
-                              },
-                              {
-                                name: "Dengue",
-                                data: doctorData.map((item) => item.Dengue),
-                              },
-                              {
-                                name: "Chikengunia",
-                                data: doctorData.map((item) => item.Chikengunia),
-                              },
-                            ]}
-                            height={400}
-                            width={500}
-                            xtitle=""
-                            ytitle="Number of Cases"
-                          />
+                      <div className="cols-lg-10">
+                        <div className="graph">
+                          <div className="graph-container">
+                            <div
+                              className={
+                                showPopup || showModifyPopup
+                                  ? "z-index-low"
+                                  : ""
+                              }
+                            >
+                              <LineChart
+                                title={"Number of cases of various diseases"}
+                                categories={doctorData.map((item) => item.Year)}
+                                series={[
+                                  {
+                                    name: "Malaria",
+                                    data: doctorData.map(
+                                      (item) => item.Malaria
+                                    ),
+                                  },
+                                  {
+                                    name: "J.E.",
+                                    data: doctorData.map((item) => item.JE),
+                                  },
+                                  {
+                                    name: "A.E.S.",
+                                    data: doctorData.map((item) => item.AES),
+                                  },
+                                  {
+                                    name: "Dengue",
+                                    data: doctorData.map((item) => item.Dengue),
+                                  },
+                                  {
+                                    name: "Chikengunia",
+                                    data: doctorData.map(
+                                      (item) => item.Chikengunia
+                                    ),
+                                  },
+                                ]}
+                                height={400}
+                                width={500}
+                                xtitle=""
+                                ytitle="Number of Cases"
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
                     </>
                   )}
-                 
                 </div>
               )}
               {departmentName === "Education" && (
@@ -1278,8 +1435,8 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                 </div>
               )}
               {departmentName === "Housing" && (
-                <div className="row">
-                  <div className="cols-lg-10">
+                <div className="main-graph">
+                  <div className="graph-big">
                     <div className="graph">
                       <div className="graph-conatiner">
                         <div
@@ -1290,21 +1447,21 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                           <BarChart
                             title="Population Data"
                             categories={[
-                              "Past Data",
+                              "Past Data(2011)",
                               "Present Data",
-                              "Future Data",
+                              "Future Data(2026)",
                             ]}
                             series={preparePopulationData()}
                             height={400}
                             width={500}
                             xtitle="Year"
-                            ytitle="Population"
+                            ytitle="Population (in Lakhs)"
                           />
                           <div>
                             <PieChart
                               title="Population"
                               labels={["Urban Population", "Slum Population"]}
-                              series={[96.185096179, 3.814903821]}
+                              series={[672861, 45554]}
                               height={400}
                             />
                           </div>
@@ -1315,8 +1472,8 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                 </div>
               )}
               {departmentName === "Tourism" && (
-                <div className="row">
-                  <div className="cols-lg-10">
+                <div className="main-graph">
+                  <div className="graph-big">
                     <div className="graph">
                       <div className="graph-conatiner">
                         <div
@@ -1324,7 +1481,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                             showPopup || showModifyPopup ? "z-index-low" : ""
                           }`}
                         >
-                          <BarChart
+                          <LineChart
                             title={"Tourist Population in Lakhs"}
                             categories={touristData.map((item) =>
                               item.Year.toString()
@@ -1342,7 +1499,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                             xtitle="Year"
                             ytitle="Population"
                           />
-                          <BarChart
+                          <LineChart
                             title={"Tourist Waste Generation in MT"}
                             categories={wasteData.map((item) =>
                               item.Year.toString()
@@ -1367,11 +1524,11 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                 </div>
               )}
               {departmentName === "Transport" && (
-                <div className="row">
+                <div className="main-graph">
                   {vehical.map((name, index) => (
-                    <div className="cols-lg-10">
+                    <div className="graph-big">
                       <div className="graph">
-                        <div className="graph-conatiner">
+                        <div className="graph-container">
                           <div
                             key={index}
                             className={` ${
@@ -1401,8 +1558,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                   ],
                                 },
                               ]}
-                              height={400}
-                              width={500}
+                              height={300}
                               xtitle="Year Range"
                               ytitle="Number"
                             />
@@ -1420,26 +1576,40 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
               departmentName !== "Socio-Cultural-Activities" &&
               departmentName !== "Crime" &&
               departmentName !== "Health" &&
-              departmentName !== "Education" && (
+              departmentName !== "Education" &&
+              departmentName !=="Tourism"&& (
                 <>
                   <div className="col-lg-3">
                     <div className="insights">
+                      {departmentName ==="Transport" && (
+                        <>
+                        <h2>Share of Electric Vehicles</h2>
+                        <div className="insights-content"> 
+                        
+                               <PieChart
+                              title=""
+                              labels={["Three Wheeler", "e-Rickshaw", "e-Rickshaw with cart"]}
+                              series={[180,6600,189]}
+                              height={400}
+                            />
+                        </div>
+                      </>
+
+                      )}
                       {departmentName === "Environment" &&
-                        selectedLocation &&
-                        selectedDate &&
-                        selectedYear &&
-                        selectedMonth &&
+                       
                         subCategory === "Aqi" && (
                           <>
                             <h1>Insights</h1>
                             <div className="insights-content">
-                              {insights.map((item, index) => (
-                                <div key={index}>
-                                  <ul className="insights-text">
-                                    <li>{item.Insights}</li>
-                                  </ul>
-                                </div>
-                              ))}
+                              {insights.length > 0 &&
+                                insights.map((item, index) => (
+                                  <div key={index}>
+                                    <ul className="insights-text">
+                                      <li>{item.Insights}</li>
+                                    </ul>
+                                  </div>
+                                ))}
                             </div>
                           </>
                         )}
@@ -1449,29 +1619,30 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                         departmentName !== "Socio-Cultural-Activities" &&
                         departmentName !== "Crime" &&
                         departmentName !== "Health" &&
-                        departmentName !== "Education" && (
+                        departmentName !== "Education" &&
+                        departmentName !=="Transport" && (
                           <>
                             <h1>Insights</h1>
                           </>
                         )}
                     </div>
-                    <div className="insights">
+                    {departmentName !=="Transport" && (
+                      <div className="insights">
                       {departmentName === "Environment" &&
-                        selectedLocation &&
-                        selectedDate &&
-                        selectedYear &&
-                        selectedMonth &&
+                        insights.length > 0 &&
+                        
                         subCategory === "Aqi" && (
                           <>
                             <div className="insights-content">
                               <h1>Recommendations</h1>
-                              {insights.map((item, index) => (
-                                <div key={index}>
-                                  <ul className="insights-text">
-                                    <li> {item.Recommendations}</li>
-                                  </ul>
-                                </div>
-                              ))}
+                              {insights.length > 0 &&
+                                insights.map((item, index) => (
+                                  <div key={index}>
+                                    <ul className="insights-text">
+                                      <li> {item.Recommendations}</li>
+                                    </ul>
+                                  </div>
+                                ))}
                             </div>
                           </>
                         )}
@@ -1480,13 +1651,16 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                         departmentName !== "Sex-Ratio" &&
                         departmentName !== "Socio-Cultural-Activities" &&
                         departmentName !== "Crime" &&
-                        departmentName !== "Health" &&
-                        departmentName !== "Education" && (
+                        departmentName !== "Health" && 
+                        departmentName !== "Education"
+                        && (
                           <>
                             <h1>Recommendations</h1>
                           </>
                         )}
                     </div>
+                    )}
+                    
                   </div>
                 </>
               )}

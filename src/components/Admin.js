@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Select, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+
 import "./Admin.css";
-import governace from "./images/governace.png";
+import governance from "./images/governace.png";
 import environmental from "./images/environmental.png";
 import social from "./images/social.png";
 import score from "./images/score.png";
@@ -16,9 +17,16 @@ const Admin = () => {
   const [environmentalIndicator, setEnvironmentalIndicator] = useState("");
   const [socialIndicator, setSocialIndicator] = useState("");
   const [governanceIndicator, setGovernanceIndicator] = useState("");
+
   const [selectedIndicatorDateRange, setSelectedIndicatorDateRange] =
     useState("");
   const history = useNavigate();
+
+  const [showEnvironmentalIndicators, setShowEnvironmentalIndicators] =
+    useState(false);
+  const [showSocialIndicators, setShowSocialIndicators] = useState(false);
+  const [showGovernanceIndicators, setShowGovernanceIndicators] =
+    useState(false);
 
   const handleStateChange = (event) => {
     setSelectedState(event.target.value);
@@ -49,6 +57,15 @@ const Admin = () => {
   const handleGovernanceIndicatorChange = (event) => {
     setGovernanceIndicator(event.target.value);
     history("/crime");
+  };
+  const handleEnvironmentalModuleClick = () => {
+    setShowEnvironmentalIndicators(true);
+  };
+  const handleSocialModuleClick = () => {
+    setShowSocialIndicators(true);
+  };
+  const handleGovernanceModuleClick = () => {
+    setShowGovernanceIndicators(true);
   };
 
   return (
@@ -123,52 +140,131 @@ const Admin = () => {
         {selectedState && selectedCity && selectedDateRange && (
           <div className="admin-modules">
             <div className="module-card">
-              <div className="module-single-card">
+              <div
+                className="module-single-card"
+                onClick={handleEnvironmentalModuleClick}
+              >
                 <div className="module-content">
-                <img src={environmental} alt="Environmental" />
-                <h1>Environment</h1>
-                </div>
-                
-                <div className="Module-rating">
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Bad</h1>
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Average</h1>
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Good</h1>
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Excellent</h1>
-                </div>
-              </div>
-              <div className="module-single-card">
-                <div className="module-content">
-                  <img src={social} alt="Social" />
-                  <h1>Social</h1>
+                  <div className="module-content-1">
+                    <img src={environmental} alt="Environmental" />
+                    <h1>Environment Indicators</h1>
+                  </div>
+                  {showEnvironmentalIndicators && (
+                    <div className="module-extra">
+                      <ul>
+                        <li>AQI</li>
+                        <li>Temperature</li>
+                        <li>Rainfall</li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
 
-                <div className="Module-rating">
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Bad</h1>
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Average</h1>
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Good</h1>
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Excellent</h1>
+                <div className="Module-rating-big">
+                  <div className="Module-rating-1">
+                    <img src={score} alt="Overall Score" />
+                    <h1>Score</h1>
+                    <h1>90</h1>
+                  </div>
+
+                  <div className="Module-rating">
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Bad</h1>
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Average</h1>
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Good</h1>
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Excellent</h1>
+                  </div>
                 </div>
               </div>
-              {/* Governance Module */}
-              <div className="module-single-card">
+
+              <div
+                className="module-single-card"
+                onClick={handleSocialModuleClick}
+              >
                 <div className="module-content">
-                  <img src={governace} alt="Governance" />
-                  <h1>Governance</h1>
+                  <div className="module-content-1">
+                    <img src={social} alt="Environmental" />
+                    <h1>Social Indicators</h1>
+                  </div>
+                  {showSocialIndicators && (
+                    <div className="module-extra">
+                      <ul>
+                        <li>AQI</li>
+                        <li>Temperature</li>
+                        <li>Rainfall</li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
-                <div className="Module-rating">
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Bad</h1>
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Average</h1>
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Good</h1>
-                  <h1 style={{backgroundColor:"#edf9f9"}}>Excellent</h1>
+
+                <div className="Module-rating-big">
+                  <div className="Module-rating-1">
+                    <img src={score} alt="Overall Score" />
+                    <h1>Score</h1>
+                    <h1>90</h1>
+                  </div>
+
+                  <div className="Module-rating">
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Bad</h1>
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Average</h1>
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Good</h1>
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Excellent</h1>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="module-single-card"
+                onClick={handleGovernanceModuleClick}
+              >
+                <div className="module-content">
+                  <div className="module-content-1">
+                    <img src={governance} alt="Environmental" />
+                    <h1>Governace Indicators</h1>
+                  </div>
+                  {showGovernanceIndicators && (
+                    <div className="module-extra">
+                      <ul>
+                        <li>AQI</li>
+                        <li>Temperature</li>
+                        <li>Rainfall</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                <div className="Module-rating-big">
+                  <div className="Module-rating-1">
+                    <img src={score} alt="Overall Score" />
+                    <h1>Score</h1>
+                    <h1>90</h1>
+                  </div>
+
+                  <div className="Module-rating">
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Bad</h1>
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Average</h1>
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Good</h1>
+                    <h1 style={{ backgroundColor: "#edf9f9" }}>Excellent</h1>
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="module-right">
             <div className="module-score">
               <div className="module-single-card">
                 <img src={score} alt="Overall Score" />
                 <h1>Overall Score</h1>
                 <h1>90</h1>
               </div>
+            </div>
+            <div className="module-score">
+              <div className="module-single-card">
+                <h1>Areas of Improvement</h1>
+                <ul>
+                  <li>Environment</li>
+                  <li>Education</li>
+                  <li>Healthcare</li>
+                  <li>Crime</li>
+                </ul>
+              </div>
+            </div>
             </div>
           </div>
         )}
