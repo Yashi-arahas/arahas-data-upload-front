@@ -1,10 +1,8 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "../Header";
+import CircularProgress from "@mui/material/CircularProgress";
 import AqiMap from "./Maps/AqiMap";
 import "./AqiReport.css";
-import AQIChart from "./AQIChart";
 
 const AqiReport = () => {
   const [avgAqi, setAvgAqi] = useState("");
@@ -19,9 +17,11 @@ const AqiReport = () => {
   const [enviroAQI, setEnviroAQI] = useState("");
   const [enviroNO2, setEnviroNO2] = useState("");
   const [enviroco2, setEnviroco2] = useState("");
+  
   useEffect(() => {
     fetchData();
   }, []);
+
   const fetchData = async () => {
     try {
       const aqi_response = await axios.get(
@@ -47,9 +47,11 @@ const AqiReport = () => {
         const year = dateObj.getFullYear();
         const month = dateObj.getMonth() + 1;
         const day = dateObj.getDate();
-        const formatted = `${day<10? "0" + day : day }-${month < 10 ? "0" + month : month}-${year}`;
+        const formatted = `${day < 10 ? "0" + day : day}-${
+          month < 10 ? "0" + month : month
+        }-${year}`;
         formattedDate.push(formatted);
-        
+
         const localDateObj = new Date(
           dateObj.getTime() + dateObj.getTimezoneOffset() * 60000
         );
@@ -70,7 +72,7 @@ const AqiReport = () => {
       setEnviroTimeStamp(timeStamp);
       setEnviroTime(formattedTime);
       setEnviroDate(formattedDate);
-      
+
       const latestDate = new Date(
         Math.max(
           ...formattedDate.map((date) => {
@@ -95,7 +97,7 @@ const AqiReport = () => {
         const year = dateObj.getFullYear();
         const month = dateObj.getMonth() + 1;
         const day = dateObj.getDate();
-        const formattedDate = `${day<10 ? "0"+day :day}-${
+        const formattedDate = `${day < 10 ? "0" + day : day}-${
           month < 10 ? "0" + month : month
         }-${year}`;
         return formattedDate === formattedLatestDate;
@@ -124,24 +126,21 @@ const AqiReport = () => {
       setEnviroAQI(AQI);
       setEnviroNO2(NO2);
       setEnviroco2(co2);
-      
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
   return (
-    <div className="map" >
-            <div className="main-graph">
-            <h1>AQI Level for {latestDate}</h1>
-            </div>
-            
-            {Array.isArray(avgAqi) ? (
-              <AqiMap averageAQI={avgAqi} />
-            ) : (
-              <p>Loading...</p>
-            )}
-         </div>
-    
+    <div className="map">
+      {Array.isArray(avgAqi) ? (
+        <AqiMap averageAQI={avgAqi} latestDate={latestDate} />
+      ) : (
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "25vw" }}>
+          <CircularProgress />
+        </div>
+      )}
+    </div>
   );
 };
 

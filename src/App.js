@@ -88,12 +88,6 @@ function App() {
         <Route path="/sdg" element={<SDGPage/>}></Route>
         <Route path="/admin" element={<AdminPage/>}></Route>
         <Route path="/weather" element={<WeatherApi/>}></Route>
-        <Route path="/more-indicators/electricity" element={<OtherIndicator departmentName={"Electricity"}/>}></Route>
-        <Route path="/more-indicators/sex-ratio" element={<OtherIndicator departmentName={"Sex-Ratio"}/>}></Route>
-        <Route path="/more-indicators/education" element={<OtherIndicator departmentName={"Education"}/>}></Route>
-        <Route path="/more-indicators/crime" element={<OtherIndicator departmentName={"Crime"}/>}></Route>
-        <Route path="/more-indicators/health" element={<OtherIndicator departmentName={"Health"}/>}></Route>
-        <Route path="/more-indicators/socio-culture" element={<OtherIndicator departmentName={"Socio-Cultural-Activities"}/>}></Route>
         <Route path="/aqi" element={<AqiPage/>}></Route>
       </Routes>
 

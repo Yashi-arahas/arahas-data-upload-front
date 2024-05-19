@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// Sdg.js
+import React, { useState, useEffect } from "react";
 import "./sdg.css";
 import house from "./images/home.png";
 import city from "./images/safe_space.png";
@@ -13,18 +14,27 @@ import planning from "./images/plan.png";
 import sex_ratio from "./images/sex-ratio.png";
 import electricity from "./images/electricity.png";
 import socio from "./images/diversity.png";
-import crime from "./images/crime-scene.png"
-import education from "./images/education.png"
-import health from "./images/healthcare.png"
+import crime from "./images/crime-scene.png";
+import education from "./images/education.png";
+import health from "./images/healthcare.png";
 import SdgCard from "./SdgCard";
 import Header from "./Header";
-import OtherCard from "./OtherCards"
+import OtherIndicator from "./OtherIndicator";
 
 const Sdg = () => {
-  const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(localStorage.getItem("showMore") === "true");
+  const [selectedDepartment, setSelectedDepartment] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem("showMore", showMore);
+  }, [showMore]);
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
+  };
+
+  const handleCardClick = (departmentName) => {
+    setSelectedDepartment(departmentName);
   };
 
   const sdgs = [
@@ -77,8 +87,7 @@ const Sdg = () => {
       description: 100,
     },
     {
-      title:
-        "Implement policies for inclusion, resource efficiency and disaster risk reduction",
+      title: "Implement policies for inclusion, resource efficiency and disaster risk reduction",
       link: "#",
       photo: testament,
       description: 100,
@@ -91,40 +100,45 @@ const Sdg = () => {
     },
     {
       title: "Gender Equality",
-      link: "/more-indicators/sex-ratio",
+      link: "/more-indicators",
       photo: sex_ratio,
       description: 20,
+      departmentName: "sexRatio",
     },
     {
       title: "Modern Energy",
-      link: "/more-indicators/electricity",
+      link: "/more-indicators",
       photo: electricity,
       description: 70,
+      departmentName: "electricity",
     },
     {
       title: "Socio-Cultural Activities",
-      link: "/more-indicators/socio-culture",
+      link: "/more-indicators",
       photo: socio,
       description: 90,
+      departmentName: "socioCulture",
     },
     {
       title: "Crime Report",
-      // "",
-      link: "/more-indicators/crime",
+      link: "/more-indicators",
       photo: crime,
       description: 90,
+      departmentName: "crime",
     },
     {
       title: "Healthy Lives",
-      link: "/more-indicators/health",
+      link: "/more-indicators",
       photo: health,
       description: 90,
+      departmentName: "healthcare",
     },
     {
       title: "Quality Education",
-      link: "/more-indicators/education",
+      link: "/more-indicators",
       photo: education,
       description: 90,
+      departmentName: "education",
     },
   ];
 
@@ -151,23 +165,30 @@ const Sdg = () => {
             </div>
           </>
         )}
-
         {!showMore && (
           <div className="view-btn">
             <button onClick={toggleShowMore}>View More</button>
           </div>
         )}
-        <div className="sdg-container">
-          {showMore &&
-            sdgs
-              .slice(10)
-              .map((sdg, index) => <OtherCard sdg={sdg} key={10 + index}/>)}
-        </div>
         {showMore && (
           <div className="view-btn">
             <button onClick={toggleShowMore}>Show Less</button>
           </div>
         )}
+        <div className="sdg-container">
+          {showMore && sdgs.slice(10).map((sdg, index) => (
+            <div key={10 + index} className="not-sdg-container" onClick={() => handleCardClick(sdg.departmentName)}>
+              <div className="not-sdg-card">
+                <div className="not-sdg-content">
+                  <img src={sdg.photo} className="sdg-logo" alt={sdg.title} />
+                </div>
+              </div>
+              <h2 className="sdg-title">{sdg.title}</h2>
+            </div>
+          ))}
+        </div>
+        
+        {showMore && selectedDepartment && <OtherIndicator departmentName={selectedDepartment} />}
       </div>
     </>
   );

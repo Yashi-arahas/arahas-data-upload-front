@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CanvasJSReact from "@canvasjs/react-charts";
 import "./AqiReport.css";
 import HeatMap from "./HeatMap";
+import { color } from "framer-motion";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const DailyTrend = ({
@@ -252,11 +253,12 @@ const DailyTrend = ({
   return (
     <div>
       <div className="main-graph">
-       <CanvasJSChart
-                options={isDrilldown ? drilldownChartOptions : baseChartOptions}
-                height={500}
-                width={"100%"}
-              />
+      <CanvasJSChart
+    options={isDrilldown ? drilldownChartOptions : baseChartOptions}
+    height={500}
+    width={"100%"} // Add containerProps to apply border radius
+/>
+
               <button
                 className={backButtonClassName}
                 onClick={backButtonClickHandler}

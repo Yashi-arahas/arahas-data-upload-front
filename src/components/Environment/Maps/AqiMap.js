@@ -4,7 +4,8 @@ import "leaflet/dist/leaflet.css";
 import ADABoundary from "./ADA_Boundary.json";
 import { Icon } from 'leaflet';
 
-const AqiMap = ({ averageAQI }) => {
+const AqiMap = ({ averageAQI , latestDate}) => {
+  console.log(averageAQI)
     const markers = [
         {
           location: "Ayodhya - Civil line,Tiny tots school",
@@ -60,7 +61,7 @@ const AqiMap = ({ averageAQI }) => {
             center={mapCenter}
             zoom={11}
             minZoom={10}
-            style={{ width: "100%", height: "40vw" }}
+            style={{ width: "100%", height: "25vw", position: "relative" , borderRadius:"10px"}} // Position relative to contain absolute positioning of text
         >
             <TileLayer url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png" />
 
@@ -74,17 +75,20 @@ const AqiMap = ({ averageAQI }) => {
                 return (
                     <Marker key={index} position={[marker.lat, marker.lon]} icon={icon}>
                         <Popup>
-                            
-                                <>
+                            <>
                                 <p>{marker.default_message}</p>
-                                 <p>{message}</p>
-                                </>
-                            
-                           
+                                <p>{message}</p>
+                            </>
                         </Popup>
                     </Marker>
                 );
             })}
+
+            {/* Text container positioned absolutely within the map */}
+            <div style={{ position: "absolute", top: "1vw", left: "38%", zIndex: 1000, backgroundColor:"White",padding:"0.3vw 0 0 0", borderRadius:"10px", boxShadow:" 0 0 10px -4px rgba(0,0,0,0.7)"
+            }}>
+                <h1>AQI Level for {latestDate}</h1>
+            </div>
         </MapContainer>
     );
 };

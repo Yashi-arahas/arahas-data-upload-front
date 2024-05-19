@@ -6,22 +6,22 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 // Define the colors array
 const colors = [
-  // Zero Hunger
-  "#4C9F38",
-  "#DDA63A",  // Good Health and Well-being
-  "#ff3a21", // Gender Equality
-  "#26BDE2", // Clean Water
-  "#fcc30b", // Affordable and Clean Energy
-  "#a21942", // Decent Work and Economic Growth
-  "#fd6925", // Industry, Innovation, and Infrastructure
-  "#fd9d24", // Sustainable Cities and Communities
-  "#DD1367", // Reduced Inequalities
-  "#BF8B2E", // Responsible Consumption and Production
-  "#3F7E44", // Climate Action
-  "#0A97D9", // Life Below Water
-  "#56c02b", // Life on Land
-  "#00689D", // Peace, Justice, and Strong Institutions
-  "#19486A", // Partnerships for the Goals
+  "#DD761C",// (Rich Purple)
+  "#6DC5D1", // (orange)
+  "#AD88C6", // (Strong Blue)
+  "#FFB1B1", // (Dark Cyan)
+  "#1abc9c", // (Turquoise Green)
+  "#FFC300", // (Vivid Yellow)
+  
+
+"#C70039", // (Strong Red)
+
+"#581845",// (Dark Violet)
+
+
+
+"#9b59b6", // (Amethyst Purple)
+
 ];
 
 // Function to render a bar chart
@@ -45,8 +45,9 @@ export const BarChart = ({ title, group, categories, series, height, width, xtit
             text: title,
             align: 'center',
             offsetY: 7,
+            offsetX:-50,
             style: {
-              fontSize: '0.8rem'
+              fontSize: '0.6rem'
             }
           },
           xaxis: {
@@ -54,7 +55,7 @@ export const BarChart = ({ title, group, categories, series, height, width, xtit
             categories: categories,
             labels:{
               style:{
-                fontSize:"0.6rem"
+                fontSize:"0.5rem"
               }
             }
             
@@ -62,8 +63,12 @@ export const BarChart = ({ title, group, categories, series, height, width, xtit
           yaxis:{
             title:{
               offsetX:0,
-              text:ytitle
-            }
+              text:ytitle,
+              style:{
+                fontSize:"0.5rem"
+              }
+            }, 
+           
           },
           plotOptions: {
             bar: {

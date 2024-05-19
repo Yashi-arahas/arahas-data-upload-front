@@ -1000,12 +1000,12 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                           <h1>63% good</h1>
                           <h3>Road condition</h3>
                         </div>
-                        <div className="card-hover-info" style={{zIndex:1000}}>
+                        <div className="card-hover-info" style={{zIndex:10000}}>
                         <PieChart
                               title="Road Condition"
                               labels={["Good", "Average", "Poor"]}
                               series={[63, 24.9, 12.1]}
-                              height={300}
+                              height={250}
                             />
               
                         </div>
@@ -1457,14 +1457,15 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                             xtitle="Year"
                             ytitle="Population (in Lakhs)"
                           />
-                          <div>
+                          
                             <PieChart
                               title="Population"
                               labels={["Urban Population", "Slum Population"]}
                               series={[672861, 45554]}
                               height={400}
+                             
                             />
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
@@ -1577,13 +1578,15 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
               departmentName !== "Crime" &&
               departmentName !== "Health" &&
               departmentName !== "Education" &&
-              departmentName !=="Tourism"&& (
+              departmentName !=="Tourism" &&
+              departmentName !=="Housing" 
+              && (
                 <>
                   <div className="col-lg-3">
                     <div className="insights">
                       {departmentName ==="Transport" && (
                         <>
-                        <h2>Share of Electric Vehicles</h2>
+                        <h2>E-Vehicle Share</h2>
                         <div className="insights-content"> 
                         
                                <PieChart
