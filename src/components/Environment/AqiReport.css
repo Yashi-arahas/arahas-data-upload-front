@@ -53,9 +53,6 @@ h1{
 	font-size: 16px;
 	background-color: #2eacd1;
 	color: white;
-	position: absolute;
-	top: 10px;
-	right: 10px;
 	cursor: pointer;
   }
   .invisible {
@@ -109,3 +106,35 @@ h1{
     color: white;
 }
 
+
+.shade-1 {
+    background-color: #FFE8C8; /* Beige */
+}
+
+.shade-2 {
+    background-color: #FFC96F; /* Beige */
+}
+
+.shade-3 {
+    background-color: #FFA62F; /* Orange */
+}
+
+.shade-4 {
+    background-color: #F94C10; /* Orange */
+}
+
+.shade-5 {
+    background-color: #C70039; /* Red */
+    color: white;
+}
+
+.shade-6 {
+    background-color: #900C3F; /* Red */
+    color: white;
+}
+.btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
+}

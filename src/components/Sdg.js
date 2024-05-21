@@ -154,9 +154,7 @@ const Sdg = () => {
               ))}
             </div>
             <div className="page-title">
-              <h1>
-                City<span> Sustainability Index</span>
-              </h1>
+            <h1>City&nbsp;<span class="space"> Sustainability Index</span></h1>
             </div>
             <div className="sdg-container">
               {sdgs.slice(5, 10).map((sdg, index) => (

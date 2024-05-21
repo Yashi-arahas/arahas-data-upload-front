@@ -4,7 +4,7 @@ import "./DepartmentPage.css";
 import FileUploadPopup from "./upload-popup/FileUploadPopup";
 import { BarChart, PieChart, LineChart } from "./GraphVisuals";
 import Logo from "./HeaderLogo";
-import { Select, MenuItem } from "@mui/material";
+import { Select, MenuItem, CircularProgress } from "@mui/material";
 import EnvironmentCharts from "./EnvironmnetCharts";
 import AQI from "./images/AQI.png";
 import co2 from "./images/carbon-dioxide.png";
@@ -39,6 +39,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import zIndex from "@mui/material/styles/zIndex";
 import AqiMap from "./Environment/Maps/AqiMap";
+import Temperature from "./Environment/Temperature";
 const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   // State variables and useEffect for data fetching, file upload, etc.
   const [showPopup, setShowPopup] = useState(false);
@@ -200,7 +201,6 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           NO2.push(item.NO2);
           co2.push(item.co2);
         });
-        console.log(formattedTime);
         setEnviroLocation(location);
         setEnviroTimeStamp(timeStamp);
         setEnviroTime(formattedTime);
@@ -294,6 +294,9 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
         const tTemperature = [];
         const tHumidity = [];
         temp.data.data.forEach((item) => {
+          
+       
+          
           tlocation.push(item.location);
           ttimeStamp.push(item.timeStamp);
           ttime.push(item.time);
@@ -305,10 +308,15 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
             month < 10 ? "0" + month : month
           }-${year}`;
           tformattedDate.push(formatted);
-
-          const hours = dateObj.getHours();
-          const minutes = dateObj.getMinutes() + 1;
-          const formattedTimeStr = `${hours}:${minutes}`;
+          const localDateObj = new Date(
+            dateObj.getTime() + dateObj.getTimezoneOffset() * 60000
+          );
+          const hours = localDateObj.getHours();
+          const minutes = localDateObj.getMinutes();
+          const formattedTimeStr = `${hours < 10 ? "0" + hours : hours}:${
+            minutes
+          }`;
+          formattedTime.push(formattedTimeStr);
           tformattedTime.push(formattedTimeStr);
           tTemperature.push(item.temperature);
           tHumidity.push(item.humidity);
@@ -528,7 +536,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
             <div className="col-lg-9">
               <div className="pagetitle">
                 {subCategory.length > 0 && (
-                  <h4>{subCategory.toLocaleUpperCase()} Report</h4>
+                  <h4>{subCategory} Report</h4>
                 )}
                 {subCategory.length === 0 && (
                   <h4>{departmentName} Department</h4>
@@ -540,7 +548,6 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                     {subCategory && (
                       <div className="enviro-select z-index-low">
                         {(
-                          subCategory === "Temperature" ||
                           subCategory === "Rainfall") && (
                           <Select
                             value={selectedYear}
@@ -567,114 +574,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                           </Select>
                         )}
 
-                        {(
-                          subCategory === "Temperature") && (
-                          <>
-                            <Select
-                              value={selectedMonth}
-                              onChange={handleMonthChange}
-                              displayEmpty
-                              className="dropdown-menu"
-                              style={{
-                                height: "2.5rem",
-                                width: "15rem",
-                                fontSize: "1.1rem",
-                              }}
-                            >
-                              <MenuItem value="" disabled>
-                                Select Month
-                              </MenuItem>
-                              <MenuItem value="01">January</MenuItem>
-                              <MenuItem value="02">February</MenuItem>
-                              <MenuItem value="03">March</MenuItem>
-                              <MenuItem value="04">April</MenuItem>
-                              <MenuItem value="05">May</MenuItem>
-                              <MenuItem value="06">June</MenuItem>
-                              <MenuItem value="07">July</MenuItem>
-                              <MenuItem value="08">August</MenuItem>
-                              <MenuItem value="09">September</MenuItem>
-                              <MenuItem value="10">October</MenuItem>
-                              <MenuItem value="11">November</MenuItem>
-                              <MenuItem value="12">December</MenuItem>
-                            </Select>
-                            <Select
-                              value={selectedDate}
-                              onChange={handleDateChange}
-                              displayEmpty
-                              className="dropdown-menu"
-                              style={{
-                                height: "2.5rem",
-                                width: "15rem",
-                                fontSize: "1.1rem",
-                              }}
-                            >
-                              <MenuItem value="" disabled>
-                                Select Date
-                              </MenuItem>
-                              <MenuItem value="1">1</MenuItem>
-                              <MenuItem value="2">2</MenuItem>
-                              <MenuItem value="3">3</MenuItem>
-                              <MenuItem value="4">4</MenuItem>
-                              <MenuItem value="5">5</MenuItem>
-                              <MenuItem value="6">6</MenuItem>
-                              <MenuItem value="7">7</MenuItem>
-                              <MenuItem value="8">8</MenuItem>
-                              <MenuItem value="9">9</MenuItem>
-                              <MenuItem value="10">10</MenuItem>
-                              <MenuItem value="11">11</MenuItem>
-                              <MenuItem value="12">12</MenuItem>
-                              <MenuItem value="13">13</MenuItem>
-                              <MenuItem value="14">14</MenuItem>
-                              <MenuItem value="15">15</MenuItem>
-                              <MenuItem value="16">16</MenuItem>
-                              <MenuItem value="17">17</MenuItem>
-                              <MenuItem value="18">18</MenuItem>
-                              <MenuItem value="19">19</MenuItem>
-                              <MenuItem value="20">20</MenuItem>
-                              <MenuItem value="21">21</MenuItem>
-                              <MenuItem value="22">22</MenuItem>
-                              <MenuItem value="23">23</MenuItem>
-                              <MenuItem value="24">24</MenuItem>
-                              <MenuItem value="25">25</MenuItem>
-                              <MenuItem value="26">26</MenuItem>
-                              <MenuItem value="27">27</MenuItem>
-                              <MenuItem value="28">28</MenuItem>
-                              <MenuItem value="29">29</MenuItem>
-                              <MenuItem value="30">30</MenuItem>
-                              <MenuItem value="31">31</MenuItem>
-                            </Select>
-                            <Select
-                              value={selectedLocation}
-                              onChange={handleLocationChange}
-                              displayEmpty
-                              className="dropdown-menu"
-                              style={{
-                                height: "2.5rem",
-                                width: "25rem",
-                                fontSize: "1.1rem",
-                              }}
-                            >
-                              <MenuItem value="" disabled>
-                                Select Location
-                              </MenuItem>
-                              <MenuItem value="Ayodhya - Civil line,Tiny tots school">
-                                Zone 1
-                              </MenuItem>
-                              <MenuItem value="Ayodhya - Shahadat Ganj">
-                                Zone 2
-                              </MenuItem>
-                              <MenuItem value="Ayodhya-Bank colony near Railway station">
-                                Zone 3
-                              </MenuItem>
-                              <MenuItem value="Ayodhya-near Airport">
-                                Zone 4
-                              </MenuItem>
-                              <MenuItem value="Ayodhya-Ranopali near Kila ayodhya">
-                                Zone 5
-                              </MenuItem>
-                            </Select>
-                          </>
-                        )}
+                        
                       </div>
                     )}
                     {departmentName === "Environment" && (
@@ -841,11 +741,13 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
 
                             </>
                           )}
-                        {selectedYear &&
-                          selectedMonth &&
-                          selectedDate &&
-                          selectedLocation &&
-                          subCategory === "Temperature" && (
+                          {subCategory==="Temperature" && templocation.length===0 &&(
+                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "25vw" }}>
+                            <CircularProgress />
+                          </div>
+                          )}
+                        {
+                          subCategory === "Temperature" && templocation.length>0 && (
                             <>
                               <>
                                 <div className="col-lg-6">
@@ -869,14 +771,14 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                       <h3>Avg Humidity</h3>
                                     </div>
                                     <div className="mini-cards-text">
-                                      <h3>Outliears:0</h3>
-                                      <h3>Healthy Days:40</h3>
+                                      <h3>Last Updated on : 27-03-2024}</h3>
                                     </div>
                                   </div>
                                 </div>
+                                
                               </>
                               <>
-                                <TemperatureCharts
+                                {/* <TemperatureCharts
                                   selectedYear={selectedYear}
                                   selectedMonth={selectedMonth}
                                   selectedDate={selectedDate}
@@ -886,7 +788,11 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                   temptime={temptime}
                                   temperature={temperature}
                                   humidity={humidity}
-                                />
+                                /> */}
+                                {templocation.length>0 && (
+                                  <Temperature templocation={templocation} tempdate={tempdate} temptime={temptime} temptimeStamp={temptimeStamp} temperature={temperature} humidity={humidity}/>
+                                )}
+                                
                               </>
                             </>
                           )}

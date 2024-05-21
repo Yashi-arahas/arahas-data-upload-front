@@ -35,6 +35,7 @@ const DailyTrend = ({
           type: "splineArea",
           indexLabelFontColor: "red",
           dataPoints: dataPoints,
+          color:"#378CE7"
         },
       ],
     };
@@ -59,7 +60,7 @@ const DailyTrend = ({
       });
     setDrilldownChartData([
       {
-        color: "#E7823A",
+        color: "#67C6E3",
         name: selectedDate,
         type: "splineArea",
         dataPoints: selectedDateData,
@@ -253,24 +254,19 @@ const DailyTrend = ({
   return (
     <div>
       <div className="main-graph">
-      <CanvasJSChart
-    options={isDrilldown ? drilldownChartOptions : baseChartOptions}
-    height={500}
-    width={"100%"} // Add containerProps to apply border radius
-/>
-
-              <button
+        <div className="btn-container">
+      <button
                 className={backButtonClassName}
                 onClick={backButtonClickHandler}
                 style={{
-                  borderRadius: "4px",
-                  padding: "8px",
+                  borderRadius: "10px",
+                  padding: "0.5vw",
                   border: "none",
-                  fontSize: "16px",
+                  fontSize: "0.8vw",
                   backgroundColor: "#2eacd1",
                   color: "white",
                   cursor: "pointer",
-                  margin:"0.5vw 1vw"
+                  margin:"0.5vw "
                 
                 }}
               >
@@ -280,18 +276,26 @@ const DailyTrend = ({
                 className={backButtonClassName}
                 onClick={lastFifteenClickHandler}
                 style={{
-                  borderRadius: "4px",
-                  padding: "8px",
+                  borderRadius: "10px",
+                  padding: "0.5vw",
                   border: "none",
-                  fontSize: "16px",
+                  fontSize: "0.8vw",
                   backgroundColor: "#2eacd1",
                   color: "white",
                   cursor: "pointer",
-                  margin:"0.5vw 1vw"
+                  margin:"0.5vw"
                 }}
               >
                 View Last 15 days Trend
                 </button>
+                </div>
+      <CanvasJSChart
+    options={isDrilldown ? drilldownChartOptions : baseChartOptions}
+    height={500}
+    width={"90%"} // Add containerProps to apply border radius
+/>
+
+              
               </div>
               {showTable===true && (
                 <div className="main-graph">

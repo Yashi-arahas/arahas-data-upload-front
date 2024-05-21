@@ -71,10 +71,10 @@ const OtherIndicator = ({ departmentName }) => {
             </div> */}
             <div className="other-mini-card">
               <img src={renewable} alt="Renewable Energy" />
-              <h1>Renewable share of installed generating capacity</h1>
+              <h1>Renewable share of installed generating capacity (Solar Energy)</h1>
               <div className="sub-mini">
                 <h2>Target : 40%</h2>
-                <h2>Ayodhya : 10%</h2>
+                <h2>Current Generation : 10%</h2>
               </div>
             </div>
             <div className="other-graphs">
@@ -312,14 +312,13 @@ const OtherIndicator = ({ departmentName }) => {
                       <div className="Percentage">
                         <img src={arrowpos} alt="Arrow Icon" />
                         <h1>
-                          Gap:{" "}
-                          {(
-                            ((item.Current_Value - item.Target_Value) /
-                              item.Target_Value) *
-                            100
-                          ).toFixed(2)}
-                          %
-                        </h1>
+  Gap:{" "}
+  {item.Current_Value > item.Target_Value
+    ? (((item.Current_Value - item.Target_Value) / item.Current_Value) * 100).toFixed(2)
+    : (((item.Target_Value - item.Current_Value) / item.Target_Value) * 100).toFixed(2)}
+  %
+</h1>
+
                       </div>
                     </div>
                   </div>
