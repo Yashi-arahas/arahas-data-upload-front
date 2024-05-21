@@ -19,13 +19,7 @@ h1{
     justify-content: left;
     color: blue;
 }
-.map h1{
-  font-size: 1.2vw;
-  display: flex;
-  justify-content: center;
-  color: blue;
-  padding: 0.5vw;
-}
+
 
 .Aqi-zone-map{
     display: flex;
@@ -86,32 +80,32 @@ h1{
 }
 
 .green-bg {
-    background-color: #00ff08;
+    background-color: #dbf0fe;
     color: black;
 }
 
 .yellow-bg {
-    background-color: #FFFF00;
+    background-color:	#add9f6;
     color: black;
 }
 
 .orange-bg {
-    background-color: #FFA500;
+    background-color: #54a8e0;
     color: black;
 }
 
 .pink-bg {
-    background-color: #FF69B4;
-    color: black;
+    background-color: #459bd4;
+    color: white;
 }
 
 .purple-bg {
-    background-color: #800080;
+    background-color:#316e96;
     color: white;
 }
 
 .red-bg {
-    background-color: #FF0000;
-    color: black;
+    background-color: #0d456a;
+    color: white;
 }
 

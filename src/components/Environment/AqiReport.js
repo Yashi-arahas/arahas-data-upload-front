@@ -115,7 +115,7 @@ const AqiReport = () => {
       const averageAQI = Object.entries(averageAQIByLocation).map(
         ([location, { totalAQI, count }]) => ({
           location,
-          AQI: totalAQI / count,
+          AQI: (totalAQI / count).toFixed(2),
         })
       );
       setLatestDate(formattedLatestDate);
