@@ -1,6 +1,7 @@
 import React from 'react';
 import ApexCharts from 'react-apexcharts';
 import CanvasJSReact from '@canvasjs/react-charts';
+import { color } from 'framer-motion';
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -23,7 +24,72 @@ const colors = [
 "#9b59b6", // (Amethyst Purple)
 
 ];
-
+export const GroupedBarChart = ({ title, categories, series, height, width, xtitle, ytitle }) => {
+  return (
+    <div className=' z-index-low'>
+      <ApexCharts
+        options={{
+          chart: {
+            type: 'bar',
+            height: height,
+            toolbar: {
+              show: true
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          title: {
+            text: title,
+            align: 'center',
+            offsetY: 7,
+            offsetX: -50,
+            style: {
+              fontSize: '0.6rem'
+            }
+          },
+          xaxis: {
+            tickPlacement: 'on',
+            categories: categories,
+            labels: {
+              style: {
+                fontSize: "0.5rem"
+              }
+            }
+          },
+          yaxis: {
+            title: {
+              text: ytitle,
+              style: {
+                fontSize: "0.5rem"
+              }
+            }
+          },
+          plotOptions: {
+            bar: {
+              endingShape: 'rounded',
+              columnWidth: '70%',
+              dataLabels: {
+                position: 'top'
+              }
+            }
+          },
+          colors, // Include the colors array here
+          legend: {
+            position: 'top',
+            horizontalAlign: 'center',
+            offsetY: -10,
+            fontSize: '8px'
+          }
+        }}
+        series={series}
+        type="bar"
+        height={height}
+        width={width}
+      />
+    </div>
+  );
+};
 // Function to render a bar chart
 export const BarChart = ({ title, group, categories, series, height, width, xtitle, ytitle }) => {
   return (
@@ -95,6 +161,12 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
     bottom: 10 // Padding from bottom
   };
 
+  // Prepare data for both bar and line charts
+  const chartData = categories.map((category, index) => ({
+    label: category,
+    y: data[index]
+  }));
+
   const options = {
     animationEnabled: true,
     title: {
@@ -105,14 +177,16 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
     axisX: {
       title: xtitle,
       titleFontSize: 15,
-      interval: 1
+      interval: 1,
+      gridThickness: 0, // Remove x-axis grid lines
     },
     axisY: {
       title: ytitle,
       includeZero: true,
       titleFontSize: 15,
       titleFontColor: "red",
-      padding: 40 // Corrected property name
+      padding: 40, // Corrected property name
+      gridThickness: 0, // Remove y-axis grid lines
     },
     toolTip: {
       shared: true
@@ -127,8 +201,9 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
       indexLabelFontWeight: "bold",
       indexLabelFontSize: 10,
       indexLabelFontColor: "white",
-      dataPoints: data.map((value, index) => ({ label: categories[index], y: value })),
-      columnWidth: columnWidth
+      dataPoints: chartData,
+      columnWidth: columnWidth,
+      color:"#ef7401"
     }, {
       type: "line",
       name: "Line",
@@ -138,13 +213,13 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
       indexLabelFontWeight: "bold",
       indexLabelFontSize: 10,
       indexLabelFontColor: "red",
-      dataPoints: data.map((value, index) => ({ label: categories[index], y: value }))
+      dataPoints: chartData
     }],
     padding: padding // Add padding
   };
 
   return (
-    <div>
+    <div className='z-index-low'>
       <CanvasJSChart options={options} height={height} width={width} />
     </div>
   );

@@ -1,171 +1,272 @@
-.admin-main-conatiner{
-    background-color: #edf9f9;
+/* Ensure the main container takes the full height of the viewport */
+.admin-main {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Style the video to cover the entire background */
+  .video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the background without distortion */
+    z-index: -1; /* Ensures the video stays behind all other content */
+  }
+  
+  /* Style adjustments for other elements to ensure proper layering */
+  .admin-title {
     display: flex;
-    align-items: center;
-    justify-content: top;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 1vw;
-    min-height: 90vh;
-}
-.admin-heading img{
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  .admin-title h1 {
+    font-size: 2.5vw;
+    color: black;
+    padding: 0.5vw;
+    font-weight: 600;
+    border-bottom: 1px solid orange;
+  }
+  
+  .admin-title img {
     height: 5vw;
     width: 5vw;
-    margin-right: 2vw ;
-}
-.admin-heading{
+  }
+  
+  .admin-sub-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
     padding: 1vw;
-}
-.admin-heading h1{
-    font-size: 2vw;
-    color:#012970;
-    font-weight: 700;
-    align-items: center;
-}
-.admin-select{
+  }
+  
+  .admin-left {
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: row;
-    width: 70%;
-    z-index: 0;
-}
-.admin-modules{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    flex-direction: row;
-    margin: 2vw 0 ;
-    padding: 1rem;
-    width: 100%;
-}
-
-.module-score .module-single-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-}
-.module-card{
+    margin: 1vw 0.5vw;
+    width: 65%;
+  }
+  
+  .admin-left .row-1 {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 70vw;
-    
-}
-.module-single-card{
-    display: flex;
-    align-items: center;
-    justify-content: left;
     flex-direction: row;
-    padding: 1vw;
-    margin: 1vw;
-    box-sizing: border-box;
-    box-shadow: 0 0 12px -7px rgba(0,0,0,0.7);
-    
-}
-.module-single-card h1{
-    font-size: 1.5vw;
-    color: #012970;
-    font-weight: 600;
-    margin: auto 1vw;
-}
-.module-content{
-    display:flex;
-    align-items: center;
-    justify-content: left;
-    flex-direction: column;
-    padding: 1vw;
-}
-.module-content-1{
-    display:flex;
-    align-items: center;
-    justify-content: left;
-    flex-direction: row;
+  }
+  
+  .admin-left .row-1 img {
+    height: 25vw;
     width: 25vw;
-}
-/* .module-content ul {
-    list-style: none;
-} */
-.Module-rating{
-    width: 30vw;
+  }
+  
+  .admin-left .row-1 .row-1-cols {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
-    margin: 1vw;
-   
-}
-.Module-rating h1{
+    flex-direction: column;
+  }
+  
+  .admin-left .row-1 .row-1-cols .indicator-name {
+    background-color: #ef7401;
+    width: 7.5vw;
+    border-radius: 20px 0px 0px 20px;
+    cursor: pointer;
+  }
+  
+  .admin-left .row-1 .row-1-cols .indicator-name h1 {
+    color: white;
+    padding-top: 0.8vw;
+    font-size: 3.4vw;
+    cursor: pointer;
+    height: 80%;
+  }
+  
+  .admin-left .row-1 .row-1-cols .indicator-name p {
+    color: white;
+    
+    height: 15%;
     font-size: 1vw;
-    box-sizing: border-box;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 0.5vw 1.1vw;
-}
-.module-single-card img{
-    height: 5vw;
-    width: 7vw;
-    margin: 1vw 1vw;
-}
-.module-score{
-    width: 25vw;
-    
-}
-.module-score .module-single-card img{
+    text-align: center;
+    border-top: 2px solid white;
+    border-radius: 0 0 0 20px;
+  }
+  
+  .indicator {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border: 1px solid #ef7401;
+    margin-top: 1vw;
+    margin-left: 3vw;
     height: 8vw;
-    width: 12vw;
-    margin: 1vw 2vw;
-}
-.module-select{
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    border-radius: 20px 0px 0px 20px;
+  }
+  
+  .content {
+    padding: 1vw;
+    position: relative;
+    width: 28vw;
+  }
+  
+  .admin-left .row-1 .row-1-cols .indicator .content .content-text {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-.module-select .dropdown-menu{
-    margin: 0.5vw;
-}
-.Module-rating-big{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 15vw;
-}
-.Module-rating-1{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 1vw;
-    height: 40vw;
-}
-.Module-rating-1 img{
-    height: 5vw;
-    width: 7vw;
-}
-.Module-rating-1 h1{
-    font-size: 1.2vw;
-
-}
-.module-right{
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    flex-direction: column;
-    width: 20vw;
-}
-.module-single-card ul{
-    margin: 2vw;
-}
-.module-single-card ul li{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .content-text h1 {
     font-size: 1vw;
-    font-weight: 800;
-}
+    color: #ef7401;
+  }
+  
+  .content-text .score h1 {
+    font-size: 1vw;
+    color: white;
+  }
+  
+  .admin-left .row-1 .row-1-cols .indicator .content .content-text .score {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ef7401;
+    text-align: center;
+    padding: 0.5vw 0 0.8vw 0.8vw;
+    border-radius: 0 0 0 100%;
+  }
+  
+  .admin-left .row-1 .row-1-cols .indicator .content .content-text .score img {
+    height: 3vw;
+    width: 4vw;
+    margin: 0.5vw;
+  }
+  
+  .admin-left .row-1 .row-1-cols .indicator .content .content-text .score p {
+    font-size: 1vw;
+    color: black;
+  }
+  
+  .admin-right {
+    display: flex;
+    align-items: center;
+    margin-top: 1.2vw;
+    width: 35%;
+    flex-direction: column;
+  }
+  
+  .admin-right .total-score {
+    cursor: pointer;
+    margin: 1vw;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid #ef7401;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+  }
+  
+  .admin-right .total-score img {
+    height: 3vw;
+    width: 4vw;
+    margin: 1vw;
+  }
+  
+  .admin-right .total-score h1 {
+    font-size: 2vw;
+    color: #ef7401;
+    height: 80%;
+  }
+  
+  .admin-right .total-score h2 {
+    font-size: 1.5vw;
+    color: black;
+    font-weight: 700;
+  }
+  
+  .admin-right .total-score p {
+    text-align: center;
+    font-size: 0.9vw;
+    height: 20%;
+    color: black;
+  }
+  
+  .admin-right .improvement {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    width: 90%;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 1vw 0.5vw;
+    border: 1px solid #ef7401;
+    padding: 1vw;
+    border-radius: 10px;
+  }
+  
+  .row-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1vw;
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    margin: 1vw;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    width: 99%;
+    border: 1px solid #ef7401;
+    border-radius: 10px;
+  }
+  
+  .admin-right .improvement h1 {
+    color: #ef7401;
+    font-size: 1.5vw;
+  }
+  
+  .admin-right .improvement ul li {
+    font-size: 1vw;
+    margin-left: 1vw;
+  }
+  
+  .drop {
+    margin: 1vw;
+  }
+  
+  .admin-right .total-score .Summary .letter {
+    height: 2.5vw;
+    width: 2.5vw;
+  }
+  
+  .admin-right .total-score .Summary .operator {
+    height: 1vw;
+    width: 1vw;
+  }
+  
+  .admin-right .total-score .Summary .esg {
+    height: 4vw;
+    width: 4vw;
+  }
+  .report-button{
+    border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 0.5vw 2vw;
+  background-color: #ef7401;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.2vw;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 800;
+  box-sizing: border-box;
+  box-shadow: 0 0 20px -10px #000000;
+  margin: 1vw;
+  }
+  .report{
+    display: flex;
+    align-items: right;
+    justify-content: center;
+  }

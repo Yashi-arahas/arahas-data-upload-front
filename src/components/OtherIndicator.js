@@ -43,10 +43,10 @@ const OtherIndicator = ({ departmentName }) => {
 
       setElectricity(responses[0].data.data);
       setSexRatio(responses[1].data.data);
-      console.log(responses[1].data.data);
       setSocioCulture(responses[2].data.data);
       setHealthData(responses[3].data.data);
-      setDoctorData(responses[4].data.data);
+      setDoctorData(responses[4].data.data.sort((a, b) => a.Year - b.Year));
+      console.log(responses[4].data.data.sort((a, b) => a.Year - b.Year))
       setEducationData(responses[5].data.data);
       setCrimeData(responses[6].data.data);
     } catch (error) {
@@ -91,7 +91,7 @@ const OtherIndicator = ({ departmentName }) => {
                     },
                   ]}
                   height={300}
-                  width={500}
+                  width={400}
                   xtitle=""
                 />
               </div>
@@ -108,7 +108,7 @@ const OtherIndicator = ({ departmentName }) => {
                     },
                   ]}
                   height={300}
-                  width={500}
+                  width={400}
                   xtitle=""
                 />
               </div>
@@ -150,7 +150,7 @@ const OtherIndicator = ({ departmentName }) => {
                         },
                       ]}
                       height={300}
-                      width={500}
+                      width={400}
                       xtitle="Location"
                       ytitle={
                         item.Title === "Number of Females /1000 males"
@@ -300,7 +300,7 @@ const OtherIndicator = ({ departmentName }) => {
                         },
                       ]}
                       height={300}
-                      width={500}
+                      width={400}
                       xtitle="Value"
                       ytitle={
                         item.Title === "Number of Patients/doctor"
@@ -351,7 +351,7 @@ const OtherIndicator = ({ departmentName }) => {
                     <div className="other-graph-container">
                       <BarChart
                         title={"Birth and Death Rate"}
-                        categories={doctorData.map((item) => item.Year)}
+                        categories={doctorData.sort().map((item) => item.Year)}
                         series={[
                           {
                             name: "Birth",
@@ -363,7 +363,7 @@ const OtherIndicator = ({ departmentName }) => {
                           },
                         ]}
                         height={300}
-                        width={500}
+                        width={400}
                         xtitle=""
                         ytitle="Number of Birth/Death"
                       />
@@ -397,7 +397,7 @@ const OtherIndicator = ({ departmentName }) => {
                         },
                       ]}
                       height={300}
-                      width={500}
+                      width={400}
                       xtitle=""
                       ytitle="Number of Cases"
                     />

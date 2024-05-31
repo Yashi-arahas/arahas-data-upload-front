@@ -40,6 +40,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import zIndex from "@mui/material/styles/zIndex";
 import AqiMap from "./Environment/Maps/AqiMap";
 import Temperature from "./Environment/Temperature";
+import TempReport from "./Environment/TempReport";
 const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   // State variables and useEffect for data fetching, file upload, etc.
   const [showPopup, setShowPopup] = useState(false);
@@ -582,7 +583,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                         {
                           subCategory === "Aqi" && (
                             <>
-                            <AqiReport/>
+                            <AqiReport />
                               {average.length > 0 && (
                                 <>
                                   <div className="col-lg-4">
@@ -749,7 +750,8 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                         {
                           subCategory === "Temperature" && templocation.length>0 && (
                             <>
-                              <>
+                            <TempReport />
+                              {/* <>
                                 <div className="col-lg-6">
                                   <div className="mini-cards">
                                     <div className="mini-cards-icon">
@@ -776,7 +778,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                                   </div>
                                 </div>
                                 
-                              </>
+                              </> */}
                               <>
                                 {/* <TemperatureCharts
                                   selectedYear={selectedYear}

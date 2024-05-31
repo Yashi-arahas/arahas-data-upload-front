@@ -1,17 +1,24 @@
 import React from 'react';
+import { PrimeReactProvider } from 'primereact/api';
+import 'primereact/resources/themes/lara-light-cyan/theme.css';
+import 'primeicons/primeicons.css';
 import Login from "./components/Login";
 import SDGPage from "./components/Sdg";
 import AdminPage from "./components/Admin";
 import "./App.css";
 import DepartmentPage from './components/DepartmentPage';
 import AqiPage from "./components/Environment/AqiReport"
-
+import ReportMap from './components/ReportMap';
+import "/node_modules/primeflex/primeflex.css"
 import { Routes, Route } from "react-router-dom";
 import WeatherApi from './components/WeatherApi';
 import OtherIndicator from './components/OtherIndicator';
 
 function App() {
   return (
+    <PrimeReactProvider value={{ unstyled: false }}>
+			
+	
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path='/electricity' element={
@@ -89,8 +96,9 @@ function App() {
         <Route path="/admin" element={<AdminPage/>}></Route>
         <Route path="/weather" element={<WeatherApi/>}></Route>
         <Route path="/aqi" element={<AqiPage/>}></Route>
+        <Route path="/report-map-page" element={<ReportMap/>}></Route>
       </Routes>
-
+      </PrimeReactProvider>
   );
 }
 

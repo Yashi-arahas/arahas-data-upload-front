@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
 import axios from "axios";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Button } from 'primereact/button';
+import { Checkbox } from 'primereact/checkbox';
+import { InputText } from 'primereact/inputtext';
+import { FloatLabel } from 'primereact/floatlabel';
 import { Select, MenuItem } from "@mui/material"; // Import Material-UI components
-import logo from "./images/arahas-logo.webp";
-import RegisterModal from "./RegisterModel";
 import Lottie from "lottie-react";
-import file_animation from "./animations/file-processing.json";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import sample from './images/bg_video.mp4';
+import style from './LoginModule.css';
+import logo from "./images/arahas-logo.webp";
+import { NavLink } from 'react-router-dom';
 import loding_ani from "./animations/loading.json";
-import sustain_city from "./images/city-sustain.jpg"
-import form_img from "./images/form-img.png"
+import sustain_city from "./images/city-sustain.jpg";
 import Header from "./Header";
-import esg_img from "./images/esg-img.png"
+import RegisterModal from "./RegisterModel";
 
 const Login = () => {
   const history = useNavigate();
@@ -25,6 +28,7 @@ const Login = () => {
   });
   const [error, setError] = useState(""); // State to hold error message
   const [loading, setLoading] = useState(false); // State to manage loading
+  const [loginToggle, setLoginToggle] = useState(false);
 
   const setVal = (e) => {
     const { name, value } = e.target;
@@ -93,112 +97,79 @@ const Login = () => {
     }
   };
 
-  // const handleDemoRequest = () => {
-  //   setShowRegisterModal(true); // Show the register modal when requesting demo
-  // };
+  const toggleLogin = () => {
+    setLoginToggle(!loginToggle);
+  };
 
   return (
     <>
-      <section className="home">
-        <Header />
-        <div className="main-container">
-          <div className="ani-container">
-          <h1>City Sustainability Index</h1>
-            <img src ={sustain_city}></img>
-             
-              
-          </div>
-          <div className="form-container">
-            <div className="form_data">
-              <div className="form_heading">
-              {/* <img src={esg_img}></img> */}
-                <h1>Login</h1>
-                
-              </div>
+			<div className='flex absolute'>
+				<div className={`${style.vidContainer}`}>
+					<video src={sample} className={style.videoBg} autoPlay loop muted />
+				</div>
+			</div>
+			<div className='flex absolute w-full flex-column gap-5'>
+				<div className='flex w-full justify-content-between h-4rem p-3'>
+					<img src={logo} className='flex'></img>
+					<div className='flex row justify-start gap-6 h-full 2 '>
+						<NavLink to='kyc'>
+							<Button label='Know Your City' severity='warning' text className='text-lg' />
+						</NavLink>
+						<Button label='Login' severity='warning' className={!loginToggle ? 'flex' : 'hidden'} onClick={toggleLogin} />
+					</div>
+				</div>
+				<div className={`flex flex-column relative gap-3 p-4 h-full w-4 `}>
+					<div className='flex font-semibold text-3xl gap-2'>
+						<span className='text-orange-500'>City </span> Sustainability Index
+					</div>
+					<div className={`${style.loginBox} ${loginToggle ? style.loginBoxOpen : ''}`}>
+						<Button
+							text
+							className={`${style.closeButton}`}
+							severity='warning'
+							onClick={toggleLogin}
+							icon='pi pi-times'
+						></Button>
+						<FloatLabel className='w-10'>
+							<InputText
+								id='email'
+								className={`p-inputtext-lg flex w-full border-x-none border-top-none bg-none ${style.InputText}`}
+							/>
+							<label className='text-black-alpha-90 font-medium' for='email'>
+								Username
+							</label>
+						</FloatLabel>
+						<FloatLabel className='w-10'>
+							<InputText
+								id='password'
+								type='password'
+								className={`p-inputtext-lg flex w-full border-x-none border-top-none bg-none ${style.InputText}`}
+							/>
+							<label className='text-black-alpha-90 font-medium' for='password'>
+								Password
+							</label>
+						</FloatLabel>
+						<FloatLabel className='w-10'>
+							<InputText
+								id='department'
+								className={`p-inputtext-lg flex w-full border-x-none border-top-none bg-none ${style.InputText}`}
+							/>
+							<label className='text-black-alpha-90 font-medium' for='department'>
+								Department
+							</label>
+						</FloatLabel>
+						<div className='flex w-10 justify-content-between'>
+							<div className='flex gap-2'>
+								<Checkbox checked={true} /> Remember Me
+							</div>
+							<a className='flex'>Forgotten Password?</a>
+						</div>
 
-              <form>
-                <div className="form_input">
-                  <label htmlFor="email">Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={inpval.email}
-                    id="email"
-                    onChange={setVal}
-                    placeholder="Enter your email address"
-                  />
-                </div>
-                <div className="form_input">
-                  <label htmlFor="password">Password</label>
-                  <div className="two">
-                    <input
-                      type={!passShow ? "password" : "text"}
-                      name="password"
-                      id="password"
-                      onChange={setVal}
-                      value={inpval.password}
-                      placeholder="Enter your password"
-                    />
-                    <div
-                      className="showpass"
-                      onClick={() => setPassShow(!passShow)}
-                    >
-                      {!passShow ? (
-                        <Visibility style={{ fontSize: "1.3vw" }} />
-                      ) : (
-                        <VisibilityOff style={{ fontSize: "1.3vw" }} />
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <div className="dropdown-login">
-                  <label htmlFor="department">Department</label>
-                  <Select
-                    name="department"
-                    id="department"
-                    value={inpval.department}
-                    onChange={setVal}
-                    className="dropdown-menu"
-                    displayEmpty
-                    style={{ height: "3.5vw", padding: "0vw", width: "24vw" }}
-                  >
-                    <MenuItem value="" disabled>
-                      Select your department
-                    </MenuItem>
-                    <MenuItem value="Electricity">Electricity</MenuItem>
-                    <MenuItem value="Jal-kal">Jal-Kal Vibhag </MenuItem>
-                    <MenuItem value="Housing">Housing Department</MenuItem>
-                    <MenuItem value="Land_management">Land Management</MenuItem>
-                    <MenuItem value="Urban-Heritage">Urban Heritage</MenuItem>
-                    <MenuItem value="Tourism">Tourism</MenuItem>
-                  </Select>
-                </div>
-                <button className="login-btn" onClick={loginuser}>
-                  Login
-                </button>
-                {error && <p className="error-message">{error}</p>}
-                
-              </form>
-              {/* <img src ={form_img} className="form-img"></img> */}
-            </div>
-          </div>
-        </div>
-        {/* Conditional rendering for loading overlay */}
-        {loading && (
-          <div className="loading-overlay">
-            <div className="loading-text">
-              <Lottie
-                animationData={loding_ani}
-                style={{ width: "40vw", height: "20vw" }}
-              />
-            </div>
-          </div>
-        )}
-      </section>
-      {showRegisterModal && (
-        <RegisterModal onClose={() => setShowRegisterModal(false)} />
-      )}
-    </>
+						<Button label='Login' severity='warning' />
+					</div>
+				</div>
+			</div>
+		</>
   );
 };
 

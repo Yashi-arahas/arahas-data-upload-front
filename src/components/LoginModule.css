@@ -1,0 +1,53 @@
+.vidContainer {
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	align-items: center;
+}
+.videoBg {
+	width: 100vw;
+	height: 100vh;
+	background-color: grey;
+	aspect-ratio: 1/1;
+	object-fit: cover;
+}
+
+.InputText {
+	background: transparent;
+}
+.InputText:focus {
+	border-color: orange;
+	box-shadow: none;
+	-webkit-box-shadow: 0 8px 6px -6px rgb(247, 111, 0);
+	-moz-box-shadow: 0 8px 6px -6px rgb(247, 111, 0);
+	box-shadow: 0 8px 6px -6px rgb(247, 111, 0);
+}
+.loginBox {
+	display: flex;
+	width: 100%;
+	left: 0;
+	background: rgba(128, 128, 128, 0.1);
+	position: relative;
+	height: 30rem;
+	border-radius: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	transition: all 0.5s;
+	padding: 1rem;
+	transform: scale(0);
+}
+.loginBoxOpen {
+	transform: scale(1);
+}
+.closeButton {
+	display: flex;
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+}

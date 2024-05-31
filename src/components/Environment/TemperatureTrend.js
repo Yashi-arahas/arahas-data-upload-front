@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import CanvasJSReact from "@canvasjs/react-charts";
 import "./AqiReport.css";
 import TempHeatMap from "./TempHeatMap";
-import { color } from "framer-motion";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const TemperatureTrend = ({
