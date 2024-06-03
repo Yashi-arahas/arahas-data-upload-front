@@ -73,8 +73,8 @@ const Admin = () => {
             <div className="row-1">
               <img src={framework_img} alt="Framework" />
               <div className="row-1-cols">
-                <div className="indicator">
-                  <div className="indicator-name" onClick={handleEClick}>
+                <div className="indicator" onClick={handleEClick}>
+                  <div className="indicator-name" >
                     <h1>E</h1>
                     <p>Environment</p>
                   </div>
@@ -165,7 +165,7 @@ const Admin = () => {
                   "Dec",
                 ]}
                 data={categories[selectedCategory].data}
-                height={600}
+                height={400}
                 width={800}
                 xtitle=""
                 ytitle="Score"
@@ -194,6 +194,8 @@ const Admin = () => {
                  <li>CSI serves as a benchmarking tool, allowing cities to compare their sustainability performance with peers regionally and globally, fostering healthy competition and knowledge exchange.</li> 
                  <li>By highlighting the interplay between environmental health, social equity, and effective governance, CSI promotes integrated and balanced urban development strategies.</li> 
                  <li> CSI empowers city leaders, policymakers, and citizens to take proactive measures towards building resilient, inclusive, and sustainable urban communities.</li>
+                 <li>CSI facilitates data-driven decision-making by providing comprehensive insights into urban sustainability, enabling cities to prioritize and implement effective strategies for long-term resilience and well-being.</li>
+                 
               </ul>
               <h1>Areas of Improvement</h1>
               <ul>

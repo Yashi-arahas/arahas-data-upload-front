@@ -224,6 +224,7 @@
   .admin-right .improvement h1 {
     color: #ef7401;
     font-size: 1.5vw;
+    padding: 0.6vw;
   }
   
   .admin-right .improvement ul li {
@@ -249,24 +250,62 @@
     height: 4vw;
     width: 4vw;
   }
-  .report-button{
-    border: none;
-  outline: none;
-  border-radius: 10px;
-  padding: 0.5vw 2vw;
-  background-color: #ef7401;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 1.2vw;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-weight: 800;
-  box-sizing: border-box;
-  box-shadow: 0 0 20px -10px #000000;
-  margin: 1vw;
+  .report-button:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
+  .report-button {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    height: 12vw;
+    width: 12vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.5vw 2vw;
+    background-color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 800;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+    margin: 1vw;
+  }
+  .report-button h1{
+    font-size: 1.2vw; 
+    color: #ef7401;
+    font-weight: 600;
+    margin: 1vw;
+
+  }
+  .report-button img{
+    height: 5vw;
+    width: 5vw;
+    /* border: 3px solid #ef7401;
+    border-radius: 50%;
+    padding: 0.5vw; */
+
+  }
+  
+  .report-map-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed;
+    left: 7vw; /* Adjust as needed */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Center vertically */
+  }
+  .report-map-btn a{
+    text-decoration: none;
+  }
+  
   .report{
     display: flex;
-    align-items: right;
     justify-content: center;
+    align-items: center;
   }
+  

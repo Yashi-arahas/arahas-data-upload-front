@@ -8,6 +8,19 @@
   
   
 }
+.home-btn i {
+  font-size: 1.5vw; /* Adjust the font size */
+    color: #ef7401;
+    padding: 0.5vw;
+  margin-right: 1vw;
+  border: 2px solid black;
+  border-radius: 50%; /* Add some space between the icon and text */
+}
+/* Add hover effect on home button */
+.home-btn:hover i {
+  color: #fff; /* Change the color on hover */
+  background-color: #ef7401; /* Change the background color on hover */
+}
 
 .nav-ul{
     height: 100%;

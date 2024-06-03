@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ApexCharts from 'react-apexcharts';
 import CanvasJSReact from '@canvasjs/react-charts';
 import { color } from 'framer-motion';
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+// Adjust the import according to your setup
 
 // Define the colors array
 const colors = [
@@ -151,79 +153,106 @@ export const BarChart = ({ title, group, categories, series, height, width, xtit
     </div>
   );
 };
+
+
 export const ParetoChart = ({ title, categories, data, height, width, xtitle, ytitle }) => {
-  // Adjust column width and add padding
-  const columnWidth = Math.min(40, 200 / data.length); // Set maximum column width to 40
+  const [lineDataPoints, setLineDataPoints] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex(prevIndex => {
+        if (prevIndex >= data.length) {
+          // Reset the index and data points
+          setLineDataPoints([]);
+          return 0;
+        } else {
+          // Add the next data point
+          setLineDataPoints(prevPoints => [...prevPoints, { label: categories[prevIndex], y: data[prevIndex] }]);
+          return prevIndex + 1;
+        }
+      });
+    }, 300); // Adjust the interval time to control the animation speed
+
+    return () => clearInterval(interval);
+  }, [categories, data]);
+
+  const columnWidth = Math.min(40, 200 / data.length);
   const padding = {
-    left: 80, // Padding from left
-    right: 40, // Padding from right
-    top: 10, // Padding from top
-    bottom: 10 // Padding from bottom
+    left: 80,
+    right: 40,
+    top: 10,
+    bottom: 10,
   };
 
-  // Prepare data for both bar and line charts
   const chartData = categories.map((category, index) => ({
     label: category,
-    y: data[index]
+    y: data[index],
   }));
+
+  const newHeight = height * 0.5;
 
   const options = {
     animationEnabled: true,
     title: {
       text: title,
       fontSize: 18,
-      margin: 40
+      margin: 40,
     },
     axisX: {
       title: xtitle,
       titleFontSize: 15,
       interval: 1,
-      gridThickness: 0, // Remove x-axis grid lines
+      gridThickness: 0,
     },
     axisY: {
       title: ytitle,
       includeZero: true,
       titleFontSize: 15,
       titleFontColor: "red",
-      padding: 40, // Corrected property name
-      gridThickness: 0, // Remove y-axis grid lines
+      padding: 40,
+      gridThickness: 0,
     },
     toolTip: {
-      shared: true
+      shared: true,
     },
-    data: [{
-      type: "column",
-      name: "Column",
-      showInLegend: true,
-      indexLabel: "{y}",
-      indexLabelPlacement: "inside",
-      indexLabelOrientation: "horizontal",
-      indexLabelFontWeight: "bold",
-      indexLabelFontSize: 10,
-      indexLabelFontColor: "white",
-      dataPoints: chartData,
-      columnWidth: columnWidth,
-      color:"#ef7401"
-    }, {
-      type: "line",
-      name: "Line",
-      showInLegend: true,
-      indexLabel: "{y}",
-      indexLabelPlacement: "outside",
-      indexLabelFontWeight: "bold",
-      indexLabelFontSize: 10,
-      indexLabelFontColor: "red",
-      dataPoints: chartData
-    }],
-    padding: padding // Add padding
+    data: [
+      {
+        type: "column",
+        name: "Column",
+        showInLegend: true,
+        indexLabel: "{y}",
+        indexLabelPlacement: "inside",
+        indexLabelOrientation: "horizontal",
+        indexLabelFontWeight: "bold",
+        indexLabelFontSize: 10,
+        indexLabelFontColor: "white",
+        dataPoints: chartData,
+        columnWidth: columnWidth,
+        color: "#ef7401",
+      },
+      {
+        type: "line",
+        name: "Line",
+        showInLegend: true,
+        indexLabel: "{y}",
+        indexLabelPlacement: "outside",
+        indexLabelFontWeight: "bold",
+        indexLabelFontSize: 10,
+        indexLabelFontColor: "red",
+        dataPoints: lineDataPoints,
+      },
+    ],
+    padding: padding,
   };
 
   return (
-    <div className='z-index-low'>
-      <CanvasJSChart options={options} height={height} width={width} />
+    <div className='chart z-index-low'>
+      <CanvasJSChart options={options} height={newHeight} width={width} />
     </div>
   );
 };
+
 
 
 export const LineBar = ({ title, categories, chartSeries, height, width, xtitle, ytitle }) => {
@@ -267,7 +296,7 @@ export const LineBar = ({ title, categories, chartSeries, height, width, xtitle,
   };
 
   return (
-    <div className="chart-container">
+    <div className="chart-container z-index">
       <ApexCharts options={options} series={options.series} type="line" height={height} width={width} />
     </div>
   );

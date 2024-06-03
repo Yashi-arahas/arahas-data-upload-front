@@ -1,17 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./Header.css";
-import ComapanyLogo from "./images/arahas-logo.webp";
+import CompanyLogo from "./images/arahas-logo.webp";
+
 function Header() {
   return (
     <>
       <header className="sticky">
         <nav className="nav-ul">
           <img
-            src={ComapanyLogo}
+            src={CompanyLogo}
             alt="Arhas Technologies Logo"
             className="company-logo"
           />
-
+          <Link to="/" className="home-btn"><i class="bi bi-house-door-fill"></i></Link> {/* Text-based home button */}
         </nav>
       </header>
     </>

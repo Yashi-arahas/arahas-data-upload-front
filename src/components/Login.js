@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Button } from 'primereact/button';
-import { Checkbox } from 'primereact/checkbox';
-import { InputText } from 'primereact/inputtext';
-import { FloatLabel } from 'primereact/floatlabel';
-import { Select, MenuItem } from "@mui/material"; // Import Material-UI components
+import { Button, Checkbox, TextField, Select, MenuItem, InputLabel, FormControl, IconButton } from "@mui/material"; // Import Material-UI components
 import Lottie from "lottie-react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import sample from './images/bg_video.mp4';
-import style from './LoginModule.css';
 import logo from "./images/arahas-logo.webp";
 import { NavLink } from 'react-router-dom';
 import loding_ani from "./animations/loading.json";
-import sustain_city from "./images/city-sustain.jpg";
-import Header from "./Header";
-import RegisterModal from "./RegisterModel";
+import './LoginModule.css'; // Import the CSS file
 
 const Login = () => {
   const history = useNavigate();
@@ -102,74 +95,87 @@ const Login = () => {
   };
 
   return (
-    <>
-			<div className='flex absolute'>
-				<div className={`${style.vidContainer}`}>
-					<video src={sample} className={style.videoBg} autoPlay loop muted />
-				</div>
-			</div>
-			<div className='flex absolute w-full flex-column gap-5'>
-				<div className='flex w-full justify-content-between h-4rem p-3'>
-					<img src={logo} className='flex'></img>
-					<div className='flex row justify-start gap-6 h-full 2 '>
-						<NavLink to='kyc'>
-							<Button label='Know Your City' severity='warning' text className='text-lg' />
-						</NavLink>
-						<Button label='Login' severity='warning' className={!loginToggle ? 'flex' : 'hidden'} onClick={toggleLogin} />
-					</div>
-				</div>
-				<div className={`flex flex-column relative gap-3 p-4 h-full w-4 `}>
-					<div className='flex font-semibold text-3xl gap-2'>
-						<span className='text-orange-500'>City </span> Sustainability Index
-					</div>
-					<div className={`${style.loginBox} ${loginToggle ? style.loginBoxOpen : ''}`}>
-						<Button
-							text
-							className={`${style.closeButton}`}
-							severity='warning'
-							onClick={toggleLogin}
-							icon='pi pi-times'
-						></Button>
-						<FloatLabel className='w-10'>
-							<InputText
-								id='email'
-								className={`p-inputtext-lg flex w-full border-x-none border-top-none bg-none ${style.InputText}`}
-							/>
-							<label className='text-black-alpha-90 font-medium' for='email'>
-								Username
-							</label>
-						</FloatLabel>
-						<FloatLabel className='w-10'>
-							<InputText
-								id='password'
-								type='password'
-								className={`p-inputtext-lg flex w-full border-x-none border-top-none bg-none ${style.InputText}`}
-							/>
-							<label className='text-black-alpha-90 font-medium' for='password'>
-								Password
-							</label>
-						</FloatLabel>
-						<FloatLabel className='w-10'>
-							<InputText
-								id='department'
-								className={`p-inputtext-lg flex w-full border-x-none border-top-none bg-none ${style.InputText}`}
-							/>
-							<label className='text-black-alpha-90 font-medium' for='department'>
-								Department
-							</label>
-						</FloatLabel>
-						<div className='flex w-10 justify-content-between'>
-							<div className='flex gap-2'>
-								<Checkbox checked={true} /> Remember Me
-							</div>
-							<a className='flex'>Forgotten Password?</a>
-						</div>
+    <div className="login-container">
+      {loading && (
+        <div className="fullscreen-loading">
+          <Lottie animationData={loding_ani} loop />
+        </div>
+      )}
+      <div className="video-container">
+        <video src={sample} className="video-bg" autoPlay loop muted />
+      </div>
+      <div className="content-container">
+        <header className="header">
+          <img src={logo} className="login-logo" alt="Logo" />
+          <nav className="nav">
+            <NavLink to="kyc">
+              <Button variant="contained" color="warning">Know Your City</Button>
+            </NavLink>
+            <Button variant="contained" color="warning" className={!loginToggle ? 'show' : 'hidden'} onClick={toggleLogin}>Login</Button>
+          </nav>
+        </header>
+        <main className="main-content">
+        <h1 className="title"><span className="highlight">City</span>&nbsp;Sustainability Index</h1>
 
-						<Button label='Login' severity='warning' />
-					</div>
-				</div>
-			</div>
-		</>
+          <div className={`login-box ${loginToggle ? 'login-box-open' : ''}`}>
+            <Button className="close-button" onClick={toggleLogin}>
+              <span className="pi pi-times"></span>
+            </Button>
+            <TextField
+              label="Email"
+              variant="outlined"
+              name="email"
+              value={inpval.email}
+              onChange={setVal}
+              fullWidth
+            />
+            <TextField
+              label="Password"
+              type={passShow ? "text" : "password"}
+              variant="outlined"
+              name="password"
+              value={inpval.password}
+              onChange={setVal}
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <IconButton onClick={() => setPassShow(!passShow)}>
+                    {passShow ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                )
+              }}
+            />
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel>Department</InputLabel>
+              <Select
+                name="department"
+                value={inpval.department}
+                onChange={setVal}
+                label="Department"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value="Electricity">Electricity</MenuItem>
+                <MenuItem value="Jal-kal">Jal-kal</MenuItem>
+                <MenuItem value="Housing">Housing</MenuItem>
+                <MenuItem value="Land_management">Land management</MenuItem>
+                <MenuItem value="Urban_heritage">Urban heritage</MenuItem>
+                <MenuItem value="Tourism">Tourism</MenuItem>
+              </Select>
+            </FormControl>
+            <div className="remember-forgot">
+              <Checkbox checked={true} />Remember Me
+              <a href="#">Forgotten Password?</a>
+            </div>
+            {error && <p className="error">{error}</p>}
+            <Button variant="contained" color="warning" onClick={loginuser} disabled={loading}>
+              {loading ? <Lottie animationData={loding_ani}  /> : "Login"}
+            </Button>
+          </div>
+        </main>
+      </div>
+    </div>
   );
 };
 

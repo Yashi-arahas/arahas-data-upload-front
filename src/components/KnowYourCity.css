@@ -1,0 +1,157 @@
+.know-container {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 1vw;
+}
+
+.asset {
+	display: flex;
+	width: 100%;
+	height: 30rem;
+	justify-content: space-evenly;
+	align-items: center;
+	
+}
+.map {
+	display: flex;
+	width: 25vw;
+	height: 22vw;
+	z-index: 0;
+	border: 2px solid orange;
+}
+.assetContainer {
+	/* display: flex; */
+	width: 70%;
+	height: 100%;
+	position: relative;
+	padding-top: 4rem;
+	display: grid;
+
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+	gap: 0px;
+}
+.assetHeading {
+	display: flex;
+	position: absolute;
+	height: 3rem;
+	font-size: 2rem;
+	font-weight: 500;
+	top: 0;
+	left: 0.5rem;
+}
+.circle {
+	display: flex;
+	width: 100%;
+	padding: 1.5rem;
+	justify-content: space-between;
+	/* background-color: red; */
+	align-items: center;
+	/* background-color: #a665b5; */
+	grid-row-start: 3;
+	grid-column-start: 1;
+
+	grid-row-end: 4;
+	grid-column-end: 6;
+}
+.circleValues {
+	display: flex;
+	width: 100%;
+	justify-content: flex-start;
+	gap: 1rem;
+}
+.iconContainer {
+	display: flex;
+	border-radius: 50%;
+	position: relative;
+	height: 4rem;
+	width: 4rem;
+	margin: 1vw;
+	justify-content: center;
+	align-items: center;
+	border: 3px solid #f07628;
+}
+.circleIcon {
+	height: 80%;
+	width: 80%;
+}
+.circleKey {
+	display: flex;
+	font-weight: 800;
+}
+.marker {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	grid-row-start: 1;
+	grid-column-start: 1;
+
+	grid-row-end: 3;
+	grid-column-end: 4;
+}
+.markerContainer {
+	display: flex;
+	width: fit-content;
+	height: fit-content;
+	justify-content: flex-start;
+	padding: 0.2rem;
+	gap: 0.5rem;
+}
+.markerText {
+	display: flex;
+	background-color: #f07628;
+	font-weight: 600;
+	border-radius: 5px;
+	/* border: 2px solid #f07628; */
+	height: fit-content;
+	padding: 0.4rem;
+	padding-right: 1rem;
+	/* max-width: fit-content; */
+	overflow: hidden;
+	color: white;
+	/* clip-path: polygon(0 2%, 100% 0%, 75% 100%, 0% 100%); */
+	/* clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%); */
+}
+.markerValue {
+	display: flex;
+	padding: 0.4rem;
+	color: #f07628;
+	font: 600;
+}
+.bar {
+	display: flex;
+	/* padding: 1rem; */
+	margin-left: 30vw;
+	flex-direction: column;
+	width: 25vw;
+	justify-content: space-evenly;
+	/* grid-row-start: 1;
+	grid-column-start: 4;
+
+	grid-row-end: 3;
+	grid-column-end: 6; */
+}
+.barSubcontainers {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: space-evenly;
+}
+.barText {
+	display: flex;
+	width: 100%;
+	font-weight: 600;
+	/* color: #f07628; */
+	font-size: 1vw;
+	padding-bottom: 5px;
+}
+.cityProgress {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	padding: 1vw;
+}
