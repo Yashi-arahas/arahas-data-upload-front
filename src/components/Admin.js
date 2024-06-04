@@ -85,8 +85,11 @@ const Admin = () => {
                         <ul>
                           <li>first</li>
                           <li>second</li>
+                          
                         </ul>
+                        <p style={{fontSize:"0.8vw" , marginBottom:"0.5vw"}}>Click to View Report and Map.</p>
                       </div>
+                     
                       <div className="score">
                         <h1>Score</h1>
                         <p>80</p>

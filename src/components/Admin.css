@@ -110,6 +110,7 @@
     padding: 1vw;
     position: relative;
     width: 28vw;
+    height: 8vw;
   }
   
   .admin-left .row-1 .row-1-cols .indicator .content .content-text {
@@ -121,13 +122,16 @@
   .content-text h1 {
     font-size: 1vw;
     color: #ef7401;
+    text-align: left;
   }
-  
+  .content-text .recommendation ul li{
+    font-size: 0.9vw;
+  }
   .content-text .score h1 {
-    font-size: 1vw;
+    font-size: 0.8vw;
     color: white;
   }
-  
+
   .admin-left .row-1 .row-1-cols .indicator .content .content-text .score {
     position: absolute;
     top: 0;

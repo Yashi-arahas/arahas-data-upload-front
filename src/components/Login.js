@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Button, Checkbox, TextField, Select, MenuItem, InputLabel, FormControl, IconButton } from "@mui/material"; // Import Material-UI components
+import { Button, Checkbox, TextField, Select, MenuItem, InputLabel, FormControl, IconButton } from "@mui/material";
 import Lottie from "lottie-react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import sample from './images/bg_video.mp4';
@@ -11,7 +11,7 @@ import loding_ani from "./animations/loading.json";
 import './LoginModule.css'; // Import the CSS file
 
 const Login = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [passShow, setPassShow] = useState(false);
   const [inpval, setInpval] = useState({
@@ -39,17 +39,17 @@ const Login = () => {
       setTimeout(() => {
         // Simulating delay for demonstration purpose
         if (department === "Electricity") {
-          history("/electricity");
+          navigate("/electricity");
         } else if (department === "Jal-kal") {
-          history("/jal-kal");
+          navigate("/jal-kal");
         } else if (department === "Housing") {
-          history("/housing");
+          navigate("/housing");
         } else if (department === "Land_management") {
-          history("/land-management");
+          navigate("/land-management");
         } else if (department === "Urban_heritage") {
-          history("/urban-heritage");
+          navigate("/urban-heritage");
         } else {
-          history("/tourism");
+          navigate("/tourism");
         }
         setLoading(false); // Reset loading after redirection
         setInpval({ ...inpval, email: "", password: "", department: "" });
@@ -111,12 +111,14 @@ const Login = () => {
             <NavLink to="kyc">
               <Button variant="contained" color="warning">Know Your City</Button>
             </NavLink>
+            <NavLink to="admin">
+              <Button variant="contained" color="warning">City Report Card</Button>
+            </NavLink>
             <Button variant="contained" color="warning" className={!loginToggle ? 'show' : 'hidden'} onClick={toggleLogin}>Login</Button>
           </nav>
         </header>
         <main className="main-content">
-        <h1 className="title"><span className="highlight">City</span>&nbsp;Sustainability Index</h1>
-
+          <h1 className="title"><span className="highlight">City</span>&nbsp;Sustainability Index</h1>
           <div className={`login-box ${loginToggle ? 'login-box-open' : ''}`}>
             <Button className="close-button" onClick={toggleLogin}>
               <span className="pi pi-times"></span>
