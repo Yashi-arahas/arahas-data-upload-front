@@ -80,7 +80,6 @@ body, html, #root {
     width: 30vw;
 	margin: 0vw 3vw;
     transition: transform 0.5s;
-	
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
     transform: scale(0);
     background: rgba(255, 255, 255, 0.8);
@@ -104,7 +103,13 @@ body, html, #root {
 	padding: 1vw;
 }
 .remember-forgot a{
-	margin-left: 2vw;
+	margin-left: 3vw;
+	text-decoration: none;
+	
+}
+.remember-forgot{
+	font-size: 1vw;
+	
 }
 
 .error {
@@ -123,8 +128,8 @@ body, html, #root {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 1); /* Semi-transparent background */
-    z-index: 1000; /* Ensure it overlays other elements */
+    background-color: rgba(255, 255, 255, 1); 
+    z-index: 1000; 
 }
 /* .container {
 	display: flex;

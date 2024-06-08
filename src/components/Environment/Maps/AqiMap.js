@@ -123,7 +123,7 @@ const AqiMap = ({ averageAQI, latestDate }) => {
         name: marker.default_message,
         aqi,
         backgroundColor,
-        location: marker.location, // Set the location attribute
+        location: marker.location, 
       });
       
 
@@ -174,14 +174,14 @@ const AqiMap = ({ averageAQI, latestDate }) => {
     
     map.on('pointermove', function (event) {
       const feature = map.getFeaturesAtPixel(event.pixel)[0];
-      if (feature && feature.get('name')) { // Check if feature is present and has a name (marker)
+      if (feature && feature.get('name')) { 
         const coordinate = feature.getGeometry().getCoordinates();
         overlay.setPosition(coordinate);
     
-        const name = feature.get('name') || ''; // Use default value if undefined
-        const aqi = feature.get('aqi') || ''; // Use default value if undefined
-        const backgroundColor = feature.get('backgroundColor') || ''; // Use default value if undefined
-        const location = feature.get('location') || ''; // Use default value if undefined
+        const name = feature.get('name') || ''; 
+        const aqi = feature.get('aqi') || ''; 
+        const backgroundColor = feature.get('backgroundColor') || ''; 
+        const location = feature.get('location') || '';
     
         let popupHTML = `
           <div>

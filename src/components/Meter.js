@@ -29,7 +29,7 @@ export default function Meter(props) {
 		<div className='card-box d-flex w-100 justify-content-evenly' style={{padding:"0.5vw" }} >
 			<div className='d-flex flex-column w-100'>
 				{values.map((obj) => (
-					<div className='mb-2' key={obj.label} style={{ fontSize:"0.9vw"}}>
+					<div className='mb-2' key={obj.label} style={{ fontSize:"0.9vw", margin:"0.4vw"}}>
 						<div className='d-flex justify-content-between align-items-center'>
 							<span className='d-inline-flex align-items-center'>
 								<span
@@ -37,6 +37,7 @@ export default function Meter(props) {
 									style={{
 										width: '1rem',
 										height: '1rem',
+										margin:"0.2vw",
 										borderRadius: '50%',
 										backgroundColor: obj.color
 									}}

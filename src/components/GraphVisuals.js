@@ -177,7 +177,7 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
     return () => clearInterval(interval);
   }, [categories, data]);
 
-  const columnWidth = Math.min(40, 200 / data.length);
+  const columnWidth = Math.min(20, 100 / data.length);
   const padding = {
     left: 80,
     right: 40,

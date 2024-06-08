@@ -147,7 +147,7 @@ const Login = () => {
                 )
               }}
             />
-            <FormControl variant="outlined" fullWidth>
+            <FormControl variant="outlined" fullWidth >
               <InputLabel>Department</InputLabel>
               <Select
                 name="department"
@@ -167,12 +167,15 @@ const Login = () => {
               </Select>
             </FormControl>
             <div className="remember-forgot">
-              <Checkbox checked={true} />Remember Me
+              <Checkbox checked={true} style={{
+                width: 20,
+                height: 20
+              }} />Remember Me
               <a href="#">Forgotten Password?</a>
             </div>
             {error && <p className="error">{error}</p>}
             <Button variant="contained" color="warning" onClick={loginuser} disabled={loading}>
-              {loading ? <Lottie animationData={loding_ani}  /> : "Login"}
+              {loading ? <Lottie animationData={loding_ani} /> : "Login"}
             </Button>
           </div>
         </main>

@@ -13,7 +13,7 @@ const p5 = [26.735415, 82.140133];
 const Map = () => {
 	const mapCenter = [26.7532, 82.1225];
 	return (
-		<div className='d-flex w-100 justify-content-center' style={{ height: 'inherit' }}>
+		<div className='d-flex w-100 justify-content-center'>
 			<MapContainer
 				center={mapCenter}
 				zoom={11}
@@ -24,7 +24,7 @@ const Map = () => {
 				dragging={false}
 				animate={true}
 				easeLinearity={0.35}
-				style={{ width: '100%', height: '99%' }}
+				style={{ width: '100%', height: '100%' }}
 			>
 				<TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}' />
 

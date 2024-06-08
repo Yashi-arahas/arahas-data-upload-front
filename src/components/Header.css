@@ -9,17 +9,17 @@
   
 }
 .home-btn i {
-  font-size: 1.5vw; /* Adjust the font size */
+  font-size: 1vw; 
     color: #ef7401;
-    padding: 0.5vw;
+  padding: 0.4vw;
   margin-right: 1vw;
   border: 2px solid black;
-  border-radius: 50%; /* Add some space between the icon and text */
+  border-radius: 50%; 
 }
-/* Add hover effect on home button */
+
 .home-btn:hover i {
-  color: #fff; /* Change the color on hover */
-  background-color: #ef7401; /* Change the background color on hover */
+  color: #fff;
+  background-color: #ef7401;
 }
 
 .nav-ul{
@@ -42,12 +42,12 @@
 }
 .sticky nav .company-logo {
     cursor: pointer;
-    height: 2rem;
     margin-left: 0.1rem;
     object-fit: contain;
   }
 .sticky nav img {
-    height: 50%;
+    height: 2vw;
+    width: 6vw;
   }
   
   

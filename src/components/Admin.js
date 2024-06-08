@@ -55,16 +55,7 @@ const Admin = () => {
     <>
       <Header />
       <div className="admin-main">
-        <video
-          className="video-background"
-          autoPlay
-          loop
-          muted
-          ref={videoRef} // Attach the ref to the video element
-        >
-          <source src={sample} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+       
         <div className="admin-title">
           <h1>City Report Card</h1>
         </div>
