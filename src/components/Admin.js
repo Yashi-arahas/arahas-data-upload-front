@@ -62,7 +62,7 @@ const Admin = () => {
         <div className="admin-sub-container">
           <div className="admin-left">
             <div className="row-1">
-              <img src={framework_img} alt="Framework" />
+              
               <div className="row-1-cols">
                 <div className="indicator" onClick={handleEClick}>
                   <div className="indicator-name" >

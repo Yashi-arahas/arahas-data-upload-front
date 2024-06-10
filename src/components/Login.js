@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Checkbox, TextField, Select, MenuItem, InputLabel, FormControl, IconButton } from "@mui/material";
@@ -23,6 +23,13 @@ const Login = () => {
   const [error, setError] = useState(""); // State to hold error message
   const [loading, setLoading] = useState(false); // State to manage loading
   const [loginToggle, setLoginToggle] = useState(false);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5;
+    }
+  }, []);
 
   const setVal = (e) => {
     const { name, value } = e.target;
@@ -105,7 +112,7 @@ const Login = () => {
         </div>
       )}
       <div className="video-container">
-        <video src={sample} className="video-bg" autoPlay loop muted />
+        <video ref={videoRef} src={sample} className="video-bg" autoPlay loop muted />
       </div>
       <div className="content-container">
         <header className="header">

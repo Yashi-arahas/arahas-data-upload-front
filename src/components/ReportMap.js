@@ -1,84 +1,58 @@
 import React, { useRef, useState } from "react";
-import { Select, MenuItem } from "@mui/material";
 import "./Admin.css";
-import sample from "./images/bg_video.mp4";
 import Header from "./Header";
-import report from "./images/img_report.png";
-import map from "./images/map.png";
 import ParaHeatMap from "./ParaHeatMap";
+import aqi from "./images/AQI.png";
+import area from "./images/area.png";
+import powerbi from "./images/power-bi.png";  // Import Power BI logo
+import ImageSlider from "./ImageSlider";
 
 const ReportMap = () => {
-  const videoRef = useRef(null);
-  const [showHeatMap, setShowHeatMap] = useState(false);
-  const [selectedParameter, setSelectedParameter] = useState("AQI");
-  const [showReportContainer, setShowReportContainer] = useState(false);
+  const [selectedParameter, setSelectedParameter] = useState("aqi");
 
-  const handleReportButtonClick = () => {
-    // Redirect the user to the Power BI report URL
-    window.location.href = "https://app.powerbi.com/groups/me/reports/e22098c7-0a36-43fa-a98d-91563a31d279/3f76fa52298544041400?experience=power-bi";
+  const handleParameterChange = (parameter) => {
+    setSelectedParameter(parameter);
   };
 
-  const handleMapButtonClick = () => {
-    setShowHeatMap(true);
-    setShowReportContainer(false);
-  };
-
-  const handleParameterChange = (event) => {
-    setSelectedParameter(event.target.value);
-  };
+  const images = [aqi, area];
 
   return (
     <div>
       <Header />
       <div className="report">
-        <video
-          className="video-background"
-          autoPlay
-          loop
-          muted
-          ref={videoRef}
-        >
-          <source src={sample} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div className="report-map-btn">
-          <div className="button-container">
-            <div className="parameter-select">
-              <Select
-                value={selectedParameter}
-                onChange={handleParameterChange}
-                variant="outlined"
-                style={{ width: "20vw", height: "3vw", backgroundColor: "white" }}
-              >
-                <MenuItem value="aqi">AQI</MenuItem>
-                <MenuItem value="temp">Temperature</MenuItem>
-                <MenuItem value="rainfall">Rainfall</MenuItem>
-              </Select>
-            </div>
-            <button
-              onClick={handleReportButtonClick}
-              className="report-button"
-            >
-              <img src={report} alt="Report" />
-              <h1>Report</h1>
-            </button>
-            <div
-              className="report-button"
-              onClick={handleMapButtonClick}
-            >
-              <img src={map} alt="Map" />
-              <h1>Map</h1>
-            </div>
+        <div className="parameter-tabs">
+          <div
+            className={`parameter-tab ${selectedParameter === "aqi" && "active"}`}
+            onClick={() => handleParameterChange("aqi")}
+          >
+            AQI
           </div>
-
-          {showReportContainer || showHeatMap ? (
-            <div className="report-container">
-             
-              {showHeatMap && (
-                <ParaHeatMap Parameter={selectedParameter} />
-              )}
-            </div>
-          ) : null}
+          <div
+            className={`parameter-tab ${selectedParameter === "temp" && "active"}`}
+            onClick={() => handleParameterChange("temp")}
+          >
+            Temperature
+          </div>
+          <div
+            className={`parameter-tab ${selectedParameter === "rainfall" && "active"}`}
+            onClick={() => handleParameterChange("rainfall")}
+          >
+            Rainfall
+          </div>
+        </div>
+        <div className="report-container">
+          <div className="map-container">
+            <ParaHeatMap Parameter={selectedParameter} />
+          </div>
+          <div className="image-slider">
+            <ImageSlider images={images} />
+          </div>
+        </div>
+        <div className="powerbi-link">
+          <a href="https://app.powerbi.com/groups/me/reports/e22098c7-0a36-43fa-a98d-91563a31d279/3f76fa52298544041400?experience=power-bi" target="_blank" rel="noopener noreferrer">
+            <img src={powerbi} alt="Power BI" />
+            <p>View Full Dashboard</p>
+          </a>
         </div>
       </div>
     </div>
