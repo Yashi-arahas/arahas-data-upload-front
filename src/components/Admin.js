@@ -45,10 +45,10 @@ const Admin = () => {
   };
 
   const handleTotalScoreClick = () => {
-    history("/sdg");
+    history("/csi/sdg");
   };
   const handleEClick = () => {
-    history("/report-map-page");
+    history("/csi/report-map-page");
   };
 
   return (
