@@ -75,7 +75,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
   const [selectedAction, setSelectedAction] = useState("");
   const [average, setAverage] = useState({});
   const [insights, setInsights] = useState({});
-  const [subCategory, setSubCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("Aqi");
   const [pollution, setPollution] = useState("");
   const [templocation, setTempLocation] = useState("");
   const [temptime, setTempTime] = useState("");
