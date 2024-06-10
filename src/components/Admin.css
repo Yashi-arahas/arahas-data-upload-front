@@ -292,12 +292,35 @@
     padding: 0.5vw; */
 
   }
-  
-  .report-map-btn {
+  .button-container{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+  .report-container{
+    background-color: rgba(255,255,255,0.8);
+    width: 62vw;
+    height: 35vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1vw;
+    margin: 5vw 1vw 1vw 8vw;
+  }
+  .date-select{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    margin: 1vw;
+  }
+  
+  .report-map-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
     position: fixed;
     left: 7vw; /* Adjust as needed */
     top: 50%; /* Center vertically */

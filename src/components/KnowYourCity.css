@@ -160,10 +160,10 @@
 .markerText {
 	display: flex;
 	font-weight: 600;
-	border-radius: 5px;
+	font-size: 0.7vw;
 	/* border: 2px solid #f07628; */
 	height: fit-content;
-	padding: 0.4rem;
+	margin-top: 1vw;
 	/* max-width: fit-content; */
 	overflow: hidden;
 	color: #f07628;

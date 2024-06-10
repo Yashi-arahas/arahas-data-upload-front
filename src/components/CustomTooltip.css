@@ -1,0 +1,29 @@
+/* CustomTooltip.css */
+.custom-tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-tooltip-content {
+    visibility: hidden;
+    width: 20vw;
+    background-color:white;
+    color: black;
+    padding: 1vw;
+    border-radius: 6px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 30%; /* Adjust as needed */
+    left: 70%;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.custom-tooltip-container:hover .custom-tooltip-content {
+    visibility: visible;
+    opacity: 1;
+}

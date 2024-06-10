@@ -1,46 +1,88 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState } from "react";
+import { Select, MenuItem } from "@mui/material";
 import "./Admin.css";
 import sample from "./images/bg_video.mp4";
-import Header from './Header';
+import Header from "./Header";
 import report from "./images/img_report.png";
 import map from "./images/map.png";
+import ParaHeatMap from "./ParaHeatMap";
 
 const ReportMap = () => {
   const videoRef = useRef(null);
+  const [showHeatMap, setShowHeatMap] = useState(false);
+  const [selectedParameter, setSelectedParameter] = useState("AQI");
+  const [showReportContainer, setShowReportContainer] = useState(false);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5; // Set the playback rate to 0.5 for half speed
-    }
-  }, []);
+  const handleReportButtonClick = () => {
+    // Redirect the user to the Power BI report URL
+    window.location.href = "https://app.powerbi.com/groups/me/reports/4d6e245d-cf20-44e7-8b05-c6241bf7ebc6/3f76fa52298544041400?experience=power-bi";
+  };
+
+  const handleMapButtonClick = () => {
+    setShowHeatMap(true);
+    setShowReportContainer(false);
+  };
+
+  const handleParameterChange = (event) => {
+    setSelectedParameter(event.target.value);
+  };
 
   return (
     <div>
       <Header />
-      <div className='report'>
+      <div className="report">
         <video
           className="video-background"
           autoPlay
           loop
           muted
-          ref={videoRef} // Attach the ref to the video element
+          ref={videoRef}
         >
           <source src={sample} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className='report-map-btn'>
-          <a href="https://app.powerbi.com/groups/me/reports/4d6e245d-cf20-44e7-8b05-c6241bf7ebc6/3f76fa52298544041400?experience=power-bi" className='report-button'>
-            <img src={report} alt="Report" />
-            <h1>Report</h1>
-          </a>
-          <div className='report-button'>
-            <img src={map} alt="Map" />
-            <h1>Map</h1>
+        <div className="report-map-btn">
+          <div className="button-container">
+            <div className="parameter-select">
+              <Select
+                value={selectedParameter}
+                onChange={handleParameterChange}
+                variant="outlined"
+                style={{ width: "20vw", height: "3vw", backgroundColor: "white" }}
+              >
+                <MenuItem value="aqi">AQI</MenuItem>
+                <MenuItem value="temp">Temp</MenuItem>
+                <MenuItem value="rainfall">Rainfall</MenuItem>
+              </Select>
+            </div>
+            <button
+              onClick={handleReportButtonClick}
+              className="report-button"
+            >
+              <img src={report} alt="Report" />
+              <h1>Report</h1>
+            </button>
+            <div
+              className="report-button"
+              onClick={handleMapButtonClick}
+            >
+              <img src={map} alt="Map" />
+              <h1>Map</h1>
+            </div>
           </div>
+
+          {showReportContainer || showHeatMap ? (
+            <div className="report-container">
+             
+              {showHeatMap && (
+                <ParaHeatMap Parameter={selectedParameter} />
+              )}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ReportMap;
