@@ -15,7 +15,7 @@ const ReportMap = () => {
 
   const handleReportButtonClick = () => {
     // Redirect the user to the Power BI report URL
-    window.location.href = "https://app.powerbi.com/groups/me/reports/4d6e245d-cf20-44e7-8b05-c6241bf7ebc6/3f76fa52298544041400?experience=power-bi";
+    window.location.href = "https://app.powerbi.com/groups/me/reports/e22098c7-0a36-43fa-a98d-91563a31d279/3f76fa52298544041400?experience=power-bi";
   };
 
   const handleMapButtonClick = () => {
@@ -51,7 +51,7 @@ const ReportMap = () => {
                 style={{ width: "20vw", height: "3vw", backgroundColor: "white" }}
               >
                 <MenuItem value="aqi">AQI</MenuItem>
-                <MenuItem value="temp">Temp</MenuItem>
+                <MenuItem value="temp">Temperature</MenuItem>
                 <MenuItem value="rainfall">Rainfall</MenuItem>
               </Select>
             </div>

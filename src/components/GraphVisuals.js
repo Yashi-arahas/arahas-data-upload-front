@@ -95,7 +95,7 @@ export const GroupedBarChart = ({ title, categories, series, height, width, xtit
 // Function to render a bar chart
 export const BarChart = ({ title, group, categories, series, height, width, xtitle, ytitle }) => {
   return (
-    <div className='chart-container z-index-low'>
+    <div className='z-index-low'>
       <ApexCharts className='chart'
         options={{
           chart: {

@@ -28,8 +28,8 @@ const RainFallCharts = ({
 
   return (
     <div>
-      <div className="row">
-        <div className="col-lg-12">
+      <div className="main-graph">
+        <div className="graph-container">
           <div className="graph">
             <div className="graph-container">
               <div className="z-index-low">
@@ -41,7 +41,7 @@ const RainFallCharts = ({
                     { name: "Normal Rainfall", data: chartData.map(data => data.Normal) }
                   ]}
                   height={400}
-                  width={500}
+                  width={600}
                   xtitle="Month"
                   ytitle="Amount"
                 />

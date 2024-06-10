@@ -569,9 +569,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                             <MenuItem value={"2019"}>2019</MenuItem>
                             <MenuItem value={"2020"}>2020</MenuItem>
                             <MenuItem value={"2021"}>2021</MenuItem>
-                            <MenuItem value={"2022"}>2022</MenuItem>
-                            <MenuItem value={"2023"}>2023</MenuItem>
-                            <MenuItem value={"2024"}>2024</MenuItem>
+                            
                           </Select>
                         )}
 
@@ -1018,8 +1016,8 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
               </div>
               {/* Render charts based on department */}
               {departmentName === "Electricity" && categ.length > 0 && (
-                <div className="row">
-                  <div className="cols-lg-10">
+                <div className="main-graph">
+                  <div className="graph-big">
                     <div className="graph">
                       <div className="graph-container">
                         <div
@@ -1046,7 +1044,7 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                               data: [item.Electric_Consumption],
                             }))}
                             height={400}
-                            width={700}
+                            width={500}
                             xtitle=""
                           />
                         </div>
@@ -1056,12 +1054,12 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                 </div>
               )}
               {departmentName === "Sex-Ratio" && sexRatio.length > 0 && (
-                <div className="row">
+                <div className="main-graph">
                   {Object.keys(sexRatio).map((key, index) => {
                     const { Title, Ayodhya, India } = sexRatio[key];
 
                     return (
-                      <div key={index} className="cols-lg-10">
+                      <div key={index} className="graph-big">
                         <div className="graph">
                           <div className="graph-container">
                             <div
@@ -1102,8 +1100,8 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                 </div>
               )}
               {departmentName === "Crime" && (
-                <div className="row">
-                  <div className="cols-lg-10">
+                <div className="main-graph">
+                  <div className="graph-big">
                     <div className="graph">
                       <div className="graph-container">
                         <div
@@ -1141,13 +1139,13 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                 </div>
               )}
               {departmentName === "Health" && (
-                <div className="row">
+                <div className="main-graph">
                   {Object.keys(healthData).map((key, index) => {
                     const { Title, Current_Value, Target_Value } =
                       healthData[key];
 
                     return (
-                      <div key={index} className="cols-lg-10">
+                      <div key={index} className="graph-big">
                         <div className="graph">
                           <div className="graph-container">
                             <div
@@ -1269,8 +1267,8 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                 </div>
               )}
               {departmentName === "Education" && (
-                <div className="row">
-                  <div className="cols-lg-10">
+                <div className="main-graph">
+                  <div className="graph-big">
                     <div className="graph">
                       <div className="graph-container">
                         <div
@@ -1308,8 +1306,8 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
                 </div>
               )}
               {departmentName === "Socio-Cultural-Activities" && (
-                <div className="row">
-                  <div className="cols-lg-10">
+                <div className="main-graph">
+                  <div className="graph-big">
                     <div className="graph">
                       <div className="graph-container">
                         <div

@@ -4,11 +4,12 @@ import axios from "axios";
 import { Button, Checkbox, TextField, Select, MenuItem, InputLabel, FormControl, IconButton } from "@mui/material";
 import Lottie from "lottie-react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import sample from './images/bg_video.mp4';
+import sample from './images/bg_video_csi.mp4';
 import logo from "./images/arahas-logo.webp";
 import { NavLink } from 'react-router-dom';
 import loding_ani from "./animations/loading.json";
 import './LoginModule.css'; // Import the CSS file
+import RegisterModal from "./RegisterModel";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -39,17 +40,19 @@ const Login = () => {
       setTimeout(() => {
         // Simulating delay for demonstration purpose
         if (department === "Electricity") {
-          navigate("/electricity");
+          navigate("/csi/electricity");
         } else if (department === "Jal-kal") {
-          navigate("/jal-kal");
+          navigate("/csi/jal-kal");
         } else if (department === "Housing") {
-          navigate("/housing");
+          navigate("/csi/housing");
         } else if (department === "Land_management") {
-          navigate("/land-management");
+          navigate("/csi/land-management");
         } else if (department === "Urban_heritage") {
-          navigate("/urban-heritage");
+          navigate("/csi/urban-heritage");
+        } else if(department==="Environment"){
+          navigate("/csi/environment");
         } else {
-          navigate("/tourism");
+          navigate("/csi/tourism");
         }
         setLoading(false); // Reset loading after redirection
         setInpval({ ...inpval, email: "", password: "", department: "" });
@@ -159,6 +162,7 @@ const Login = () => {
                   <em>None</em>
                 </MenuItem>
                 <MenuItem value="Electricity">Electricity</MenuItem>
+                <MenuItem value="Environment">Environment</MenuItem>
                 <MenuItem value="Jal-kal">Jal-kal</MenuItem>
                 <MenuItem value="Housing">Housing</MenuItem>
                 <MenuItem value="Land_management">Land management</MenuItem>
@@ -177,6 +181,7 @@ const Login = () => {
             <Button variant="contained" color="warning" onClick={loginuser} disabled={loading}>
               {loading ? <Lottie animationData={loding_ani} /> : "Login"}
             </Button>
+           
           </div>
         </main>
       </div>

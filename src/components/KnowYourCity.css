@@ -4,7 +4,22 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
+	
 }
+.know-container:before {
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.2;
+	background-image: url(./images/bg_image-cube.png);
+	background-repeat: repeat;
+	background-position:center;
+	background-size: cover;
+  }
 
 .asset {
 	display: flex;
@@ -12,11 +27,12 @@
 	height: 20rem;
 	margin-top: 1vw;
 	background-color: rgb(244, 244, 244);
-	
+
 	border: 3px solid #f07628;
 	border-radius: 10px;
 	/* background-color: rgb(244, 244, 244); */
 }
+
 .map {
 	display: flex;
 	width: 30vw;
@@ -24,9 +40,10 @@
 	z-index: 0;
 	margin: 1vw;
 	border: 2px solid orange;
-	
+
 
 }
+
 .assetContainer {
 	display: flex;
 	width: 100%;
@@ -34,6 +51,7 @@
 	justify-content: center;
 	height: 100%;
 }
+
 .assetHeading {
 	font-size: 2.5vw;
 	text-align: center;
@@ -42,7 +60,8 @@
 	padding: 0.5vw;
 	align-items: center;
 }
-.top-container{
+
+.top-container {
 	background-color: antiquewhite;
 	width: 95%;
 	display: flex;
@@ -52,6 +71,7 @@
 	border: 3px solid #f07628;
 	border-radius: 10px;
 }
+
 .circle {
 	display: flex;
 	width: 65%;
@@ -69,24 +89,27 @@
 	grid-row-end: 4;
 	grid-column-end: 6;  */
 }
-.circle-img{
+
+.circle-img {
 	position: relative;
 	top: 8vw;
 	cursor: pointer;
 }
-.circle-img img{
+
+.circle-img img {
 	height: 1.5vw;
-	
+
 }
-.hide{
+
+.hide {
 	display: none;
-  }
-  
-.circle-img:hover .hide{
+}
+
+.circle-img:hover .hide {
 	display: block;
 	top: 10%;
-    position:absolute;
-	top:38%;
+	position: absolute;
+	top: 38%;
 	right: 28%;
 	font-size: 0.8vw;
 	background-color: white;
@@ -94,24 +117,25 @@
 	box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 	padding: 0.5vw;
 	width: 15vw;
-	
-	
-  }
 
-.circle-container{
+
+}
+
+.circle-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	padding: 1vw 1.5vw;
 }
-.circle-text{
+
+.circle-text {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: row;
 	font-size: 0.8vw;
-	
+
 }
 
 .iconContainer {
@@ -125,38 +149,44 @@
 	align-items: center;
 	border: 3px solid #f07628;
 }
+
 .circleIcon {
 	height: 80%;
 	width: 80%;
 }
+
 .circleKey {
 	display: flex;
 	font-weight: 800;
 }
+
 .marker {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
 	flex-direction: row;
-    font-size: 1vw;
+	font-size: 1vw;
 	justify-content: center;
 }
-.marker-icon img{
+
+.marker-icon img {
 	height: 4vw;
 }
+
 .markerContainer {
 	display: flex;
 	width: 13.5vw;
 	height: 9vw;
-	background-color:antiquewhite;
+	background-color: antiquewhite;
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
 	padding: 1vw;
 	margin: 0.5vw;
-	border-radius:10px ;
+	border-radius: 10px;
 	border: 3px solid #f07628;
 }
+
 .markerText {
 	display: flex;
 	font-weight: 600;
@@ -170,12 +200,14 @@
 	/* clip-path: polygon(0 2%, 100% 0%, 75% 100%, 0% 100%); */
 	/* clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%); */
 }
+
 .markerValue {
 	display: flex;
 	padding: 0.4rem;
 	color: #f07628;
 	font: 600;
 }
+
 .bar {
 	display: flex;
 	/* padding: 1rem; */
@@ -187,15 +219,17 @@
 	grid-column-start: 4;
 	grid-row-end: 3;
 	grid-column-end: 6;
-	
+
 }
+
 .barSubcontainers {
 	display: flex;
 	width: 100%;
 	height: 100%;
 	justify-content: space-evenly;
-	
+
 }
+
 .barText {
 	display: flex;
 	width: 100%;
@@ -204,6 +238,7 @@
 	font-size: 1vw;
 	padding-bottom: 5px;
 }
+
 .cityProgress {
 	display: flex;
 	justify-content: flex-start;

@@ -132,7 +132,7 @@ const AqiReport = () => {
   };
 
   return (
-    <div className="map">
+    <div className="Aqi-zone-map">
       {Array.isArray(avgAqi) ? (
         <AqiMap averageAQI={avgAqi} latestDate={latestDate} />
       ) : (

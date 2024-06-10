@@ -44,7 +44,7 @@ const RegisterModal = ({ onClose }) => {
       alert("Password and Confirm Password do not match");
     } else {
       try {
-        const response = await axios.post("http://localhost:8009/register", {
+        const response = await axios.post("https://arahas-data-upload-back.onrender.com/register", {
           fname,
           department, // Change here
           email,

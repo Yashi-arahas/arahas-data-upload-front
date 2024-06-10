@@ -13,7 +13,7 @@ function Header() {
             alt="Arhas Technologies Logo"
             className="company-logo"
           />
-          <Link to="/" className="home-btn"><i class="bi bi-house-door-fill"></i></Link> {/* Text-based home button */}
+          <Link to="/csi" className="home-btn"><i class="bi bi-house-door-fill"></i></Link> {/* Text-based home button */}
         </nav>
       </header>
     </>

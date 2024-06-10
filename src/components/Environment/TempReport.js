@@ -105,7 +105,7 @@ const TempReport = () => {
   };
 
   return (
-    <div className="map">
+    <div className="Aqi-zone-map">
       {averageData && Object.keys(averageData).length > 0 ? (
         <TempMap averageData={averageData} latestDate={latestDate} />
       ) : (

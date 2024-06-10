@@ -1,7 +1,9 @@
 
 .other-main-container{
-    background-image: radial-gradient(circle, #4d869c, #6d9aaf, #8caec1, #aac3d4, #c7d9e6, #d1e2ed, #dbeaf4, #e5f3fb, #def0f7, #d7eef2, #d2ebec, #cde8e5);
+    background-image: url(./images/bg_image-cube.png);
     
+	background-repeat: no-repeat;
+	background-size: cover;
     height: 100%;
     width: 100%;
     padding: 1vw 0; 
