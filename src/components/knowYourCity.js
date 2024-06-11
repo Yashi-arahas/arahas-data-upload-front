@@ -261,13 +261,13 @@ const KnowYourCity = () => {
                   <Card
                     title="Jal Jeevan Mission Ranking"
                     rating="State Rank in category : 21/67"
-                    source="Ministry of Water Resources"
+                    source="Ministry of Jal Shakti"
                     icon={JJMIcon}
                   />
                   <Card
                     title="Garbage Free City"
                     rating="GFC 2023 Star Rating Ayodhya 1"
-                    source="Ministry of Environment"
+                    source="Ministry of Housing and Urban Affairs"
                     icon={GFCIcon}
                   />
                 </div>

@@ -25,7 +25,7 @@ const ImageSlider = ({ images }) => {
           style={{ display: index === currentSlide ? 'block' : 'none' }}
         >
           <div className="numbertext"></div>
-          <img src={image} alt={`Slide ${index + 1}`} style={{ width: '100%' }} />
+          <img src={image} alt={`Slide ${index + 1}`} style={{ width: '100%',height:"50%" }} />
         </div>
       ))}
 

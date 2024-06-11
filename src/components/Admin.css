@@ -319,14 +319,15 @@
 /* Style the report container */
 .report-container {
   display: flex;
-  align-items: center;
+  align-items: top;
   height: 100%;
   justify-content: space-around;
 }
 
 /* Style the map container */
-.map {
+.para-map {
   width: 35vw;
+  height: 22vw;
 }
 .map-container{
   width: 40%;
@@ -338,14 +339,24 @@
 .full-map-container{
   display: flex;
   flex-direction: column;
+  padding: 0.5vw;
+  background-color: white;
   align-items: center;
   justify-content: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-
+.full-map-container img{
+  height: 22vw;
+  width: 35vw;
+}
 /* Style the image slider container */
 .image-slider {
-  width: 100%; /* Adjust as needed */
-  padding: 2vw;
+  /* width: 60vw; */
+  background-color: white;
+  padding: 0.1vw;
+  /* height: 32vw; */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
 }
 
 /* Add any additional styling as needed */
@@ -356,7 +367,6 @@
   flex-direction: row;
   padding: 0.5vw; /* Adjust padding as needed */
   /* background: rgb(196, 91, 91); */
-  border: 0.1vw solid black; 
   font-size: 0.8vw; /* Adjust font size as needed */
   width: 100%;
   margin: 1vw;

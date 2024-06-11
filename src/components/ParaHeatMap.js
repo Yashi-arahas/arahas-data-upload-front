@@ -15,6 +15,7 @@ import Overlay from 'ol/Overlay';
 import ayodhya_villages from './images/ayodhya_village.json';
 import ayodhya from './images/ayodhya.json';
 import './Admin.css';
+import waste_map from "./images/waste_map.png"
 import axios from 'axios';
 
 const ParaHeatMap = ({ Parameter }) => {
@@ -188,8 +189,10 @@ const ParaHeatMap = ({ Parameter }) => {
         overlayContainer.innerHTML = `<div class='popup-content'>${location}: ${parameterValue} ${Parameter === 'temp' ? '°C' : Parameter === 'rainfall' ? 'mm' : 'AQI'}</div>`;
         overlayContainer.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
         overlayContainer.style.border = '1px solid black';
-        overlayContainer.style.padding = '5px';
+        overlayContainer.style.padding = '0.5vw';
         overlayContainer.style.borderRadius = '5px';
+        overlayContainer.style.fontSize = '0.8vw';
+        overlayContainer.style.fontWeight = '700';
       } else {
         overlay.setPosition(undefined);
       }
@@ -244,15 +247,28 @@ const ParaHeatMap = ({ Parameter }) => {
           <div><span style={{ background: '#C40C0C' }}></span> 401 - 500</div>
         </div>
       );
-    } 
+    } else if(Parameter==="rainfall"){
+      return (
+        <div className='legend'>
+          <div><span style={{ background: 'blue' }}></span>Expected Rainfall </div>
+          <div><span style={{ background: '#A7E6FF' }}></span>Actual Rainfall</div>
+        </div>
+      );
+    }
+    else if(Parameter==="waste"){
+      return (
+        <div className='legend'>
+          <div><span style={{ background: 'blue' }}></span>Uncollected Waste</div>
+          <div><span style={{ background: 'green' }}></span>Collected Waste</div>
+        </div>
+      );
+    }
   };
 
   return (
     <>
-      {loading ? ( // Conditional rendering based on loading state
-        <div className='loading-container'>
-          <CircularProgress />
-        </div>
+      {loading? ( // Conditional rendering based on loading state
+        <CircularProgress/>
       ) : (
         <div className='full-map-container' >
           <div className='date-select'>
@@ -276,7 +292,13 @@ const ParaHeatMap = ({ Parameter }) => {
                 />
               </div>
             </div>
-            <div ref={mapRef} className='map'></div>
+            {Parameter==="waste" &&(
+              <img src={waste_map}/>
+            )}
+            {["aqi", "temp" , "rainfall"].includes(Parameter) &&(
+              <div ref={mapRef} className='para-map'></div>
+            )}
+            
             {renderLegend()}
           </div>
         )}
