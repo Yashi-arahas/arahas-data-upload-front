@@ -3,7 +3,23 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+
   }
+  .admin-main:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    background-image: url(./images/bg_image-cube.png);
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
+    }
+    
   
   /* Style the video to cover the entire background */
   .video-background {
@@ -24,7 +40,7 @@
   }
   
   .admin-title h1 {
-    font-size: 2.5vw;
+    font-size: 2vw;
     color: black;
     padding: 0.5vw;
     font-weight: 600;
@@ -46,8 +62,8 @@
   .admin-left {
     display: flex;
     flex-direction: column;
-    margin: 1vw 0.5vw;
-    width: 65%;
+    margin: 0vw 0.5vw;
+    width: 70%;
   }
   
   .admin-left .row-1 {
@@ -76,17 +92,15 @@
   
   .admin-left .row-1 .row-1-cols .indicator-name h1 {
     color: white;
-    padding-top: 0.8vw;
-    font-size: 3.4vw;
+    padding-top: 0.9vw;
+    font-size: 2.5vw;
     cursor: pointer;
     height: 80%;
   }
   
   .admin-left .row-1 .row-1-cols .indicator-name p {
     color: white;
-    
-    height: 15%;
-    font-size: 1vw;
+    font-size: 0.7vw;
     text-align: center;
     border-top: 2px solid white;
     border-radius: 0 0 0 20px;
@@ -98,46 +112,47 @@
     align-items: center;
     flex-direction: row;
     border: 1px solid #ef7401;
-    margin-top: 1vw;
-    margin-left: 3vw;
-    height: 8vw;
+    margin: 0.5vw;
+    height: 7vw;
     background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
     border-radius: 20px 0px 0px 20px;
   }
   
   .content {
-    padding: 1vw;
+    padding: 0.4vw;
     position: relative;
-    width: 28vw;
+    width: 15vw;
     height: 8vw;
+    
   }
   
   .admin-left .row-1 .row-1-cols .indicator .content .content-text {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 0.1vw;
   }
   
   .content-text h1 {
-    font-size: 1vw;
+    margin: 0.2vw;
+    font-size: 0.8vw;
     color: #ef7401;
     text-align: left;
   }
   .content-text .recommendation ul li{
-    font-size: 0.9vw;
+    font-size: 0.8vw;
   }
   .content-text .score h1 {
-    font-size: 0.8vw;
+    font-size: 0.7vw;
     color: white;
   }
 
   .admin-left .row-1 .row-1-cols .indicator .content .content-text .score {
     position: absolute;
-    top: 0;
+    top: 1;
     right: 0;
     background-color: #ef7401;
     text-align: center;
-    padding: 0.5vw 0 0.8vw 0.8vw;
     border-radius: 0 0 0 100%;
   }
   
@@ -155,15 +170,16 @@
   .admin-right {
     display: flex;
     align-items: center;
-    margin-top: 1.2vw;
     width: 35%;
+    margin-top: 0.5vw;
     flex-direction: column;
   }
   
   .admin-right .total-score {
     cursor: pointer;
-    margin: 1vw;
     width: 90%;
+    height: 9vw;
+    padding: 0.5vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -173,27 +189,25 @@
     background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
   }
   
-  .admin-right .total-score img {
-    height: 3vw;
-    width: 4vw;
+  .admin-right .total-score .Summary .letter{
     margin: 1vw;
   }
   
   .admin-right .total-score h1 {
-    font-size: 2vw;
+    font-size: 1vw;
     color: #ef7401;
     height: 80%;
   }
   
   .admin-right .total-score h2 {
-    font-size: 1.5vw;
+    font-size: 0.8vw;
     color: black;
     font-weight: 700;
   }
   
   .admin-right .total-score p {
     text-align: center;
-    font-size: 0.9vw;
+    font-size: 0.7vw;
     height: 20%;
     color: black;
   }
@@ -204,9 +218,9 @@
     width: 90%;
     align-items: flex-start;
     flex-direction: column;
-    margin: 1vw 0.5vw;
+    margin: 0.5vw 0.5vw;
     border: 1px solid #ef7401;
-    padding: 1vw;
+    padding: 0.5vw;
     border-radius: 10px;
   }
   
@@ -216,10 +230,10 @@
     justify-content: center;
     flex-direction: column;
     padding: 1vw;
-    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    background-color: rgba(255,255,255, 0.95); /* Semi-transparent white */
     margin: 1vw;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
-    width: 99%;
+    width: 61vw;
     border: 1px solid #ef7401;
     border-radius: 10px;
   }
@@ -426,4 +440,14 @@
   display: flex;
   align-items: center;
   color: inherit;
+}
+.esg-chart{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  border-radius: 10px;
+  width: 100%;
+  height:25vw;
+  margin: 0;
+}
+.esg-chart:hover{
+  box-shadow: 0 0 12px -4px rgba(0,0,0,0.7);
 }

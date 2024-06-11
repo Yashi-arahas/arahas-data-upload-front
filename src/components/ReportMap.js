@@ -91,7 +91,7 @@ const ReportMap = () => {
           )}
         </div>
         <div className="powerbi-link">
-          <a href="https://app.powerbi.com/groups/me/reports/e22098c7-0a36-43fa-a98d-91563a31d279/3f76fa52298544041400?experience=power-bi" target="_blank" rel="noopener noreferrer">
+          <a href="https://app.powerbi.com/groups/me/reports/ac72958f-ad7e-49f3-9f1a-d839ded4a159/8c4c77f67553e0905c40?experience=power-bi">
             <img src={powerbi} alt="Power BI" />
             <p>View Full Dashboard</p>
           </a>

@@ -24,34 +24,61 @@ const KnowYourCity = () => {
   const data = {
     assets: {
       circle: {
-        area: {
-          value: "120.8 km2",
-          icon: area,
+        Zones:{
+          value:4
         },
-        population: {
-          value: 221118,
-          icon: population,
+        Wards:{
+          value:60
         },
-        populationDensity: {
-          value: "139 persons/hectare",
-          icon: populationDensity,
+        "Geographical Area":{
+           value:"35.56 Sq.km"
         },
-        literacyRate: {
-          value: "73.6%",
-          icon: literacyRate,
+        "Census Population":{
+          value:"3,31,806"
         },
+        "Current Population":{
+          value:"4,65,206"
+        },
+        "Population from Wards":{
+          value:"2,97,653"
+        },
+        "Floating Population":{
+          value:"2,00,000"
+        },
+        "Innovation/New Initiatives":{
+          value:"9"
+        },
+        "Water bodies":{
+          value:5
+        },
+        "Ghats":{
+          value:4
+        },
+        "Nallahs":{
+          value:1
+        },
+        "Landfills":{
+          value:0
+        },
+        "Dumpsite":{
+          value:0
+        },
+        // "Processing Plants":{
+        //   value:7
+        // },
+        
+       
       },
       marker: {
         monuments: 8,
-        hospitals: 6,
-        rivers: 1, // suryu
+        "Nursing Homes": 188,
         "Fairs & Festivals": 4,
         Hotels: 17,
         Dharamshala: 70,
-        "Sevege Treatment Plant": 1,
         "Park & Open Spaces": "1311.60 Ha",
-        "Nursing Homes": 188,
         Slums: 41,
+        "Socio-Cultural Facilities":"7",
+        
       },
     },
   };
@@ -82,7 +109,7 @@ const KnowYourCity = () => {
             </div>
           </CustomTooltip>
         )}
-        {obj.key === "hospitals" && (
+        {obj.key === "Nursing Homes" && (
           <CustomTooltip content={
             <ul>
               <li>Ram Leela</li>
@@ -130,10 +157,11 @@ const KnowYourCity = () => {
         {obj.key === "Hotels" && (
           <CustomTooltip content={
             <ul>
-              <li>Hotel A</li>
-              <li>Hotel B</li>
-              <li>Hotel C</li>
-              <li>Hotel D</li>
+              <li>Hotel Saket, a Unit of Uttar Pradesh State Tourism Development Corporation Ltd.</li>
+<li>Rahi Yatri Niwas Ayodhya, a Unit of Uttar Pradesh State Tourism Development Corporation Ltd</li>
+<li>Ramprastha Hotel and Resorts</li>
+<li>A P Palace</li>
+<li>Tirupati Hotel</li>
             </ul>
           }>
             <div className="marker-icon">
@@ -144,10 +172,10 @@ const KnowYourCity = () => {
         {obj.key === "Dharamshala" && (
           <CustomTooltip content={
             <ul>
-              <li>Dharamshala A</li>
-              <li>Dharamshala B</li>
-              <li>Dharamshala C</li>
-              <li>Dharamshala D</li>
+              <li>Ayodhya Dharamshala</li>
+              <li>Birla Dharamshala</li>
+              <li>Hanumat Bhavan Dharamshala</li>
+              <li>Baranwal Dharamshala</li>
             </ul>
           }>
             <div className="marker-icon">
@@ -163,73 +191,68 @@ const KnowYourCity = () => {
           </CustomTooltip>
         )}
         {obj.key === "Park & Open Spaces" && (
-            
-                <CustomTooltip content={
-                  <ul>
-                    <li>Park A</li>
-                    <li>Park B</li>
-                    <li>Park C</li>
-                    <li>Park D</li>
-                  </ul>
-                }>
-                  <div className="marker-icon">
-                    <img src={dharamshala} alt={`${obj.key} icon`} />
-                  </div>
-                </CustomTooltip>
-              
-    
+
+          <CustomTooltip content={
+            <ul>
+              <li>Park A</li>
+              <li>Park B</li>
+              <li>Park C</li>
+              <li>Park D</li>
+            </ul>
+          }>
+            <div className="marker-icon">
+              <img src={dharamshala} alt={`${obj.key} icon`} />
+            </div>
+          </CustomTooltip>
+
+
         )}
         {obj.key === "Nursing Homes" && (
-            <CustomTooltip content={
-              <ul>
-                <li> A</li>
-                <li> B</li>
-                <li> C</li>
-                <li> D</li>
-              </ul>
-            }>
-              <div className="marker-icon">
-                <img src={dharamshala} alt={`${obj.key} icon`} />
-              </div>
-            </CustomTooltip>
-          
+          <CustomTooltip content={
+            <ul>
+              <li> A</li>
+              <li> B</li>
+              <li> C</li>
+              <li> D</li>
+            </ul>
+          }>
+            <div className="marker-icon">
+              <img src={dharamshala} alt={`${obj.key} icon`} />
+            </div>
+          </CustomTooltip>
+
         )}
         {obj.key === "Slums" && (
-            <CustomTooltip content={
-              <ul>
-                <li> A</li>
-                <li>B</li>
-                <li>C</li>
-                <li>D</li>
-              </ul>
-            }>
-              <div className="marker-icon">
-                <img src={dharamshala} alt={`${obj.key} icon`} />
-              </div>
-            </CustomTooltip>
-          )}
-        
+          <CustomTooltip content={
+            <ul>
+              <li>Kandhari bazar</li>
+<li>Sahab ganj</li>
+<li>Wazir ganj</li>
+<li>Janaura</li>
+<li>Fateh ganj</li>
+            </ul>
+          }>
+            <div className="marker-icon">
+              <img src={dharamshala} alt={`${obj.key} icon`} />
+            </div>
+          </CustomTooltip>
+        )}
+
         <span className="markerText">
-            {formatString(obj.key)}: {obj.value}
-          </span>
+          {formatString(obj.key)}: {obj.value}
+        </span>
       </div>
     ));
   };
-  
+
 
   const renderCircles = (data) => {
     return data.map((obj) => (
       <div className="circle-container" key={obj.key}>
-        <div className="iconContainer">
-          <img
-            className="circleIcon"
-            src={obj.value.icon}
-            alt={`${obj.key} icon`}
-          />
-        </div>
         <div className="circle-text">
+        <span>{obj.value.value}</span>
           <span className="circleKey">{formatString(obj.key)}</span>
-          <span>&nbsp;:&nbsp;{obj.value.value}</span>
+          
         </div>
       </div>
     ));
@@ -242,6 +265,7 @@ const KnowYourCity = () => {
         <div className="assetHeading">Ayodhya City Assets</div>
         <div className="top-container">
           <div className="top-container-left">
+            <h1 style={{fontSize:"1.5vw", fontWeight:"700"}}>Ayodhya (M. Corp.) Demographics</h1>
             <div className="circle">
               {renderCircles(
                 Object.entries(data.assets.circle).map(([key, value]) => ({
@@ -251,14 +275,39 @@ const KnowYourCity = () => {
               )}
               <div className="circle-img">
                 <img src={s} alt="Source" />
-                <p className="hide">Source: Ayodhya Master Plan 2031</p>
+                <p className="hide">SBM (As per May, 2024)</p>
               </div>
             </div>
+            <div style={{ fontSize: "1.5vw", fontWeight: "700", textAlign: "center" }}>City Progress</div>
             <div className="cityProgress">
-              <div style={{fontSize:"1.5vw", fontWeight:"700", textAlign:"center"}}>City Progress</div>
-              <div className="bar">
-                <div className="barSubcontainers">
-                  <Card
+              <div className="city-left">
+                <div className="sub-left">
+                <p>Solid Waste Processed (in TPD)</p>
+                <ul>
+                  <li>Domestic Hazardous : 5.43</li>
+                  <li>Dry : 72.39</li>
+                  <li>Sanatary : 3.62</li>
+                  <li>Wet : 99.53</li>
+                </ul>
+                </div>
+                <div className="sub-left">
+                <p>Sewage Waste (in MLD)</p>
+                <ul>
+                  <li>Collected Waste : 20.97</li>
+                  <li>Treated Waste : 20.97</li>
+                </ul>
+                </div>
+                <div className="sub-left">
+                <p>CT/PT</p>
+                <ul>
+                  <li>Functinal: 62</li>
+                  <li>Non-Functinal: 0</li>
+                </ul>
+                </div>
+                
+              </div>
+              <div className="city-right">
+ <Card
                     title="Jal Jeevan Mission Ranking"
                     rating="State Rank in category : 21/67"
                     source="Ministry of Jal Shakti"
@@ -266,18 +315,32 @@ const KnowYourCity = () => {
                   />
                   <Card
                     title="Garbage Free City"
-                    rating="GFC 2023 Star Rating Ayodhya 1"
+                    rating="Rating : 1 star"
                     source="Ministry of Housing and Urban Affairs"
                     icon={GFCIcon}
                   />
-                </div>
+                  <Card
+                    title="Swachh Survekshan"
+                    rating="Rank : 389"
+                    source="Swachh Survekshan Mission"
+                    icon={GFCIcon}
+                  />
+                  <Card
+                    title="Citizen Feeedback"
+                    rating="Score : 503/600 given by 60839 Citizens"
+                    source="Swachh Survekshan Mission"
+                    icon={GFCIcon}
+                  />
               </div>
+
             </div>
+            
           </div>
           <div className="map">
             <Map />
           </div>
         </div>
+        
 
         <div className="asset">
           <div className="assetContainer">

@@ -57,19 +57,19 @@ const Admin = () => {
       <div className="admin-main">
        
         <div className="admin-title">
-          <h1>City Report Card</h1>
+          <h1>Ayodhya City Report Card</h1>
         </div>
         <div className="admin-sub-container">
           <div className="admin-left">
             <div className="row-1">
               
               <div className="row-1-cols">
-                <div className="indicator" onClick={handleEClick}>
-                  <div className="indicator-name" >
+                <div className="indicator "  >
+                  <div className="indicator-name">
                     <h1>E</h1>
                     <p>Environment</p>
                   </div>
-                  <div className="content">
+                  <div className="content"onClick={handleEClick}>
                     <div className="content-text">
                       <div className="recommendation">
                         <h1>Recommendations</h1>
@@ -159,8 +159,8 @@ const Admin = () => {
                   "Dec",
                 ]}
                 data={categories[selectedCategory].data}
-                height={400}
-                width={800}
+                height="300"
+                width="700"
                 xtitle=""
                 ytitle="Score"
               />
@@ -169,13 +169,13 @@ const Admin = () => {
           <div className="admin-right">
             <div className="total-score" onClick={handleTotalScoreClick}>
               <div className="Summary">
-                <img src={e_img} className="letter" alt="E" />
+                <img src={e_img} className="letter" alt="E" style={{height:'1.5vw',width:"1.5vw"}}/>
                 <img src={sum_img} className="operator" alt="+" />
-                <img src={s_img} className="letter" alt="S" />
+                <img src={s_img} className="letter" alt="S" style={{height:'1.5vw',width:"1.5vw"}}/>
                 <img src={sum_img} className="operator" alt="+" />
-                <img src={g_img} className="letter" alt="G" />
+                <img src={g_img} className="letter" alt="G" style={{height:'1.5vw',width:"1.5vw"}}/>
                 <img src={equal_img} className="operator" alt="=" />
-                <img src={esg} className="esg" alt="ESG" />
+                <img src={esg} className="letter" alt="ESG" style={{height:'1.5vw',width:"1.5vw"}}/>
               </div>
               <h1>Overall Score</h1>
               <h2>90</h2>
@@ -186,9 +186,8 @@ const Admin = () => {
               <ul>
                 <li>The score 68 is combined output of all the indicators falling under SDG 11. This score indicates the actual picture of City Ayodhya and also the areas where improvements are required. </li> 
                  <li>CSI serves as a benchmarking tool, allowing cities to compare their sustainability performance with peers regionally and globally, fostering healthy competition and knowledge exchange.</li> 
-                 <li>By highlighting the interplay between environmental health, social equity, and effective governance, CSI promotes integrated and balanced urban development strategies.</li> 
-                 <li> CSI empowers city leaders, policymakers, and citizens to take proactive measures towards building resilient, inclusive, and sustainable urban communities.</li>
-                 <li>CSI facilitates data-driven decision-making by providing comprehensive insights into urban sustainability, enabling cities to prioritize and implement effective strategies for long-term resilience and well-being.</li>
+                 <li>CSI promotes integrated and balanced urban development strategies.</li> 
+                 
                  
               </ul>
               <h1>Areas of Improvement</h1>

@@ -190,14 +190,15 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
     y: data[index],
   }));
 
-  const newHeight = height * 0.5;
+
 
   const options = {
+  height:height,
+  width:width,
     animationEnabled: true,
     title: {
       text: title,
-      fontSize: 18,
-      margin: 40,
+      fontSize: 13,
     },
     axisX: {
       title: xtitle,
@@ -247,8 +248,8 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
   };
 
   return (
-    <div className='chart z-index-low'>
-      <CanvasJSChart options={options} height={newHeight} width={width} />
+    <div className='esg-chart z-index-low' >
+      <CanvasJSChart options={options} />
     </div>
   );
 };
