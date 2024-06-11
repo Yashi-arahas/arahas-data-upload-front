@@ -1,12 +1,13 @@
 .know-container {
 	display: flex;
-	width: 100%;
+	width: 99%;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-  }
-  
-  .know-container:before {
+	position: relative;
+}
+
+.know-container:before {
 	content: ' ';
 	display: block;
 	position: absolute;
@@ -19,144 +20,180 @@
 	background-repeat: repeat;
 	background-position: center;
 	background-size: cover;
-  }
-  
-  .asset {
+	z-index: -1;
+}
+
+.asset {
 	display: flex;
 	width: 90%;
 	margin-top: 1vw;
 	background-color: rgb(244, 244, 244);
 	border: 1px solid #f07628;
 	border-radius: 10px;
-  }
-  
-  .map {
+}
+
+.know-map {
 	display: flex;
-	width: 30%;
-	height: 17vw;
+	width: 35vw;
+	height: 14vw;
 	z-index: 0;
-	margin: 1vw;
 	border: 2px solid #f07628;
-  }
-  
-  .assetContainer {
+}
+
+.assetContainer {
 	display: flex;
 	width: 100%;
 	align-items: center;
 	justify-content: center;
 	height: 100%;
-  }
-  
-  .assetHeading {
+}
+
+.assetHeading {
 	font-size: 2vw;
 	text-align: center;
 	font-weight: 600;
 	display: flex;
 	padding: 0.5vw;
 	align-items: center;
-  }
-  
-  .top-container {
+}
+
+.top-container {
 	width: 90%;
 	padding: 1vw;
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-around;
-	flex-direction: row;
+	flex-direction: column;
 	border: 1px solid #f07628;
 	border-radius: 10px;
-  }
-  .top-container-left{
+}
+
+.top-container-row {
 	display: flex;
-	width: 70%;
+	width: 100%;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 1vw;
+}
+
+.top-container-left {
+	display: flex;
+	width: 100%;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-  }
-  .circle {
+}
+
+.circle {
 	display: flex;
-	width: 80%;
+	width: 98%; /* Adjusted width */
+	align-items: center;
 	flex-wrap: wrap;
 	border-radius: 10px;
-	margin: 1vw;
-	justify-content: space-evenly;
+	
+	height: 14vw;
+	justify-content: center;
 	position: relative;
 	border: 1px solid #f07628;
-  }
-  
-  .cityProgress {
-	background-color: aliceblue;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: row;
-	width: 100%;
-  }
-  .city-left{
-	width: 30%;
-  }
-  .city-left p{
-	font-size:0.8vw;
-  }
-  .city-left ul li{
-	font-size: 0.8vw;
-  }
-  .city-left .sub-left{
+	background-color: #ffffff;
+	padding: 1vw;
+}
+
+.cityProgress {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	padding: 1vw;
-	border: 1px solid #f07628;
-	width: 100%;
-  }
+	justify-content:center; /* Added */
+	align-items: center; 
+}
 
-  .city-right{
+.city-left {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	padding: 0.5vw;
+}
+
+.city-left .sub-left {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 1vw;
+	width: 27.5vw;
+	height: 6vw;
+	border: 1px solid #f07628;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	background-color:white;
+	margin: 0.5vw;
+}
+
+.city-left .sub-left p {
+	font-size: 0.8vw;
+	font-weight: bold;
+	margin-bottom: 0.5vw;
+}
+
+.list-container {
+	display: flex;
+}
+
+.list-container ul {
+	padding: 0;
+	margin: 0 1vw;
+}
+
+.list-container ul li {
+	font-size: 0.8vw;
+	margin-bottom: 0.3vw;
+}
+
+.city-right {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	width: 60%;
-  }
-  .bar {
+	flex-direction: row;
+}
+
+.bar {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	width: 100%;
 	background-color: #f07628;
-  }
-  
-  .barSubcontainers {
+}
+
+.barSubcontainers {
 	display: flex;
 	width: 50%;
 	justify-content: space-evenly;
-  }
-  
-  .barText {
+}
+
+.barText {
 	display: flex;
 	width: 100%;
 	font-weight: 600;
 	font-size: 1vw;
 	padding-bottom: 5px;
-  }
-  
-  .circle-img {
+}
+
+.circle-img {
 	position: absolute;
-	bottom:0;
+	bottom: 0;
 	right: 2px;
 	cursor: pointer;
-  }
-  
-  .circle-img img {
+}
+
+.circle-img img {
 	height: 1vw;
-  }
-  
-  .hide {
+}
+
+.hide {
 	display: none;
-  }
-  
-  .circle-img:hover .hide {
+}
+
+.circle-img:hover .hide {
 	display: block;
-	top: 38%;
 	position: absolute;
 	top: 2.5vw;
 	right: 28%;
@@ -166,26 +203,29 @@
 	box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 	padding: 0.5vw;
 	width: 15vw;
-  }
-  
-  .circle-container {
+}
+
+.circle-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	padding: 0.5vw;
+	padding: 0.5vw 0.7vw;
+	border-radius: 5px;
+	background-color: #f07628;
+	color: white;
+	margin: 0.4vw;
+}
 
-  }
-  
-  .circle-text {
+.circle-text {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	font-size: 0.9vw;
-  }
-  
-  .iconContainer {
+}
+
+.iconContainer {
 	display: flex;
 	border-radius: 50%;
 	position: relative;
@@ -195,58 +235,57 @@
 	justify-content: center;
 	align-items: center;
 	border: 3px solid #f07628;
-  }
-  
-  .circleIcon {
+}
+
+.circleIcon {
 	height: 80%;
 	width: 80%;
-  }
-  
-  .circleKey {
+}
+
+.circleKey {
 	display: flex;
 	font-weight: 800;
-  }
-  
-  .marker {
+}
+
+.marker {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
 	flex-direction: row;
-	font-size: 0.8vw;
+	
 	justify-content: center;
-	padding: 0.5vw;
-  }
-  
-  .marker-icon img {
+	width: 100%;
+}
+
+.marker-icon img {
 	height: 3vw;
-	margin-right: 1vw;
-  }
-  
-  .markerContainer {
+}
+
+.markerContainer {
 	display: flex;
-	width:18% ;
+	width: 24%;
 	height: 5.5vw;
-	background-color: antiquewhite;
 	justify-content: center;
 	flex-direction: row;
+	margin: 0.4vw;
+	font-size: 1vw;
 	align-items: center;
-	margin: 0.5vw;
-	border-radius: 10px;
-	border: 3px solid #f07628;
-  }
-  
-  .markerText {
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	border-radius: 5px;
+	background-color: white;
+}
+
+.markerText {
 	display: flex;
+	color: #f07628;
 	font-weight: 600;
-	font-size: 0.7vw;
-	height: fit-content;
-	margin-top: 1vw;
-  }
-  
-  .markerValue {
+	font-size: 0.8vw;
+	margin-left: 1vw;
+}
+
+.markerValue {
 	display: flex;
 	padding: 0.4rem;
 	color: #f07628;
 	font: 600;
-  }
-  
+}

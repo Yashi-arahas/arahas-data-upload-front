@@ -92,7 +92,7 @@
   
   .admin-left .row-1 .row-1-cols .indicator-name h1 {
     color: white;
-    padding-top: 0.9vw;
+    padding-top: 1vw;
     font-size: 2.5vw;
     cursor: pointer;
     height: 80%;
@@ -113,7 +113,7 @@
     flex-direction: row;
     border: 1px solid #ef7401;
     margin: 0.5vw;
-    height: 7vw;
+    height: 6.9vw;
     background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
     border-radius: 20px 0px 0px 20px;
   }
@@ -207,7 +207,7 @@
   
   .admin-right .total-score p {
     text-align: center;
-    font-size: 0.7vw;
+    font-size: 0.5vw;
     height: 20%;
     color: black;
   }
@@ -445,7 +445,7 @@
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   border-radius: 10px;
   width: 100%;
-  height:25vw;
+  height:23.7vw;
   margin: 0;
 }
 .esg-chart:hover{

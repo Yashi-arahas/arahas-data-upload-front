@@ -3,7 +3,7 @@ import "./Card.css";
 
 const Card = ({ title, rating, source, icon }) => {
   return (
-    <div className="card">
+    <div className="know-card">
       <div className="icon">
         <img src={icon} alt="Icon" />
       </div>

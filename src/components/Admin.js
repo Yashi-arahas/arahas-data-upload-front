@@ -16,7 +16,7 @@ import sample from "./images/bg_video.mp4"; // Ensure the correct path to the vi
 
 const Admin = () => {
   const [selectedCategory, setSelectedCategory] = useState("Environment");
-  const history = useNavigate();
+  const navigate = useNavigate(); // Changed from history to navigate
   const videoRef = useRef(null);
 
   const categories = {
@@ -45,10 +45,10 @@ const Admin = () => {
   };
 
   const handleTotalScoreClick = () => {
-    history("/csi/sdg");
+    navigate("/csi/sdg"); // Changed from history to navigate
   };
   const handleEClick = () => {
-    history("/csi/report-map-page");
+    navigate("/csi/report-map-page"); // Changed from history to navigate
   };
 
   return (
@@ -159,15 +159,15 @@ const Admin = () => {
                   "Dec",
                 ]}
                 data={categories[selectedCategory].data}
-                height="300"
-                width="700"
+                height="350"
+                width="900"
                 xtitle=""
                 ytitle="Score"
               />
             </div>
           </div>
           <div className="admin-right">
-            <div className="total-score" onClick={handleTotalScoreClick}>
+            <div className="total-score" onClick={()=>handleTotalScoreClick}>
               <div className="Summary">
                 <img src={e_img} className="letter" alt="E" style={{height:'1.5vw',width:"1.5vw"}}/>
                 <img src={sum_img} className="operator" alt="+" />
@@ -175,33 +175,33 @@ const Admin = () => {
                 <img src={sum_img} className="operator" alt="+" />
                 <img src={g_img} className="letter" alt="G" style={{height:'1.5vw',width:"1.5vw"}}/>
                 <img src={equal_img} className="operator" alt="=" />
-                <img src={esg} className="letter" alt="ESG" style={{height:'1.5vw',width:"1.5vw"}}/>
+                <img src={esg} className="letter" alt="ESG"
+                style={{height:'1.5vw',width:"1.5vw"}}/>
+                </div>
+                <h1>Overall Score</h1>
+                <h2>90</h2>
+                <p>Click to View Individual Scores</p>
               </div>
-              <h1>Overall Score</h1>
-              <h2>90</h2>
-              <p>Click to View Individual Scores</p>
-            </div>
-            <div className="improvement">
-              <h1>Summary : </h1>
-              <ul>
-                <li>The score 68 is combined output of all the indicators falling under SDG 11. This score indicates the actual picture of City Ayodhya and also the areas where improvements are required. </li> 
-                 <li>CSI serves as a benchmarking tool, allowing cities to compare their sustainability performance with peers regionally and globally, fostering healthy competition and knowledge exchange.</li> 
-                 <li>CSI promotes integrated and balanced urban development strategies.</li> 
-                 
-                 
-              </ul>
-              <h1>Areas of Improvement</h1>
-              <ul>
-                <li>Air Quality</li>
-                <li>Green space</li>
-                <li>Land Use</li>
-              </ul>
+              <div className="improvement">
+                <h1>Summary : </h1>
+                <ul>
+                  <li>The score 68 is combined output of all the indicators falling under SDG 11. This score indicates the actual picture of City Ayodhya and also the areas where improvements are required. </li> 
+                   <li>CSI serves as a benchmarking tool, allowing cities to compare their sustainability performance with peers regionally and globally, fostering healthy competition and knowledge exchange.</li> 
+                   <li>CSI promotes integrated and balanced urban development strategies.</li> 
+                </ul>
+                <h1>Areas of Improvement</h1>
+                <ul>
+                  <li>Air Quality</li>
+                  <li>Green space</li>
+                  <li>Land Use</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
-};
-
-export default Admin;
+      </>
+    );
+  };
+  
+  export default Admin;
+  
