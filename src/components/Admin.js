@@ -13,6 +13,7 @@ import esg from "./images/ESG_ESG.png";
 import { ParetoChart } from "./GraphVisuals";
 import { Select, MenuItem } from "@mui/material";
 import sample from "./images/bg_video.mp4"; // Ensure the correct path to the video file
+import Footer from "./Footer";
 
 const Admin = () => {
   const [selectedCategory, setSelectedCategory] = useState("Environment");
@@ -199,6 +200,7 @@ const Admin = () => {
             </div>
           </div>
         </div>
+        <Footer/>
       </>
     );
   };

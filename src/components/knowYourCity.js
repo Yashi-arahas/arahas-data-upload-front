@@ -22,6 +22,7 @@ import GFCIcon from "./images/garbage-truck.png";
 import slum from "./images/slums.png"
 import park from "./images/open.png"
 import socio from "./images/socio.png"
+import Footer from "./Footer";
 
 const KnowYourCity = () => {
   const data = {
@@ -387,6 +388,7 @@ const KnowYourCity = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

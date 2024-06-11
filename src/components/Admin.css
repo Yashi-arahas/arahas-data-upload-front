@@ -308,11 +308,11 @@
 .parameter-tabs {
   display: flex;
   justify-content: flex-start;
-  margin: 1vw;
+  margin: 0.5vw;
 }
 
 .parameter-tab {
-  padding: 0.6vw 2vw;
+  padding: 0.5vw 2vw;
   cursor: pointer;
   background-color:white; /* Green */
   color: black;
@@ -410,7 +410,7 @@
 /* Other styles */
 .powerbi-link {
   position: fixed;
-  bottom: 20px;
+  top: 3.5vw;
   right: 20px;
   display: flex; 
   align-items: center;
