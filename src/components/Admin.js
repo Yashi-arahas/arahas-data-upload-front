@@ -160,8 +160,8 @@ const Admin = () => {
                   "Dec",
                 ]}
                 data={categories[selectedCategory].data}
-                height="350"
-                width="900"
+                height="300"
+                width="700"
                 xtitle=""
                 ytitle="Score"
               />
