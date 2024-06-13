@@ -115,16 +115,16 @@ const Login = () => {
         <video ref={videoRef} src={sample} className="video-bg" autoPlay loop muted />
       </div>
       <div className="content-container">
-        <header className="header">
+        <header className="header" style={{height:"4vw", display:"flex", alignItems:"center", padding:"1vw"}}>
           <img src={logo} className="login-logo" alt="Logo" />
           <nav className="nav">
             <NavLink to="kyc">
-              <Button variant="contained" color="warning">Know Your City</Button>
+              <Button variant="contained" color="warning" style={{padding:"0.5vw 1vw", fontSize:"0.8vw"}}>Know Your City</Button>
             </NavLink>
             <NavLink to="admin">
-              <Button variant="contained" color="warning">City Report Card</Button>
+              <Button variant="contained" color="warning" style={{padding:"0.5vw 1vw", fontSize:"0.8vw"}}>City Report Card</Button>
             </NavLink>
-            <Button variant="contained" color="warning" className={!loginToggle ? 'show' : 'hidden'} onClick={toggleLogin}>Login</Button>
+            <Button variant="contained" color="warning" className={!loginToggle ? 'show' : 'hidden'} onClick={toggleLogin} style={{padding:"0.5vw 1vw", fontSize:"0.8vw"}}>Login</Button>
           </nav>
         </header>
         <main className="main-content">

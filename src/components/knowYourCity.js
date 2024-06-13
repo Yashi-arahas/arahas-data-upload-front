@@ -376,7 +376,7 @@ const KnowYourCity = () => {
           </div>
         </div>
         <div className="asset">
-          <div className="assetContainer">
+         
             <div className="marker">
               {renderMarkers(
                 Object.entries(data.assets.marker).map(([key, value]) => ({
@@ -385,7 +385,7 @@ const KnowYourCity = () => {
                 }))
               )}
             </div>
-          </div>
+          
         </div>
       </div>
       <Footer/>
