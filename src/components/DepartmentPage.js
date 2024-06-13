@@ -536,10 +536,13 @@ const DepartmentPage = ({ departmentName, apiUrl, uploadUrl }) => {
           <div className="row">
             <div className="col-lg-9">
               <div className="pagetitle">
-                {subCategory.length > 0 && (
+                {departmentName==="Environment" && subCategory.length > 0 && (
                   <h4>{subCategory} Report</h4>
                 )}
-                {subCategory.length === 0 && (
+                {departmentName==="Health" && subCategory.length > 0 && (
+                  <h4>{subCategory} Report</h4>
+                )}
+                {(departmentName !=="Environment" || departmentName!=="Health")   && (
                   <h4>{departmentName} Department</h4>
                 )}
               </div>
