@@ -12,12 +12,11 @@ import equal_img from "./images/equal.png";
 import esg from "./images/ESG_ESG.png";
 import { ParetoChart } from "./GraphVisuals";
 import { Select, MenuItem } from "@mui/material";
-import sample from "./images/bg_video.mp4"; // Ensure the correct path to the video file
 import Footer from "./Footer";
 
 const Admin = () => {
   const [selectedCategory, setSelectedCategory] = useState("Environment");
-  const navigate = useNavigate(); // Changed from history to navigate
+  const navigate = useNavigate(); 
   const videoRef = useRef(null);
 
   const categories = {
@@ -37,7 +36,7 @@ const Admin = () => {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5; // Set the playback rate to 0.5 for half speed
+      videoRef.current.playbackRate = 0.5; 
     }
   }, []);
 
@@ -46,10 +45,10 @@ const Admin = () => {
   };
 
   const handleTotalScoreClick = () => {
-    navigate("/csi/sdg"); // Changed from history to navigate
+    navigate("/csi/sdg"); 
   };
   const handleEClick = () => {
-    navigate("/csi/report-map-page"); // Changed from history to navigate
+    navigate("/csi/report-map-page"); 
   };
 
   return (
@@ -137,7 +136,7 @@ const Admin = () => {
               <Select
                 value={selectedCategory}
                 onChange={handleCategoryChange}
-                style={{ width: "100%", height: "3vw", margin: "1vw" }}
+                style={{ width: "100%", height: "3vw", margin: "0.3vw" }}
               >
                 <MenuItem value="Environment">Environment</MenuItem>
                 <MenuItem value="Social">Social</MenuItem>
@@ -168,7 +167,7 @@ const Admin = () => {
             </div>
           </div>
           <div className="admin-right">
-            <div className="total-score" onClick={()=>handleTotalScoreClick}>
+            <div className="admin-total-score" onClick={handleTotalScoreClick}>
               <div className="Summary">
                 <img src={e_img} className="letter" alt="E" style={{height:'1.5vw',width:"1.5vw"}}/>
                 <img src={sum_img} className="operator" alt="+" />
@@ -177,7 +176,7 @@ const Admin = () => {
                 <img src={g_img} className="letter" alt="G" style={{height:'1.5vw',width:"1.5vw"}}/>
                 <img src={equal_img} className="operator" alt="=" />
                 <img src={esg} className="letter" alt="ESG"
-                style={{height:'1.5vw',width:"1.5vw"}}/>
+               />
                 </div>
                 <h1>Overall Score</h1>
                 <h2>90</h2>
@@ -190,7 +189,7 @@ const Admin = () => {
                    <li>CSI serves as a benchmarking tool, allowing cities to compare their sustainability performance with peers regionally and globally, fostering healthy competition and knowledge exchange.</li> 
                    <li>CSI promotes integrated and balanced urban development strategies.</li> 
                 </ul>
-                <h1>Areas of Improvement</h1>
+                <h1>Areas of Improvement : </h1>
                 <ul>
                   <li>Air Quality</li>
                   <li>Green space</li>

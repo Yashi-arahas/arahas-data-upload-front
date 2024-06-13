@@ -13,7 +13,7 @@ const p5 = [26.735415, 82.140133];
 
 const greenIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
-  iconSize: [16, 20],
+  iconSize: [10, 15],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
@@ -25,7 +25,7 @@ const Map = () => {
 		<div className='d-flex w-100 justify-content-center'>
 			<MapContainer
 				center={mapCenter}
-				zoom={11}
+				zoom={10}
 				attributionControl={false}
 				zoomControl={false}
 				doubleClickZoom={false}

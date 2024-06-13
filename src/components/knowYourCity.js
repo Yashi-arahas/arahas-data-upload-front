@@ -122,10 +122,10 @@ const KnowYourCity = () => {
           <CustomTooltip
             content={
               <ul>
-                <li>Ram Leela</li>
-                <li>Ram Navmi Mela</li>
-                <li>Sravan Jhula Mela</li>
-                <li>Parikramas</li>
+              <li>Government Hospital, Ayodhya</li> 
+<li>Anand Multispeciality Hospital</li>
+<li>Sewa Hospital and Research Centre</li>
+<li>Chiranjeev Hospital</li>
               </ul>
             }
           >

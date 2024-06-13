@@ -171,41 +171,43 @@
     display: flex;
     align-items: center;
     width: 35%;
-    margin-top: 0.5vw;
     flex-direction: column;
   }
   
-  .admin-right .total-score {
+  .admin-right .admin-total-score {
+    z-index: 1;
     cursor: pointer;
     width: 90%;
-    height: 9vw;
+    height: 10vw;
     padding: 0.5vw;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border: 1px solid #ef7401;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.95); 
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border: 1px solid #ef7401;
   }
   
-  .admin-right .total-score .Summary .letter{
+  
+  .admin-right .admin-total-score .Summary {
     margin: 1vw;
   }
   
-  .admin-right .total-score h1 {
+  .admin-right .admin-total-score h1 {
     font-size: 1vw;
     color: #ef7401;
     height: 80%;
   }
   
-  .admin-right .total-score h2 {
+  .admin-right .admin-total-score h2 {
     font-size: 0.8vw;
     color: black;
     font-weight: 700;
   }
   
-  .admin-right .total-score p {
+  .admin-right .admin-total-score p {
     text-align: center;
     font-size: 0.5vw;
     height: 20%;
@@ -214,6 +216,7 @@
   
   .admin-right .improvement {
     display: flex;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
     width: 90%;
     align-items: flex-start;
@@ -241,7 +244,6 @@
   .admin-right .improvement h1 {
     color: #ef7401;
     font-size: 1.5vw;
-    padding: 0.6vw;
   }
   
   .admin-right .improvement ul li {
@@ -253,19 +255,20 @@
     margin: 1vw;
   }
   
-  .admin-right .total-score .Summary .letter {
+  .admin-right .admin-total-score .Summary .letter {
+    margin: 0.5vw;
     height: 2.5vw;
     width: 2.5vw;
   }
   
-  .admin-right .total-score .Summary .operator {
+  .admin-right .admin-total-score .Summary .operator {
     height: 1vw;
     width: 1vw;
   }
   
-  .admin-right .total-score .Summary .esg {
-    height: 4vw;
-    width: 4vw;
+  .admin-right .admin-total-score .Summary .esg {
+    height: 5vw;
+    width: 6vw;
   }
     
   
