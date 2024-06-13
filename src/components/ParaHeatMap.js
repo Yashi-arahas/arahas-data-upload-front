@@ -140,7 +140,7 @@ const ParaHeatMap = ({ Parameter }) => {
     const markerSource = new VectorSource();
     markers.forEach(marker => {
       const villageData = formattedData.find(item => item.Village === marker.village);
-      const parameterValue = villageData ? (Parameter === 'temp' ? villageData.Temperature : (Parameter === 'rainfall' ? '1135 mm' : villageData.AQI)) : 'No data';
+      const parameterValue = villageData ? (Parameter === 'temp' ? villageData.Temperature : (Parameter === 'rainfall' ? '1135' : villageData.AQI)) : 'No data';
 
       const feature = new Feature({
         geometry: new Point(fromLonLat([marker.lon, marker.lat])),
