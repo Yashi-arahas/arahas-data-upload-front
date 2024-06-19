@@ -7,6 +7,7 @@
 
 body{
     font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
 }
 .canvasjs-chart-credit {
     display: none;

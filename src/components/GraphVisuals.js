@@ -308,8 +308,8 @@ export const LineBar = ({ title, categories, chartSeries, height, width, xtitle,
 // Function to render a pie chart
 export const PieChart = ({ title, labels, series, height }) => {
   return (
-    <div className='chart-container z-index-low'>
-      <ApexCharts className='chart'
+    <div className=' z-index-low'>
+      <ApexCharts 
         options={{
           chart: {
             type: 'pie',
@@ -321,10 +321,11 @@ export const PieChart = ({ title, labels, series, height }) => {
           },
           legend: {
             position: 'bottom',
+            show:false,
             onItemHover: {
               highlightDataSeries: true
             },
-            fontSize:"10"
+            fontSize:"6"
           },
           labels: labels,
           
@@ -344,12 +345,12 @@ export const PieChart = ({ title, labels, series, height }) => {
                 width: 200
               },
               legend: {
-                position: 'bottom',
+                position: 'none',
               }
             }
           }],
           dataLabels: {
-            offsetY: 20, // Adjust the offset as needed
+            offsetX:-10,// Adjust the offset as needed
             style: {
               fontSize: '0.6vw' // Adjust the font size as needed
             }

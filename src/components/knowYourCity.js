@@ -1,5 +1,6 @@
 import React from "react";
-import "./KnowYourCity.css";
+// import "./KnowYourCity.css";
+import "./KnowCity.css";
 import Map from "./Map";
 import area from "./images/area.png";
 import literacyRate from "./images/literacyRate.png";
@@ -23,7 +24,11 @@ import slum from "./images/slums.png"
 import park from "./images/open.png"
 import socio from "./images/socio.png"
 import Footer from "./Footer";
-
+import { PieChart } from "./GraphVisuals"; 
+import ram_mandir from "./images/ram-mandir.jpg"
+import sewage from "./images/sewage.png";
+import toilet from "./images/toilet.png"
+import home from "./images/home.png";
 const KnowYourCity = () => {
   const data = {
     assets: {
@@ -34,6 +39,20 @@ const KnowYourCity = () => {
         Wards: {
           value: 60,
         },
+        
+        Ghats: {
+          value: 4,
+        },
+        Nallahs: {
+          value: 1,
+        },
+        "Water bodies": {
+          value: 5,
+        },
+        
+        "Landfills & Dumpsite" : {
+          value: 0,
+        },
         "Geographical Area": {
           value: "35.56 Sq.km",
         },
@@ -43,36 +62,31 @@ const KnowYourCity = () => {
         "Current Population": {
           value: "4,65,206",
         },
-        "Population from Wards": {
+        "Wards Population": {
           value: "2,97,653",
         },
         "Floating Population": {
           value: "2,00,000",
         },
-        "Innovation/New Initiatives": {
+        "New Initiatives": {
           value: "9",
         },
-        "Water bodies": {
-          value: 5,
+        "Literacy Rate": {
+          value: "73.6%",
         },
-        Ghats: {
-          value: 4,
+        "4-lane Expressway": {
+          value:1,
         },
-        Nallahs: {
-          value: 1,
+        "A.P.M.C. Market": {
+          value: "2",
         },
-        Landfills: {
-          value: 0,
+        "Sewage Treatment Plant": {
+          value: "1",
         },
-        Dumpsite: {
-          value: 0,
-        },
-        // "Processing Plants":{
-        //   value:7
-        // },
+
       },
       marker: {
-        monuments: 8,
+        "Major Attractions": 9,
         "Nursing Homes": 188,
         "Fairs & Festivals": 4,
         Hotels: 17,
@@ -80,17 +94,21 @@ const KnowYourCity = () => {
         "Park & Open Spaces": "1311.60 Ha",
         Slums: 41,
         "Socio-Cultural Facilities": "7",
+        
       },
     },
   };
 
   const monumentsList = [
-    "Gulabvadi",
-    "Bahu Begam ka Makbara",
-    "Kuber Parvat",
-    "Sugriv Parvat",
-    "Mani Parvat",
-    "Haji Iqbal Tomb",
+    "Ram Mandir",
+    "Gulab Bari",
+    "Bahu Begum ka Maqbara",
+    "Guptar Ghat",
+    "Company Gardens",
+    "Hanuman Ghari",
+    "Kanak Bhawan",
+    "Nageshwarnath Mandir",
+    "Lakshman Kila"
   ];
 
   const formatString = (string) => {
@@ -103,7 +121,7 @@ const KnowYourCity = () => {
   const renderMarkers = (data) => {
     return data.map((obj) => (
       <div className="markerContainer" key={obj.key}>
-        {obj.key === "monuments" && (
+        {obj.key === "Major Attractions" && (
           <CustomTooltip
             content={
               <ul>
@@ -280,8 +298,24 @@ const KnowYourCity = () => {
     return data.map((obj) => (
       <div className="circle-container" key={obj.key}>
         <div className="circle-text">
-          <span>{obj.value.value}</span>
-          <span className="circleKey">{formatString(obj.key)}</span>
+        <span style={{
+  backgroundColor: "#f07628",
+  color: "white",
+  padding: "0.5vw 1vw",
+  borderRadius: "5px",
+  fontWeight: "700",
+  width: "7vw",
+  fontSize:"0.8vw",
+  textAlign: "center",
+  background: "linear-gradient(to right, #ff6361, orange)",
+  backgroundSize: "90% 100%",
+  animation: "animate 2s  infinite",
+  animationDirection:"normal"
+}}>
+  {obj.value.value}
+</span>
+
+          <span className="circleKey" style={{marginTop:"0.5vw"}}>{formatString(obj.key)}</span>
         </div>
       </div>
     ));
@@ -293,12 +327,13 @@ const KnowYourCity = () => {
       <div className="know-container">
         <div className="assetHeading">Ayodhya City Assets</div>
         <div className="top-container">
-          <h1 style={{ fontSize: "1.2vw", fontWeight: "700" }}>
-            Ayodhya (M. Corp.) Demographics
-          </h1>
+          
           <div className="top-container-row">
             <div className="top-container-left">
               <div className="circle">
+                <h1 style={{ fontSize: "1vw", fontWeight: "700" }}>
+            Ayodhya (M. Corp.) Demographics
+          </h1>
                 {renderCircles(
                   Object.entries(data.assets.circle).map(([key, value]) => ({
                     key,
@@ -311,48 +346,8 @@ const KnowYourCity = () => {
                 </div>
               </div>
             </div>
-            <div className="know-map">
-              <Map />
-            </div>
-          </div>
-          <h1 style={{ fontSize: "1.2vw", fontWeight: "700" }}>
-            City Progress
-          </h1>
-          <div className="cityProgress">
-            <div className="city-left">
-              <div className="sub-left">
-                <p>Solid Waste Processed (in TPD)</p>
-                <div className="list-container">
-                  <ul>
-                    <li>Domestic Hazardous : 5.43</li>
-                    <li>Dry : 72.39</li>
-                  </ul>
-                  <ul>
-                    <li>Sanitary : 3.62</li>
-                    <li>Wet : 99.53</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="sub-left">
-                <p>Sewage Waste (in MLD)</p>
-                <div className="list-container">
-                  <ul>
-                    <li>Collected Waste : 20.97</li>
-                    <li>Treated Waste : 20.97</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="sub-left">
-                <p>CT/PT</p>
-                <div className="list-container">
-                  <ul>
-                    <li>Functional: 62</li>
-                    <li>Non-Functional: 0</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <div className="cityProgress">
+              <h1 style={{ fontSize: "1vw", fontWeight: "700" }}> City Progress</h1>
             <div className="city-right">
               <Card
                 title="Jal Jeevan Mission Ranking"
@@ -372,9 +367,98 @@ const KnowYourCity = () => {
                 source="Swachh Survekshan Mission"
                 icon={GFCIcon}
               />
+              
+              <Card
+                title="CT/PT"
+                rating="Functional : 62/62"
+                source="Swachh Bharat Mission"
+                icon={toilet}
+              />
+               
+               <Card
+                title="Jal Kal Vibhag"
+                rating="Quantity of Water Supply : 39.55 MLD"
+                
+                source="Jal Kal Vibhag 2020"
+                
+                icon={JJMIcon}
+              />
+              <Card
+                title="Houses Allocated : 362"
+                rating="Houses Built : 384"
+                source="Pradhan Mantri Awas Yojana"
+                icon={home}
+              />
+              <Card
+                rating=
+                {<PieChart
+                title="Solid Waste Processed (in TPD)"
+                labels={["Domestic Hazardous", "Dry", "Sanitary", "Wet"]}
+                series={[5.43,72.39, 3.62, 99.53]}
+                height={150}
+               
+              />}
+                source="Swachh Bharat Mission"
+                // icon={GFCIcon}
+              />
+              <Card
+                rating=
+                {
+               <PieChart
+                title="Electricity Consumption (KWH)"
+                labels={["Residential", "Commercial", "Industrial", "Agricultural" , "Others"]}
+                series={[15343985,2541529,144440,4675,2100829]}
+                height={150}
+               
+              />
+             }
+                source="Vidhut Vibhag Ayodhya"
+                // icon={GFCIcon}
+              />
+              
+              <Card
+                rating=
+                {<PieChart
+                title="Industries Statistics"
+                labels={["Manufacturing", "Services"]}
+                series={[388,648]}
+                height={150}
+               
+              />}
+                source="Ayodhya Industrial Dept 2020"
+                // icon={GFCIcon}
+              />
+               <Card
+                rating=
+                {<PieChart
+                title="Waste Generation"
+                labels={["Residential Refuse", "Commercial Refuse", "Institutional Refuse"]}
+                series={[238800,119400,59700]}
+                height={150}
+               
+              />}
+                source="Ayodhya Industrial Dept 2020"
+                // icon={GFCIcon}
+              />
             </div>
           </div>
+          <div className="know-right-right">
+          <div className="know-map">
+              <Map />
+            </div>
+            <div >
+              <img src={ram_mandir} style={{height:"40vw", width:"25vw", marginTop:"2vw", border:"1px solid #f07628"}}/>
+            </div>
+          </div>
+          
         </div>
+            
+          </div>
+          {/* <h1 style={{ fontSize: "1.2vw", fontWeight: "700" }}>
+            City Progress
+          </h1> */}
+          
+          
         <div className="asset">
          
             <div className="marker">

@@ -84,16 +84,20 @@ const ReportMap = () => {
             <div className="image-slider">
               <ImageSlider images={aqi_images} />
             </div>
-          )}
+          )}*/}
           {selectedParameter === "waste" && (
             <div className="image-slider">
               <ImageSlider images={waste_images} />
             </div>
-          )} */}
-           <iframe title="Ayodhya_AQI - Copy" width="730px" height="450px" style={{boxShadow:"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", padding:"1vw", backgroundColor:"white"}} src="https://app.powerbi.com/reportEmbed?reportId=8072f015-6879-429c-988c-7844fe9b288c&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae" frameborder="0" allowFullScreen="true"></iframe>
+          )} 
+          {selectedParameter !== "waste" && (
+             <iframe title="Ayodhya_AQI - Copy" width="730px" height="450px" style={{boxShadow:"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", padding:"1vw", backgroundColor:"white"}} src="https://app.powerbi.com/reportEmbed?reportId=8072f015-6879-429c-988c-7844fe9b288c&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae&pageName=ReportSection4" frameborder="0" allowFullScreen="true"></iframe>
+          )} 
+          
+           
         </div>
         {/* <div className="powerbi-link">
-          <a href="https://app.powerbi.com/groups/me/reports/8072f015-6879-429c-988c-7844fe9b288c/3f76fa52298544041400?experience=power-bi">
+          <a href="https://app.powerbi.com/groups/me/reports/8072f015-6879-429c-988c-7844fe9b288c/8c4c77f67553e0905c40?experience=power-bi" >
             <img src={powerbi} alt="Power BI" />
             <p>View Full Dashboard</p>
           </a>

@@ -13,11 +13,98 @@ import esg from "./images/ESG_ESG.png";
 import { ParetoChart } from "./GraphVisuals";
 import { Select, MenuItem } from "@mui/material";
 import Footer from "./Footer";
+import renewable from "./images/renewable-energy.png"
+import air from "./images/air.png";
+import water from "./images/water.png";
+import earth from "./images/earth.png";
+import climate from "./images/climate.png";
+import  more from "./images/share.png"
+import  n from "./images/n-letter.png"
+import  s from "./images/s-letter.png"
+import  a from "./images/a.png"
+import home  from "./images/home.png"
+import health from "./images/healthcare.png"
+import transport from "./images/transport.png"
+import cultue from "./images/culture.png"
+import gov from "./images/governance.png"
+import rights from "./images/human-rights.png"
+import corruption from "./images/corruption.png"
 
 const Admin = () => {
   const [selectedCategory, setSelectedCategory] = useState("Environment");
   const navigate = useNavigate(); 
   const videoRef = useRef(null);
+  const [activeTab, setActiveTab] = useState('E');
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const indicators = {
+    E: [
+      {
+        text: 'Air Quality',
+        icon: air,
+      },
+      {
+        text: 'Water Conservation & Preservation',
+        icon: water,
+      },
+      {
+        text: 'Earth',
+        icon: earth,
+      },
+      {
+        text: 'Fire and Energy',
+        icon: renewable,
+      },
+      {
+        text: 'Climate Quality',
+        icon: climate,
+      },
+    ],
+    S: [
+      
+
+
+      {
+        text: 'Housing',
+        icon: home,
+      },
+      {
+        text: 'Healthcare',
+        icon: health,
+      },
+      {
+        text: 'Transport',
+        icon: transport,
+      },
+      {
+        text: "Cultural preservation",
+        icon: cultue,
+      },
+    ],
+    G: [
+      
+
+
+      {
+        text: 'Government Schemes',
+        icon: gov
+      },
+      {
+        text: 'Anti-Corruption',
+        icon: corruption
+      },
+      {
+        text: 'Citizen Rights (Human Rights)',
+        icon: rights
+      },
+    ],
+  };
+  
+  
+  
 
   const categories = {
     Environment: {
@@ -61,82 +148,88 @@ const Admin = () => {
         </div>
         <div className="admin-sub-container">
           <div className="admin-left">
-            <div className="row-1">
-              
-              <div className="row-1-cols">
-                <div className="indicator "  >
-                  <div className="indicator-name">
-                    <h1>E</h1>
-                    <p>Environment</p>
-                  </div>
-                  <div className="content"onClick={handleEClick}>
-                    <div className="content-text">
-                      <div className="recommendation">
-                        <h1>Recommendations</h1>
-                        <ul>
-                          <li>first</li>
-                          <li>second</li>
-                          
-                        </ul>
-                        <p style={{fontSize:"0.8vw" , marginBottom:"0.5vw"}}>Click to View Report and Map.</p>
-                      </div>
-                     
-                      <div className="score">
-                        <h1>Score</h1>
-                        <p>80</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="indicator">
-                  <div className="indicator-name">
-                    <h1>S</h1>
-                    <p>Social</p>
-                  </div>
-                  <div className="content">
-                    <div className="content-text">
-                      <div className="recommendation">
-                        <h1>Recommendations</h1>
-                        <ul>
-                          <li>first</li>
-                          <li>second</li>
-                        </ul>
-                      </div>
-                      <div className="score">
-                        <h1>Score</h1>
-                        <p>80</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="indicator">
-                  <div className="indicator-name">
-                    <h1>G</h1>
-                    <p>Governance</p>
-                  </div>
-                  <div className="content">
-                    <div className="content-text">
-                      <div className="recommendation">
-                        <h1>Recommendations</h1>
-                        <ul>
-                          <li>first</li>
-                          <li>second</li>
-                        </ul>
-                      </div>
-                      <div className="score">
-                        <h1>Score</h1>
-                        <p>80</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  
+
+          <div className="row-1">
+  <div className="row-1-cols">
+    <div className="indicator">
+      <div className="name-container">
+      <div className={`indicator-name ${activeTab === 'E' ? 'tab-active' : ''}`} onClick={() => handleTabClick('E')}>
+
+        <img src={n} style={{height:"2.5vw", width:"2.5vw"}}/>
+        <h1>Nature</h1>
+        <span style={{backgroundColor:"#ef7401", borderRadius:"100%", fontSize:"1vw", fontWeight:"700",padding:"0.4vw 0.5vw" ,color:"white"}}>80</span>
+      </div>
+      <div className={`indicator-name ${activeTab === 'S' ? 'tab-active' : ''}`} onClick={() => handleTabClick('S')}>
+
+      <img src={s} style={{height:"2.5vw", width:"2.5vw"}}/>
+        <h1>Society</h1>
+        <span style={{backgroundColor:"#ef7401", borderRadius:"100%", fontSize:"1vw", fontWeight:"700", padding:"0.4vw 0.5vw",color:"white"}}>60</span>
+      </div>
+      <div className={`indicator-name ${activeTab === 'G' ? 'tab-active' : ''}`} onClick={() => handleTabClick('G')}>
+
+      <img src={a} style={{height:"2.5vw", width:"2.5vw"}}/>
+        <h1>Administration</h1>
+        <span style={{backgroundColor:"#ef7401", borderRadius:"100%", fontSize:"1vw", fontWeight:"700",padding:"0.4vw 0.5vw", color:"white"}}>72</span>
+      </div>
+      </div>
+      <div className="content">
+    {activeTab === 'E' && (
+      <>
+          {indicators.E.map((indicator, index) => (
+            <div key={index} className="indicator-box">
+              <img src={indicator.icon} style={{height:"2.5vw",width:"2.5vw"}}/>
+              <span>{indicator.text}</span>
             </div>
-            <div className="row-2">
+          ))}
+      </>
+    )}
+    {activeTab === 'S' && (
+      <>
+          {indicators.S.map((indicator, index) => (
+            <div key={index} className="indicator-box">
+              <img src={indicator.icon} style={{height:"3vw",width:"3vw"}}/>
+              <span>{indicator.text}</span>
+            </div>
+          ))}
+      </>
+    )}
+    {activeTab === 'G' && (
+      <>
+          {indicators.G.map((indicator, index) => (
+            <div key={index} className="indicator-box">
+              <img src={indicator.icon} style={{height:"3vw",width:"3vw"}}/>
+              <span>{indicator.text}</span>
+            </div>
+          ))}
+      </>
+    )}
+  </div>
+  <img src={more} style={{height:"2vw", width:"2vw", zIndex:"1", cursor:"pointer"}} onClick={() => {
+  if (activeTab === 'E') {
+    window.location.href = '/csi/report-map-page';
+  } 
+  // else if (activeTab === 'S') {
+  //   window.location.href = '/S';
+  // } else if (activeTab === 'G') {
+  //   window.location.href = '/G';
+  // }
+}} />
+      
+    </div>
+          
+      </div>
+      </div>
+      
+      
+
+
+            <div className="row-2-top">
+              <div className="row-2" >
               <Select
                 value={selectedCategory}
                 onChange={handleCategoryChange}
-                style={{ width: "100%", height: "3vw", margin: "0.3vw" }}
+                style={{ width: "100%", height: "2.5vw", margin: "0.3vw" }}
               >
                 <MenuItem value="Environment">Environment</MenuItem>
                 <MenuItem value="Social">Social</MenuItem>
@@ -159,29 +252,33 @@ const Admin = () => {
                   "Dec",
                 ]}
                 data={categories[selectedCategory].data}
-                height="300"
-                width="700"
+                height="160"
+                width="450"
                 xtitle=""
                 ytitle="Score"
               />
-            </div>
-          </div>
-          <div className="admin-right">
-            <div className="admin-total-score" onClick={handleTotalScoreClick}>
+              </div>
+              <div className="admin-total-score" onClick={handleTotalScoreClick}>
               <div className="Summary">
-                <img src={e_img} className="letter" alt="E" style={{height:'1.5vw',width:"1.5vw"}}/>
+                <img src={n} className="letter" alt="E" />
                 <img src={sum_img} className="operator" alt="+" />
-                <img src={s_img} className="letter" alt="S" style={{height:'1.5vw',width:"1.5vw"}}/>
+                <img src={s} className="letter" alt="S" />
                 <img src={sum_img} className="operator" alt="+" />
-                <img src={g_img} className="letter" alt="G" style={{height:'1.5vw',width:"1.5vw"}}/>
+                <img src={a} className="letter" alt="G"/>
                 <img src={equal_img} className="operator" alt="=" />
-                <img src={esg} className="letter" alt="ESG"
+                <img src={esg} className="esg" alt="ESG" style={{height:"4vw", width:"4vw"}}
                />
                 </div>
                 <h1>Overall Score</h1>
                 <h2>90</h2>
                 <p>Click to View Individual Scores</p>
               </div>
+              
+            </div>
+            
+          </div>
+          <div className="admin-right">
+            
               <div className="improvement">
                 <h1>Summary : </h1>
                 <ul>
