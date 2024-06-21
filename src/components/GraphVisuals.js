@@ -195,6 +195,7 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
   const options = {
   height:height,
   width:width,
+  
     animationEnabled: true,
     title: {
       text: title,

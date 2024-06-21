@@ -253,7 +253,7 @@ const Admin = () => {
                 ]}
                 data={categories[selectedCategory].data}
                 height="160"
-                width="450"
+                width="440"
                 xtitle=""
                 ytitle="Score"
               />

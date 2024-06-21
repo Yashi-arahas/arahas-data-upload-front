@@ -325,7 +325,7 @@ const KnowYourCity = () => {
     <>
       <Header />
       <div className="know-container">
-        <div className="assetHeading">Ayodhya City Assets</div>
+        <div className="assetHeading">About Ayodhya</div>
         <div className="top-container">
           
           <div className="top-container-row">

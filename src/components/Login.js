@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { MuiOtpInput } from 'mui-one-time-password-input'
 import axios from "axios";
-import { Button, Checkbox, TextField, Select, MenuItem, InputLabel, FormControl, IconButton } from "@mui/material";
+import { Button, Checkbox, TextField, Select, MenuItem, InputLabel, FormControl, IconButton, FormControlLabel, Switch } from "@mui/material";
 import Lottie from "lottie-react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import sample from './images/bg_video_csi.mp4';
@@ -15,6 +16,10 @@ const Login = () => {
   const navigate = useNavigate();
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [passShow, setPassShow] = useState(false);
+  const [deptToggle, setDeptToggle]=useState(false);
+  const [name, setName] = useState('');
+const [number, setNumber] = useState('');
+const [otp, setOtp] = useState('');
   const [inpval, setInpval] = useState({
     email: "",
     password: "",
@@ -30,7 +35,26 @@ const Login = () => {
       videoRef.current.playbackRate = 0.5;
     }
   }, []);
-
+  const sampleCredentials = {
+    name: 'arahas',
+    number: '1234567890',
+    otp: '1234',
+  };
+  const loginotpuser = () => {
+    if (
+      name === sampleCredentials.name &&
+      number === sampleCredentials.number &&
+      otp === sampleCredentials.otp
+    ) {
+      setLoading(true);
+      setTimeout(() => {
+        navigate('/csi/overall-score');
+      }, 1000);
+    } else {
+      setLoading(false);
+      alert('Invalid credentials');
+    }
+  };
   const setVal = (e) => {
     const { name, value } = e.target;
     setInpval((prev) => ({
@@ -38,7 +62,9 @@ const Login = () => {
       [name]: value,
     }));
   };
-
+  const handleChange = (newValue) => {
+    setOtp(newValue)
+  }
   const handleLoginResponse = (response) => {
     if (response.status === 201) {
       localStorage.setItem("userdatatoken", response.data.result.token);
@@ -133,7 +159,10 @@ const Login = () => {
             <Button className="close-button" onClick={toggleLogin}>
               <span className="pi pi-times"></span>
             </Button>
-            <TextField
+            {deptToggle &&(
+              <>
+              <FormControlLabel control={<Switch checked={deptToggle} onChange={(event) => setDeptToggle(event.target.checked)} />} label="Department Login" />
+              <TextField
               label="Email"
               variant="outlined"
               name="email"
@@ -188,6 +217,37 @@ const Login = () => {
             <Button variant="contained" color="warning" onClick={loginuser} disabled={loading}>
               {loading ? <Lottie animationData={loding_ani} /> : "Login"}
             </Button>
+              </>
+            )}
+            {!deptToggle && (
+  <>
+    <FormControlLabel
+      control={<Switch checked={deptToggle} onChange={(event) => setDeptToggle(event.target.checked)} />}
+      label="Department Login"
+    />
+    <TextField
+      label="Full Name"
+      variant="outlined"
+      name="name"
+      fullWidth
+      value={name}
+      onChange={(event) => setName(event.target.value)}
+    />
+    <TextField
+      label="Phone Number"
+      variant="outlined"
+      name="number"
+      fullWidth
+      value={number}
+      onChange={(event) => setNumber(event.target.value)}
+    />
+     <MuiOtpInput value={otp} onChange={handleChange}  ></MuiOtpInput>
+    <Button variant="contained" color="warning" onClick={loginotpuser} disabled={loading}>
+              {loading ? <Lottie animationData={loding_ani} /> : "submit"}
+            </Button>
+  </>
+)}
+            
            
           </div>
         </main>

@@ -11,6 +11,7 @@ import WeatherApi from './components/WeatherApi';
 import OtherIndicator from './components/OtherIndicator';
 import KnowYourCity from './components/knowYourCity';
 import Login_VCSI from './components/Login_VCSI';
+import OverallScore from './components/OverallScore';
 
 function App() {
   return (
@@ -173,6 +174,8 @@ function App() {
         <Route path="/vcsi/aqi" element={<AqiPage/>}></Route>
         <Route path="/csi/report-map-page" element={<ReportMap/>}></Route>
         <Route path="/vcsi/report-map-page" element={<ReportMap/>}></Route>
+        <Route path="/csi/overall-score" element={<OverallScore/>}></Route>
+        <Route path="/vcsi/overall-score" element={<OverallScore/>}></Route>
       </Routes>
      
   );
