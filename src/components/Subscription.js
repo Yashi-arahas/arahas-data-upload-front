@@ -41,9 +41,8 @@ const Subscription = () => {
   return (
     <div className="container">
       <h1 className="page-title">Subscription Plans</h1>
-      <Grid container spacing={4} className="subscription-grid">
+      <div className="subscription-grid">
         {plans.map((plan, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
             <div className="card">
               <div className="card-content">
                 <div className="card-title">{plan.name}</div>
@@ -58,7 +57,10 @@ const Subscription = () => {
               <div className="card-actions">
                 <Button
                   variant="contained"
-                  color="primary"
+                  style={{
+                    color:"white",
+                    backgroundColor:"#ef7401"
+                  }}
                   className="button"
                   onClick={() => handleBuyNow(plan.name)}
                 >
@@ -66,12 +68,9 @@ const Subscription = () => {
                 </Button>
               </div>
             </div>
-          </Grid>
         ))}
-        {/* One-Day Free Trial Card */}
        
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
+      </div>
           <div className="one-card">
             <div className="one-card-content">
               <div className="one-card-title">One-Day Free Trial</div>
@@ -87,7 +86,6 @@ const Subscription = () => {
               </Button>
             </div>
           </div>
-        </Grid>
     </div>
   );
 };
