@@ -1,6 +1,7 @@
+// Subscription.js
 import React from 'react';
 import { Grid, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom'; // Import useHistory hook
+import { useNavigate } from 'react-router-dom';
 import './Subscription.css';
 
 const Subscription = () => {
@@ -27,15 +28,14 @@ const Subscription = () => {
     },
   ];
 
-  const history = useNavigate(); // Initialize useHistory hook
+  const navigate = useNavigate();
 
-  const handleBuyNow = (planName) => {
-    alert(`You have chosen the ${planName}`);
-    // Implement the actual buy logic here
+  const handleBuyNow = (price) => {
+    navigate('/csi/payment', { state: { price } });
   };
 
   const handleStartFreeTrial = () => {
-    history('/csi/admin'); // Redirect to "/csi/admin" route
+    navigate('/csi/payment', { state: { price: 0 } });
   };
 
   return (
@@ -43,49 +43,48 @@ const Subscription = () => {
       <h1 className="page-title">Subscription Plans</h1>
       <div className="subscription-grid">
         {plans.map((plan, index) => (
-            <div className="card">
-              <div className="card-content">
-                <div className="card-title">{plan.name}</div>
-                <div className="card-subtitle">Validity: {plan.validity}</div>
-                <div className="card-actual-price">
-                  Price: ₹{plan.actualPrice}
-                </div>
-                <div className="card-price">
-                  Special Price: ₹{plan.sellingPrice}
-                </div>
+          <div className="card" key={index}>
+            <div className="card-content">
+              <div className="card-title">{plan.name}</div>
+              <div className="card-subtitle">Validity: {plan.validity}</div>
+              <div className="card-actual-price">
+                Price: ₹{plan.actualPrice}
               </div>
-              <div className="card-actions">
-                <Button
-                  variant="contained"
-                  style={{
-                    color:"white",
-                    backgroundColor:"#ef7401"
-                  }}
-                  className="button"
-                  onClick={() => handleBuyNow(plan.name)}
-                >
-                  Buy Now
-                </Button>
+              <div className="card-price">
+                Special Price: ₹{plan.sellingPrice.toFixed(2)}
               </div>
             </div>
-        ))}
-       
-      </div>
-          <div className="one-card">
-            <div className="one-card-content">
-              <div className="one-card-title">One-Day Free Trial</div>
-            </div>
-            <div className="one-card-actions">
+            <div className="card-actions">
               <Button
                 variant="contained"
-                color="primary"
+                style={{
+                  color: "white",
+                  backgroundColor: "#ef7401"
+                }}
                 className="button"
-                onClick={handleStartFreeTrial}
+                onClick={() => handleBuyNow(plan.sellingPrice)}
               >
-                Start Free Trial
+                Buy Now
               </Button>
             </div>
           </div>
+        ))}
+      </div>
+      <div className="one-card">
+        <div className="one-card-content">
+          <div className="one-card-title">One-Day Free Trial</div>
+        </div>
+        <div className="one-card-actions">
+          <Button
+            variant="contained"
+            color="primary"
+            className="button"
+            onClick={handleStartFreeTrial}
+          >
+            Start Free Trial
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

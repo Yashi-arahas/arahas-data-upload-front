@@ -133,4 +133,56 @@ body {
       padding: 8px 16px;
     }
   }
+
+  .payment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .payment-animation {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .payment-animation h1{
+    color: #ef7401;
+    font-size: 1.5vw;
+
+  }
+  
+  
+  .payment-form {
+    display: flex;
+    margin: 1vw;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px; /* Adjust as needed */
+    gap: 1vw;
+    font-size: 1vw;
+    background-color: white;
+    padding: 0vw 4vw 1vw 4vw;
+  }
+  
+  .form-field {
+    flex: 1 1 calc(50% - 16px); /* Two fields per row with a gap */
+    min-width: calc(50% - 16px);
+    margin-bottom: 16px;
+  }
+  
+  .pay-button {
+    background-color: #ef7401;
+    color: white;
+    align-self: center;
+    width: fit-content;
+    padding: 10px 20px;
+  }
   

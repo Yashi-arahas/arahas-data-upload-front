@@ -13,6 +13,7 @@ import KnowYourCity from './components/knowYourCity';
 import Login_VCSI from './components/Login_VCSI';
 import OverallScore from './components/OverallScore';
 import Subscription from './components/Subscription';
+import PaymentForm from './components/PaymentForm';
 
 function App() {
   return (
@@ -178,6 +179,7 @@ function App() {
         <Route path="/csi/overall-score" element={<OverallScore/>}></Route>
         <Route path="/vcsi/overall-score" element={<OverallScore/>}></Route>
         <Route path="/csi/subscription" element={<Subscription/>}></Route>
+        <Route path="/csi/payment" element={<PaymentForm/>}></Route>
       </Routes>
      
   );
