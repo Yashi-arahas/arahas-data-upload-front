@@ -1,0 +1,135 @@
+/* subscriptionStyles.css */
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .page-title {
+    font-size: 2.5vw;
+    color: #ef7401;
+    margin: 1vw;
+    text-align: center;
+  }
+  
+  .subscription-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    width: 28vw;
+  }
+  
+  .card-content {
+    padding: 1vw;
+  }
+  
+  .card-title {
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .card-subtitle {
+    font-size: 1vw;
+    color: #666;
+    margin-bottom: 3vw;
+  }
+  .card-actual-price{
+    text-decoration:line-through;
+    font-size: 1vw;
+  }
+  .card-price {
+    font-size: 1vw;
+    font-weight: bold;
+    color: #ef7401;
+    margin-top: 10px;
+  }
+  
+  .card-actions {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+  
+  .button {
+    background-color: #ef7401;
+    color: white;
+    border: none;
+    padding: 0.2vw 2vw;
+    font-size: 1vw;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #d66000;
+  }
+  .one-card{
+    background-color: white;
+    padding: 1vw;
+    margin: 1vw;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-direction: row;
+    border: 1px solid #ccc;
+  }
+  .one-card .button{
+    background-color: #ef7401;
+    color: white;
+    border: none;
+    padding: 0.2vw 2vw;
+    font-size: 1vw;
+    font-weight: bold;
+    margin-left: 1vw;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .one-card-title{
+    font-size: 1vw;
+    font-weight: bold;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .page-title {
+      font-size: 4vw;
+    }
+  
+    .card-title {
+      font-size: 3vw;
+    }
+  
+    .card-subtitle {
+      font-size: 1.5vw;
+    }
+  
+    .card-price {
+      font-size: 2vw;
+    }
+  
+    .button {
+      font-size: 1.5vw;
+      padding: 8px 16px;
+    }
+  }
+  

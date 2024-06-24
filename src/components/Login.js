@@ -1,25 +1,34 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { MuiOtpInput } from 'mui-one-time-password-input'
+import { MuiOtpInput } from "mui-one-time-password-input";
 import axios from "axios";
-import { Button, Checkbox, TextField, Select, MenuItem, InputLabel, FormControl, IconButton, FormControlLabel, Switch } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  IconButton,
+} from "@mui/material";
 import Lottie from "lottie-react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import sample from './images/bg_video_csi.mp4';
+import sample from "./images/bg_video_csi.mp4";
 import logo from "./images/arahas-logo.webp";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import loding_ani from "./animations/loading.json";
-import './LoginModule.css'; // Import the CSS file
+import "./LoginModule.css"; // Import the CSS file
 import RegisterModal from "./RegisterModel";
 
 const Login = () => {
   const navigate = useNavigate();
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [passShow, setPassShow] = useState(false);
-  const [deptToggle, setDeptToggle]=useState(false);
-  const [name, setName] = useState('');
-const [number, setNumber] = useState('');
-const [otp, setOtp] = useState('');
+  const [deptToggle, setDeptToggle] = useState(false);
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const [otp, setOtp] = useState("");
   const [inpval, setInpval] = useState({
     email: "",
     password: "",
@@ -35,11 +44,13 @@ const [otp, setOtp] = useState('');
       videoRef.current.playbackRate = 0.5;
     }
   }, []);
+
   const sampleCredentials = {
-    name: 'arahas',
-    number: '1234567890',
-    otp: '1234',
+    name: "arahas",
+    number: "1234567890",
+    otp: "1234",
   };
+
   const loginotpuser = () => {
     if (
       name === sampleCredentials.name &&
@@ -48,13 +59,14 @@ const [otp, setOtp] = useState('');
     ) {
       setLoading(true);
       setTimeout(() => {
-        navigate('/csi/overall-score');
+        navigate("/csi/overall-score");
       }, 1000);
     } else {
       setLoading(false);
-      alert('Invalid credentials');
+      alert("Invalid credentials");
     }
   };
+
   const setVal = (e) => {
     const { name, value } = e.target;
     setInpval((prev) => ({
@@ -62,9 +74,11 @@ const [otp, setOtp] = useState('');
       [name]: value,
     }));
   };
+
   const handleChange = (newValue) => {
-    setOtp(newValue)
-  }
+    setOtp(newValue);
+  };
+
   const handleLoginResponse = (response) => {
     if (response.status === 201) {
       localStorage.setItem("userdatatoken", response.data.result.token);
@@ -82,7 +96,7 @@ const [otp, setOtp] = useState('');
           navigate("/csi/land-management");
         } else if (department === "Urban_heritage") {
           navigate("/csi/urban-heritage");
-        } else if(department==="Environment"){
+        } else if (department === "Environment") {
           navigate("/csi/environment");
         } else {
           navigate("/csi/tourism");
@@ -138,117 +152,189 @@ const [otp, setOtp] = useState('');
         </div>
       )}
       <div className="video-container">
-        <video ref={videoRef} src={sample} className="video-bg" autoPlay loop muted />
+        <video
+          ref={videoRef}
+          src={sample}
+          className="video-bg"
+          autoPlay
+          loop
+          muted
+        />
       </div>
       <div className="content-container">
-        <header className="header" style={{height:"4vw", display:"flex", alignItems:"center", padding:"1vw"}}>
+        <header
+          className="header"
+          style={{
+            height: "4vw",
+            display: "flex",
+            alignItems: "center",
+            padding: "1vw",
+          }}
+        >
           <img src={logo} className="login-logo" alt="Logo" />
           <nav className="nav">
             <NavLink to="kyc">
-              <Button variant="contained" color="warning" style={{padding:"0.5vw 1vw", fontSize:"0.8vw"}}>Know Your City</Button>
+              <Button
+                variant="contained"
+                color="warning"
+                style={{ padding: "0.5vw 1vw", fontSize: "0.8vw" }}
+              >
+                Know Your City
+              </Button>
             </NavLink>
             <NavLink to="admin">
-              <Button variant="contained" color="warning" style={{padding:"0.5vw 1vw", fontSize:"0.8vw"}}>City Report Card</Button>
+              <Button
+                variant="contained"
+                color="warning"
+                style={{ padding: "0.5vw 1vw", fontSize: "0.8vw" }}
+              >
+                City Report Card
+              </Button>
             </NavLink>
-            <Button variant="contained" color="warning" className={!loginToggle ? 'show' : 'hidden'} onClick={toggleLogin} style={{padding:"0.5vw 1vw", fontSize:"0.8vw"}}>Login</Button>
+            <Button
+              variant="contained"
+              color="warning"
+              className={!loginToggle ? "show" : "hidden"}
+              onClick={toggleLogin}
+              style={{ padding: "0.5vw 1vw", fontSize: "0.8vw" }}
+            >
+              Login
+            </Button>
           </nav>
         </header>
         <main className="main-content">
-          <h1 className="title"><span className="highlight">City</span>&nbsp;Sustainability Index</h1>
-          <div className={`login-box ${loginToggle ? 'login-box-open' : ''}`}>
+          <h1 className="title">
+            <span className="highlight">City</span>&nbsp;Sustainability Index
+          </h1>
+          <div className={`login-box ${loginToggle ? "login-box-open" : ""}`}>
             <Button className="close-button" onClick={toggleLogin}>
               <span className="pi pi-times"></span>
             </Button>
-            {deptToggle &&(
-              <>
-              <FormControlLabel control={<Switch checked={deptToggle} onChange={(event) => setDeptToggle(event.target.checked)} />} label="Department Login" />
-              <TextField
-              label="Email"
-              variant="outlined"
-              name="email"
-              value={inpval.email}
-              onChange={setVal}
-              fullWidth
-            />
-            <TextField
-              label="Password"
-              type={passShow ? "text" : "password"}
-              variant="outlined"
-              name="password"
-              value={inpval.password}
-              onChange={setVal}
-              fullWidth
-              InputProps={{
-                endAdornment: (
-                  <IconButton onClick={() => setPassShow(!passShow)}>
-                    {passShow ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                )
-              }}
-            />
-            <FormControl variant="outlined" fullWidth >
-              <InputLabel>Department</InputLabel>
-              <Select
-                name="department"
-                value={inpval.department}
-                onChange={setVal}
-                label="Department"
+            <div className="custom-toggle">
+              <Button
+                variant={deptToggle ? "outlined" : "contained"}
+                style={{
+                  color: deptToggle ? "#ef7401" : "#fff",
+                  backgroundColor: deptToggle ? "transparent" : "#ef7401", 
+                  borderColor: "#ef7401",
+                  borderRadius: 0, 
+                }}
+                onClick={() => setDeptToggle(false)}
+                className={!deptToggle ? "active" : ""}
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value="Electricity">Electricity</MenuItem>
-                <MenuItem value="Environment">Environment</MenuItem>
-                <MenuItem value="Jal-kal">Jal-kal</MenuItem>
-                <MenuItem value="Housing">Housing</MenuItem>
-                <MenuItem value="Land_management">Land management</MenuItem>
-                <MenuItem value="Urban_heritage">Urban heritage</MenuItem>
-                <MenuItem value="Tourism">Tourism</MenuItem>
-              </Select>
-            </FormControl>
-            <div className="remember-forgot">
-              <Checkbox checked={true} style={{
-                width: 20,
-                height: 20
-              }} />Remember Me
-              <a href="#">Forgotten Password?</a>
+                Citizen Login
+              </Button>
+              <Button
+                variant={deptToggle ? "contained" : "outlined"}
+                style={{
+                  color: deptToggle ? "#fff" : "#ef7401", 
+                  backgroundColor: deptToggle ? "#ef7401" : "transparent", 
+                  borderColor: "#ef7401",
+                  borderRadius: 0, 
+                }}
+                onClick={() => setDeptToggle(true)}
+                className={deptToggle ? "active" : ""}
+              >
+                Department Login
+              </Button>
             </div>
-            {error && <p className="error">{error}</p>}
-            <Button variant="contained" color="warning" onClick={loginuser} disabled={loading}>
-              {loading ? <Lottie animationData={loding_ani} /> : "Login"}
-            </Button>
+            {deptToggle && (
+              <>
+                <TextField
+                  label="Email"
+                  variant="outlined"
+                  name="email"
+                  value={inpval.email}
+                  onChange={setVal}
+                  fullWidth
+                />
+                <TextField
+                  label="Password"
+                  type={passShow ? "text" : "password"}
+                  variant="outlined"
+                  name="password"
+                  value={inpval.password}
+                  onChange={setVal}
+                  fullWidth
+                  InputProps={{
+                    endAdornment: (
+                      <IconButton onClick={() => setPassShow(!passShow)}>
+                        {passShow ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    ),
+                  }}
+                />
+                <FormControl variant="outlined" fullWidth>
+                  <InputLabel>Department</InputLabel>
+                  <Select
+                    name="department"
+                    value={inpval.department}
+                    onChange={setVal}
+                    label="Department"
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value="Electricity">Electricity</MenuItem>
+                    <MenuItem value="Environment">Environment</MenuItem>
+                    <MenuItem value="Jal-kal">Jal-kal</MenuItem>
+                    <MenuItem value="Housing">Housing</MenuItem>
+                    <MenuItem value="Land_management">Land management</MenuItem>
+                    <MenuItem value="Urban_heritage">Urban heritage</MenuItem>
+                    <MenuItem value="Tourism">Tourism</MenuItem>
+                  </Select>
+                </FormControl>
+                <div className="remember-forgot">
+                  <Checkbox
+                    checked={true}
+                    style={{
+                      width: 20,
+                      height: 20,
+                    }}
+                  />
+                  Remember Me
+                  <a href="#">Forgotten Password?</a>
+                </div>
+                {error && <p className="error">{error}</p>}
+                <Button
+                  variant="contained"
+                  color="warning"
+                  onClick={loginuser}
+                  disabled={loading}
+                >
+                  {loading ? <Lottie animationData={loding_ani} /> : "Login"}
+                </Button>
               </>
             )}
             {!deptToggle && (
-  <>
-    <FormControlLabel
-      control={<Switch checked={deptToggle} onChange={(event) => setDeptToggle(event.target.checked)} />}
-      label="Department Login"
-    />
-    <TextField
-      label="Full Name"
-      variant="outlined"
-      name="name"
-      fullWidth
-      value={name}
-      onChange={(event) => setName(event.target.value)}
-    />
-    <TextField
-      label="Phone Number"
-      variant="outlined"
-      name="number"
-      fullWidth
-      value={number}
-      onChange={(event) => setNumber(event.target.value)}
-    />
-     <MuiOtpInput value={otp} onChange={handleChange}  ></MuiOtpInput>
-    <Button variant="contained" color="warning" onClick={loginotpuser} disabled={loading}>
-              {loading ? <Lottie animationData={loding_ani} /> : "submit"}
-            </Button>
-  </>
-)}
-            
-           
+              <>
+                <TextField
+                  label="Full Name"
+                  variant="outlined"
+                  name="name"
+                  fullWidth
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                />
+                <TextField
+                  label="Phone Number"
+                  variant="outlined"
+                  name="number"
+                  fullWidth
+                  value={number}
+                  onChange={(event) => setNumber(event.target.value)}
+                />
+                <MuiOtpInput value={otp} onChange={handleChange}></MuiOtpInput>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  onClick={loginotpuser}
+                  disabled={loading}
+                >
+                  {loading ? <Lottie animationData={loding_ani} /> : "submit"}
+                </Button>
+              </>
+            )}
           </div>
         </main>
       </div>

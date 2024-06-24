@@ -38,12 +38,10 @@ body, html, #root {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:1vw;
+    padding: 1vw;
     background: rgba(255, 255, 255, 0.8);
     width: 100%; /* Ensure header spans full width */
-	
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
-
 }
 
 .login-logo {
@@ -60,13 +58,13 @@ body, html, #root {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    align-items:flex-start; /* Align content to the left */
+    align-items: flex-start; /* Align content to the left */
 }
 
 .title {
     font-size: 2.5vw;
     font-weight: bold;
-	margin: 4vw 0vw 1vw 3vw ;
+    margin: 4vw 0vw 1vw 3vw;
 }
 
 .highlight {
@@ -78,7 +76,7 @@ body, html, #root {
     flex-direction: column;
     gap: 1rem;
     width: 30vw;
-	margin: 0vw 3vw;
+    margin: 0vw 3vw;
     transition: transform 0.5s;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
     transform: scale(0);
@@ -91,9 +89,10 @@ body, html, #root {
 .login-box-open {
     transform: scale(1);
 }
-.login-box p{
-	font-size: 1vw;
-	text-align: flex-start;
+
+.login-box p {
+    font-size: 1vw;
+    text-align: flex-start;
 }
 
 .close-button {
@@ -104,24 +103,22 @@ body, html, #root {
     display: flex;
     justify-content: space-between;
     align-items: center;
-	padding: 1vw;
+    padding: 1vw;
 }
-.remember-forgot a{
-	margin-left: 3vw;
-	text-decoration: none;
-	
+
+.remember-forgot a {
+    margin-left: 3vw;
+    text-decoration: none;
 }
-.remember-forgot{
-	font-size: 1vw;
-	
+
+.remember-forgot {
+    font-size: 1vw;
 }
 
 .error {
     color: red;
     font-size: 1rem;
 }
-
-
 
 .fullscreen-loading {
     position: fixed;
@@ -135,152 +132,3 @@ body, html, #root {
     background-color: rgba(255, 255, 255, 1); 
     z-index: 1000; 
 }
-/* .container {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	flex-direction: column;
-	gap: 1vh;
-  }
-  
-  .assets {
-	display: flex;
-	width: 100%;
-	height: 24rem;
-	padding: 1rem;
-	justify-content: space-evenly;
-	align-items: center;
-  }
-  
-  .map {
-	display: flex;
-	width: 22rem;
-	height: 22rem;
-	border: 2px solid orange;
-  }
-  
-  .assetContainer {
-	width: 70%;
-	height: 100%;
-	position: relative;
-	padding-top: 4rem;
-	display: grid;
-	grid-template-rows: 1fr 1fr 1fr;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	gap: 0px;
-  }
-  
-  .assetHeading {
-	display: flex;
-	position: absolute;
-	height: 3rem;
-	font-size: 2rem;
-	font-weight: 500;
-	top: 0;
-	left: 0.5rem;
-  }
-  
-  .circle {
-	display: flex;
-	width: 100%;
-	padding: 1.5rem;
-	justify-content: space-between;
-	align-items: center;
-	grid-row-start: 3;
-	grid-column-start: 1;
-	grid-row-end: 4;
-	grid-column-end: 6;
-  }
-  
-  .iconContainer {
-	display: flex;
-	border-radius: 50%;
-	position: relative;
-	height: 4rem;
-	width: 4rem;
-	justify-content: center;
-	align-items: center;
-	border: 3px solid #f07628;
-  }
-  
-  .circleIcon {
-	height: 80%;
-	width: 80%;
-  }
-  
-  .circleKey {
-	display: flex;
-	max-width: 85%;
-	font-weight: 500;
-  }
-  
-  .marker {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	grid-row-start: 1;
-	grid-column-start: 1;
-	grid-row-end: 3;
-	grid-column-end: 4;
-  }
-  
-  .markerContainer {
-	display: flex;
-	width: fit-content;
-	height: fit-content;
-	justify-content: flex-start;
-	padding: 0.2rem;
-	gap: 0.5rem;
-  }
-  
-  .markerText {
-	display: flex;
-	background-color: #f07628;
-	font-weight: 600;
-	border-radius: 5px;
-	height: fit-content;
-	padding: 0.4rem;
-	padding-right: 1rem;
-	overflow: hidden;
-	color: white;
-  }
-  
-  .markerValue {
-	display: flex;
-	padding: 0.4rem;
-	color: #f07628;
-	font: 600;
-  }
-  
-  .bar {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	justify-content: space-evenly;
-	grid-row-start: 1;
-	grid-column-start: 4;
-	grid-row-end: 3;
-	grid-column-end: 6;
-  }
-  
-  .barSubcontainer {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	justify-content: space-evenly;
-  }
-  
-  .barText {
-	display: flex;
-	width: 100%;
-	font-weight: 600;
-	padding-bottom: 5px;
-  }
-  
-  .cityProgress {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 55vh;
-  }
-   */
