@@ -324,14 +324,17 @@ const Login = () => {
                   value={number}
                   onChange={(event) => setNumber(event.target.value)}
                 />
-                <MuiOtpInput value={otp} onChange={handleChange}></MuiOtpInput>
+                <div className="otp-input">
+                  <p className="otp-label">Enter OTP</p>
+                  <MuiOtpInput value={otp} onChange={handleChange} />
+                </div>
                 <Button
                   variant="contained"
                   color="warning"
                   onClick={loginotpuser}
                   disabled={loading}
                 >
-                  {loading ? <Lottie animationData={loding_ani} /> : "submit"}
+                  {loading ? <Lottie animationData={loding_ani} /> : "Submit"}
                 </Button>
               </>
             )}

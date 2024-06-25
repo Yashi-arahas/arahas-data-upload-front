@@ -132,3 +132,15 @@ body, html, #root {
     background-color: rgba(255, 255, 255, 1); 
     z-index: 1000; 
 }
+
+/* Additional styles for OTP input */
+.otp-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.otp-label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}

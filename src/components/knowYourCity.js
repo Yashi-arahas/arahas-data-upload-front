@@ -25,10 +25,16 @@ import park from "./images/open.png"
 import socio from "./images/socio.png"
 import Footer from "./Footer";
 import { PieChart } from "./GraphVisuals"; 
-import ram_mandir from "./images/ram-mandir.jpg"
-import sewage from "./images/sewage.png";
-import toilet from "./images/toilet.png"
-import home from "./images/home.png";
+import ram_mandir from "./images/ram.jpg"
+import ADA from "./images/ADA.jpg"
+import ayo_ghat from "./images/ayo-ghat.jpg"
+
+import water_one from "./images/water1.json"
+import water_three from "./images/water3.json"
+import cleaning from "./images/clean.json"
+import house_ani from "./images/house_ani.json"
+import garbage from "./images/garbage.json"
+import CT from "./images/PT.json"
 const KnowYourCity = () => {
   const data = {
     assets: {
@@ -353,26 +359,26 @@ const KnowYourCity = () => {
                 title="Jal Jeevan Mission Ranking"
                 rating="State Rank in category : 21/67"
                 source="Ministry of Jal Shakti"
-                icon={JJMIcon}
+                animationData={water_one}
               />
               <Card
                 title="Garbage Free City"
                 rating="Rating : 1 star"
                 source="Ministry of Housing and Urban Affairs"
-                icon={GFCIcon}
+                animationData={garbage}
               />
               <Card
                 title="Swachh Survekshan"
                 rating="Rank : 389"
                 source="Swachh Survekshan Mission"
-                icon={GFCIcon}
+                animationData={cleaning}
               />
               
               <Card
                 title="CT/PT"
                 rating="Functional : 62/62"
                 source="Swachh Bharat Mission"
-                icon={toilet}
+                animationData={CT}
               />
                
                <Card
@@ -381,13 +387,13 @@ const KnowYourCity = () => {
                 
                 source="Jal Kal Vibhag 2020"
                 
-                icon={JJMIcon}
+                animationData={water_three}
               />
               <Card
                 title="Houses Allocated : 362"
                 rating="Houses Built : 384"
                 source="Pradhan Mantri Awas Yojana"
-                icon={home}
+                animationData={house_ani}
               />
               <Card
                 rating=
@@ -446,8 +452,10 @@ const KnowYourCity = () => {
           <div className="know-map">
               <Map />
             </div>
-            <div >
-              <img src={ram_mandir} style={{height:"40vw", width:"25vw", marginTop:"2vw", border:"1px solid #f07628"}}/>
+            <div className="swap" >
+              <img src={ram_mandir} style={{height:"13vw", width:"20vw", border:"1px solid #f07628"}}/>
+              <img src={ayo_ghat} style={{height:"13vw", width:"20vw", border:"1px solid #f07628"}}/>
+              <img src={ADA} style={{height:"13vw", width:"20vw", border:"1px solid #f07628"}}/>
             </div>
           </div>
           
