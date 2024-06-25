@@ -1,29 +1,8 @@
-import React, { useRef, useState } from "react";
-import "./Admin.css";
+import React, { useState } from "react";
 import Header from "./Header";
 import ParaHeatMap from "./ParaHeatMap";
-import powerbi from "./images/power-bi.png"
-import aqi_img_1 from "./images/aqi_img1.png";
-import aqi_img_2 from "./images/aqi_img2.png";
-import aqi_img_3 from "./images/aqi_img3.png";
-import aqi_img_4 from "./images/aqi_img4.png";
-import aqi_img_5 from "./images/aqi_img5.png";
-import aqi_img_6 from "./images/aqi_img6.png";
-import rain_img1 from "./images/rain_img1.png";
-import rain_img2 from "./images/rain_img2.png";
-import rain_img3 from "./images/rain_img3.png";
-import temp_img1 from "./images/temp_img1.png";
-import temp_img2 from "./images/temp_img2.png";
-import temp_img3 from "./images/temp_img3.png";
-import temp_img4 from "./images/temp_img4.png";
-import waste_img1 from "./images/waste_img1.png";
-import waste_img2 from "./images/waste_img2.png";
-import waste_img3 from "./images/waste_img3.png";
-import waste_img4 from "./images/waste_img4.png";
-import waste_img5 from "./images/waste_img1_img.png"
-import waste_img6 from "./images/waste_img2_img.png"
-import ImageSlider from "./ImageSlider";
 import Footer from "./Footer";
+
 const ReportMap = () => {
   const [selectedParameter, setSelectedParameter] = useState("aqi");
 
@@ -31,10 +10,7 @@ const ReportMap = () => {
     setSelectedParameter(parameter);
   };
 
-  const rain_images = [rain_img1, rain_img2, rain_img3, ];
-  const temp_images = [temp_img1, temp_img2, temp_img3,temp_img4];
-  const aqi_images = [aqi_img_1, aqi_img_2, aqi_img_3, aqi_img_4, aqi_img_5, aqi_img_6,]
-  const waste_images=[waste_img5,waste_img6,waste_img1,waste_img2,waste_img3,waste_img4]
+  
 
   return (
     <div>
@@ -65,48 +41,119 @@ const ReportMap = () => {
           >
             Waste Management
           </div>
+          <div
+            className={`parameter-tab ${selectedParameter === "water" && "active"}`}
+            onClick={() => handleParameterChange("water")}
+          >
+            Water Conservation and Prevention
+          </div>
+          <div
+            className={`parameter-tab ${selectedParameter === "land" && "active"}`}
+            onClick={() => handleParameterChange("land")}
+          >
+            Land Usage
+          </div>
         </div>
         <div className="report-container">
-          <div className="map-container">
-            <ParaHeatMap Parameter={selectedParameter} />
-          </div>
-          {/* {selectedParameter === "rainfall" && (
-            <div className="image-slider">
-              <ImageSlider images={rain_images} />
+          {selectedParameter !== "waste" && selectedParameter!=="water" && selectedParameter!=="land" && (
+            <div className="map-container">
+              <ParaHeatMap Parameter={selectedParameter} />
             </div>
           )}
-          {selectedParameter === "temp" && (
-            <div className="image-slider">
-              <ImageSlider images={temp_images} />
-            </div>
-          )}
-          {selectedParameter === "aqi" && (
-            <div className="image-slider">
-              <ImageSlider images={aqi_images} />
-            </div>
-          )}*/}
           {selectedParameter === "waste" && (
-            <div className="image-slider">
-              <ImageSlider images={waste_images} />
-            </div>
-          )} 
-          {selectedParameter !== "waste" && (
-             <iframe title="Ayodhya_AQI - Copy" width="730px" height="450px" style={{boxShadow:"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", padding:"1vw", backgroundColor:"white"}} src="https://app.powerbi.com/reportEmbed?reportId=8072f015-6879-429c-988c-7844fe9b288c&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae&pageName=ReportSection4" frameborder="0" allowFullScreen="true"></iframe>
-          )} 
+            <iframe
+              title="Waste Management"
+              width="730px"
+              height="450px"
+              src="https://app.powerbi.com/reportEmbed?reportId=c77055df-e77f-4bb6-af0b-070b6435bb7a&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae"
+              frameborder="0"
+              allowFullScreen="true"
+              style={{
+                margin: "1vw",
+                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                padding: "1vw",
+                backgroundColor: "white",
+              }}
+            ></iframe>
+          )}
+          {selectedParameter === "water" && (
+            <iframe
+              title="Water Conservation and Prevention"
+             width="730px"
+              height="450px"
+              src="https://app.powerbi.com/reportEmbed?reportId=30f563e0-18d2-46ec-888a-ad4eeba6a58e&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae"
+              frameborder="0"
+              allowFullScreen="true"
+              style={{
+                margin: "1vw",
+                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                padding: "1vw",
+                backgroundColor: "white",
+              }}
+            ></iframe>
+          )}
+           {selectedParameter === "land" && (
           
            
-        </div>
-        {/* <div className="powerbi-link">
-          <a href="https://app.powerbi.com/groups/me/reports/8072f015-6879-429c-988c-7844fe9b288c/8c4c77f67553e0905c40?experience=power-bi" >
-            <img src={powerbi} alt="Power BI" />
-            <p>View Full Dashboard</p>
-          </a>
-        </div> */}
-       
-      </div>
-      <Footer/>
-    </div>
+           <iframe title="Land_Dashboard" width="730px"
+           height="450px"  src="https://app.powerbi.com/reportEmbed?reportId=50afd8ec-664b-42c6-8493-c7cee9cdb39b&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae" frameborder="0" allowFullScreen="true"  style={{
+            margin: "1vw",
+            boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+            padding: "1vw",
+            backgroundColor: "white",
+          }}></iframe>
+           
+          )}
+           {selectedParameter === "aqi" && (
+          
+           
+          <iframe title="Ayodhya_AQI and Health Impacts" width="730px"
+          height="450px"
+          style={{
+            boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+            padding: "1vw",
+            backgroundColor: "white",
+          }}
+           src="https://app.powerbi.com/reportEmbed?reportId=4864d779-5853-4521-b6da-3f94bd730c06&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae"
+          frameborder="0" allowFullScreen="true"></iframe>
+          
+         )}
+         {selectedParameter === "temp" && (
+          
+           
+          <iframe title="Temp. Dashboard"
+          width="730px"
+              height="450px"
+              style={{
+                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                padding: "1vw",
+                backgroundColor: "white",
+              }} src="
+          https://app.powerbi.com/reportEmbed?reportId=c681af69-5780-4ecc-af1f-48049fb683cb&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae"
+          frameborder="0" allowFullScreen="true"></iframe>
+          
+         )}
+         {selectedParameter === "rainfall" && (
+          
+           
+          <iframe title="Rainfall Dashboard"  
+          width="730px"
+          height="450px"
+          style={{
+            boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+            padding: "1vw",
+            backgroundColor: "white",
+          }} src="
+https://app.powerbi.com/reportEmbed?reportId=46b96cbd-16ff-443d-ba3a-937a64160216&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae"
+frameborder="0" allowFullScreen="true"></iframe>
+          
+         )}
 
+          
+        </div>
+      </div>
+      <Footer />
+    </div>
   );
 };
 

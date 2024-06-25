@@ -33,7 +33,7 @@ const PaymentForm = () => {
   if (isPaymentSuccessful) {
     return (
       <div className="payment-container">
-        <Lottie animationData={paymentSuccessAnimation} style={{ height: '10vw', width: '10vw', margin: '10vw' }} />
+        <Lottie animationData={paymentSuccessAnimation} style={{ height: '40vw', width: '40vw'}} />
       </div>
     );
   }

@@ -1,12 +1,15 @@
 import React from "react";
 import "./Card.css";
+import Lottie from "lottie-react";
 
-const Card = ({ title, rating, source, icon,extra1,extra2,extra3 }) => {
+const Card = ({ title, rating, source, animationData,extra1,extra2,extra3 }) => {
   return (
     <div className="know-card">
-      {icon &&(
+      {animationData &&(
         <div className="icon">
-        <img src={icon} alt="Icon" />
+       <div className="icon">
+          <Lottie animationData={animationData} loop={true} style={{width:"5vw",height:"5vw" , background:"white", borderRadius:"100%", border:"2px solid orange", padding:"0.2vw"}} />
+        </div>
       </div>
       )}
       

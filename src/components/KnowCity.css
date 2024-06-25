@@ -36,7 +36,7 @@
 
 .know-map {
 	display: flex;
-	width: 25vw;
+	width: 20vw;
 	height: 14vw;
 	z-index: 0;
 	border: 1px solid #f07628;
@@ -220,7 +220,54 @@
 	padding: 0.5vw;
 	width: 15vw;
 }
+.swap{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	 /* Adjust height to accommodate the vertical animation */
+	margin-top: 8vw;
+	width: 20vw;
+	background-color: #f07628;
+}
 
+  
+  .swap img {
+	position: absolute;
+	width: 20vw;
+	height: 13vw;
+	border: 1px solid #f07628;
+	transition: transform 0.5s ease-in-out;
+  }
+  
+  @keyframes swapImages {
+	0% {
+	  transform: translate(0, 0);
+	}
+	33% {
+	  transform: translate(0, 13vw);
+	}
+	66% {
+	  transform: translate(0, 26vw);
+	}
+	100% {
+	  transform: translate(0, 0);
+	}
+  }
+  
+  .swap img:nth-child(1) {
+	animation: swapImages 9s infinite;
+  }
+  
+  .swap img:nth-child(2) {
+	animation: swapImages 9s infinite 3s;
+  }
+  
+  .swap img:nth-child(3) {
+	animation: swapImages 9s infinite 6s;
+  }
+  
+  
 .circle-container {
 	display: flex;
 	align-items: center;

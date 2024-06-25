@@ -1,188 +1,286 @@
-/* subscriptionStyles.css */
-
 /* Global styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: white;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-title {
+  font-size: 2.5vw;
+  color: #ef7401;
+  margin: 1vw;
+  text-align: center;
+}
+
+.subscription-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0; /* No gap to make the cards touch each other */
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  width: 23vw;
+  margin: 0; /* Remove margin between cards */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: white; /* Default text color for all cards */
+}
+
+.card:nth-of-type(1) {
+  background-color: #4bec91 ;
+}
+
+.card:nth-of-type(2) {
+  background-color: #f89a42; /* Gold Plan */
+  color: white;
+}
+
+.card:nth-of-type(3) {
+  background-color:#4371EF; /* Platinum Plan */
+}
+
+.card-content {
+  padding: 1vw;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+}
+
+.card-title h1 {
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+  padding: 0.2vw 2vw;
+  border-radius: 10px;
+}
+
+.card-subtitle {
+  font-size: 1vw;
+  margin-bottom: 1vw;
+}
+
+.card-actual-price {
+  text-decoration: line-through;
+  font-size: 1vw;
+}
+
+.card-price {
+  font-size: 1vw;
+  font-weight: bold;
+  margin-top: 10px;
+  color: white;
+}
+
+.card-benefits {
+  margin-top: 10px;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  font-size: 1vw;
+  margin-top: 5px;
+}
+
+.icon {
+  margin-right: 5px;
+  color:white; /* Change icon color to white */
+}
+
+/* Subscription.css */
+
+.card-actions {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  position: relative; /* Ensure relative positioning for the pseudo-element */
+}
+
+.card-actions::before {
+  content: '';
+  position: absolute;
+  top: -4px; /* Adjust this value to position the line */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 0.5px;
+  background-color: rgba(255, 255, 255, 0.5); /* Color of the line */
+}
+
+.button {
+  color: white;
+  border: none;
+  padding: 0.2vw 2vw;
+  font-size: 1vw;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #d66000;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 16px 0px;
+}
+
+/* Styles for the "Start Now" card */
+.one-card {
+  background-color: #ffffff;
+  border: 1px solid #ef7401;
+  border-radius: 8px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  margin: 1vw;
+  justify-content: space-between;
+}
+
+.one-card-content {
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.one-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.one-card-title h1 {
+  font-size: 1vw;
+  align-items: center;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+}
+
+.one-card-actions {
+  display: flex;
+  justify-content: center;
+  padding: 0.5vw;
+}
+
+.one-card .button {
+  background-color: white;
+  border: 1px solid #f89a42;
+  color: black;
+  border: none;
+  font-size: 0.8vw;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.one-card .button:hover {
+  background-color: #ef7401;
+}
+
+/* Loading animation styles */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #E2E2E2; /* Optional: background color for loading screen */
+}
+
+.loading-video {
+  width: 30%;
+}
+
+
+@media screen and (max-width: 768px) {
   .page-title {
-    font-size: 2.5vw;
-    color: #ef7401;
-    margin: 1vw;
-    text-align: center;
+    font-size: 4vw;
   }
-  
-  .subscription-grid {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: row;
-  }
-  
-  .card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    width: 25vw;
-    margin: 3vw;
-  }
-  
-  .card-content {
-    padding: 1vw;
-  }
-  
+
   .card-title {
-    font-size: 1.5vw;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
+    font-size: 3vw;
   }
-  
+
   .card-subtitle {
-    font-size: 1vw;
-    color: #666;
-    margin-bottom: 3vw;
-  }
-  .card-actual-price{
-    text-decoration:line-through;
-    font-size: 1vw;
-  }
-  .card-price {
-    font-size: 1vw;
-    font-weight: bold;
-    color: #ef7401;
-    margin-top: 10px;
-  }
-  
-  .card-actions {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-  }
-  
-  .button {
-    background-color: #ef7401;
-    color: white;
-    border: none;
-    padding: 0.2vw 2vw;
-    font-size: 1vw;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button:hover {
-    background-color: #d66000;
-  }
-  .one-card{
-    background-color: white;
-    padding: 1vw;
-    margin: 2vw;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    flex-direction: row;
-    border: 1px solid #ccc;
-  }
-  .one-card .button{
-    background-color: #ef7401;
-    color: white;
-    border: none;
-    padding: 0.2vw 2vw;
-    font-size: 1vw;
-    font-weight: bold;
-    margin-left: 1vw;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .one-card-title{
-    font-size: 1vw;
-    font-weight: bold;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .page-title {
-      font-size: 4vw;
-    }
-  
-    .card-title {
-      font-size: 3vw;
-    }
-  
-    .card-subtitle {
-      font-size: 1.5vw;
-    }
-  
-    .card-price {
-      font-size: 2vw;
-    }
-  
-    .button {
-      font-size: 1.5vw;
-      padding: 8px 16px;
-    }
-  }
-
-  .payment-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .payment-animation {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .payment-animation h1{
-    color: #ef7401;
     font-size: 1.5vw;
+  }
 
+  .card-price {
+    font-size: 2vw;
   }
-  
-  
-  .payment-form {
-    display: flex;
-    margin: 1vw;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    border-radius: 10px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 800px; /* Adjust as needed */
-    gap: 1vw;
-    font-size: 1vw;
-    background-color: white;
-    padding: 0vw 4vw 1vw 4vw;
+
+  .button {
+    font-size: 1.5vw;
+    padding: 8px 16px;
   }
-  
-  .form-field {
-    flex: 1 1 calc(50% - 16px); /* Two fields per row with a gap */
-    min-width: calc(50% - 16px);
-    margin-bottom: 16px;
-  }
-  
-  .pay-button {
-    background-color: #ef7401;
-    color: white;
-    align-self: center;
-    width: fit-content;
-    padding: 10px 20px;
-  }
-  
+}
+
+.payment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.payment-animation {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment-animation h1 {
+  color: #ef7401;
+  font-size: 1.5vw;
+}
+
+.payment-form {
+  display: flex;
+  margin: 1vw;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px; /* Adjust as needed */
+  gap: 1vw;
+  font-size: 1vw;
+  background-color: white;
+  padding: 0vw 4vw 1vw 4vw;
+}
+
+.form-field {
+  flex: 1 1 calc(50% - 16px); /* Two fields per row with a gap */
+  min-width: calc(50% - 16px);
+  margin-bottom: 16px;
+}
+
+.pay-button {
+  background-color: #ef7401;
+  color: white;
+  align-self: center;
+  width: fit-content;
+  padding: 10px 20px;
+}
