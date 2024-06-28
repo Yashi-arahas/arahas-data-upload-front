@@ -182,7 +182,7 @@ const Login = () => {
                 Know Your City
               </Button>
             </NavLink>
-            <NavLink to="admin">
+            {/* <NavLink to="admin">
               <Button
                 variant="contained"
                 color="warning"
@@ -190,7 +190,7 @@ const Login = () => {
               >
                 City Report Card
               </Button>
-            </NavLink>
+            </NavLink> */}
             <Button
               variant="contained"
               color="warning"
