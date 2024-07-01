@@ -233,7 +233,7 @@
   .swap img {
 	position: absolute;
 	width: 20vw;
-	height: 13vw;
+	height: 10vw;
 	border: 1px solid #f07628;
 	transition: transform 0.5s ease-in-out;
   }
@@ -243,10 +243,10 @@
 	  transform: translate(0, 0);
 	}
 	33% {
-	  transform: translate(0, 13vw);
+	  transform: translate(0, 10vw);
 	}
 	66% {
-	  transform: translate(0, 26vw);
+	  transform: translate(0, 20vw);
 	}
 	100% {
 	  transform: translate(0, 0);

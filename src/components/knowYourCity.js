@@ -455,9 +455,9 @@ const KnowYourCity = () => {
               <Map />
             </div>
             <div className="swap" >
-              <img src={ram_mandir} style={{height:"13vw", width:"20vw", border:"1px solid #f07628"}}/>
-              <img src={ayo_ghat} style={{height:"13vw", width:"20vw", border:"1px solid #f07628"}}/>
-              <img src={ADA} style={{height:"13vw", width:"20vw", border:"1px solid #f07628"}}/>
+              <img src={ram_mandir} style={{height:"10vw", width:"20vw", border:"1px solid #f07628"}}/>
+              <img src={ayo_ghat} style={{height:"10vw", width:"20vw", border:"1px solid #f07628"}}/>
+              <img src={ADA} style={{height:"10vw", width:"20vw", border:"1px solid #f07628"}}/>
             </div>
           </div>
           

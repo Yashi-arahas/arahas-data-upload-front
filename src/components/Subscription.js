@@ -98,7 +98,7 @@ const Subscription = () => {
                     Price: ₹{plan.actualPrice}
                   </div>
                   <div className="card-price">
-                    Special Price: ₹{plan.sellingPrice.toFixed(2)}
+                    Special Price: ₹{plan.sellingPrice}
                   </div>
                   <div className="card-benefits">
                     <div className="benefit">
