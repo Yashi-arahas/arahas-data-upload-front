@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MuiOtpInput } from "mui-one-time-password-input";
 import axios from "axios";
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
 import {
   Button,
   Checkbox,
@@ -77,6 +79,9 @@ const Login = () => {
 
   const handleChange = (newValue) => {
     setOtp(newValue);
+  };
+  const handlePhoneNumberChange = (value) => {
+    setNumber(value);
   };
 
   const handleLoginResponse = (response) => {
@@ -324,6 +329,13 @@ const Login = () => {
                   value={number}
                   onChange={(event) => setNumber(event.target.value)}
                 />
+                {/* <PhoneInput
+                  name="number"
+      placeholder="Enter phone number"
+      value={number}
+   onChange={handlePhoneNumberChange}
+      defaultCountry="IN"
+      className="phone-input"/> */}
                 <div className="otp-input">
                   <p className="otp-label">Enter OTP</p>
                   <MuiOtpInput value={otp} onChange={handleChange} />

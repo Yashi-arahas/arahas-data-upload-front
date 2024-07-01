@@ -361,6 +361,14 @@ const KnowYourCity = () => {
                 source="Ministry of Jal Shakti"
                 animationData={water_one}
               />
+               <Card
+                title="Jal Kal Vibhag"
+                rating="Quantity of Water Supply : 39.55 MLD"
+                
+                source="Jal Kal Vibhag 2020"
+                
+                animationData={water_three}
+              />
               <Card
                 title="Garbage Free City"
                 rating="Rating : 1 star"
@@ -381,19 +389,24 @@ const KnowYourCity = () => {
                 animationData={CT}
               />
                
-               <Card
-                title="Jal Kal Vibhag"
-                rating="Quantity of Water Supply : 39.55 MLD"
-                
-                source="Jal Kal Vibhag 2020"
-                
-                animationData={water_three}
-              />
+              
               <Card
                 title="Houses Allocated : 362"
                 rating="Houses Built : 384"
                 source="Pradhan Mantri Awas Yojana"
                 animationData={house_ani}
+              />
+               <Card
+                rating=
+                {<PieChart
+                title="Waste Generation"
+                labels={["Residential Refuse", "Commercial Refuse", "Institutional Refuse"]}
+                series={[238800,119400,59700]}
+                height={100}
+               
+              />}
+                source="Ayodhya Industrial Dept 2020"
+                // icon={GFCIcon}
               />
               <Card
                 rating=
@@ -401,7 +414,7 @@ const KnowYourCity = () => {
                 title="Solid Waste Processed (in TPD)"
                 labels={["Domestic Hazardous", "Dry", "Sanitary", "Wet"]}
                 series={[5.43,72.39, 3.62, 99.53]}
-                height={150}
+                height={100}
                
               />}
                 source="Swachh Bharat Mission"
@@ -414,7 +427,7 @@ const KnowYourCity = () => {
                 title="Electricity Consumption (KWH)"
                 labels={["Residential", "Commercial", "Industrial", "Agricultural" , "Others"]}
                 series={[15343985,2541529,144440,4675,2100829]}
-                height={150}
+                height={100}
                
               />
              }
@@ -428,24 +441,13 @@ const KnowYourCity = () => {
                 title="Industries Statistics"
                 labels={["Manufacturing", "Services"]}
                 series={[388,648]}
-                height={150}
+                height={100}
                
               />}
                 source="Ayodhya Industrial Dept 2020"
                 // icon={GFCIcon}
               />
-               <Card
-                rating=
-                {<PieChart
-                title="Waste Generation"
-                labels={["Residential Refuse", "Commercial Refuse", "Institutional Refuse"]}
-                series={[238800,119400,59700]}
-                height={150}
-               
-              />}
-                source="Ayodhya Industrial Dept 2020"
-                // icon={GFCIcon}
-              />
+              
             </div>
           </div>
           <div className="know-right-right">

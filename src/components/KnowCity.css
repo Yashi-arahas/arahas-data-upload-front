@@ -67,7 +67,6 @@
 	align-items: center;
 	justify-content: space-around;
 	flex-direction: row;
-	border: 1px solid #f07628;
 	border-radius: 10px;
 }
 
@@ -76,7 +75,6 @@
 	width: 100%;
 	justify-content: space-between;
 	align-items: flex-start;
-	margin-bottom: 1vw;
     flex-direction: row;
 }
 
