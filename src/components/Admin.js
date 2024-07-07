@@ -204,16 +204,7 @@ const Admin = () => {
       </>
     )}
   </div>
-  <img src={more} style={{height:"2vw", width:"2vw", zIndex:"1", cursor:"pointer"}} onClick={() => {
-  if (activeTab === 'E') {
-    window.location.href = '/csi/report-map-page';
-  } 
-  // else if (activeTab === 'S') {
-  //   window.location.href = '/S';
-  // } else if (activeTab === 'G') {
-  //   window.location.href = '/G';
-  // }
-}} />
+  
       
     </div>
           
