@@ -1,58 +1,45 @@
 .sticky{
-    width: 100%;
-    height: 4vw;
-    box-shadow: 0 0 20px -7px rgba(0,0,0,0.7);
+    width:  8vw;
+    height:100%;
+    box-shadow: 0 0 20px -7px rgba(0,0,0,0.2);
     position: sticky;
   top: 0;
   z-index: 1;
   
-  
-}
-.home-btn i {
-  font-size: 1vw; 
-    color: #ef7401;
-  padding: 0.4vw;
-  margin-right: 1vw;
-  border: 2px solid black;
-  border-radius: 50%; 
 }
 
-.home-btn:hover i {
-  color: #fff;
-  background-color: #ef7401;
+.sticky .nav-ul .company-logo {
+  height: 2vw;
+  width: 6vw;
 }
-
-.nav-ul{
-    height: 100%;
-  margin: 0;
-  padding: 0.5rem;
+.home-btn{
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: rgb(255, 255, 255);
-}
-
-.sticky nav h1{
-    color:#2d3748;
-}
-
-.sticky nav .avtar{
-    cursor: pointer;
-    margin-right: 8px;
-}
-.sticky nav .company-logo {
-    cursor: pointer;
-    margin-left: 0.1rem;
-    object-fit: contain;
-  }
-.sticky nav img {
-    height: 2vw;
-    width: 6vw;
-  }
+  justify-content: center;
+  flex-direction:column;
+  margin: 1vw 0;
+  text-align: center;
+  border-radius: 5px;
   
-/*   
-  @media only screen and (max-width: 768px) {
-    .main-container {
-      flex-direction: column;
-    }
-  } */
+}
+.home-btn:hover{
+  background-color: #A9F3E0;
+}
+.link{
+  text-decoration: none;
+}
+.home-btn h1 {
+  font-size: 0.8vw; 
+  font-weight: 700;
+  color: #00A269;
+ 
+}
+
+.header-link{
+  padding: 0.5vw;
+}
+.header-link .head-icon{
+  font-size: 2vw;
+  color:#00A269;
+}
+

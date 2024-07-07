@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from "./components/Login";
 import SDGPage from "./components/Sdg";
-import AdminPage from "./components/Admin";
+import AdminPage from "./components/CityHeader";
 import "./App.css";
 import DepartmentPage from './components/DepartmentPage';
 import AqiPage from "./components/Environment/AqiReport"

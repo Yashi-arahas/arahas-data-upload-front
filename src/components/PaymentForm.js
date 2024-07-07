@@ -210,7 +210,7 @@ const PaymentForm = () => {
   }
 
   return (
-    <>
+    <div className='pay'>
       <Header />
       <div className="payment-container">
         {showAlert && <Alert severity="error">Please fill in all required fields correctly.</Alert>}
@@ -358,7 +358,7 @@ const PaymentForm = () => {
           </Button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

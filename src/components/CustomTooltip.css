@@ -1,29 +1,32 @@
 /* CustomTooltip.css */
 .custom-tooltip-container {
     position: relative;
-    display: inline-block;
+    display: flex;
 }
 
 .custom-tooltip-content {
     visibility: hidden;
     background-color:white;
     color: black;
-    width: 20vw;
-    font-size: 0.7vw;
+    width: 26vw;
+    font-size: 0.8vw;
     border-radius: 6px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     padding: 0.5vw;
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
-    top: 70%; /* Adjust as needed */
-    left: 10%;
+    bottom: 10%;
+    left: 120%;
 
     /* Fade in tooltip */
     opacity: 0;
     transition: opacity 0.3s;
 }
-
+.custom-tooltip-content h1{
+    font-size: 0.8vw;
+    font-weight: 600;
+}
 .custom-tooltip-container:hover .custom-tooltip-content {
     visibility: visible;
     opacity: 1;

@@ -61,13 +61,17 @@ const Subscription = () => {
 
   return (
     <>
-      <Header />
+      
       {loading ? (
         <div className="loading-container">
+
           <video className="loading-video" src={payLoading} autoPlay loop />
         </div>
       ) : (
+        <div className='subs'>
+          <Header />
         <div className="container">
+          
           <div className="one-card">
             <div className="one-card-content">
               <div className="one-card-title" >
@@ -130,8 +134,10 @@ const Subscription = () => {
                   </Button>
                 </div>
               </div>
+              
             ))}
           </div>
+        </div>
         </div>
       )}
     </>

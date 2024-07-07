@@ -13,8 +13,7 @@ const ReportMap = () => {
   
 
   return (
-    <div>
-      <Header />
+    <div className="report-main">
       <div className="report">
         <div className="parameter-tabs">
           <div
@@ -70,7 +69,7 @@ const ReportMap = () => {
               allowFullScreen="true"
               style={{
                 margin: "1vw",
-                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
                 padding: "1vw",
                 backgroundColor: "white",
               }}
@@ -86,7 +85,7 @@ const ReportMap = () => {
               allowFullScreen="true"
               style={{
                 margin: "1vw",
-                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
                 padding: "1vw",
                 backgroundColor: "white",
               }}
@@ -98,7 +97,7 @@ const ReportMap = () => {
            <iframe title="Land_Dashboard" width="730px"
            height="450px"  src="https://app.powerbi.com/reportEmbed?reportId=50afd8ec-664b-42c6-8493-c7cee9cdb39b&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae" frameborder="0" allowFullScreen="true"  style={{
             margin: "1vw",
-            boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+            boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
             padding: "1vw",
             backgroundColor: "white",
           }}></iframe>
@@ -107,10 +106,10 @@ const ReportMap = () => {
            {selectedParameter === "aqi" && (
           
            
-          <iframe title="Ayodhya_AQI and Health Impacts" width="730px"
+          <iframe title="Ayodhya_AQI and Health Impacts" width="650px"
           height="450px"
           style={{
-            boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+            boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
             padding: "1vw",
             backgroundColor: "white",
           }}
@@ -122,10 +121,10 @@ const ReportMap = () => {
           
            
           <iframe title="Temp. Dashboard"
-          width="730px"
+          width="650px"
               height="450px"
               style={{
-                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
                 padding: "1vw",
                 backgroundColor: "white",
               }} src="
@@ -137,10 +136,10 @@ const ReportMap = () => {
           
            
           <iframe title="Rainfall Dashboard"  
-          width="730px"
+          width="650px"
           height="450px"
           style={{
-            boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+            boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
             padding: "1vw",
             backgroundColor: "white",
           }} src="

@@ -9,10 +9,11 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 // Define the colors array
 const colors = [
-  "#DD761C",// (Rich Purple)
-  "#6DC5D1", // (orange)
-  "#AD88C6", // (Strong Blue)
-  "#FFB1B1", // (Dark Cyan)
+  "#00A269",
+  "rgb(184, 184, 184)",// (Rich Purple)
+  "#A9F3E0", // (orange)
+  "grey", // (Strong Blue)
+   // (Dark Cyan)
   "#1abc9c", // (Turquoise Green)
   "#FFC300", // (Vivid Yellow)
   
@@ -154,7 +155,6 @@ export const BarChart = ({ title, group, categories, series, height, width, xtit
   );
 };
 
-
 export const ParetoChart = ({ title, categories, data, height, width, xtitle, ytitle }) => {
   const [lineDataPoints, setLineDataPoints] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -190,12 +190,9 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
     y: data[index],
   }));
 
-
-
   const options = {
-  height:height,
-  width:width,
-  
+    height: height,
+    width: width,
     animationEnabled: true,
     title: {
       text: title,
@@ -211,7 +208,7 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
       title: ytitle,
       includeZero: true,
       titleFontSize: 15,
-      titleFontColor: "red",
+      titleFontColor: "#00A269",
       padding: 40,
       gridThickness: 0,
     },
@@ -228,32 +225,34 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
         indexLabelOrientation: "horizontal",
         indexLabelFontWeight: "bold",
         indexLabelFontSize: 10,
-        indexLabelFontColor: "white",
+        indexLabelFontColor: "#00A269",
         dataPoints: chartData,
         columnWidth: columnWidth,
-        color: "#ef7401",
+        color: "#A9F3E0",
       },
       {
         type: "line",
         name: "Line",
         showInLegend: true,
-        indexLabel: "{y}",
+        indexLabel: "", // Empty string to hide index labels
         indexLabelPlacement: "outside",
         indexLabelFontWeight: "bold",
         indexLabelFontSize: 10,
-        indexLabelFontColor: "red",
+        indexLabelFontColor: "#00A269",
         dataPoints: lineDataPoints,
+        color: "#00A269",
       },
     ],
     padding: padding,
   };
 
   return (
-    <div className='esg-chart z-index-low' >
+    <div className='esg-chart z-index-low'>
       <CanvasJSChart options={options} />
     </div>
   );
 };
+
 
 
 
@@ -321,12 +320,18 @@ export const PieChart = ({ title, labels, series, height }) => {
             }
           },
           legend: {
-            position: 'bottom',
-            show:false,
+            position: 'right',
             onItemHover: {
               highlightDataSeries: true
             },
-            fontSize:"6"
+            fontSize:"7", 
+            fontWeight:"500",
+            color:"grey",
+            padding:"1vw",
+            markers:{
+              height:"8",
+              width:"8"
+            }
           },
           labels: labels,
           
@@ -335,12 +340,13 @@ export const PieChart = ({ title, labels, series, height }) => {
             align: 'center',
             offsetY: 10,
             style: {
-              fontSize: '0.8vw'
+              fontSize: '0.8vw',
+              color:"grey",
             }
           },
           colors, // Include the colors array here
           responsive: [{
-            breakpoint: 480,
+            breakpoint: 200,
             options: {
               chart: {
                 width: 200
@@ -351,10 +357,12 @@ export const PieChart = ({ title, labels, series, height }) => {
             }
           }],
           dataLabels: {
-            offsetX:-10,// Adjust the offset as needed
             style: {
-              fontSize: '0.6vw' // Adjust the font size as needed
-            }
+              fontSize: '0.6vw',
+              fontWeight:"500",
+              colors: ['#000000']
+            },
+            
           }
         }}
         series={series}

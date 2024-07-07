@@ -16,9 +16,10 @@ const OverallScore = () => {
   };
 
   return (
-    <>
+    <div className='over'>
       <Header />
       <div className="nsa">
+      
         <div className="overall-ani">
           <div className="ani-container">
             <Lottie animationData={n} className="over-ani" />
@@ -45,7 +46,7 @@ const OverallScore = () => {
             <div className="ani-text">Administration</div>
           </div>
         </div>
-        <h1>CSI Score : 88</h1>
+        <h1>CSI Score : 70</h1>
         <div className="more">
           
           <Button
@@ -61,7 +62,7 @@ const OverallScore = () => {
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

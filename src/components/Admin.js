@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Admin.css";
-import Header from "./Header";
+import Header from "./CityHeader";
 import framework_img from "./images/framework_img.png";
 import score from "./images/score.png";
 import e_img from "./images/letter-e.png";
@@ -108,15 +108,15 @@ const Admin = () => {
 
   const categories = {
     Environment: {
-      title: "Environment Metrics",
+      title: "Nature Metrics",
       data: [10, 80, 30, 3, 50, 78, 70, 60, 90, 80, 110, 90],
     },
     Social: {
-      title: "Social Metrics",
+      title: "Society Metrics",
       data: [15, 5, 25, 45, 55, 95, 75, 85, 105, 87, 115, 65],
     },
     Governance: {
-      title: "Governance Metrics",
+      title: "Administration Metrics",
       data: [20, 10, 80, 50, 60, 70, 76, 40, 10, 110, 180, 130],
     },
   };
@@ -139,12 +139,11 @@ const Admin = () => {
   };
 
   return (
-    <>
-      <Header />
+   
       <div className="admin-main">
        
         <div className="admin-title">
-          <h1>Ayodhya City Report Card</h1>
+          <h1><span>AYODHYA CITY REPORT CARD</span></h1>
         </div>
         <div className="admin-sub-container">
           <div className="admin-left">
@@ -156,21 +155,21 @@ const Admin = () => {
       <div className="name-container">
       <div className={`indicator-name ${activeTab === 'E' ? 'tab-active' : ''}`} onClick={() => handleTabClick('E')}>
 
-        <img src={n} style={{height:"2.5vw", width:"2.5vw"}}/>
+        <img src={n} style={{height:"2vw", width:"2vw"}}/>
         <h1>Nature</h1>
-        <span style={{backgroundColor:"#ef7401", borderRadius:"100%", fontSize:"1vw", fontWeight:"700",padding:"0.4vw 0.5vw" ,color:"white"}}>80</span>
+        <span style={{backgroundColor:"#00A269", borderRadius:"100%", fontSize:"0.8vw", fontWeight:"700",padding:"0.4vw 0.5vw" ,color:"white"}}>80</span>
       </div>
       <div className={`indicator-name ${activeTab === 'S' ? 'tab-active' : ''}`} onClick={() => handleTabClick('S')}>
 
-      <img src={s} style={{height:"2.5vw", width:"2.5vw"}}/>
+      <img src={s} style={{height:"2vw", width:"2vw"}}/>
         <h1>Society</h1>
-        <span style={{backgroundColor:"#ef7401", borderRadius:"100%", fontSize:"1vw", fontWeight:"700", padding:"0.4vw 0.5vw",color:"white"}}>60</span>
+        <span style={{backgroundColor:"#00A269", borderRadius:"100%", fontSize:"0.8vw", fontWeight:"700", padding:"0.4vw 0.5vw",color:"white"}}>60</span>
       </div>
       <div className={`indicator-name ${activeTab === 'G' ? 'tab-active' : ''}`} onClick={() => handleTabClick('G')}>
 
-      <img src={a} style={{height:"2.5vw", width:"2.5vw"}}/>
+      <img src={a} style={{height:"2vw", width:"2vw"}}/>
         <h1>Administration</h1>
-        <span style={{backgroundColor:"#ef7401", borderRadius:"100%", fontSize:"1vw", fontWeight:"700",padding:"0.4vw 0.5vw", color:"white"}}>72</span>
+        <span style={{backgroundColor:"#00A269", borderRadius:"100%", fontSize:"0.8vw", fontWeight:"700",padding:"0.4vw 0.5vw", color:"white"}}>70</span>
       </div>
       </div>
       <div className="content">
@@ -229,11 +228,11 @@ const Admin = () => {
               <Select
                 value={selectedCategory}
                 onChange={handleCategoryChange}
-                style={{ width: "100%", height: "2.5vw", margin: "0.3vw" }}
+                style={{ width: "100%", height: "2.5vw", margin: "0.3vw", backgroundColor:"#A9F3E0" }}
               >
-                <MenuItem value="Environment">Environment</MenuItem>
-                <MenuItem value="Social">Social</MenuItem>
-                <MenuItem value="Governance">Governance</MenuItem>
+                <MenuItem value="Environment">Nature</MenuItem>
+                <MenuItem value="Social">Society</MenuItem>
+                <MenuItem value="Governance">Administration</MenuItem>
               </Select>
               <ParetoChart
                 title={categories[selectedCategory].title}
@@ -253,9 +252,9 @@ const Admin = () => {
                 ]}
                 data={categories[selectedCategory].data}
                 height="160"
-                width="440"
+                width="400"
                 xtitle=""
-                ytitle="Score"
+                ytitle=""
               />
               </div>
               <div className="admin-total-score" onClick={handleTotalScoreClick}>
@@ -270,7 +269,7 @@ const Admin = () => {
                />
                 </div>
                 <h1>Overall Score</h1>
-                <h2>90</h2>
+                <h2>70</h2>
                 <p>Click to View Individual Scores</p>
               </div>
               
@@ -280,13 +279,13 @@ const Admin = () => {
           <div className="admin-right">
             
               <div className="improvement">
-                <h1>Summary : </h1>
+                <h1><span>Summary</span></h1>
                 <ul>
-                  <li>The score 68 is combined output of all the indicators falling under SDG 11. This score indicates the actual picture of City Ayodhya and also the areas where improvements are required. </li> 
+                  <li>The score 70 is combined output of all the indicators falling under SDG 11. This score indicates the actual picture of City Ayodhya and also the areas where improvements are required. </li> 
                    <li>CSI serves as a benchmarking tool, allowing cities to compare their sustainability performance with peers regionally and globally, fostering healthy competition and knowledge exchange.</li> 
                    <li>CSI promotes integrated and balanced urban development strategies.</li> 
                 </ul>
-                <h1>Areas of Improvement : </h1>
+                <h1><span>Areas of Improvement</span></h1>
                 <ul>
                   <li>Air Quality</li>
                   <li>Green space</li>
@@ -295,9 +294,9 @@ const Admin = () => {
               </div>
             </div>
           </div>
-        </div>
+        
         <Footer/>
-      </>
+      </div>
     );
   };
   

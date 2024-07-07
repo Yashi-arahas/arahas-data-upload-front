@@ -271,27 +271,32 @@ const ParaHeatMap = ({ Parameter }) => {
         <CircularProgress/>
       ) : (
         <div className='full-map-container' >
-          <div className='date-select'>
-            <div>
-              <label htmlFor='start-date'>Start Date :&nbsp; </label>
-              <input
-                type='date'
-                id='start-date'
-                value={
-                  formatDate(startDate)}
-                  onChange={handleStartDateChange}
-                />
-              </div>
-              <div style={{marginLeft:"1vw"}}>
-                <label htmlFor='end-date'>End Date :&nbsp;</label>
-                <input
-                  type='date'
-                  id='end-date'
-                  value={formatDate(endDate)}
-                  onChange={handleEndDateChange}
-                />
-              </div>
-            </div>
+          <div className="date-select">
+  <div className='date-container'>
+    <label htmlFor="start-date" style={{fontSize:"1vw"}}>Start Date :&nbsp;</label>
+    <input
+      type="date"
+      id="start-date"
+      value={formatDate(startDate)}
+      onChange={handleStartDateChange}
+      min={formatDate(startDate)}
+      max={formatDate(endDate)}
+      style={{fontSize:"1vw"}}
+    />
+  </div>
+  <div className='date-container' >
+    <label htmlFor="end-date"  style={{fontSize:"1vw"}}>End Date :&nbsp;</label>
+    <input
+      type="date"
+      id="end-date"
+      value={formatDate(endDate)}
+      onChange={handleEndDateChange}
+      min={formatDate(startDate)}
+      max={formatDate(endDate)}
+      style={{fontSize:"1vw"}}
+    />
+  </div>
+</div>
             {Parameter==="waste" &&(
               <img src={waste_map}/>
             )}

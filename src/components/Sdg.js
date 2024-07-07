@@ -143,7 +143,7 @@ const Sdg = () => {
   ];
 
   return (
-    <>
+    <div className="sdg-main">
       <Header />
       <div className="sdg-main-container">
         {!showMore && (
@@ -188,7 +188,7 @@ const Sdg = () => {
         
         {showMore && selectedDepartment && <OtherIndicator departmentName={selectedDepartment} />}
       </div>
-    </>
+    </div>
   );
 };
 

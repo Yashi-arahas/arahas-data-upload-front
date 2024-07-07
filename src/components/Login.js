@@ -49,7 +49,7 @@ const Login = () => {
 
   const sampleCredentials = {
     name: "arahas",
-    number: "1234567890",
+    number: "+911234567890",
     otp: "1234",
   };
 
@@ -82,6 +82,7 @@ const Login = () => {
   };
   const handlePhoneNumberChange = (value) => {
     setNumber(value);
+    console.log(value)
   };
 
   const handleLoginResponse = (response) => {
@@ -181,8 +182,7 @@ const Login = () => {
             <NavLink to="kyc">
               <Button
                 variant="contained"
-                color="warning"
-                style={{ padding: "0.5vw 1vw", fontSize: "0.8vw" }}
+                style={{ padding: "0.5vw 1vw", fontSize: "0.8vw", backgroundColor:"#00A269" }}
               >
                 Know Your City
               </Button>
@@ -201,7 +201,7 @@ const Login = () => {
               color="warning"
               className={!loginToggle ? "show" : "hidden"}
               onClick={toggleLogin}
-              style={{ padding: "0.5vw 1vw", fontSize: "0.8vw" }}
+              style={{ padding: "0.5vw 1vw", fontSize: "0.8vw", backgroundColor:"#00A269" }}
             >
               Login
             </Button>
@@ -219,9 +219,9 @@ const Login = () => {
               <Button
                 variant={deptToggle ? "outlined" : "contained"}
                 style={{
-                  color: deptToggle ? "#ef7401" : "#fff",
-                  backgroundColor: deptToggle ? "transparent" : "#ef7401", 
-                  borderColor: "#ef7401",
+                  color:"#00A269",
+                  backgroundColor: deptToggle ? "transparent" : "#A9F3E0", 
+                  borderColor: "#00A269",
                   borderRadius: 0, 
                 }}
                 onClick={() => setDeptToggle(false)}
@@ -232,9 +232,9 @@ const Login = () => {
               <Button
                 variant={deptToggle ? "contained" : "outlined"}
                 style={{
-                  color: deptToggle ? "#fff" : "#ef7401", 
-                  backgroundColor: deptToggle ? "#ef7401" : "transparent", 
-                  borderColor: "#ef7401",
+                  color: "#00A269", 
+                  backgroundColor: deptToggle ? "#A9F3E0" : "transparent", 
+                  borderColor: "#00A269",
                   borderRadius: 0, 
                 }}
                 onClick={() => setDeptToggle(true)}
@@ -295,6 +295,7 @@ const Login = () => {
                     style={{
                       width: 20,
                       height: 20,
+                     color:"#00A269"
                     }}
                   />
                   Remember Me
@@ -303,7 +304,7 @@ const Login = () => {
                 {error && <p className="error">{error}</p>}
                 <Button
                   variant="contained"
-                  color="warning"
+                  style={{backgroundColor:"#00A269"}}
                   onClick={loginuser}
                   disabled={loading}
                 >
@@ -321,28 +322,28 @@ const Login = () => {
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                 />
-                <TextField
+                {/* <TextField
                   label="Phone Number"
                   variant="outlined"
                   name="number"
                   fullWidth
                   value={number}
                   onChange={(event) => setNumber(event.target.value)}
-                />
-                {/* <PhoneInput
+                /> */}
+                <PhoneInput
                   name="number"
-      placeholder="Enter phone number"
+      placeholder="Enter Phone Number"
       value={number}
    onChange={handlePhoneNumberChange}
       defaultCountry="IN"
-      className="phone-input"/> */}
+      className="phone-input"/>
                 <div className="otp-input">
                   <p className="otp-label">Enter OTP</p>
                   <MuiOtpInput value={otp} onChange={handleChange} />
                 </div>
                 <Button
                   variant="contained"
-                  color="warning"
+                  style={{backgroundColor:"#00A269"}}
                   onClick={loginotpuser}
                   disabled={loading}
                 >

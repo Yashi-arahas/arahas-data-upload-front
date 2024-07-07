@@ -6,9 +6,9 @@ const Card = ({ title, rating, source, animationData,extra1,extra2,extra3 }) => 
   return (
     <div className="know-card">
       {animationData &&(
-        <div className="icon">
-       <div className="icon">
-          <Lottie animationData={animationData} loop={true} style={{width:"5vw",height:"5vw" , background:"white", borderRadius:"100%", border:"2px solid orange", padding:"0.2vw"}} />
+        <div className="card-icon">
+       <div className="card-icon">
+          <Lottie animationData={animationData} loop={true} style={{width:"4vw",height:"4vw" , background:"white", borderRadius:"100%", border:"2px solid #A9F3E0", padding:"0.2vw"}} />
         </div>
       </div>
       )}
