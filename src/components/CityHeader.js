@@ -16,13 +16,14 @@ import CompanyLogo from "./images/arahas-logo.webp";
 import SidebarDivider from "./SidebarDivider";
 import Admin from "./Admin"; // Import the Admin component
 import ReportMap from "./ReportMap"; // Import the ReportMap component
+import bg_video from "./images/bg_video_csi.mp4";
 
 function CityHeader({ pageName }) {
   const [expandedSection, setExpandedSection] = useState(null); // State to track expanded section
   const [activeSubTab, setActiveSubTab] = useState(""); // State to track active sub-tab
   const [showAdminComponent, setShowAdminComponent] = useState(false); // State to control Admin component visibility
   const [showReportMap, setShowReportMap] = useState(false); // State to control ReportMap visibility
-  const [showNDash, setShowNDash]= useState(false);
+  const [showNDash, setShowNDash] = useState(false); // State to control dashboard visibility
 
   const toggleSection = (section) => {
     if (expandedSection === section) {
@@ -49,10 +50,12 @@ function CityHeader({ pageName }) {
     } else {
       setShowReportMap(false); // Hide ReportMap component for other tabs
     }
+
+    // Toggle dashboard iframe visibility based on tab selection
     if (expandedSection === "environment" && tab === "dashboard") {
-      setShowNDash(true); // Show ReportMap component when report tab is clicked
+      setShowNDash(true); // Show dashboard iframe when dashboard tab is clicked
     } else {
-      setShowNDash(false); // Hide ReportMap component for other tabs
+      setShowNDash(false); // Hide dashboard iframe for other tabs
     }
   };
 
@@ -72,9 +75,20 @@ function CityHeader({ pageName }) {
       );
     } else if (showReportMap) {
       return <ReportMap />;
+    }  else if (!expandedSection && !activeSubTab){
+      // Show the video when no subcategory is selected
+      return (
+        <div className="video-container">
+          <video
+            src={bg_video}
+            className="video-bg"
+            autoPlay
+            loop
+            muted
+          />
+        </div>
+      );
     }
-    // Add more conditions for other tabs as needed
-    return null;
   };
 
   // Render Admin component only when expandedSection is "cityReportCard" and activeSubTab is "dashboard"
