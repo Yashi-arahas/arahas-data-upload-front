@@ -1,0 +1,70 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    margin: 1vw;
+}
+
+.row-cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.card-mini {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+    margin: 0.5vw;
+    height: 5vw;
+    text-align: center;
+}
+
+.card-mini h3 {
+    font-size: 1vw;
+    color:#043461;
+}
+
+.dashboard-chart {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    padding: 0.5vw;
+    margin: 0.5vw;
+    width: 100%;
+}
+
+.dash-chart-contain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: #eef2f7;
+    padding: 1vw;
+    margin: 1vw 0;
+}
+
+/* Specific row styling to ensure proper layout */
+.row-cards:first-child .card-mini {
+    width: 22.6%;
+}
+
+.row-cards:nth-child(2) .dashboard-chart {
+    width: 46%;
+    height: 20vw;
+}
+
+.row-cards:nth-child(3) .dashboard-chart {
+    width: 30.2%;
+}

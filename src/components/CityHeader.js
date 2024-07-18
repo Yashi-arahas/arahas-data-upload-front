@@ -30,35 +30,43 @@ function CityHeader({ pageName }) {
       setExpandedSection(null); // Collapse if clicked again on the same section
     } else {
       setExpandedSection(section); // Expand the clicked section
-      // Do not reset activeSubTab here to maintain the user's tab selection
+      setActiveSubTab(""); // Reset activeSubTab to null when toggling sections
     }
   };
 
   const handleTabClick = (tab) => {
+    // Reset activeSubTab whenever a new nav-section is clicked
+    if (expandedSection !== null) {
+      setActiveSubTab("");
+    }
+  
     setActiveSubTab(tab); // Set active sub-tab when clicked
-
+  
     // Toggle Admin component visibility based on tab selection
     if (expandedSection === "cityReportCard" && tab === "dashboard") {
       setShowAdminComponent(true); // Show Admin component when dashboard tab is clicked
     } else {
       setShowAdminComponent(false); // Hide Admin component for other tabs
     }
-
+  
     // Toggle ReportMap visibility based on tab selection
     if (expandedSection === "environment" && tab === "report") {
       setShowReportMap(true); // Show ReportMap component when report tab is clicked
     } else {
       setShowReportMap(false); // Hide ReportMap component for other tabs
     }
-
+  
     // Toggle dashboard iframe visibility based on tab selection
     if (expandedSection === "environment" && tab === "dashboard") {
       setShowNDash(true); // Show dashboard iframe when dashboard tab is clicked
     } else {
       setShowNDash(false); // Hide dashboard iframe for other tabs
     }
+  
+    // Collapse the sidebar after selecting a sub-item
+    setExpandedSection(null);
   };
-
+  
   // Render Admin component or ReportMap component based on conditions
   const renderTabContent = () => {
     if (showNDash) {
@@ -75,7 +83,7 @@ function CityHeader({ pageName }) {
       );
     } else if (showReportMap) {
       return <ReportMap />;
-    }  else if (!expandedSection && !activeSubTab){
+    } else if (!expandedSection && !activeSubTab){
       // Show the video when no subcategory is selected
       return (
         <div className="video-container">
@@ -188,7 +196,8 @@ function CityHeader({ pageName }) {
               </div>
             )}
           </nav>
-          <SidebarDivider/>
+          {expandedSection &&(<SidebarDivider/>)}
+          
           {/* Second part of the sidebar */}
           <nav className="second-nav">
             {expandedSection === "cityReportCard" && (

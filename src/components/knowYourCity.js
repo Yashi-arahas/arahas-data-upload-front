@@ -25,7 +25,7 @@ import slum from "./images/slums.png"
 import park from "./images/open.png"
 import socio from "./images/socio.png"
 import Footer from "./Footer";
-import { PieChart } from "./GraphVisuals"; 
+import DonutChart, { PieChart } from "./GraphVisuals"; 
 import ram_mandir from "./images/ram.jpg"
 import ADA from "./images/ADA.jpg"
 import ayo_ghat from "./images/ayo-ghat.jpg"
@@ -450,11 +450,11 @@ const KnowYourCity = () => {
     />
      <Card
       rating=
-      {<PieChart
+      {<DonutChart
       title="Waste Generation"
       labels={["Residential", "Commercial", "Institutional"]}
       series={[238800,119400,59700]}
-      height={120}
+      height={130}
      
     />}
       source="Ayodhya Industrial Dept 2020"
@@ -462,11 +462,11 @@ const KnowYourCity = () => {
     />
     <Card
       rating=
-      {<PieChart
+      {<DonutChart
       title="Solid Waste Processed (in TPD)"
       labels={["Domestic", "Dry", "Sanitary", "Wet"]}
       series={[5.43,72.39, 3.62, 99.53]}
-      height={120}
+      height={130}
       
      
     />}
@@ -476,11 +476,11 @@ const KnowYourCity = () => {
     <Card
       rating=
       {
-     <PieChart
+     <DonutChart
       title="Electricity Consumption (KWH)"
       labels={["Residential", "Commercial", "Industrial", "Agricultural" , "Others"]}
       series={[15343985,2541529,144440,4675,2100829]}
-      height={120}
+      height={130}
      
     />
    }

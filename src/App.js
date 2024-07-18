@@ -14,6 +14,7 @@ import Login_VCSI from './components/Login_VCSI';
 import OverallScore from './components/OverallScore';
 import Subscription from './components/Subscription';
 import PaymentForm from './components/PaymentForm';
+import EDash from './components/EDash';
 
 function App() {
   return (
@@ -180,6 +181,7 @@ function App() {
         <Route path="/vcsi/overall-score" element={<OverallScore/>}></Route>
         <Route path="/csi/subscription" element={<Subscription/>}></Route>
         <Route path="/csi/payment" element={<PaymentForm/>}></Route>
+        <Route path="/csi/eDash" element={<EDash/>}></Route>
       </Routes>
      
   );

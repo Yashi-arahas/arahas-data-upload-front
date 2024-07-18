@@ -37,7 +37,7 @@ const Map = () => {
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        <GeoJSON data={ayodhya_villages} fill={false} weight={1} color="#A9F3E0" opacity={0.3} />
+        <GeoJSON data={ayodhya_villages} fill={false} weight={1} color="#00A269" opacity={0.3} />
         <GeoJSON data={ayodhya} fill={"#A9F3E0"} color="#00A269" />
 
         <Marker position={p1} icon={greenIcon}>

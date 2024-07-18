@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MuiOtpInput } from "mui-one-time-password-input";
 import axios from "axios";
-import PhoneInput from 'react-phone-number-input'
-import 'react-phone-number-input/style.css'
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/material.css";
 import {
   Button,
   Checkbox,
@@ -82,7 +82,7 @@ const Login = () => {
   };
   const handlePhoneNumberChange = (value) => {
     setNumber(value);
-    console.log(value)
+    console.log(value);
   };
 
   const handleLoginResponse = (response) => {
@@ -182,7 +182,11 @@ const Login = () => {
             <NavLink to="kyc">
               <Button
                 variant="contained"
-                style={{ padding: "0.5vw 1vw", fontSize: "0.8vw", backgroundColor:"#00A269" }}
+                style={{
+                  padding: "0.5vw 1vw",
+                  fontSize: "0.8vw",
+                  backgroundColor: "#00A269",
+                }}
               >
                 Know Your City
               </Button>
@@ -201,7 +205,11 @@ const Login = () => {
               color="warning"
               className={!loginToggle ? "show" : "hidden"}
               onClick={toggleLogin}
-              style={{ padding: "0.5vw 1vw", fontSize: "0.8vw", backgroundColor:"#00A269" }}
+              style={{
+                padding: "0.5vw 1vw",
+                fontSize: "0.8vw",
+                backgroundColor: "#00A269",
+              }}
             >
               Login
             </Button>
@@ -219,10 +227,10 @@ const Login = () => {
               <Button
                 variant={deptToggle ? "outlined" : "contained"}
                 style={{
-                  color:"#00A269",
-                  backgroundColor: deptToggle ? "transparent" : "#A9F3E0", 
+                  color: "#00A269",
+                  backgroundColor: deptToggle ? "transparent" : "#A9F3E0",
                   borderColor: "#00A269",
-                  borderRadius: 0, 
+                  borderRadius: 0,
                 }}
                 onClick={() => setDeptToggle(false)}
                 className={!deptToggle ? "active" : ""}
@@ -232,10 +240,10 @@ const Login = () => {
               <Button
                 variant={deptToggle ? "contained" : "outlined"}
                 style={{
-                  color: "#00A269", 
-                  backgroundColor: deptToggle ? "#A9F3E0" : "transparent", 
+                  color: "#00A269",
+                  backgroundColor: deptToggle ? "#A9F3E0" : "transparent",
                   borderColor: "#00A269",
-                  borderRadius: 0, 
+                  borderRadius: 0,
                 }}
                 onClick={() => setDeptToggle(true)}
                 className={deptToggle ? "active" : ""}
@@ -295,7 +303,7 @@ const Login = () => {
                     style={{
                       width: 20,
                       height: 20,
-                     color:"#00A269"
+                      color: "#00A269",
                     }}
                   />
                   Remember Me
@@ -304,7 +312,7 @@ const Login = () => {
                 {error && <p className="error">{error}</p>}
                 <Button
                   variant="contained"
-                  style={{backgroundColor:"#00A269"}}
+                  style={{ backgroundColor: "#00A269" }}
                   onClick={loginuser}
                   disabled={loading}
                 >
@@ -332,18 +340,20 @@ const Login = () => {
                 /> */}
                 <PhoneInput
                   name="number"
-      placeholder="Enter Phone Number"
-      value={number}
-   onChange={handlePhoneNumberChange}
-      defaultCountry="IN"
-      className="phone-input"/>
+                  placeholder="Enter Phone Number"
+                  value={number}
+                  onChange={handlePhoneNumberChange}
+                  country="in"
+                  className="phone-input"
+                />
+
                 <div className="otp-input">
                   <p className="otp-label">Enter OTP</p>
                   <MuiOtpInput value={otp} onChange={handleChange} />
                 </div>
                 <Button
                   variant="contained"
-                  style={{backgroundColor:"#00A269"}}
+                  style={{ backgroundColor: "#00A269" }}
                   onClick={loginotpuser}
                   disabled={loading}
                 >

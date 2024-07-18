@@ -133,10 +133,12 @@
 }
 .sidebar-divider {
   height: 100%;
-  width: 5px;
-  background-color: #ccc;
-
+  width: 3px;
+  background-color: #bcbcbc;
+  z-index: 10000;
+  color: #b9b9b9;
 }
+
 .second-nav{
   height: 100%;
 

@@ -173,15 +173,15 @@ const Temperature = ({
   return (
     <div>
         
-        <div className="main-graph">
-            <div className="graph-big">
+        <div className="main-graph-temp">
+            <div className="graph-big-temp">
                 {templocation.length > 0 && (
                     <>
                         <Select 
                             value={selectedLocation} 
                             onChange={handleLocationChange} 
-                            className="dropdown-menu"
-                            style={{ height: "3vw", fontSize: "1.1rem" }}>
+                            className="dropdown-menu-temp"
+                            style={{ height: "2vw", fontSize: "0.8vw",  width:"100%"}}>
                             {Array.from(new Set(templocation)).map((location, index) => (
                                 <MenuItem key={index} value={location}>
                                     {location}

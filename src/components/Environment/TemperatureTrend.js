@@ -34,7 +34,7 @@ const TemperatureTrend = ({
             type: "splineArea",
             indexLabelFontColor: "red",
             dataPoints: dataPoints,
-            color:"#EE4E4E"
+            color:"#00A269"
           },
         ],
       };
@@ -60,7 +60,7 @@ const TemperatureTrend = ({
   
       setDrilldownChartData([
         {
-          color: "#FFAF61",
+          color: "#A9F3E0",
           name: selectedDate,
           type: "splineArea",
           dataPoints: selectedDateData,
@@ -89,18 +89,21 @@ const TemperatureTrend = ({
       theme: "red",
       title: {
         text: "Temperature Trend for " + selectedLocation,
-        fontSize: 20,
+        fontSize: 14,
         fontFamily: "Inter",
         fontWeight: 600,
+        padding:10,
+      
       },
       legend: {
-        fontSize: 10,
+        fontSize: 6,
       },
       axisX: {
         labelFontColor: "#717171",
         lineColor: "#a2a2a2",
         tickColor: "#a2a2a2",
       },
+      height:200,
       axisY: {
         gridThickness: 0,
         includeZero: false,
@@ -210,6 +213,7 @@ const TemperatureTrend = ({
         fontSize: 15,
       },
       theme: "light2",
+      height:200,
       axisX: {
         labelFontColor: "#717171",
         lineColor: "#a2a2a2",
@@ -251,7 +255,7 @@ const TemperatureTrend = ({
       <div className="main-graph">
       <CanvasJSChart
     options={isDrilldown ? drilldownChartOptions : baseChartOptions}
-    height={500} // Add containerProps to apply border radius
+    height={300} // Add containerProps to apply border radius
 />
 
               <button
@@ -259,13 +263,12 @@ const TemperatureTrend = ({
                 onClick={backButtonClickHandler}
                 style={{
                   borderRadius: "4px",
-                  padding: "8px",
+                  padding: "2px 10px",
                   border: "none",
-                  fontSize: "16px",
-                  backgroundColor: "#2eacd1",
+                  fontSize: "0.8vw",
+                  backgroundColor: "#00A269",
                   color: "white",
                   cursor: "pointer",
-                  margin:"0.5vw 1vw"
                 
                 }}
               >
@@ -276,13 +279,12 @@ const TemperatureTrend = ({
                 onClick={lastFifteenClickHandler}
                 style={{
                   borderRadius: "4px",
-                  padding: "8px",
+                  padding: "2px 10px",
                   border: "none",
-                  fontSize: "16px",
-                  backgroundColor: "#2eacd1",
+                  fontSize: "0.8vw",
+                  backgroundColor: "#00A269",
                   color: "white",
                   cursor: "pointer",
-                  margin:"0.5vw 1vw"
                 }}
               >
                 View Last 15 days Trend
