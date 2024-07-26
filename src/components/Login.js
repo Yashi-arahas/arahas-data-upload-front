@@ -49,7 +49,7 @@ const Login = () => {
 
   const sampleCredentials = {
     name: "arahas",
-    number: "+911234567890",
+    number: "911234567890",
     otp: "1234",
   };
 
