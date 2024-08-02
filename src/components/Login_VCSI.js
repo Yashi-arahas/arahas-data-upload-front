@@ -1,14 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Button, Checkbox, TextField, Select, MenuItem, InputLabel, FormControl, IconButton } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  IconButton,
+} from "@mui/material";
 import Lottie from "lottie-react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import sample from './images/bg_video_vcsi.mp4';
+import sample from "./images/bg_video_vcsi.mp4";
 import logo from "./images/arahas-logo.webp";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import loding_ani from "./animations/loading.json";
-import './LoginModule.css'; // Import the CSS file
+import "./LoginPage/LoginModule.css"; // Import the CSS file
 
 const Login_VCSI = () => {
   const navigate = useNavigate();
@@ -109,24 +118,45 @@ const Login_VCSI = () => {
         </div>
       )}
       <div className="video-container">
-        <video ref={videoRef} src={sample} className="video-bg" autoPlay loop muted />
+        <video
+          ref={videoRef}
+          src={sample}
+          className="video-bg"
+          autoPlay
+          loop
+          muted
+        />
       </div>
       <div className="content-container">
         <header className="header">
           <img src={logo} className="login-logo" alt="Logo" />
           <nav className="nav">
             <NavLink to="kyc">
-              <Button variant="contained" color="warning">Know Your City</Button>
+              <Button variant="contained" color="warning">
+                Know Your City
+              </Button>
             </NavLink>
             <NavLink to="admin">
-              <Button variant="contained" color="warning">City Report Card</Button>
+              <Button variant="contained" color="warning">
+                City Report Card
+              </Button>
             </NavLink>
-            <Button variant="contained" color="warning" className={!loginToggle ? 'show' : 'hidden'} onClick={toggleLogin}>Login</Button>
+            <Button
+              variant="contained"
+              color="warning"
+              className={!loginToggle ? "show" : "hidden"}
+              onClick={toggleLogin}
+            >
+              Login
+            </Button>
           </nav>
         </header>
         <main className="main-content">
-          <h1 className="title"><span className="highlight">Vedic City</span>&nbsp;Sustainability Index</h1>
-          <div className={`login-box ${loginToggle ? 'login-box-open' : ''}`}>
+          <h1 className="title">
+            <span className="highlight">Vedic City</span>&nbsp;Sustainability
+            Index
+          </h1>
+          <div className={`login-box ${loginToggle ? "login-box-open" : ""}`}>
             <Button className="close-button" onClick={toggleLogin}>
               <span className="pi pi-times"></span>
             </Button>
@@ -151,10 +181,10 @@ const Login_VCSI = () => {
                   <IconButton onClick={() => setPassShow(!passShow)}>
                     {passShow ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
-                )
+                ),
               }}
             />
-            <FormControl variant="outlined" fullWidth >
+            <FormControl variant="outlined" fullWidth>
               <InputLabel>Department</InputLabel>
               <Select
                 name="department"
@@ -174,14 +204,23 @@ const Login_VCSI = () => {
               </Select>
             </FormControl>
             <div className="remember-forgot">
-              <Checkbox checked={true} style={{
-                width: 20,
-                height: 20
-              }} />Remember Me
+              <Checkbox
+                checked={true}
+                style={{
+                  width: 20,
+                  height: 20,
+                }}
+              />
+              Remember Me
               <a href="#">Forgotten Password?</a>
             </div>
             {error && <p className="error">{error}</p>}
-            <Button variant="contained" color="warning" onClick={loginuser} disabled={loading}>
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={loginuser}
+              disabled={loading}
+            >
               {loading ? <Lottie animationData={loding_ani} /> : "Login"}
             </Button>
           </div>

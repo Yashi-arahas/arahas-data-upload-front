@@ -9,91 +9,97 @@ import {
   AccountBalance,
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
-  Spa
+  Spa,
 } from "@mui/icons-material";
 import "./CityHeader.css";
 import CompanyLogo from "./images/arahas-logo.webp";
+import { TabView, TabPanel } from "primereact/tabview";
+import ThermostatIcon from "@mui/icons-material/Thermostat";
 import SidebarDivider from "./SidebarDivider";
 import Admin from "./Admin"; // Import the Admin component
 import ReportMap from "./ReportMap"; // Import the ReportMap component
+import VillaIcon from "@mui/icons-material/Villa";
 import bg_video from "./images/bg_video_csi.mp4";
+import ReportPrint from "./ReportPrint";
+import AirOutlinedIcon from "@mui/icons-material/AirOutlined";
+import GenerateCityReport from "./GenerateCityReport";
+import WaterDropIcon from "@mui/icons-material/WaterDrop";
+import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
+import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
 
 function CityHeader({ pageName }) {
   const [expandedSection, setExpandedSection] = useState(null); // State to track expanded section
   const [activeSubTab, setActiveSubTab] = useState(""); // State to track active sub-tab
   const [showAdminComponent, setShowAdminComponent] = useState(false); // State to control Admin component visibility
   const [showReportMap, setShowReportMap] = useState(false); // State to control ReportMap visibility
-  const [showNDash, setShowNDash] = useState(false); // State to control dashboard visibility
+  const [selectedParameter, setSelectedParameter] = useState(null); // State to track the selected parameter
 
   const toggleSection = (section) => {
     if (expandedSection === section) {
-      setExpandedSection(null); // Collapse if clicked again on the same section
+      setExpandedSection(null);
     } else {
-      setExpandedSection(section); // Expand the clicked section
-      setActiveSubTab(""); // Reset activeSubTab to null when toggling sections
+      setExpandedSection(section);
+      setActiveSubTab("");
     }
   };
 
-  const handleTabClick = (tab) => {
-    // Reset activeSubTab whenever a new nav-section is clicked
+  const handleTabClick = (tab, parameter = null) => {
     if (expandedSection !== null) {
       setActiveSubTab("");
     }
-  
-    setActiveSubTab(tab); // Set active sub-tab when clicked
-  
+
+    setActiveSubTab(tab);
+    setSelectedParameter(parameter); // Set the selected parameter
+
     // Toggle Admin component visibility based on tab selection
-    if (expandedSection === "cityReportCard" && tab === "dashboard") {
+    if (tab === "cityReportCard") {
       setShowAdminComponent(true); // Show Admin component when dashboard tab is clicked
     } else {
       setShowAdminComponent(false); // Hide Admin component for other tabs
     }
-  
+
     // Toggle ReportMap visibility based on tab selection
     if (expandedSection === "environment" && tab === "report") {
       setShowReportMap(true); // Show ReportMap component when report tab is clicked
     } else {
       setShowReportMap(false); // Hide ReportMap component for other tabs
     }
-  
-    // Toggle dashboard iframe visibility based on tab selection
-    if (expandedSection === "environment" && tab === "dashboard") {
-      setShowNDash(true); // Show dashboard iframe when dashboard tab is clicked
-    } else {
-      setShowNDash(false); // Hide dashboard iframe for other tabs
-    }
-  
+
     // Collapse the sidebar after selecting a sub-item
     setExpandedSection(null);
   };
-  
+
   // Render Admin component or ReportMap component based on conditions
   const renderTabContent = () => {
-    if (showNDash) {
+    if (showReportMap) {
       return (
-        <iframe
-          title="ESG_Dashboard 2"
-          width="1100"
-          height="541.25"
-          src="https://app.powerbi.com/reportEmbed?reportId=4530c0e8-4075-4655-a28b-2efb47389b0a&autoAuth=true&ctid=e25b7a25-9cae-4302-a16e-1fa1d5211fae"
-          frameBorder="1"
-          allowFullScreen="true"
-          style={{ boxShadow:"rgba(0, 0, 0, 0.05) 0px 0px 0px 1px" , margin:"1% 1% 1% 12%", }}
-        ></iframe>
+        <div style={{ marginLeft: "9vw" }}>
+          <TabView className="w-full ">
+            <TabPanel
+              header="Performance"
+              className="m-0 "
+              headerClassName="text-teal-600"
+            >
+              <ReportMap parameter={selectedParameter} />
+            </TabPanel>
+            <TabPanel
+              header="Recommendations"
+              className="m-0 "
+              headerClassName="text-teal-600"
+            ></TabPanel>
+
+            <TabPanel
+              header="Report"
+              headerClassName="text-green-500"
+            ></TabPanel>
+          </TabView>
+        </div>
       );
-    } else if (showReportMap) {
-      return <ReportMap />;
-    } else if (!expandedSection && !activeSubTab){
+    } else if (!expandedSection && !activeSubTab) {
       // Show the video when no subcategory is selected
       return (
         <div className="video-container">
-          <video
-            src={bg_video}
-            className="video-bg"
-            autoPlay
-            loop
-            muted
-          />
+          <video src={bg_video} className="video-bg" autoPlay loop muted />
         </div>
       );
     }
@@ -102,7 +108,52 @@ function CityHeader({ pageName }) {
   // Render Admin component only when expandedSection is "cityReportCard" and activeSubTab is "dashboard"
   const renderAdminComponent = () => {
     if (showAdminComponent) {
-      return <Admin />;
+      return (
+        <div style={{ marginLeft: "9vw" }}>
+          <TabView className="w-full ">
+            <TabPanel
+              header="Performance"
+              className="m-0 "
+              headerClassName="text-teal-600"
+            >
+              <Admin />
+            </TabPanel>
+            <TabPanel
+              header="Recommendations"
+              className="m-0 "
+              headerClassName="text-teal-600"
+            >
+              <ul>
+                <li>
+                  Extremely high levels of PM2.5 and PM10 were recorded in areas
+                  like Ranopali Kila Road and near the airport in Ayodhya on
+                  January 29, 2024. These levels exceeded 900 for PM2.5 and
+                  touched 1000 for PM10, indicating an "extremely hazardous" air
+                  quality condition. Limit outdoor activities as much as
+                  possible, especially for sensitive groups like children and
+                  elderly. Such concentrations of particulate matter pose
+                  immediate health risks to vulnerable group exacerbating
+                  respiratory conditions such as asthma and bronchitis.
+                </li>
+                <li>
+                  Invest in alternative water sources such as rainwater
+                  harvesting, desalination, and wastewater recycling. Implement
+                  stringent regulations to prevent industrial, agricultural, and
+                  domestic pollution of water sources.
+                </li>
+                <li>
+                  Develop a Digital Waste Tracking System. Maintain a current
+                  inventory of hazardous materials employed within work areas.
+                </li>
+              </ul>
+            </TabPanel>
+
+            <TabPanel header="Report" headerClassName="text-green-500">
+              <GenerateCityReport />
+            </TabPanel>
+          </TabView>
+        </div>
+      );
     }
     return null;
   };
@@ -125,7 +176,7 @@ function CityHeader({ pageName }) {
             >
               <div
                 className="nav-section-header"
-                onClick={() => toggleSection("cityReportCard")}
+                onClick={() => handleTabClick("cityReportCard")}
               >
                 <Apartment className="icon-section" />
                 <span>City Report Card</span>
@@ -174,82 +225,68 @@ function CityHeader({ pageName }) {
               </div>
             </div>
 
-            {/* Logout or Login section based on pageName */}
-            {!pageName && (
-              <div className="nav-section">
-                <div
-                  className="nav-section-header"
-                  onClick={() => handleTabClick("logout")}
-                >
-                  <ExitToApp className="icon-section" />
-                  <span>Logout</span>
-                </div>
-              </div>
-            )}
-
-            {pageName === "Login" && (
-              <div className="nav-item">
-                <div className="link" onClick={() => handleTabClick("login")}>
-                  <ExitToApp className="icon-section" />
-                  <span>Login</span>
-                </div>
-              </div>
-            )}
+            {/* <ReportPrint /> */}
           </nav>
-          {expandedSection &&(<SidebarDivider/>)}
-          
+          {expandedSection && <SidebarDivider />}
+
           {/* Second part of the sidebar */}
           <nav className="second-nav">
-            {expandedSection === "cityReportCard" && (
-              <div className="sub-items">
-                <div
-                  className={`link ${
-                    activeSubTab === "dashboard" ? "sub-active" : ""
-                  }`}
-                  onClick={() => handleTabClick("dashboard")}
-                >
-                  <Dashboard className="icon-sub" />
-                  <span>Dashboard</span>
-                </div>
-                <div
-                  className={`link ${
-                    activeSubTab === "recommendations" ? "sub-active" : ""
-                  }`}
-                  onClick={() => handleTabClick("recommendations")}
-                >
-                  <EmojiObjects className="icon-sub" />
-                  <span>Recommendations</span>
-                </div>
-              </div>
-            )}
             {expandedSection === "environment" && (
               <div className="sub-items">
                 <div
                   className={`link ${
-                    activeSubTab === "dashboard" ? "sub-active" : ""
+                    activeSubTab === "aqi" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("dashboard")}
+                  onClick={() => handleTabClick("report", "aqi")}
                 >
-                  <Dashboard className="icon-sub" />
-                  <span>Dashboard</span>
+                  <AirOutlinedIcon className="icon-sub" />
+                  <span>AQI</span>
                 </div>
                 <div
                   className={`link ${
-                    activeSubTab === "report" ? "sub-active" : ""
+                    activeSubTab === "temp" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("report")}
+                  onClick={() => handleTabClick("report", "temp")}
                 >
-                  <Assessment className="icon-sub" />
-                  <span>Report</span>
+                  <ThermostatIcon className="icon-sub" />
+                  <span>Temperature</span>
                 </div>
                 <div
                   className={`link ${
-                    activeSubTab === "recommendations" ? "sub-active" : ""
+                    activeSubTab === "rain" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("recommendations")}
+                  onClick={() => handleTabClick("report", "rainfall")}
                 >
-                  <EmojiObjects className="icon-sub" />
-                  <span>Recommendations</span>
+                  <ThunderstormIcon className="icon-sub" />
+
+                  <span>Rainfall</span>
+                </div>
+                <div
+                  className={`link ${
+                    activeSubTab === "waste" ? "sub-active" : ""
+                  }`}
+                  onClick={() => handleTabClick("report", "waste")}
+                >
+                  <DeleteSweepIcon className="icon-sub" />
+                  <span>Waste Management</span>
+                </div>
+                <div
+                  className={`link ${
+                    activeSubTab === "water" ? "sub-active" : ""
+                  }`}
+                  onClick={() => handleTabClick("report", "water")}
+                >
+                  <WaterDropIcon className="icon-sub" />
+                  <span>Water Conservation & Preservation</span>
+                </div>
+                <div
+                  className={`link ${
+                    activeSubTab === "land" ? "sub-active" : ""
+                  }`}
+                  onClick={() => handleTabClick("report", "land")}
+                >
+                  <VillaIcon className="icon-sub" />
+                  <span>Land Usage</span>
                 </div>
               </div>
             )}

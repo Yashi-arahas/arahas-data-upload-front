@@ -44,13 +44,17 @@ const RegisterModal = ({ onClose }) => {
       alert("Password and Confirm Password do not match");
     } else {
       try {
-        const response = await axios.post("https://arahas-data-upload-back.onrender.com/register", {
-          fname,
-          department, // Change here
-          email,
-          password,
-          cpassword,
-        });
+        const response = await axios.post(
+          "https://arahas-data-upload-back.onrender.com/register",
+          {
+            fname,
+            department, // Change here
+            email,
+            password,
+
+            password,
+          }
+        );
         if (response.status === 201) {
           alert("User Registration Successful");
           setInpval({
@@ -120,10 +124,7 @@ const RegisterModal = ({ onClose }) => {
                 onChange={setVal}
                 placeholder="Create Password"
               />
-              <div
-                className="showpass"
-                onClick={() => setPassShow(!passShow)}
-              >
+              <div className="showpass" onClick={() => setPassShow(!passShow)}>
                 {!passShow ? (
                   <Visibility style={{ fontSize: "1.6vw" }} />
                 ) : (

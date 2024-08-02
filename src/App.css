@@ -1,12 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-
-* {
-  font-family: "Inter", sans-serif !important;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-variation-settings: "slnt" 0;
-  user-select: none;
-}
 :root {
   scroll-behavior: smooth;
   --primary: #4154f1;
@@ -14,7 +5,6 @@
   --bgColor: #f6f9ff;
 }
 a {
-  color: var(--primary);
   text-decoration: none;
   cursor: pointer;
 }
@@ -108,4 +98,15 @@ h6 {
   0% {
     opacity: 0;
   }
+}
+.p-button.p-button-sm {
+  padding: 0.3rem 1rem;
+}
+Button {
+  background-color: #00a269;
+  color: white;
+  font-size: 0.7rem;
+}
+a {
+  color: #00a269;
 }

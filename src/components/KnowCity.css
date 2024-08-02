@@ -47,9 +47,11 @@
 }
 
 .assetHeading {
-  position: relative;
-  width: 100%;
-  padding: 1vw 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 98%;
 }
 
 .assetHeading h1 {
@@ -103,7 +105,6 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
-  margin: 1vw;
   cursor: pointer;
 }
 
@@ -379,4 +380,10 @@
   padding: 0.4rem;
   color: #00a269; /* Updated text color */
   font: 600;
+}
+
+Button {
+  background-color: white;
+  color: #00a269;
+  border: 1px solid #00a269;
 }

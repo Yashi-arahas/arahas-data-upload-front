@@ -1,11 +1,4 @@
-/* Global styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-}
-.subs{
+.subs {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -18,7 +11,7 @@ body {
   align-items: center;
 }
 .container:before {
-  content: ' ';
+  content: " ";
   display: block;
   position: absolute;
   left: 0;
@@ -30,7 +23,7 @@ body {
   background-repeat: repeat;
   background-position: center;
   background-size: cover;
-  }
+}
 
 .page-title {
   font-size: 2.5vw;
@@ -50,7 +43,8 @@ body {
 .card {
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   width: 23vw;
   margin: 0; /* Remove margin between cards */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -58,7 +52,7 @@ body {
 }
 
 .card:nth-of-type(1) {
-  background-color: #4bec91 ;
+  background-color: #4bec91;
 }
 
 .card:nth-of-type(2) {
@@ -67,7 +61,7 @@ body {
 }
 
 .card:nth-of-type(3) {
-  background-color:#4371EF; /* Platinum Plan */
+  background-color: #4371ef; /* Platinum Plan */
 }
 
 .card-content {
@@ -120,7 +114,7 @@ body {
 
 .icon {
   margin-right: 5px;
-  color:white; /* Change icon color to white */
+  color: white; /* Change icon color to white */
 }
 
 /* Subscription.css */
@@ -133,7 +127,7 @@ body {
 }
 
 .card-actions::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -4px; /* Adjust this value to position the line */
   left: 50%;
@@ -167,7 +161,8 @@ body {
   background-color: #ffffff;
   border: 1px solid #ef7401;
   border-radius: 8px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   color: white;
   display: flex;
   flex-direction: row;
@@ -224,13 +219,12 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #E2E2E2; /* Optional: background color for loading screen */
+  background-color: #e2e2e2; /* Optional: background color for loading screen */
 }
 
 .loading-video {
   width: 30%;
 }
-
 
 @media screen and (max-width: 768px) {
   .page-title {
@@ -254,13 +248,12 @@ body {
     padding: 8px 16px;
   }
 }
-.pay{
+.pay {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
   height: 100%;
-  
 }
 .payment-container {
   display: flex;
@@ -271,7 +264,7 @@ body {
   flex-wrap: wrap;
 }
 .payment-container:before {
-  content: ' ';
+  content: " ";
   display: block;
   position: absolute;
   left: 0;
@@ -283,7 +276,7 @@ body {
   background-repeat: repeat;
   background-position: center;
   background-size: cover;
-  }
+}
 
 .payment-animation {
   display: flex;

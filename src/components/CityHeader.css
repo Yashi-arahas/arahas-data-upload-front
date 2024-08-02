@@ -13,7 +13,7 @@
   z-index: 1000;
   transition: width 0.3s ease-in-out;
 }
-.nav-container{
+.nav-container {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -38,7 +38,6 @@
   list-style: none;
   padding: 1vw;
   width: 100%;
-
 }
 
 /* Navigation section */
@@ -59,39 +58,33 @@
   display: flex;
   align-items: center;
   border-radius: 5px;
-  color: #00A269;
+  color: #00a269;
 }
-.nav-section-header:hover{
-  background-color: #A9F3E0;
-
+.nav-section-header:hover {
+  background-color: #a9f3e0;
 }
-
 
 /* Sub-item container */
 .sub-items {
   margin-left: 1vw;
-
+  text-align: center;
 }
 
 /* Icon and section icon */
 .icon-section {
   font-size: 2vw;
   color: black;
-  color: 
-  #00A269
-   ;
+  color: #00a269;
 }
 
-.city-active{
-  background-color:#A9F3E0;
-  color: 
-  #00A269
-   ;
-   border-radius: 5px;
+.city-active {
+  background-color: #a9f3e0;
+  color: #00a269;
+  border-radius: 5px;
 }
 .icon-sub {
-  font-size: 2vw;
-  color: #00A269;
+  font-size: 1vw;
+  color: #00a269;
 }
 
 /* Link styling */
@@ -99,12 +92,12 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  color: #00A269;
+  color: #00a269;
   text-decoration: none;
   font-size: 0.8vw;
   border-radius: 5px;
   font-weight: 600;
-  margin: 2vw 1vw;
+  margin: 1vw;
   padding: 0.5vw 0.5vw;
 
   transition: background-color 0.3s, color 0.3s;
@@ -113,7 +106,7 @@
 
 /* Link hover effect */
 .link:hover {
-  background-color: #A9F3E0;
+  background-color: #a9f3e0;
   color: #333;
 }
 
@@ -124,11 +117,11 @@
   margin-right: 0;
   font-size: 1.5vw;
   cursor: pointer;
- color: #00A269;
+  color: #00a269;
   border-radius: 5px;
 }
 /* Collapse arrow */
-.collapse-arrow:hover{
+.collapse-arrow:hover {
   color: black;
 }
 .sidebar-divider {
@@ -139,13 +132,14 @@
   color: #b9b9b9;
 }
 
-.second-nav{
+.second-nav {
   height: 100%;
 
   /* border-left: 2px solid rgb(224, 224, 224); */
 }
-.sub-active { /* Change to the color you prefer for active state */
-  font-weight: bold; 
-  color: #00A269;
-  background-color: #A9F3E0;
+.sub-active {
+  /* Change to the color you prefer for active state */
+  font-weight: bold;
+  color: #00a269;
+  background-color: #a9f3e0;
 }

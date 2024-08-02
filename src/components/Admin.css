@@ -1,13 +1,9 @@
-
-
 .admin-main {
   display: flex;
-  margin-left: 8%;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   height: 100%;
- 
 }
 
 /* Background Video */
@@ -33,7 +29,7 @@
   font-size: 1.5vw;
   text-transform: capitalize;
   width: 90%;
-  color: #00A269;
+  color: #00a269;
   font-weight: 700;
   position: relative;
   border-bottom: 3px solid rgb(196, 195, 195);
@@ -41,7 +37,7 @@
 }
 
 .admin-title h1 span {
-  border-bottom: 3px solid #00A269;
+  border-bottom: 3px solid #00a269;
   padding-bottom: 0.5vw;
   display: inline;
   color: inherit;
@@ -109,14 +105,13 @@
 }
 
 .tab-active {
-  background-color: #A9F3E0;
-  color: #00A269;
- 
+  background-color: #a9f3e0;
+  color: #00a269;
 }
 
 .admin-left .row-1 .row-1-cols .indicator-name h1 {
   padding-top: 0.4vw;
-  color: #00A269;
+  color: #00a269;
   font-size: 1.2vw;
   font-weight: 600;
   cursor: pointer;
@@ -147,7 +142,6 @@
   position: relative;
   flex-wrap: wrap;
   width: 100%;
- 
 }
 
 .indicator-box {
@@ -158,23 +152,22 @@
   border-radius: 5px;
   justify-content: center;
   flex-direction: column;
-  
 }
-.indicator-box:hover{
-  background-color: #A9F3E0;
+.indicator-box:hover {
+  background-color: #a9f3e0;
 }
 
 .indicator-box span {
   font-size: 0.8vw;
   margin-top: 0.5vw;
   font-weight: 700;
-  color: #00A269;
+  color: #00a269;
 }
 
 .content-text h1 {
   margin: 0.2vw;
   font-size: 0.8vw;
-  color: #00A269;
+  color: #00a269;
   text-align: left;
 }
 
@@ -205,12 +198,12 @@
 }
 
 .admin-left .row-1 .row-1-cols .indicator .content .content-text .score h1 {
-  color: #00A269;
+  color: #00a269;
 }
 
 .admin-left .row-1 .row-1-cols .indicator .content .content-text .score p {
   font-size: 0.7vw;
-  color: #00A269;
+  color: #00a269;
 }
 
 .admin-right {
@@ -233,7 +226,7 @@
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  
+
   z-index: 1;
 }
 
@@ -251,13 +244,13 @@
 
 .admin-total-score h1 {
   font-size: 1.3vw;
-  color: #00A269;
+  color: #00a269;
 }
 
 .admin-total-score h2 {
   font-size: 1vw;
   margin-top: 0.5vw;
-  background-color: #00A269;
+  background-color: #00a269;
   color: white;
   padding: 0.5vw 0.5vw;
   border-radius: 100%;
@@ -287,7 +280,7 @@
 
   text-transform: capitalize;
   width: 90%;
-  color: #00A269;
+  color: #00a269;
   position: relative;
   border-bottom: 2px solid rgb(196, 195, 195);
   padding-bottom: 0.5vw;
@@ -307,14 +300,15 @@
   flex-direction: column;
   padding: 1vw;
   background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
   width: 58%;
   height: 17vw;
   border-radius: 10px;
 }
 
 .improvement h1 {
-  color: #00A269;
+  color: #00a269;
 
   font-size: 1.5vw;
 }
@@ -339,7 +333,6 @@
   width: 1vw;
 }
 
-
 /* Report Styles */
 .report {
   position: relative;
@@ -348,17 +341,16 @@
   align-items: center;
   padding: 20px;
   overflow: hidden;
-  margin-left: 13%;
+  /* margin-left: 13%; */
 }
 
-
-.date-select{
+.date-select {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
 }
-.date-container{
+.date-container {
   padding: 0.5vw;
 }
 /* Parameter Tabs */
@@ -379,15 +371,15 @@
 }
 
 .parameter-tab:hover {
-  color: #00A269;
+  color: #00a269;
   font-weight: 600;
-  border-bottom: 4px solid #00A269;
+  border-bottom: 4px solid #00a269;
 }
 
 .parameter-tab.active {
-  color: #00A269;
+  color: #00a269;
   font-weight: 600;
-  border-bottom: 4px solid #00A269;
+  border-bottom: 4px solid #00a269;
 }
 
 /* Report Container */
@@ -395,13 +387,13 @@
   display: flex;
   align-items: center;
   height: 100%;
-  
+
   justify-content: center;
 }
 
 /* Map Container */
 .para-map {
-  width:30vw;
+  width: 30vw;
   height: 20vw;
 }
 
@@ -473,7 +465,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  background: #00A269;
+  background: #00a269;
   padding: 0.5vw;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -508,4 +500,12 @@
 
 .esg-chart:hover {
   box-shadow: 0 0 12px -4px rgba(0, 0, 0, 0.7);
+}
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.3rem;
+}
+.low-score {
+  background-color: rgb(240, 138, 138) !important;
+  color: red;
+  font-weight: 600;
 }

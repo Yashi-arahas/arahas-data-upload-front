@@ -19,6 +19,7 @@ const Card = ({ title, rating, source, animationData,extra1,extra2,extra3 }) => 
         <div className="rating">{extra1}</div>
         <div className="rating">{extra2}</div>
         <div className="rating">{extra3}</div>
+		
         <div className="source">Source: {source}</div>
       </div>
     </div>

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import ApexCharts from 'react-apexcharts';
-import CanvasJSReact from '@canvasjs/react-charts';
-import { color } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import ApexCharts from "react-apexcharts";
+import CanvasJSReact from "@canvasjs/react-charts";
+import { color } from "framer-motion";
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -17,23 +17,24 @@ const colors = [
   "#581845", // (Dark Violet)
   "#9b59b6", // (Amethyst Purple)
 ];
-const DonutChart = ({ title, labels,series, height }) => {
+const DonutChart = ({ title, labels, series, height }) => {
   const options = {
     animationEnabled: true,
     title: {
       text: title,
       fontSize: 10,
+      fontWeight: 500,
     },
-   height:height,
-   
+    height: height,
+
     data: [
       {
         type: "doughnut",
-        startAngle: 75,
+        startAngle: -10,
         toolTipContent: "<b>{label}</b>: {y} (#percent%)",
         showInLegend: false,
         indexLabelFontSize: 8,
-        color:colors,
+        color: colors,
         indexLabel: "{label} - #percent%",
         dataPoints: series.map((value, index) => ({
           y: value,
@@ -52,29 +53,41 @@ const DonutChart = ({ title, labels,series, height }) => {
 };
 
 export default DonutChart;
-export const GroupedBarChart = ({ title, categories, series, height, width, xtitle, ytitle }) => {
+export const GroupedBarChart = ({
+  title,
+  categories,
+  series,
+  height,
+  width,
+  xtitle,
+  ytitle,
+}) => {
   return (
-    <div className='z-index-low'>
-      <CanvasJSChart options={{
-        animationEnabled: true,
-        title: {
-          text: title,
-          fontSize: 13,
-        },
-        axisX: {
-          title: xtitle,
-        },
-        axisY: {
-          title: ytitle,
-        },
-        data: series.map((data, index) => ({
-          type: "column",
-          name: categories[index],
-          showInLegend: true,
-          dataPoints: data.map((value, i) => ({ y: value, label: categories[i] })),
-          color: colors[index % colors.length],
-        })),
-      }}
+    <div className="z-index-low">
+      <CanvasJSChart
+        options={{
+          animationEnabled: true,
+          title: {
+            text: title,
+            fontSize: 13,
+          },
+          axisX: {
+            title: xtitle,
+          },
+          axisY: {
+            title: ytitle,
+          },
+          data: series.map((data, index) => ({
+            type: "column",
+            name: categories[index],
+            showInLegend: true,
+            dataPoints: data.map((value, i) => ({
+              y: value,
+              label: categories[i],
+            })),
+            color: colors[index % colors.length],
+          })),
+        }}
         height={height}
         width={width}
       />
@@ -82,29 +95,41 @@ export const GroupedBarChart = ({ title, categories, series, height, width, xtit
   );
 };
 
-export const BarChart = ({ title, categories, series, height, width, xtitle, ytitle }) => {
+export const BarChart = ({
+  title,
+  categories,
+  series,
+  height,
+  width,
+  xtitle,
+  ytitle,
+}) => {
   return (
-    <div className='z-index-low'>
-      <CanvasJSChart options={{
-        animationEnabled: true,
-        title: {
-          text: title,
-          fontSize: 13,
-        },
-        axisX: {
-          title: xtitle,
-        },
-        axisY: {
-          title: ytitle,
-        },
-        data: series.map((data, index) => ({
-          type: "bar",
-          name: categories[index],
-          showInLegend: true,
-          dataPoints: data.map((value, i) => ({ y: value, label: categories[i] })),
-          color: colors[index % colors.length],
-        })),
-      }}
+    <div className="z-index-low">
+      <CanvasJSChart
+        options={{
+          animationEnabled: true,
+          title: {
+            text: title,
+            fontSize: 13,
+          },
+          axisX: {
+            title: xtitle,
+          },
+          axisY: {
+            title: ytitle,
+          },
+          data: series.map((data, index) => ({
+            type: "bar",
+            name: categories[index],
+            showInLegend: true,
+            dataPoints: data.map((value, i) => ({
+              y: value,
+              label: categories[i],
+            })),
+            color: colors[index % colors.length],
+          })),
+        }}
         height={height}
         width={width}
       />
@@ -112,7 +137,15 @@ export const BarChart = ({ title, categories, series, height, width, xtitle, yti
   );
 };
 
-export const ParetoChart = ({ title, categories, data, height, width, xtitle, ytitle }) => {
+export const ParetoChart = ({
+  title,
+  categories,
+  data,
+  height,
+  width,
+  xtitle,
+  ytitle,
+}) => {
   const [lineDataPoints, setLineDataPoints] = useState([]);
 
   useEffect(() => {
@@ -121,7 +154,10 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
         setLineDataPoints([]);
       } else {
         const nextIndex = lineDataPoints.length;
-        setLineDataPoints(prevPoints => [...prevPoints, { label: categories[nextIndex], y: data[nextIndex] }]);
+        setLineDataPoints((prevPoints) => [
+          ...prevPoints,
+          { label: categories[nextIndex], y: data[nextIndex] },
+        ]);
       }
     }, 300); // Adjust the interval time to control the animation speed
 
@@ -134,9 +170,9 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
   }));
 
   const options = {
-    height:height,
-    width:width,
-  
+    height: height,
+    width: width,
+
     animationEnabled: true,
     title: {
       text: title,
@@ -176,13 +212,21 @@ export const ParetoChart = ({ title, categories, data, height, width, xtitle, yt
   };
 
   return (
-    <div className='esg-chart z-index-low'>
+    <div className="esg-chart z-index-low">
       <CanvasJSChart options={options} />
     </div>
   );
 };
 
-export const LineBar = ({ title, categories, chartSeries, height, width, xtitle, ytitle }) => {
+export const LineBar = ({
+  title,
+  categories,
+  chartSeries,
+  height,
+  width,
+  xtitle,
+  ytitle,
+}) => {
   const options = {
     animationEnabled: true,
     title: {
@@ -201,7 +245,7 @@ export const LineBar = ({ title, categories, chartSeries, height, width, xtitle,
       {
         opposite: true,
         title: {
-          text: '',
+          text: "",
         },
       },
     ],
@@ -209,7 +253,10 @@ export const LineBar = ({ title, categories, chartSeries, height, width, xtitle,
       type: "line",
       name: categories[index],
       showInLegend: true,
-      dataPoints: series.map((value, i) => ({ y: value, label: categories[i] })),
+      dataPoints: series.map((value, i) => ({
+        y: value,
+        label: categories[i],
+      })),
       color: colors[index % colors.length],
     })),
   };
@@ -223,94 +270,105 @@ export const LineBar = ({ title, categories, chartSeries, height, width, xtitle,
 
 export const PieChart = ({ title, labels, series, height }) => {
   return (
-    <div className='z-index-low'>
-      <CanvasJSChart options={{
-         height:height,
-        animationEnabled: true,
-        title: {
-          text: title,
-          fontSize: 10,
-        },
-        legend: {
-          horizontalAlign: "right",
-          verticalAlign: "center",
-          fontSize:8
-        },
-        data: [{
-          type: "pie",
-          startAngle: 75,
-          toolTipContent: "<b>{label}</b>: {y} (#percent%)",
-          showInLegend: true,
-          legendText: "{label}",
-          indexLabelFontSize: 8,
-          indexLabelFontWeight: "bold",
-          indexLabelPlacement: "inside",
-          dataPoints: labels.map((label, index) => ({
-            y: series[index],
-            label: label,
-            color: colors[index % colors.length],
-          })),
-        }],
-      }}
-       
+    <div className="z-index-low">
+      <CanvasJSChart
+        options={{
+          height: height,
+          animationEnabled: true,
+          title: {
+            text: title,
+            fontSize: 10,
+          },
+          legend: {
+            horizontalAlign: "right",
+            verticalAlign: "center",
+            fontSize: 8,
+          },
+          data: [
+            {
+              type: "pie",
+              startAngle: 75,
+              toolTipContent: "<b>{label}</b>: {y} (#percent%)",
+              showInLegend: true,
+              legendText: "{label}",
+              indexLabelFontSize: 8,
+              indexLabelFontWeight: "bold",
+              indexLabelPlacement: "inside",
+              dataPoints: labels.map((label, index) => ({
+                y: series[index],
+                label: label,
+                color: colors[index % colors.length],
+              })),
+            },
+          ],
+        }}
       />
     </div>
   );
 };
-export const LineChart = ({ title, group, categories, series, height, width, xtitle, ytitle }) => {
+export const LineChart = ({
+  title,
+  group,
+  categories,
+  series,
+  height,
+  width,
+  xtitle,
+  ytitle,
+}) => {
   return (
-    <div className='chart-container z-index-low'>
-      <ApexCharts className='chart'
+    <div className="chart-container z-index-low">
+      <ApexCharts
+        className="chart"
         options={{
           chart: {
-            type: 'line',
+            type: "line",
             height: height,
             group: group,
             toolbar: {
-              show: true
-            }
+              show: true,
+            },
           },
           title: {
             text: title,
-            align: 'center',
+            align: "center",
             offsetY: 10,
             offsetX: -60,
             style: {
-              fontSize: '0.7vw'
-            }
+              fontSize: "0.7vw",
+            },
           },
           xaxis: {
-            tickPlacement: 'on',
-            type: 'category',
+            tickPlacement: "on",
+            type: "category",
             categories: categories,
             title: {
               text: xtitle,
-              style:{
+              style: {
                 fontSize: "0.5vw",
-                fontWeight:800
+                fontWeight: 800,
               },
-              offsetY:10
-              
+              offsetY: 10,
             },
             labels: {
               style: {
-                fontSize: "0.5vw" // Adjust the font size of categories
-              }
-            }
+                fontSize: "0.5vw", // Adjust the font size of categories
+              },
+            },
           },
           yaxis: {
             title: {
               text: ytitle,
-              style:{
+              style: {
                 fontSize: "0.5vw",
-                fontWeight:800
-              }
-            }
+                fontWeight: 800,
+              },
+            },
           },
           colors,
-          stroke:{
-            width:1
-          }
+          stroke: {
+            width: 1,
+          },
         }}
         series={series}
         type="line"
@@ -322,39 +380,48 @@ export const LineChart = ({ title, group, categories, series, height, width, xti
 };
 
 // Function to render an area chart
-export const AreaChart = ({ title, categories, series, height, width, xtitle, ytitle }) => {
+export const AreaChart = ({
+  title,
+  categories,
+  series,
+  height,
+  width,
+  xtitle,
+  ytitle,
+}) => {
   return (
-    <div className='chart-container z-index-low'>
-      <ApexCharts className='chart'
+    <div className="chart-container z-index-low">
+      <ApexCharts
+        className="chart"
         options={{
           chart: {
-            type: 'area',
+            type: "area",
             height: height,
-            group:'same',
+            group: "same",
             toolbar: {
-              show: true
-            }
+              show: true,
+            },
           },
           title: {
             text: title,
-            align: 'center',
+            align: "center",
             offsetY: 20,
             style: {
-              fontSize: '1vw'
-            }
+              fontSize: "1vw",
+            },
           },
           xaxis: {
-            tickPlacement: 'on',
-            type: 'category',
+            tickPlacement: "on",
+            type: "category",
             categories: categories,
             title: {
-              text: xtitle
+              text: xtitle,
             },
           },
           yaxis: {
             title: {
-              text: ytitle
-            }
+              text: ytitle,
+            },
           },
           colors, // Include the colors array here
         }}

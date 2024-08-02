@@ -16,12 +16,12 @@ import {
 } from "@mui/material";
 import Lottie from "lottie-react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import sample from "./images/bg_video_csi.mp4";
-import logo from "./images/arahas-logo.webp";
-import { NavLink } from "react-router-dom";
-import loding_ani from "./animations/loading.json";
-import "./LoginModule.css"; // Import the CSS file
-import RegisterModal from "./RegisterModel";
+import sample from "../images/bg_video_csi.mp4";
+import logo from "../images/arahas-logo.webp";
+import loding_ani from "../animations/loading.json";
+import "./LoginModule.css";
+import RegisterModal from "../RegisterModel";
+import LoginHeader from "./LoginHeader";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -80,6 +80,7 @@ const Login = () => {
   const handleChange = (newValue) => {
     setOtp(newValue);
   };
+
   const handlePhoneNumberChange = (value) => {
     setNumber(value);
     console.log(value);
@@ -168,53 +169,7 @@ const Login = () => {
         />
       </div>
       <div className="content-container">
-        <header
-          className="header"
-          style={{
-            height: "4vw",
-            display: "flex",
-            alignItems: "center",
-            padding: "1vw",
-          }}
-        >
-          <img src={logo} className="login-logo" alt="Logo" />
-          <nav className="nav">
-            <NavLink to="kyc">
-              <Button
-                variant="contained"
-                style={{
-                  padding: "0.5vw 1vw",
-                  fontSize: "0.8vw",
-                  backgroundColor: "#00A269",
-                }}
-              >
-                Know Your City
-              </Button>
-            </NavLink>
-            {/* <NavLink to="admin">
-              <Button
-                variant="contained"
-                color="warning"
-                style={{ padding: "0.5vw 1vw", fontSize: "0.8vw" }}
-              >
-                City Report Card
-              </Button>
-            </NavLink> */}
-            <Button
-              variant="contained"
-              color="warning"
-              className={!loginToggle ? "show" : "hidden"}
-              onClick={toggleLogin}
-              style={{
-                padding: "0.5vw 1vw",
-                fontSize: "0.8vw",
-                backgroundColor: "#00A269",
-              }}
-            >
-              Login
-            </Button>
-          </nav>
-        </header>
+        <LoginHeader toggleLogin={toggleLogin} />
         <main className="main-content">
           <h1 className="title">
             <span className="highlight">City</span>&nbsp;Sustainability Index
@@ -330,14 +285,6 @@ const Login = () => {
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                 />
-                {/* <TextField
-                  label="Phone Number"
-                  variant="outlined"
-                  name="number"
-                  fullWidth
-                  value={number}
-                  onChange={(event) => setNumber(event.target.value)}
-                /> */}
                 <PhoneInput
                   name="number"
                   placeholder="Enter Phone Number"
@@ -346,7 +293,6 @@ const Login = () => {
                   country="in"
                   className="phone-input"
                 />
-
                 <div className="otp-input">
                   <p className="otp-label">Enter OTP</p>
                   <MuiOtpInput value={otp} onChange={handleChange} />
