@@ -6,7 +6,6 @@ import "./Admin.css"
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-// Adjust the import according to your setup
 const colors = [
   "#00A269",
   "rgb(184, 184, 184)", // (Rich Purple)
@@ -24,7 +23,8 @@ const DonutChart = ({ title, labels, series, height }) => {
     title: {
       text: title,
       fontSize: 10,
-      fontWeight: 500,
+      fontFamily:"DM Sans",
+      fontWeight:"800"
     },
     height: height,
 
@@ -178,6 +178,8 @@ export const ParetoChart = ({
     title: {
       text: title,
       fontSize: 13,
+      fontWeight:"800",
+      fontFamily:"DM Sans",
     },
     axisX: {
       title: xtitle,
