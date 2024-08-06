@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts";
 import CanvasJSReact from "@canvasjs/react-charts";
 import { color } from "framer-motion";
+import "./Admin.css"
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -189,7 +190,7 @@ export const ParetoChart = ({
     data: [
       {
         type: "column",
-        name: "Column",
+        name: "Score",
         showInLegend: true,
         indexLabel: "{y}",
         indexLabelPlacement: "inside",
@@ -200,7 +201,7 @@ export const ParetoChart = ({
       },
       {
         type: "line",
-        name: "Line",
+        name: "Trend",
         showInLegend: true,
         indexLabelPlacement: "outside",
         indexLabelFontWeight: "bold",

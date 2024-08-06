@@ -29,9 +29,10 @@ function Header({ pageName }) {
               <Button
                 icon="pi pi-home"
                 size="small"
-                label="Home"
-                text
-                outlined
+                label="
+                Home"
+                
+                
               />
             </Link>
           </div>

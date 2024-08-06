@@ -11,7 +11,6 @@ import sum_img from "./images/plus.png";
 import equal_img from "./images/equal.png";
 import esg from "./images/ESG_ESG.png";
 import { ParetoChart } from "./GraphVisuals";
-import { Select, MenuItem } from "@mui/material";
 import Footer from "./Footer";
 import renewable from "./images/renewable-energy.png";
 import air from "./images/air.png";
@@ -36,64 +35,45 @@ const Admin = () => {
   const videoRef = useRef(null);
   const [activeTab, setActiveTab] = useState("E");
 
+  useEffect(() => {
+    switch (activeTab) {
+      case "E":
+        setSelectedCategory("Environment");
+        break;
+      case "S":
+        setSelectedCategory("Social");
+        break;
+      case "G":
+        setSelectedCategory("Governance");
+        break;
+      default:
+        setSelectedCategory("Environment");
+        break;
+    }
+  }, [activeTab]);
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
   const indicators = {
     E: [
-      {
-        text: "Air Quality",
-        icon: air,
-      },
-      {
-        text: "Water Conservation & Preservation",
-        icon: water,
-      },
-      {
-        text: "Earth",
-        icon: earth,
-      },
-      {
-        text: "Fire and Energy",
-        icon: renewable,
-      },
-      {
-        text: "Climate Quality",
-        icon: climate,
-      },
+      { text: "Air Quality", icon: air },
+      { text: "Water Conservation & Preservation", icon: water },
+      { text: "Earth", icon: earth },
+      { text: "Fire and Energy", icon: renewable },
+      { text: "Climate Quality", icon: climate },
     ],
     S: [
-      {
-        text: "Housing",
-        icon: home,
-      },
-      {
-        text: "Healthcare",
-        icon: health,
-      },
-      {
-        text: "Transport",
-        icon: transport,
-      },
-      {
-        text: "Cultural preservation",
-        icon: cultue,
-      },
+      { text: "Housing", icon: home },
+      { text: "Healthcare", icon: health },
+      { text: "Transport", icon: transport },
+      { text: "Cultural preservation", icon: cultue },
     ],
     G: [
-      {
-        text: "Government Schemes",
-        icon: gov,
-      },
-      {
-        text: "Anti-Corruption",
-        icon: corruption,
-      },
-      {
-        text: "Citizen Rights (Human Rights)",
-        icon: rights,
-      },
+      { text: "Government Schemes", icon: gov },
+      { text: "Anti-Corruption", icon: corruption },
+      { text: "Citizen Rights (Human Rights)", icon: rights },
     ],
   };
 
@@ -118,22 +98,16 @@ const Admin = () => {
     }
   }, []);
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
-
   const handleTotalScoreClick = () => {
     navigate("/csi/sdg");
   };
+
   const handleEClick = () => {
     navigate("/csi/report-map-page");
   };
 
   return (
     <div className="admin-main">
-      {/* <div className="admin-title">
-          <h1><span>AYODHYA CITY REPORT CARD</span></h1>
-        </div> */}
       <div className="admin-sub-container">
         <div className="admin-left">
           <div className="row-1">
@@ -141,9 +115,7 @@ const Admin = () => {
               <div className="indicator">
                 <div className="name-container">
                   <div
-                    className={`indicator-name ${
-                      activeTab === "E" ? "tab-active" : ""
-                    }`}
+                    className={`indicator-name ${activeTab === "E" ? "tab-active" : ""}`}
                     onClick={() => handleTabClick("E")}
                   >
                     <img src={n} style={{ height: "2vw", width: "2vw" }} />
@@ -162,9 +134,7 @@ const Admin = () => {
                     </span>
                   </div>
                   <div
-                    className={`indicator-name ${
-                      activeTab === "S" ? "tab-active" : ""
-                    }`}
+                    className={`indicator-name ${activeTab === "S" ? "tab-active" : ""}`}
                     onClick={() => handleTabClick("S")}
                   >
                     <img src={s} style={{ height: "2vw", width: "2vw" }} />
@@ -183,9 +153,7 @@ const Admin = () => {
                     </span>
                   </div>
                   <div
-                    className={`indicator-name ${
-                      activeTab === "G" ? "tab-active" : ""
-                    }`}
+                    className={`indicator-name ${activeTab === "G" ? "tab-active" : ""}`}
                     onClick={() => handleTabClick("G")}
                   >
                     <img src={a} style={{ height: "2vw", width: "2vw" }} />
@@ -205,45 +173,24 @@ const Admin = () => {
                   </div>
                 </div>
                 <div className="content">
-                  {activeTab === "E" && (
-                    <>
-                      {indicators.E.map((indicator, index) => (
-                        <div key={index} className="indicator-box">
-                          <img
-                            src={indicator.icon}
-                            style={{ height: "2.5vw", width: "2.5vw" }}
-                          />
-                          <span>{indicator.text}</span>
-                        </div>
-                      ))}
-                    </>
-                  )}
-                  {activeTab === "S" && (
-                    <>
-                      {indicators.S.map((indicator, index) => (
-                        <div key={index} className="indicator-box">
-                          <img
-                            src={indicator.icon}
-                            style={{ height: "3vw", width: "3vw" }}
-                          />
-                          <span>{indicator.text}</span>
-                        </div>
-                      ))}
-                    </>
-                  )}
-                  {activeTab === "G" && (
-                    <>
-                      {indicators.G.map((indicator, index) => (
-                        <div key={index} className="indicator-box">
-                          <img
-                            src={indicator.icon}
-                            style={{ height: "3vw", width: "3vw" }}
-                          />
-                          <span>{indicator.text}</span>
-                        </div>
-                      ))}
-                    </>
-                  )}
+                  {activeTab === "E" && indicators.E.map((indicator, index) => (
+                    <div key={index} className="indicator-box">
+                      <img src={indicator.icon} style={{ height: "2.5vw", width: "2.5vw" }} />
+                      <span>{indicator.text}</span>
+                    </div>
+                  ))}
+                  {activeTab === "S" && indicators.S.map((indicator, index) => (
+                    <div key={index} className="indicator-box">
+                      <img src={indicator.icon} style={{ height: "3vw", width: "3vw" }} />
+                      <span>{indicator.text}</span>
+                    </div>
+                  ))}
+                  {activeTab === "G" && indicators.G.map((indicator, index) => (
+                    <div key={index} className="indicator-box">
+                      <img src={indicator.icon} style={{ height: "3vw", width: "3vw" }} />
+                      <span>{indicator.text}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -251,35 +198,10 @@ const Admin = () => {
 
           <div className="row-2-top">
             <div className="row-2">
-              <Select
-                value={selectedCategory}
-                onChange={handleCategoryChange}
-                style={{
-                  width: "100%",
-                  height: "2.5vw",
-                  margin: "0.3vw",
-                  backgroundColor: "#A9F3E0",
-                }}
-              >
-                <MenuItem value="Environment">Nature</MenuItem>
-                <MenuItem value="Social">Society</MenuItem>
-                <MenuItem value="Governance">Administration</MenuItem>
-              </Select>
               <ParetoChart
                 title={categories[selectedCategory].title}
                 categories={[
-                  "Jan",
-                  "Feb",
-                  "Mar",
-                  "Apr",
-                  "May",
-                  "Jun",
-                  "Jul",
-                  "Aug",
-                  "Sep",
-                  "Oct",
-                  "Nov",
-                  "Dec",
+                  "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
                 ]}
                 data={categories[selectedCategory].data}
                 height="160"
@@ -296,12 +218,7 @@ const Admin = () => {
                 <img src={sum_img} className="operator" alt="+" />
                 <img src={a} className="letter" alt="G" />
                 <img src={equal_img} className="operator" alt="=" />
-                <img
-                  src={esg}
-                  className="esg"
-                  alt="ESG"
-                  style={{ height: "4vw", width: "4vw" }}
-                />
+                <img src={esg} className="esg" alt="ESG" style={{ height: "4vw", width: "4vw" }} />
               </div>
               <h1>Overall Score</h1>
               <h2>70</h2>
@@ -311,28 +228,19 @@ const Admin = () => {
         </div>
         <div className="admin-right">
           <div className="improvement">
-            <h1>
-              <span>Summary</span>
-            </h1>
+            <h1><span>Summary</span></h1>
             <ul>
               <li>
-                The score 70 is combined output of all the indicators falling
-                under SDG 11. This score indicates the actual picture of City
-                Ayodhya and also the areas where improvements are required.{" "}
+                The score 70 is combined output of all the indicators falling under SDG 11. This score indicates the actual picture of City Ayodhya and also the areas where improvements are required.
               </li>
               <li>
-                CSI serves as a benchmarking tool, allowing cities to compare
-                their sustainability performance with peers regionally and
-                globally, fostering healthy competition and knowledge exchange.
+                CSI serves as a benchmarking tool, allowing cities to compare their sustainability performance with peers regionally and globally, fostering healthy competition and knowledge exchange.
               </li>
               <li>
-                CSI promotes integrated and balanced urban development
-                strategies.
+                CSI promotes integrated and balanced urban development strategies.
               </li>
             </ul>
-            <h1>
-              <span>Areas of Improvement</span>
-            </h1>
+            <h1><span>Areas of Improvement</span></h1>
             <ul>
               <li>Air Quality</li>
               <li>Green space</li>
@@ -341,7 +249,6 @@ const Admin = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );

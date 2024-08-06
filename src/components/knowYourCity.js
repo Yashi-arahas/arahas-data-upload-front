@@ -22,6 +22,7 @@ import socio from "./images/socio.png";
 import Footer from "./Footer";
 import DonutChart, { PieChart } from "./GraphVisuals";
 import ram_mandir from "./images/ram.jpg";
+import school from "./images/education.png"
 import ADA from "./images/ADA.jpg";
 import ayo_ghat from "./images/ayo-ghat.jpg";
 import water_one from "./images/water1.json";
@@ -57,60 +58,69 @@ const KnowYourCity = () => {
   const data = {
     assets: {
       circle: {
+        "Geographical Area": {
+          value: "35.56 Sq.km",
+        },
+        "Current Population": {
+          value: "4,65,206",
+        },
+        "Census Population": {
+          value: "3,31,806",
+        },
         Zones: {
           value: 4,
         },
         Wards: {
           value: 60,
         },
-
-        Ghats: {
-          value: 4,
-        },
-        Nallahs: {
-          value: 1,
-        },
-        "Water bodies": {
-          value: 5,
-        },
-
-        "Landfills & Dumpsite": {
-          value: 0,
-        },
-        "Geographical Area": {
-          value: "35.56 Sq.km",
-        },
-        "Census Population": {
-          value: "3,31,806",
-        },
-        "Current Population": {
-          value: "4,65,206",
-        },
-        "New Initiatives": {
-          value: "9",
-        },
         "Literacy Rate": {
           value: "73.6%",
         },
-        "4-lane Expressway": {
+        "Parks & Open Spaces": {
+          value: "1311.6 ha",
+        },
+"Water bodies": {
+          value: 5,
+        },
+        Ghats: {
+          value: 4,
+        },
+        
+        Nallahs: {
           value: 1,
         },
+        
+"Sewage Treatment Plant": {
+          value: "1",
+        },
+        "Landfills & Dumpsite": {
+          value: 0,
+        },
+        
+       
+        
         "A.P.M.C. Market": {
           value: "2",
         },
-        "Sewage Treatment Plant": {
-          value: "1",
+        "Lucknow Ayodhya Expressway": {
+          value: "252 km",
         },
+        
+        
       },
       marker: {
-        "Major Attractions": 9,
-        "Nursing Homes": 188,
-        "Fairs & Festivals": 4,
+        "Hospitals": 188,
+        "Educational Facilities":"252",
         Hotels: 17,
         Dharamshala: 70,
-        "Park & Open Spaces": "1311.60 Ha",
-        Slums: 41,
+        "Major Attractions": 9,
+        
+        
+        "Fairs & Festivals": 4,
+        
         "Socio-Cultural Facilities": "7",
+        Slums: 41,
+  
       },
     },
   };
@@ -152,7 +162,21 @@ const KnowYourCity = () => {
             </div>
           </CustomTooltip>
         )}
-        {obj.key === "Nursing Homes" && (
+         {obj.key === "Educational Facilities" && (
+          <CustomTooltip
+            content={
+              <ul>
+                <li>Number of Schools : 236</li>
+                <li>Number of Colleges : 16</li>
+              </ul>
+            }
+          >
+            <div className="marker-icon">
+              <img src={school}/>
+            </div>
+          </CustomTooltip>
+        )}
+        {obj.key === "Hospitals" && (
           <CustomTooltip
             content={
               <>
@@ -438,16 +462,22 @@ const KnowYourCity = () => {
                 <div className="cityProgress">
                   <div className="city-right">
                     <Card
-                      title="Jal Jeevan Mission Ranking"
-                      rating="State Rank in category : 21/67"
-                      source="Ministry of Jal Shakti"
+                      title="Water Management Ranking"
+                      rating="State Category Rank : 21/67"
+                      source="Jal Jeevan Mission"
                       animationData={water_one}
                     />
                     <Card
-                      title="Jal Kal Vibhag"
+                      title="Water Supply"
                       rating="Quantity of Water Supply : 39.55 MLD"
                       source="Jal Kal Vibhag 2020"
                       animationData={water_three}
+                    />
+                    <Card
+                      title="Houses Allocated : 362"
+                      rating="Houses Built : 384"
+                      source="Pradhan Mantri Awas Yojana"
+                      animationData={house_ani}
                     />
                     <Card
                       title="Garbage Free City"
@@ -469,12 +499,7 @@ const KnowYourCity = () => {
                       animationData={CT}
                     />
 
-                    <Card
-                      title="Houses Allocated : 362"
-                      rating="Houses Built : 384"
-                      source="Pradhan Mantri Awas Yojana"
-                      animationData={house_ani}
-                    />
+                    
                     <Card
                       rating={
                         <DonutChart

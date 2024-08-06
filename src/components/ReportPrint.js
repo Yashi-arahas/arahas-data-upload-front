@@ -9,8 +9,6 @@ import "./Admin.css";
 
 export default function ReportPrint({
   show,
-  selectedState,
-  selectedCity,
   startDate,
   endDate,
 }) {
@@ -161,7 +159,7 @@ export default function ReportPrint({
           >
             <h1 style={{ color: "#00a269" }}>City Sustainability Index 2024</h1>
             <h4>
-              {selectedCity?.name}, {selectedState?.name}
+              Ayodhya , Uttar Pradesh
             </h4>
             <h3 style={{ boder: "1px solid #00a269" }}>CSI Score: 75</h3>
 

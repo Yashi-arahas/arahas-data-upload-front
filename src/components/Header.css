@@ -40,8 +40,11 @@
   color: #00a269;
 }
 
-.header-link .head-icon {
-  font-size: 5vw;
+.header-link  {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   margin: 0 !important;
   color: #00a269;
+  
 }
