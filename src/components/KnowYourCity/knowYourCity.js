@@ -1,36 +1,32 @@
 import React from "react";
-// import "./KnowYourCity.css";
 import "./KnowCity.css";
-import Map from "./Map";
-import { Button } from "primereact/button";
-import Card from "./Cards";
-import Header from "./Header";
-import monuments from "./images/monuments.png";
-import { Link } from "react-router-dom";
-import hospital from "./images/hospital.png";
-import ghat from "./images/ghat.png";
-import temples from "./images/temple.png";
-import river from "./images/river.png";
+import Map from "../Map";
 import { useState } from "react";
-import festivals from "./images/tent.png";
-import hotels from "./images/hotel.png";
-import dharamshala from "./images/shelter.png";
+import { Link } from "react-router-dom";
+import { Button } from "primereact/button";
+import DonutChart, { PieChart } from "../GraphVisuals";
+import Card from "./Cards";
+import Header from "../Header";
+import monuments from "./KnowImages/monuments.png";
+import hospital from "./KnowImages/hospital.png";
+import festivals from "./KnowImages/tent.png";
+import hotels from "./KnowImages/hotel.png";
+import dharamshala from "./KnowImages/shelter.png";
 import CustomTooltip from "./CustomTooltip";
-import slum from "./images/slums.png";
-import park from "./images/open.png";
-import socio from "./images/socio.png";
+import slum from "./KnowImages/slums.png";
+import park from "./KnowImages/open.png";
+import socio from "./KnowImages/socio.png";
 import Footer from "./Footer";
-import DonutChart, { PieChart } from "./GraphVisuals";
-import ram_mandir from "./images/ram.jpg";
-import school from "./images/education.png"
-import ADA from "./images/ADA.jpg";
-import ayo_ghat from "./images/ayo-ghat.jpg";
-import water_one from "./images/water1.json";
-import water_three from "./images/water3.json";
-import cleaning from "./images/clean.json";
-import house_ani from "./images/house_ani.json";
-import garbage from "./images/garbage.json";
-import CT from "./images/PT.json";
+import ram_mandir from "./KnowImages/ram.jpg";
+import school from "./KnowImages/education.png"
+import ADA from "./KnowImages/ADA.jpg";
+import ayo_ghat from "./KnowImages/ayo-ghat.jpg";
+import water_one from "../images/water1.json";
+import water_three from "../images/water3.json";
+import cleaning from "../images/clean.json";
+import house_ani from "../images/house_ani.json";
+import garbage from "../images/garbage.json";
+import CT from "../images/PT.json";
 import FeedbackForm from "./FeedbackForm";
 const KnowYourCity = () => {
   const [activeTab, setActiveTab] = useState("demographics");
@@ -195,12 +191,12 @@ const KnowYourCity = () => {
             </div>
           </CustomTooltip>
         )}
-        {obj.key === "ghats" && (
+        {/* {obj.key === "ghats" && (
           <div className="marker-icon">
             <img src={ghat} alt={`${obj.key} icon`} />
           </div>
-        )}
-        {obj.key === "temples" && (
+        )} */}
+        {/* {obj.key === "temples" && (
           <div className="marker-icon">
             <img src={temples} alt={`${obj.key} icon`} />
           </div>
@@ -211,7 +207,7 @@ const KnowYourCity = () => {
               <img src={river} alt={`${obj.key} icon`} />
             </div>
           </CustomTooltip>
-        )}
+        )} */}
         {obj.key === "Fairs & Festivals" && (
           <CustomTooltip
             content={

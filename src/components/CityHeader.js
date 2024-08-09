@@ -26,6 +26,7 @@ import GenerateCityReport from "./GenerateCityReport";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
+import AqiDashboard from "./DashBoards/AqiDashboard";
 
 function CityHeader({ pageName }) {
   const [expandedSection, setExpandedSection] = useState(null); // State to track expanded section
@@ -73,14 +74,22 @@ function CityHeader({ pageName }) {
   const renderTabContent = () => {
     if (showReportMap) {
       return (
-        <div style={{ marginLeft: "9vw" }}>
+        <div style={{ 
+          marginLeft: "6rem"
+           }}>
           <TabView className="w-full ">
             <TabPanel
               header="Performance"
               className="m-0 "
               headerClassName="text-teal-600"
             >
-              <ReportMap parameter={selectedParameter} />
+              {selectedParameter==="aqi" && (
+                <AqiDashboard/>
+              )}
+               {selectedParameter!=="aqi" && (
+                <ReportMap parameter={selectedParameter} />
+              )}
+              
             </TabPanel>
             <TabPanel
               header="Recommendations"
@@ -109,8 +118,8 @@ function CityHeader({ pageName }) {
   const renderAdminComponent = () => {
     if (showAdminComponent) {
       return (
-        <div style={{ marginLeft: "9vw" }}>
-          <TabView className="w-full ">
+        <div style={{ marginLeft: "6vw",  backgroundColor:"white"}}>
+          <TabView className="w-full p-1">
             <TabPanel
               header="Performance"
               className="m-0 "

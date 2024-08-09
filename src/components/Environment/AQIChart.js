@@ -15,8 +15,8 @@ const AQIChart = ({
   enviroAQI,
   enviroNO2,
   enviroco2,
+  selectedLocation
 }) => {
-  const [selectedLocation, setSelectedLocation] = useState(envirolocation[0]);
   const [selectedMonth, setSelectedMonth] = useState("01");
   const [selectedDate, setSelectedDate] = useState("01-01-2024");
   const [chartData, setChartData] = useState([]);
@@ -68,7 +68,6 @@ const AQIChart = ({
     //   const dateB = b.date.split("-").reverse().join("-");
     //   return new Date(dateB) - new Date(dateA);
     // });
-    console.log(dailyAverages);
     return dailyAverages;
   };
   const getDailyData = () => {
@@ -232,7 +231,6 @@ const AQIChart = ({
 
     //
   }, [
-    selectedLocation,
     selectedMonth,
     selectedDate,
     envirolocation,
@@ -289,10 +287,7 @@ const AQIChart = ({
     }
   };
 
-  const handleLocationChange = (e) => {
-    setSelectedLocation(e.target.value);
-  };
-
+ 
   const handleMonthChange = (e) => {
     setSelectedMonth(e.target.value);
     console.log(selectedDate);
@@ -304,19 +299,20 @@ const AQIChart = ({
   return (
     <div>
        
-      <div className="main-graph">
-        <div className="graph-big">
-        <Select value={selectedLocation} onChange={handleLocationChange} className="dropdown-menu"
-                              style={{
-                                height:"3vw",
-                                fontSize: "1.1rem",
-                              }} >
-            {Array.from(new Set(envirolocation)).map((location, index) => (
-              <MenuItem key={index} value={location}>
-                {location}
-              </MenuItem>
-            ))}
-          </Select>
+      <div >
+        <div  >
+        {chartData.length > 0 && (
+        <>
+          <DailyTrend
+            selectedLocation={selectedLocation}
+            selectedDate={selectedDate}
+            dailyAverage={dailyAverage}
+            dailyData={dailyData}
+            setSelectedDate={setSelectedDate}
+            fifteenDaysData={fifteenDaysData}
+          />
+        </>
+      )}
         </div>
       </div>
 
@@ -380,18 +376,7 @@ const AQIChart = ({
           )}
         </div>
       )} */}
-      {chartData.length > 0 && (
-        <>
-          <DailyTrend
-            selectedLocation={selectedLocation}
-            selectedDate={selectedDate}
-            dailyAverage={dailyAverage}
-            dailyData={dailyData}
-            setSelectedDate={setSelectedDate}
-            fifteenDaysData={fifteenDaysData}
-          />
-        </>
-      )}
+      
     </div>
   );
 };

@@ -14,7 +14,7 @@ import Overlay from 'ol/Overlay';
 import airport from "../../images/airport.webp";
 import railway from "../../images/railway.avif";
 import school from "../../images/tiny-school.jpg";
-import temple from "../../images/ram-mandir.jpg";
+import temple from "../../../components/KnowYourCity/KnowImages/ram.jpg";
 import Shahadat from "../../images/shahadat.jpeg";
 
 import ADABoundary from './ADA_Boundary.json';

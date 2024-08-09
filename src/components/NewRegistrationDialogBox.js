@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
@@ -8,6 +8,7 @@ import { Dropdown } from "primereact/dropdown";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import axios from "axios";
+import { Toast } from 'primereact/toast';
 
 const API_BASE_URL = "https://api.countrystatecity.in/v1/";
 const API_KEY = "ZHhIQXNCQ21lTGhub0J4Mk9wRHVNS1FNVWVLNmhkajIyRjdHOWJJSA==";
@@ -26,15 +27,16 @@ const NewRegistrationDialogBox = ({
   setLocation,
 }) => {
   const history = useNavigate();
+  const toast = useRef(null); // Reference for Toast component
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
+  const [loading, setLoading] = useState(false); // Loading state for handling submission
 
   const handlePhoneNumberChange = (value) => {
     setNumber(value);
-    console.log(value);
   };
 
   const headerElement = (
@@ -45,8 +47,27 @@ const NewRegistrationDialogBox = ({
     </div>
   );
 
+  const validateForm = () => {
+    if (!name || !email || !number || !selectedState || !selectedCity) {
+      toast.current.show({
+        severity: 'error',
+        summary: 'Form Validation Error',
+        detail: 'Please fill all fields before submitting.',
+        life: 3000
+      });
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setLoading(true); // Set loading to true while the request is in progress
 
     const userData = {
       name: name,
@@ -70,33 +91,50 @@ const NewRegistrationDialogBox = ({
 
       const data = await response.json();
       if (response.ok) {
-        console.log("User registered:", data);
+        toast.current.show({
+          severity: 'success',
+          summary: 'Registration Successful',
+          detail: 'User has been successfully registered.',
+          life: 3000
+        });
         // Redirect to /csi/kyc or handle success
         history("/csi/kyc");
+        onHide(); // Close the dialog
       } else {
-        console.error("Error registering user:", data.msg);
+        toast.current.show({
+          severity: 'error',
+          summary: 'Registration Failed',
+          detail: data.msg || 'An error occurred during registration.',
+          life: 3000
+        });
       }
     } catch (error) {
-      console.error("Error:", error);
+      toast.current.show({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'An unexpected error occurred.',
+        life: 3000
+      });
+    } finally {
+      setLoading(false); // Reset loading state
     }
   };
 
   const footerContent = (
-    <div className="flex justify-content-center ">
+    <div className="flex justify-content-center">
       <Button
         label="Submit"
         icon="pi pi-check"
         onClick={handleSubmit}
         autoFocus
         style={{ backgroundColor: "#00a269", color: "white" }}
+        loading={loading} // Show loading spinner when submitting
       />
     </div>
   );
 
   useEffect(() => {
-    // Fetch countries data on component mount
     fetchCountries();
-    // Fetch states for the default country (India)
     fetchStates(DEFAULT_COUNTRY_CODE);
   }, []);
 
@@ -154,66 +192,69 @@ const NewRegistrationDialogBox = ({
   };
 
   return (
-    <Dialog
-      visible={visible}
-      modal
-      header={headerElement}
-      footer={footerContent}
-      style={{ width: "50rem" }}
-      className="flex w-4"
-      onHide={onHide}
-    >
-      <div className="p-fluid mt-4">
-        <div className="field">
-          <FloatLabel>
-            <InputText
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+    <>
+      <Toast ref={toast} /> {/* Include Toast component */}
+      <Dialog
+        visible={visible}
+        modal
+        header={headerElement}
+        footer={footerContent}
+        style={{ width: "50rem" }}
+        className="flex w-4"
+        onHide={onHide}
+      >
+        <div className="p-fluid mt-4">
+          <div className="field">
+            <FloatLabel>
+              <InputText
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <label htmlFor="name">Name</label>
+            </FloatLabel>
+          </div>
+          <div className="field">
+            <FloatLabel>
+              <InputText
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <label htmlFor="email">Email Address</label>
+            </FloatLabel>
+          </div>
+          <div className="field">
+            <PhoneInput
+              name="number"
+              placeholder="Enter Phone Number"
+              value={number}
+              onChange={handlePhoneNumberChange}
+              country="in"
+              className="phone-input"
             />
-            <label htmlFor="name">Name</label>
-          </FloatLabel>
-        </div>
-        <div className="field">
-          <FloatLabel>
-            <InputText
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+          </div>
+          <div className="field">
+            <Dropdown
+              value={selectedState}
+              options={states}
+              onChange={handleStateChange}
+              optionLabel="name"
+              placeholder="Select a State"
             />
-            <label htmlFor="email">Email Address</label>
-          </FloatLabel>
+          </div>
+          <div className="field">
+            <Dropdown
+              value={selectedCity}
+              options={cities}
+              onChange={handleCityChange}
+              optionLabel="name"
+              placeholder="Select a City"
+            />
+          </div>
         </div>
-        <div className="field">
-          <PhoneInput
-            name="number"
-            placeholder="Enter Phone Number"
-            value={number}
-            onChange={handlePhoneNumberChange}
-            country="in"
-            className="phone-input"
-          />
-        </div>
-        <div className="field">
-          <Dropdown
-            value={selectedState}
-            options={states}
-            onChange={handleStateChange}
-            optionLabel="name"
-            placeholder="Select a State"
-          />
-        </div>
-        <div className="field">
-          <Dropdown
-            value={selectedCity}
-            options={cities}
-            onChange={handleCityChange}
-            optionLabel="name"
-            placeholder="Select a City"
-          />
-        </div>
-      </div>
-    </Dialog>
+      </Dialog>
+    </>
   );
 };
 

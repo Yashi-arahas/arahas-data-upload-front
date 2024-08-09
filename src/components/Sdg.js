@@ -15,7 +15,7 @@ import sex_ratio from "./images/sex-ratio.png";
 import electricity from "./images/electricity.png";
 import socio from "./images/diversity.png";
 import crime from "./images/crime-scene.png";
-import education from "./images/education.png";
+import education from "../components/KnowYourCity/KnowImages/education.png";
 import health from "./images/healthcare.png";
 import SdgCard from "./SdgCard";
 import Header from "./Header";

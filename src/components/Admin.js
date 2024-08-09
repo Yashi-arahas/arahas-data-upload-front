@@ -11,7 +11,7 @@ import sum_img from "./images/plus.png";
 import equal_img from "./images/equal.png";
 import esg from "./images/ESG_ESG.png";
 import { ParetoChart } from "./GraphVisuals";
-import Footer from "./Footer";
+import Footer from "../components/KnowYourCity/Footer";
 import renewable from "./images/renewable-energy.png";
 import air from "./images/air.png";
 import water from "./images/water.png";

@@ -1,6 +1,6 @@
 import React from "react";
-import ParaHeatMap from "./ParaHeatMap";
-import Footer from "./Footer";
+import ParaHeatMap from "../components/DashBoards/ParaHeatMap";
+import Footer from "../components/KnowYourCity/Footer";
 
 const ReportMap = ({ parameter }) => {
   console.log(parameter);

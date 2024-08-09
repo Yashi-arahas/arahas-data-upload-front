@@ -32,10 +32,10 @@ const DailyTrend = ({
           cursor: "pointer",
           explodeOnClick: false,
           name: "BaseChart",
-          type: "splineArea",
+          type: "area",
           indexLabelFontColor: "red",
           dataPoints: dataPoints,
-          color:"#378CE7"
+          color:"#00a269"
         },
       ],
     };
@@ -62,7 +62,7 @@ const DailyTrend = ({
       {
         color: "#67C6E3",
         name: selectedDate,
-        type: "splineArea",
+        type: "area",
         dataPoints: selectedDateData,
       },
     ]);
@@ -87,12 +87,14 @@ const DailyTrend = ({
   const baseChartOptions = {
     animationEnabled: true,
     theme: "lightblue",
-    title: {
-      text: "AQI Level for " + selectedLocation,
-      fontSize: 20,
-      fontFamily: "Inter",
-      fontWeight: 600,
-    },
+    // title: {
+    //   text: "AQI Level for " + selectedLocation,
+    //   fontSize: 20,
+    //   fontFamily: "Inter",
+    //   fontWeight: 600,
+    // },
+    height: 200,
+    width:550,
     legend: {
       fontSize: 10,
     },
@@ -214,6 +216,8 @@ const DailyTrend = ({
       text: "AQI Level for" + selectedDate,
       fontSize: 15,
     },
+    height: 170,
+    width:550,
     theme: "light2",
     axisX: {
       labelFontColor: "#717171",
@@ -254,7 +258,7 @@ const DailyTrend = ({
   return (
     <div>
       <div className="main-graph">
-        <div className="btn-container">
+        <div className="btn-container" >
       <button
                 className={backButtonClassName}
                 onClick={backButtonClickHandler}
@@ -266,8 +270,8 @@ const DailyTrend = ({
                   backgroundColor: "#2eacd1",
                   color: "white",
                   cursor: "pointer",
-                  margin:"0.5vw "
-                
+                  margin:"0.5vw ",
+                width:"10rem"
                 }}
               >
                 &lt; Back
@@ -283,7 +287,8 @@ const DailyTrend = ({
                   backgroundColor: "#2eacd1",
                   color: "white",
                   cursor: "pointer",
-                  margin:"0.5vw"
+                  margin:"0.5vw",
+                  width:"10rem"
                 }}
               >
                 View Last 15 days Trend
@@ -291,8 +296,7 @@ const DailyTrend = ({
                 </div>
       <CanvasJSChart
     options={isDrilldown ? drilldownChartOptions : baseChartOptions}
-    height={500}
-    width={"90%"} // Add containerProps to apply border radius
+    
 />
 
               

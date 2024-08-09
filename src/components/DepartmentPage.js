@@ -17,7 +17,7 @@ import hot from "./images/hot.png";
 import humid from "./images/hum.png";
 import RainFallCharts from "./RainFallCharts";
 import rain from "./images/rainfall.png";
-import slum from "./images/slum.png";
+import slum from "../components/KnowYourCity/KnowImages/slums.png";
 import pop from "./images/pop.png";
 import increase_pop from "./images/increase-pop.png";
 import land_use from "./images/land-use.png";

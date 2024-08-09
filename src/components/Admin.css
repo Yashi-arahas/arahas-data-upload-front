@@ -392,104 +392,8 @@
   justify-content: center;
 }
 
-/* Map Container */
-.para-map {
-  width: 30vw;
-  height: 20vw;
-}
 
-.map-container {
-  width: 35%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 2vw;
-}
 
-.full-map-container {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 1vw;
-  align-items: center;
-  justify-content: center;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-}
-
-.full-map-container img {
-  height: 22vw;
-  width: 35vw;
-}
-
-/* Image Slider Container */
-.image-slider {
-  background-color: white;
-  padding: 0.1vw;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-/* Legend Styles */
-.legend {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: row;
-  padding: 0.5vw;
-  font-size: 0.8vw;
-  width: 100%;
-  margin: 1vw;
-}
-
-.legend h3 {
-  margin: 0;
-  font-size: 0.8vw;
-}
-
-.legend div {
-  display: flex;
-  align-items: center;
-}
-
-.legend span {
-  width: 1vw;
-  height: 1vw;
-  margin-right: 0.5vw;
-  border: 0.1vw solid black;
-}
-
-/* PowerBI Link Styles */
-.powerbi-link {
-  position: fixed;
-  top: 5.5vw;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  background: #00a269;
-  padding: 0.5vw;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-}
-
-.powerbi-link img {
-  height: 1.5vw;
-  margin-right: 0.5vw;
-}
-
-.powerbi-link p {
-  margin: 0;
-  font-size: 0.8vw;
-  color: white;
-}
-
-.powerbi-link a {
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  color: inherit;
-}
 
 .esg-chart {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
@@ -497,6 +401,7 @@
   width: 100%;
   height: 13vw;
   margin: 0;
+  font-family: "DM Sans", sans-serif !important;
 }
 
 .esg-chart:hover {

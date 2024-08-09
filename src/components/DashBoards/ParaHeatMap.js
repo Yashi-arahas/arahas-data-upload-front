@@ -12,16 +12,15 @@ import { Style, Fill, Stroke, Icon } from "ol/style";
 import { Feature } from "ol";
 import Point from "ol/geom/Point";
 import Overlay from "ol/Overlay";
-import ayodhya_villages from "./images/ayodhya_village.json";
-import ayodhya from "./images/ayodhya.json";
-import "./Admin.css";
-import waste_map from "./images/waste_map.png";
+import ayodhya_villages from "../images/ayodhya_village.json";
+import ayodhya from "../images/ayodhya.json";
+import waste_map from "../images/waste_map.png";
 import axios from "axios";
 
-const ParaHeatMap = ({ Parameter }) => {
+const ParaHeatMap = ({ Parameter,startDate, endDate} ) => {
   const mapRef = useRef();
-  const [startDate, setStartDate] = useState(new Date("2024-01-08"));
-  const [endDate, setEndDate] = useState(new Date("2024-02-28"));
+  // const [startDate, setStartDate] = useState(new Date("2024-01-08"));
+  // const [endDate, setEndDate] = useState(new Date("2024-02-28"));
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true); // State to manage loading status
   useEffect(() => {
@@ -55,7 +54,7 @@ const ParaHeatMap = ({ Parameter }) => {
       ],
       view: new View({
         center: fromLonLat([82.1225, 26.7532]),
-        zoom: 11,
+        zoom: 10.5,
       }),
     });
 
@@ -100,11 +99,11 @@ const ParaHeatMap = ({ Parameter }) => {
           } else if (Parameter === "aqi") {
             const aqiValue = villageData.AQI;
             if (aqiValue <= 50) fillColor = "#0A6847";
-            else if (aqiValue <= 100) fillColor = "#7ABA78";
-            else if (aqiValue <= 200) fillColor = "#CA8787";
-            else if (aqiValue <= 300) fillColor = "#FFC100";
-            else if (aqiValue <= 400) fillColor = "#FF6500";
-            else fillColor = "#C40C0C";
+            else if (aqiValue <= 100) fillColor = "#48bb78";
+            else if (aqiValue <= 200) fillColor = "#f6e05e";
+            else if (aqiValue <= 300) fillColor = "#ed8936";
+            else if (aqiValue <= 400) fillColor = "#f56565";
+            else fillColor = "#c53030";
           } else if (Parameter === "rainfall") {
             fillColor = "#A7E6FF";
           }
@@ -115,7 +114,7 @@ const ParaHeatMap = ({ Parameter }) => {
             color: fillColor,
           }),
           stroke: new Stroke({
-            color: "black",
+            color: "#a9f3e0",
             width: 1,
           }),
         });
@@ -126,7 +125,7 @@ const ParaHeatMap = ({ Parameter }) => {
       source: boundarySource,
       style: new Style({
         stroke: new Stroke({
-          color: "#000000",
+          color: "#00a269",
           width: 2,
         }),
       }),
@@ -251,13 +250,6 @@ const ParaHeatMap = ({ Parameter }) => {
     };
   }, [data, Parameter]);
 
-  const handleStartDateChange = (event) => {
-    setStartDate(new Date(event.target.value));
-  };
-
-  const handleEndDateChange = (event) => {
-    setEndDate(new Date(event.target.value));
-  };
 
   const formatDate = (date) => {
     const year = date.getFullYear();
@@ -296,19 +288,19 @@ const ParaHeatMap = ({ Parameter }) => {
             <span style={{ background: "#0A6847" }}></span> 0 - 50
           </div>
           <div>
-            <span style={{ background: "#7ABA78" }}></span> 51 - 100
+            <span style={{ background: "#48bb78" }}></span> 51 - 100
           </div>
           <div>
-            <span style={{ background: "#CA8787" }}></span> 101 - 200
+            <span style={{ background: "#f6e05e" }}></span> 101 - 200
           </div>
           <div>
-            <span style={{ background: "#FFC100" }}></span> 201 - 300
+            <span style={{ background: "#ed8936" }}></span> 201 - 300
           </div>
           <div>
-            <span style={{ background: "#FF6500" }}></span> 301 - 400
+            <span style={{ background: "#f56565" }}></span> 301 - 400
           </div>
           <div>
-            <span style={{ background: "#C40C0C" }}></span> 401 - 500
+            <span style={{ background: "#c53030" }}></span> 401 - 500
           </div>
         </div>
       );
@@ -342,45 +334,23 @@ const ParaHeatMap = ({ Parameter }) => {
       {loading ? ( // Conditional rendering based on loading state
         <CircularProgress />
       ) : (
-        <div className="full-map-container">
-          <div className="date-select">
-            <div className="date-container">
-              <label htmlFor="start-date" style={{ fontSize: "1vw" }}>
-                Start Date :&nbsp;
-              </label>
-              <input
-                type="date"
-                id="start-date"
-                value={formatDate(startDate)}
-                onChange={handleStartDateChange}
-                min={formatDate(startDate)}
-                max={formatDate(endDate)}
-                style={{ fontSize: "1vw" }}
-              />
-            </div>
-            <div className="date-container">
-              <label htmlFor="end-date" style={{ fontSize: "1vw" }}>
-                End Date :&nbsp;
-              </label>
-              <input
-                type="date"
-                id="end-date"
-                value={formatDate(endDate)}
-                onChange={handleEndDateChange}
-                min={formatDate(startDate)}
-                max={formatDate(endDate)}
-                style={{ fontSize: "1vw" }}
-              />
-            </div>
-          </div>
+        <div
+        //  className="full-map-container"
+         >
+         
           {Parameter === "waste" && <img src={waste_map} />}
           {["aqi", "temp", "rainfall"].includes(Parameter) && (
+            <div>
             <div ref={mapRef} className="para-map"></div>
+            
+            </div>
           )}
 
           {renderLegend()}
+          
         </div>
       )}
+      <div>{}</div>
     </>
   );
 };

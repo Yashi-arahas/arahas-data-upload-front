@@ -14,7 +14,7 @@ import Overlay from 'ol/Overlay';
 import airport from "../../images/airport.webp"
 import railway from "../../images/railway.avif"
 import school from "../../images/tiny-school.jpg"
-import temple from "../../images/ram-mandir.jpg"
+import temple from "../../../components/KnowYourCity/KnowImages/ram.jpg";
 import Shahadat from "../../images/shahadat.jpeg"
 import AQI from "../../images/AQI.png"
 
@@ -53,7 +53,7 @@ const AqiMap = ({ averageAQI, latestDate }) => {
       ],
       view: new View({
         center: fromLonLat([82.144132, 26.783869]),
-        zoom: 11,
+        zoom: 10,
       }),
     });
 
@@ -162,14 +162,13 @@ const AqiMap = ({ averageAQI, latestDate }) => {
       element: popupContent,
       positioning: 'bottom-center',
       stopEvent: false,
-      offset: [200, 20],
+      offset: [100, 20],
     });
 
     map.addOverlay(overlay);
 
-    popupContent.style.borderRadius = '10px';
-    popupContent.style.padding = '0.5vw';
-    popupContent.style.fontSize = "0.9vw";
+    popupContent.style.padding = '0.3vw';
+    popupContent.style.fontSize = "0.7vw";
 
     
     map.on('pointermove', function (event) {
@@ -185,11 +184,11 @@ const AqiMap = ({ averageAQI, latestDate }) => {
     
         let popupHTML = `
           <div>
-            ${location === 'Ayodhya - Civil line,Tiny tots school' ? `<img src="${school}" alt="School" style="width: 100%; height: 9vw;"/>` : ''}
-            ${location === 'Ayodhya - Shahadat Ganj' ? `<img src="${Shahadat}" alt="Shahadat" style="width: 100%; height: 9vw;"/>` : ''}
-            ${location === 'Ayodhya-Bank colony near Railway station' ? `<img src="${railway}" alt="Railway" style="width: 100%; height: 9vw;"/>` : ''}
-            ${location === 'Ayodhya-near Airport' ? `<img src="${airport}" alt="Airport" style="width: 100%; height: 9vw;"/>` : ''}
-            ${location === 'Ayodhya-Ranopali near Kila ayodhya' ? `<img src="${temple}" alt="Temple" style="width: 100%; height: 9vw;"/>` : ''}
+            ${location === 'Ayodhya - Civil line,Tiny tots school' ? `<img src="${school}" alt="School" style="width: 100%; height: 5vw;"/>` : ''}
+            ${location === 'Ayodhya - Shahadat Ganj' ? `<img src="${Shahadat}" alt="Shahadat" style="width: 100%; height: 5vw;"/>` : ''}
+            ${location === 'Ayodhya-Bank colony near Railway station' ? `<img src="${railway}" alt="Railway" style="width: 100%; height: 5vw;"/>` : ''}
+            ${location === 'Ayodhya-near Airport' ? `<img src="${airport}" alt="Airport" style="width: 100%; height: 5vw;"/>` : ''}
+            ${location === 'Ayodhya-Ranopali near Kila ayodhya' ? `<img src="${temple}" alt="Temple" style="width: 100%; height: 5vw;"/>` : ''}
             <p><strong>${location}</strong> </p>
             <p>Last Updated on <strong>${latestDate}</strong></p>
           
@@ -222,17 +221,16 @@ const AqiMap = ({ averageAQI, latestDate }) => {
       <div
         ref={mapRef}
         style={{
-          width: '100%',
-          height: '35vw',
-          borderRadius: '10px',
+          width: '35vw',
+          height: '20vw',
           overflow: 'hidden',
         }}
       ></div>
-      <div
+      {/* <div
         style={{
           position: 'absolute',
           top: '1vw',
-          left: '38%',
+          left: '10%',
           zIndex: 1000,
           backgroundColor: 'white',
           padding: '0.3vw 0 0 0',
@@ -240,7 +238,7 @@ const AqiMap = ({ averageAQI, latestDate }) => {
           boxShadow: '0 0 10px -4px rgba(0,0,0,0.7)',
         }}
       >
-      </div>
+      </div> */}
     </div>
   );
 };
