@@ -18,9 +18,10 @@ import AqiReport from '../Environment/AqiReport';
 import PollutantChart from './PollutantChart';
 
 import { ProgressSpinner } from 'primereact/progressspinner';
-        
+  
 import DecompositionTree, { CustomBarChart, DonutChart} from '../GraphVisuals';
-const AqiDashboard = ({ onDataChange }) => {
+const AqiDashboard = ({ onDataChange , show, pSelectedLocation, pSelectedStartDate, pSelectedEndDate}) => {
+  
   const [startDate, setStartDate] = useState(new Date("2024-01-19"));
   const [endDate, setEndDate] = useState(new Date("2024-04-29"));
   const [aqiData, setAqiData] = useState([]);
@@ -41,7 +42,7 @@ const AqiDashboard = ({ onDataChange }) => {
   const [enviroNO2, setEnviroNO2] = useState([]);
   const [enviroco2, setEnviroco2] = useState([]);
   const [loading, setLoading] = useState(true); 
-
+  
   const locations = [
     { name: 'Civil Lines, Tiny Tots School', code: 'Ayodhya - Civil line,Tiny tots school', village: 'Faizabad' },
     { name: 'Shahadat Ganj', code: 'Ayodhya - Shahadat Ganj', village: 'Haibatpur' },
@@ -51,7 +52,10 @@ const AqiDashboard = ({ onDataChange }) => {
   ];
 
   const handleLocationChange = (e) => {
-    setSelectedLocation(e.value.code);
+    if (show) {
+      setSelectedLocation(e.value.code); 
+    }
+    
   };
   useEffect(() => {
     setLoading(true); // Start loading
@@ -159,7 +163,26 @@ const AqiDashboard = ({ onDataChange }) => {
   
     fetchData();
   }, [startDate, endDate, selectedLocation]);
-  
+
+
+  useEffect(() => {
+    // Update selectedLocation when pSelectedLocation changes, only if `show` is false
+    if (!show && pSelectedLocation) {
+      setSelectedLocation(pSelectedLocation);
+    }
+  }, [show, pSelectedLocation]);
+  useEffect(() => {
+    // Update selectedLocation when pSelectedLocation changes, only if `show` is false
+    if (!show && pSelectedLocation) {
+      setStartDate(pSelectedStartDate);
+    }
+  }, [show, pSelectedStartDate]);
+  useEffect(() => {
+    // Update selectedLocation when pSelectedLocation changes, only if `show` is false
+    if (!show && pSelectedLocation) {
+      setEndDate(pSelectedEndDate);
+    }
+  }, [show, pSelectedEndDate]);
   
   function formatTimeToHHMMSS(isoDateString) {
     const dateObj = new Date(isoDateString);
@@ -188,11 +211,17 @@ const AqiDashboard = ({ onDataChange }) => {
   };
 
   const handleStartDateChange = (e) => {
-    setStartDate(e.target.value);
+    if (show) {
+      setStartDate(e.target.value);
+    }
+    
   };
 
   const handleEndDateChange = (e) => {
-    setEndDate(e.target.value);
+    if (show) {
+      setEndDate(e.target.value);
+    }
+    
   };
 
   const getAqiStatus = (aqi) => {
@@ -230,6 +259,8 @@ const AqiDashboard = ({ onDataChange }) => {
       </div>
     ) : (
     <>
+    {show && (
+      <>
       <div className="flex align-items-center justify-content-between flex-row m-1">
         <div className="p-field text-sm">
           <label htmlFor="location">Location : </label>
@@ -271,6 +302,9 @@ const AqiDashboard = ({ onDataChange }) => {
           </div>
         </div>
       </div>
+      </>
+    )}
+      
       <div className='flex align-items-start justify-content-start mt-2'>
         {selectedLocation && (
           <div >
@@ -388,7 +422,9 @@ const AqiDashboard = ({ onDataChange }) => {
         </Card>
         </div>
       </div>
-      <div className='flex align-items-center justify-content-start flex-row mt-2'>
+      {show && (
+        <>
+<div className='flex align-items-center justify-content-start flex-row mt-2'>
         <Card  className='h-15rem w-6'>
         <CustomBarChart
                     title="Human Loss by Age Group and Gender"
@@ -409,6 +445,8 @@ const AqiDashboard = ({ onDataChange }) => {
         </Card>
        */}
       </div>
+      </>)}
+      
       
       
     </>)}

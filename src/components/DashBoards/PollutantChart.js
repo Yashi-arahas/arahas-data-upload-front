@@ -97,10 +97,10 @@ const PollutantChart = ({
           stripLines: [
             {
               value: safeLimit,
-              label: "Safe Limit",
-              color: "rgb(93, 92, 92)",
+              label: `Safe Limit ( ${safeLimit} )`,
+              color: "rgb(93, 92, 97)",
               lineDashType: "dash",
-              labelFontSize:10,
+              labelFontSize:8,
               thickness: 1,
             },
           ],
@@ -145,8 +145,9 @@ const PollutantChart = ({
           stripLines: [
             {
               value: safeLimit,
-              label: "Safe Limit",
+              label:`Safe Limit ( ${safeLimit} )`,
               color: "rgb(93, 92, 92)",
+              labelFontSize:8,
               lineDashType: "dash",
               thickness: 2,
             },

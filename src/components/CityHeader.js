@@ -28,6 +28,7 @@ import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
 import AqiDashboard from "./DashBoards/AqiDashboard";
 import AQIRecommendations from "./DashBoards/Recommendations/AQIRecommendations";
+import GenerateAqiReport from "./DashBoards/GenerateAQIReport";
 
 function CityHeader({ pageName }) {
   const [expandedSection, setExpandedSection] = useState(null); // State to track expanded section
@@ -94,7 +95,7 @@ function CityHeader({ pageName }) {
               {selectedParameter==="aqi" && (
                 <>
                 
-                <AqiDashboard onDataChange={handleAqiData} />
+                <AqiDashboard onDataChange={handleAqiData} show={true} />
                 
                 </>
               )}
@@ -122,7 +123,13 @@ function CityHeader({ pageName }) {
             <TabPanel
               header="Report"
               headerClassName="text-green-500"
-            ></TabPanel>
+            >
+              {selectedParameter==="aqi" && (
+                <>
+                <GenerateAqiReport/>
+                </>
+              )}
+            </TabPanel>
           </TabView>
         </div>
       );
