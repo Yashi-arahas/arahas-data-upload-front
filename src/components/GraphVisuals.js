@@ -17,21 +17,21 @@ const colors = [
   "#581845", // (Dark Violet)
   "#9b59b6", // (Amethyst Purple)
 ];
-const DonutChart = ({ title, labels, series, height }) => {
+export const DonutChart = ({ title, labels, series, height ,width }) => {
   const options = {
     animationEnabled: true,
     title: {
       text: title,
-      fontSize: 10,
+      fontSize: 12,
       fontFamily:"DM Sans",
       fontWeight:"800"
     },
     height: height,
-
+    width:width,
     data: [
       {
         type: "doughnut",
-        startAngle: -10,
+        startAngle: 60,
         toolTipContent: "<b>{label}</b>: {y} (#percent%)",
         showInLegend: false,
         indexLabelFontSize: 8,
@@ -47,13 +47,12 @@ const DonutChart = ({ title, labels, series, height }) => {
   };
 
   return (
-    <div>
+    <div className="main-graph-pollutant">
       <CanvasJSChart options={options} />
     </div>
   );
 };
 
-export default DonutChart;
 export const GroupedBarChart = ({
   title,
   categories,
@@ -436,3 +435,101 @@ export const AreaChart = ({
     </div>
   );
 };
+export const CustomBarChart = ({ title, categories, series, height, width, xtitle, ytitle }) => {
+  const options = {
+    title: {
+      text: title,
+      fontSize: 12,
+      fontFamily: "DM Sans",
+       fontWeight:"800"
+    },
+    axisX: {
+      title: xtitle,
+      interval: 1,
+      gridThickness: 0, // Remove gridlines on X-axis
+    },
+    axisY: {
+      // title: ytitle,
+      includeZero: true,
+      gridThickness: 0, // Remove gridlines on Y-axis
+    },
+    toolTip: {
+      shared: true, // Display both series in the tooltip
+    },
+    data: [
+      {
+        type: "column",
+        name: "Female", // This will show "Female" in the tooltip
+        dataPoints: categories.map((category, index) => ({
+          label: category,
+          y: series[index].female,
+          color: "rgb(184, 184, 184)" // color for female
+        })),
+      },
+      {
+        type: "column",
+        name: "Male", // This will show "Male" in the tooltip
+        dataPoints: categories.map((category, index) => ({
+          label: category,
+          y: series[index].male,
+          color: "#00a269" // color for male
+        })),
+      }
+    ],
+    width,
+    height
+  };
+
+  return (
+    <div style={{ width, height }}>
+      <CanvasJSChart options={options} />
+    </div>
+  );
+};
+const DecompositionTree = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const categories = [
+    { label: "Root", y: 100 },
+    { label: "Branch 1", y: 60, parent: "Root" },
+    { label: "Branch 2", y: 40, parent: "Root" },
+    { label: "Leaf 1.1", y: 30, parent: "Branch 1" },
+    { label: "Leaf 1.2", y: 30, parent: "Branch 1" },
+    { label: "Leaf 2.1", y: 40, parent: "Branch 2" },
+  ];
+
+  const filteredCategories = categories.filter(
+    (category) =>
+      category.parent === selectedCategory || (!selectedCategory && !category.parent)
+  );
+
+  const options = {
+    animationEnabled: true,
+    title: {
+      text: "Decomposition Tree",
+    },
+    width:400,
+    data: [
+      {
+        type: "column",
+        dataPoints: filteredCategories.map((category) => ({
+          label: category.label,
+          y: category.y,
+          click: () => setSelectedCategory(category.label),
+        })),
+      },
+    ],
+  };
+
+  return (
+    <div>
+      <button onClick={() => setSelectedCategory(null)}>Reset</button>
+      <CanvasJSChart options={options} />
+    </div>
+  );
+};
+
+export default DecompositionTree;
+
+
+

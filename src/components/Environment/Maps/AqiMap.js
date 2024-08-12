@@ -53,7 +53,7 @@ const AqiMap = ({ averageAQI, latestDate }) => {
       ],
       view: new View({
         center: fromLonLat([82.144132, 26.783869]),
-        zoom: 10,
+        zoom: 11,
       }),
     });
 
@@ -187,7 +187,7 @@ const AqiMap = ({ averageAQI, latestDate }) => {
             ${location === 'Ayodhya - Civil line,Tiny tots school' ? `<img src="${school}" alt="School" style="width: 100%; height: 5vw;"/>` : ''}
             ${location === 'Ayodhya - Shahadat Ganj' ? `<img src="${Shahadat}" alt="Shahadat" style="width: 100%; height: 5vw;"/>` : ''}
             ${location === 'Ayodhya-Bank colony near Railway station' ? `<img src="${railway}" alt="Railway" style="width: 100%; height: 5vw;"/>` : ''}
-            ${location === 'Ayodhya-near Airport' ? `<img src="${airport}" alt="Airport" style="width: 100%; height: 5vw;"/>` : ''}
+            ${location === 'Ayodhya-near Airport' ? `<img src="${airport}" alt="Airport" style="width: 100%; height: 6vw;"/>` : ''}
             ${location === 'Ayodhya-Ranopali near Kila ayodhya' ? `<img src="${temple}" alt="Temple" style="width: 100%; height: 5vw;"/>` : ''}
             <p><strong>${location}</strong> </p>
             <p>Last Updated on <strong>${latestDate}</strong></p>
@@ -221,8 +221,8 @@ const AqiMap = ({ averageAQI, latestDate }) => {
       <div
         ref={mapRef}
         style={{
-          width: '35vw',
-          height: '20vw',
+          width: '35rem',
+          height: '15rem',
           overflow: 'hidden',
         }}
       ></div>

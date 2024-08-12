@@ -27,6 +27,7 @@ import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
 import AqiDashboard from "./DashBoards/AqiDashboard";
+import AQIRecommendations from "./DashBoards/Recommendations/AQIRecommendations";
 
 function CityHeader({ pageName }) {
   const [expandedSection, setExpandedSection] = useState(null); // State to track expanded section
@@ -84,7 +85,11 @@ function CityHeader({ pageName }) {
               headerClassName="text-teal-600"
             >
               {selectedParameter==="aqi" && (
+                <>
+                
                 <AqiDashboard/>
+                
+                </>
               )}
                {selectedParameter!=="aqi" && (
                 <ReportMap parameter={selectedParameter} />
@@ -95,7 +100,13 @@ function CityHeader({ pageName }) {
               header="Recommendations"
               className="m-0 "
               headerClassName="text-teal-600"
-            ></TabPanel>
+            >
+              {selectedParameter==="aqi" && (
+                <>
+                <AQIRecommendations aqi={30}/>
+                </>
+              )}
+            </TabPanel>
 
             <TabPanel
               header="Report"

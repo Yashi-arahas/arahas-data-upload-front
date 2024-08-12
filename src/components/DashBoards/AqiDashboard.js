@@ -15,8 +15,8 @@ import "./Dash.css";
 import AQIChart from '../Environment/AQIChart';
 import AqiMap from '../Environment/Maps/AqiMap';
 import AqiReport from '../Environment/AqiReport';
-import RecomModel from './AIModels/RecomModel';
-
+import PollutantChart from './PollutantChart';
+import DecompositionTree, { CustomBarChart, DonutChart} from '../GraphVisuals';
 const AqiDashboard = () => {
   const [startDate, setStartDate] = useState(new Date("2024-01-19"));
   const [endDate, setEndDate] = useState(new Date("2024-04-29"));
@@ -193,10 +193,22 @@ const AqiDashboard = () => {
   const rowClassName = (data) => {
     return parseFloat(data.deviationPercentage) > 10 ? 'red-row' : '';
   };
-
+  const categories = ["0-17", "18-65", "65+"];
+  const series = [
+      { female: 25, male: 30 },  // 0-17
+      { female: 55, male: 60 },  // 18-65
+      { female: 35, male: 40 }   // 65+
+  ];
+  const NO2impactlabels = [
+    "Breathing Problems",
+    "Cardiovascular Issues",
+    "CNS Impact",
+    "Liver/Spleen/Blood Impact",
+  ];
+  const NO2Impactseries = [1090, 815, 345, 245];
   return (
     <>
-      <div className="flex align-items-center justify-content-between flex-row">
+      <div className="flex align-items-center justify-content-between flex-row m-1">
         <div className="p-field text-sm">
           <label htmlFor="location">Location : </label>
           <Dropdown
@@ -243,10 +255,12 @@ const AqiDashboard = () => {
             <Card title="Air Quality Index" className='text-xs h-17rem'>
               <div className='flex align-items-center justify-content-around flex-row'>
                 <div>
-                  <div className='flex align-items-center flex-column'>
+                  <div className='flex align-items-center justify-content-center flex-column'>
+                  <h1 className='text-4xl'>{aqiValue !== null ? `${aqiValue}` : 'Loading...'}</h1>
                     {aqiImage && <img src={aqiImage} alt={aqiStatusText} style={{ width: '4rem', height: '6rem' }} />}
-                    <h1 className='text-xl'>{aqiValue !== null ? `${aqiValue}` : 'Loading...'}</h1>
                     <h1 className={`border-round-xs p-1 text-xs text-white w-6rem ${color}`}>{aqiStatusText}</h1>
+                    
+                    
                   </div>
                 </div>
               </div>
@@ -265,6 +279,12 @@ const AqiDashboard = () => {
           </Card>
         </div>
         <Card>
+          <AqiReport/>
+        </Card>
+        
+      </div>
+      <div className="flex align-items-center justify-content-between flex-row mt-2">
+      <Card>
           <AQIChart
             envirolocation={envirolocation}
             enviroDate={envirodate}
@@ -278,14 +298,97 @@ const AqiDashboard = () => {
             selectedLocation={selectedLocation}
           />
         </Card>
+        <div className='w-7  m-2 bg-green-100 flex align-items-center justify-content-center flex-row'>
+          
+      </div>
       </div>
       <div className="flex align-items-center justify-content-between flex-row mt-2">
-        <Card>
-          {/* <ParaHeatMap Parameter={"aqi"} startDate={startDate} endDate={endDate} /> */}
-          <AqiReport/>
-          {/* <RecomModel/> */}
+      
+      <div className='w-100 flex align-items-center justify-content-center flex-row'>
+      <Card className='h-15rem w-4 mr-1'>
+        <PollutantChart
+        envirolocation={envirolocation}
+        envirodate={envirodate}
+        envirotime={envirotime}
+        pollutantData={enviropm25}
+        selectedLocation={selectedLocation}
+        pollutantName="PM2.5"
+        baseChartColor='#FF5722'
+        drilldownChartColor='#FFC107'
+        height={200}
+        width={250}
+        safeLimit={60}
+      /></Card>
+       <Card className='h-15rem w-4  m-1'>
+      <PollutantChart
+        envirolocation={envirolocation}
+        envirodate={envirodate}
+        envirotime={envirotime}
+        pollutantData={enviropm10}
+        selectedLocation={selectedLocation}
+        pollutantName="PM10"
+        baseChartColor='#4DB6AC'
+        drilldownChartColor='#80CBC4'
+        height={200}
+        width={250}
+        safeLimit={100}
+      />
+      </Card>
+      <Card className='h-15rem w-4 m-1 '>
+      <PollutantChart
+        envirolocation={envirolocation}
+        envirodate={envirodate}
+        envirotime={envirotime}
+        pollutantData={enviroNO2}
+        selectedLocation={selectedLocation}
+        pollutantName="NO2"
+        baseChartColor='#F44336'
+        drilldownChartColor='#E57373'
+        height={200}
+        width={250}
+        safeLimit={80}
+      />
+      </Card>
+      <Card className='h-15rem w-4 ml-1 '>
+      <PollutantChart
+        envirolocation={envirolocation}
+        envirodate={envirodate}
+        envirotime={envirotime}
+        pollutantData={enviroso2}
+        selectedLocation={selectedLocation}
+        pollutantName="SO2"
+        baseChartColor='#FFEB3B'
+        drilldownChartColor='#FFF176'
+        height={200}
+        width={250}
+        safeLimit={80}
+      />
         </Card>
+        </div>
       </div>
+      <div className='flex align-items-center justify-content-start flex-row mt-2'>
+        <Card  className='h-15rem w-6'>
+        <CustomBarChart
+                    title="Human Loss by Age Group and Gender"
+                    categories={categories}
+                    series={series}
+                    height={200}
+                    width={500}
+                    xtitle="Age Group"
+                    ytitle="Number of Losses"
+                />
+
+        </Card>
+        <Card  className='h-15rem w-6 ml-1 '>
+        <DonutChart title={"Health Impact of NO2"} labels={NO2impactlabels} series={NO2Impactseries} height={200} width={300}/>
+        </Card>
+        {/* <Card>
+          <DecompositionTree/>
+        </Card>
+       */}
+      </div>
+      
+      
     </>
   );
 };

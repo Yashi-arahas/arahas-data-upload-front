@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import CanvasJSReact from "@canvasjs/react-charts";
 import "./AqiReport.css";
 import HeatMap from "./HeatMap";
-import { color } from "framer-motion";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const DailyTrend = ({
@@ -17,8 +16,9 @@ const DailyTrend = ({
   const [isDrilldown, setIsDrilldown] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [drilldownChartData, setDrilldownChartData] = useState([]);
-  console.log(fifteenDaysData);
+  
   useEffect(() => {
+    console.log(fifteenDaysData);
     const dataPoints = Object.entries(dailyAverage).map(([date, value]) => ({
       label: date,
       x: new Date(date.split("-").reverse().join("-")),
@@ -35,7 +35,8 @@ const DailyTrend = ({
           type: "area",
           indexLabelFontColor: "red",
           dataPoints: dataPoints,
-          color:"#00a269"
+          color:"#40A2E3",
+        
         },
       ],
     };
@@ -94,10 +95,16 @@ const DailyTrend = ({
     //   fontWeight: 600,
     // },
     height: 200,
-    width:550,
+    width:1130,
     legend: {
       fontSize: 10,
     },
+      title:{
+text:"AQI Trend", 
+fontSize:15,
+ fontFamily:"DM Sans",
+      fontWeight:"800"
+      },
     axisX: {
       labelFontColor: "#717171",
       lineColor: "#a2a2a2",
@@ -114,9 +121,9 @@ const DailyTrend = ({
         {
           value: 300,
           thickness: 1,
-          color: "blue",
-          label: "Safe Limit",
-          labelFontColor: "black",
+          color: "rgb(93, 92, 92)",
+              lineDashType: "dash",
+              label:"Safe limits",
         },
       ],
     },
@@ -217,7 +224,7 @@ const DailyTrend = ({
       fontSize: 15,
     },
     height: 170,
-    width:550,
+    width:1130,
     theme: "light2",
     axisX: {
       labelFontColor: "#717171",
@@ -235,9 +242,9 @@ const DailyTrend = ({
         {
           value: 300,
           thickness: 1,
-          color: "blue",
-          label: "Safe Limit",
-          labelFontColor: "black",
+          color: "rgb(93, 92, 92)",
+              lineDashType: "dash",
+              label:"Safe limits",
         },
       ],
     },

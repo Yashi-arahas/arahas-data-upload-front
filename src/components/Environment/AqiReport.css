@@ -49,8 +49,8 @@ h1 {
 .table-container {
   font-family: Arial, sans-serif;
   border-collapse: collapse;
-  width:35rem;
   font-size: 0.5vw;
+  width: 70rem;
   font-weight: 600;
 }
 
@@ -125,4 +125,9 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-direction: row;
+}
+.main-graph-pollutant {
+  display: flex;
+  width: 15.6rem;
+  flex-wrap: wrap;
 }

@@ -79,7 +79,7 @@ const NewRegistrationDialogBox = ({
 
     try {
       const response = await fetch(
-        "https://arahas-data-upload-back.onrender.com/new/register",
+        "http://13.232.104.132:8009/new/register",
         {
           method: "POST",
           headers: {

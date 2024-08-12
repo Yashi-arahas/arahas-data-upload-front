@@ -4,7 +4,7 @@ import Map from "../Map";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "primereact/button";
-import DonutChart, { PieChart } from "../GraphVisuals";
+import {DonutChart,  PieChart } from "../GraphVisuals";
 import Card from "./Cards";
 import Header from "../Header";
 import monuments from "./KnowImages/monuments.png";

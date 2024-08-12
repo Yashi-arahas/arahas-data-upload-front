@@ -63,11 +63,6 @@ const AQIChart = ({
       const average = sum / dailyAQI.length;
       dailyAverages[date] = parseFloat(average.toFixed(2));
     }
-    // dailyAverages.sort((a, b) => {
-    //   const dateA = a.date.split("-").reverse().join("-");
-    //   const dateB = b.date.split("-").reverse().join("-");
-    //   return new Date(dateB) - new Date(dateA);
-    // });
     return dailyAverages;
   };
   const getDailyData = () => {
@@ -91,35 +86,24 @@ const AQIChart = ({
     if (!envirolocation || !enviroDate || !enviroAQI || !envirotime) {
       return null;
     }
-
-    // Parse the selectedDate to extract day, month, and year
     const [selectedDay, selectedMonth, selectedYear] = selectedDate
       .split("-")
       .map(Number);
-
-    // Calculate the day 15 days ago from the selected day
     let fifteenDaysAgoDay = selectedDay - 15;
     let fifteenDaysAgoMonth = selectedMonth;
     let fifteenDaysAgoYear = selectedYear;
-
-    // Adjust the month and year if the day goes below 1
     while (fifteenDaysAgoDay <= 0) {
-      // Go to the previous month
       fifteenDaysAgoMonth--;
       if (fifteenDaysAgoMonth === 0) {
-        // If the month becomes 0 (January), go to December of the previous year
         fifteenDaysAgoMonth = 12;
         fifteenDaysAgoYear--;
       }
 
-      // Get the number of days in the previous month
       const daysInPreviousMonth = new Date(
         fifteenDaysAgoYear,
         fifteenDaysAgoMonth,
         0
       ).getDate();
-
-      // Adjust the day to the corresponding day in the previous month
       fifteenDaysAgoDay += daysInPreviousMonth;
     }
 
