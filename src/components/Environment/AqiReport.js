@@ -134,9 +134,10 @@ const AqiReport = () => {
   return (
     <div className="Aqi-zone-map">
       {Array.isArray(avgAqi) ? (
+        
         <AqiMap averageAQI={avgAqi} latestDate={latestDate} />
       ) : (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "25vw" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "15rem" ,width:"35rem" }}>
           <CircularProgress />
         </div>
       )}

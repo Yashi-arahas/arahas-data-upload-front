@@ -16,6 +16,9 @@ import AQIChart from '../Environment/AQIChart';
 import AqiMap from '../Environment/Maps/AqiMap';
 import AqiReport from '../Environment/AqiReport';
 import PollutantChart from './PollutantChart';
+
+import { ProgressSpinner } from 'primereact/progressspinner';
+        
 import DecompositionTree, { CustomBarChart, DonutChart} from '../GraphVisuals';
 const AqiDashboard = () => {
   const [startDate, setStartDate] = useState(new Date("2024-01-19"));
@@ -35,6 +38,7 @@ const AqiDashboard = () => {
   const [enviroAQI, setEnviroAQI] = useState([]);
   const [enviroNO2, setEnviroNO2] = useState([]);
   const [enviroco2, setEnviroco2] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   const locations = [
     { name: 'Civil Lines, Tiny Tots School', code: 'Ayodhya - Civil line,Tiny tots school', village: 'Faizabad' },
@@ -48,6 +52,7 @@ const AqiDashboard = () => {
     setSelectedLocation(e.value.code);
   };
   useEffect(() => {
+    setLoading(true); // Start loading
     const fetchData = async () => {
       try {
         const startDateFormatted = formatDate(startDate);
@@ -140,6 +145,9 @@ const AqiDashboard = () => {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
+      finally {
+        setLoading(false); // End loading
+      }
     };
   
     fetchData();
@@ -207,6 +215,12 @@ const AqiDashboard = () => {
   ];
   const NO2Impactseries = [1090, 815, 345, 245];
   return (
+    <div className="aqi-dashboard">
+    {loading ? (
+      <div className="flex align-items-center justify-content-center h-100">
+        <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="8" fill="var(--surface-ground)" animationDuration="1s" />
+      </div>
+    ) : (
     <>
       <div className="flex align-items-center justify-content-between flex-row m-1">
         <div className="p-field text-sm">
@@ -389,7 +403,8 @@ const AqiDashboard = () => {
       </div>
       
       
-    </>
+    </>)}
+    </div>
   );
 };
 
