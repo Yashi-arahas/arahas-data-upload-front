@@ -52,7 +52,7 @@ const AqiDashboard = () => {
       try {
         const startDateFormatted = formatDate(startDate);
         const endDateFormatted = formatDate(endDate);
-        const response = await axios.get("http://13.232.104.132:8009/data/environment");
+        const response = await axios.get("https://13.232.104.132:8009/data/environment");
         const data = response.data.data;
   
         // Filter and sort the data based on selected location and date range
