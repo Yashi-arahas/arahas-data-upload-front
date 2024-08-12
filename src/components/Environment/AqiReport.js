@@ -93,7 +93,6 @@ const AqiReport = () => {
       console.log(formattedLatestDate);
       const latestDataEntries = data.filter((item) => {
         const dateObj = new Date(item.date);
-        console.log(item.date);
         const year = dateObj.getFullYear();
         const month = dateObj.getMonth() + 1;
         const day = dateObj.getDate();

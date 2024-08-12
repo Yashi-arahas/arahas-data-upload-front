@@ -35,6 +35,9 @@ function CityHeader({ pageName }) {
   const [showAdminComponent, setShowAdminComponent] = useState(false); // State to control Admin component visibility
   const [showReportMap, setShowReportMap] = useState(false); // State to control ReportMap visibility
   const [selectedParameter, setSelectedParameter] = useState(null); // State to track the selected parameter
+  const [aqiValue, setAqiValue] = useState(null);
+  const [pm25Value, setPM25Value] = useState(null);
+  const [pm10Value, setPM10Value] = useState(null);
 
   const toggleSection = (section) => {
     if (expandedSection === section) {
@@ -70,7 +73,11 @@ function CityHeader({ pageName }) {
     // Collapse the sidebar after selecting a sub-item
     setExpandedSection(null);
   };
-
+  const handleAqiData = (data) => {
+    setAqiValue(data.aqiValue);
+    setPM25Value(data.pm25Value);
+    setPM10Value(data.pm10Value);
+  };
   // Render Admin component or ReportMap component based on conditions
   const renderTabContent = () => {
     if (showReportMap) {
@@ -87,7 +94,7 @@ function CityHeader({ pageName }) {
               {selectedParameter==="aqi" && (
                 <>
                 
-                <AqiDashboard/>
+                <AqiDashboard onDataChange={handleAqiData} />
                 
                 </>
               )}
@@ -103,7 +110,11 @@ function CityHeader({ pageName }) {
             >
               {selectedParameter==="aqi" && (
                 <>
-                <AQIRecommendations aqi={30}/>
+                <AQIRecommendations
+                    aqi={aqiValue}
+                    pm25={pm25Value}
+                    pm10={pm10Value}
+                  />
                 </>
               )}
             </TabPanel>

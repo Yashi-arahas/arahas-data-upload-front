@@ -20,12 +20,14 @@ import PollutantChart from './PollutantChart';
 import { ProgressSpinner } from 'primereact/progressspinner';
         
 import DecompositionTree, { CustomBarChart, DonutChart} from '../GraphVisuals';
-const AqiDashboard = () => {
+const AqiDashboard = ({ onDataChange }) => {
   const [startDate, setStartDate] = useState(new Date("2024-01-19"));
   const [endDate, setEndDate] = useState(new Date("2024-04-29"));
   const [aqiData, setAqiData] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState("Ayodhya - Civil line,Tiny tots school");
   const [aqiValue, setAqiValue] = useState(null);
+  const [pm25Value, setPM25value] = useState(null);
+  const [pm10Value, setPM10value] = useState(null);
   const [aqiStatus, setAqiStatus] = useState({ status: '', color: '', textColor: '', image: null });
   const [dataTableData, setDataTableData] = useState([]);
   const [envirolocation, setEnviroLocation] = useState([]);
@@ -61,7 +63,7 @@ const AqiDashboard = () => {
         const data = response.data.data;
   
         // Filter and sort the data based on selected location and date range
-        const filteredData = data.filter(item => 
+        const filteredData = data.filter(item =>
           item.location === selectedLocation &&
           new Date(item.date) >= new Date(startDateFormatted) &&
           new Date(item.date) <= new Date(endDateFormatted)
@@ -78,27 +80,26 @@ const AqiDashboard = () => {
         const AQI = [];
         const NO2 = [];
         const co2 = [];
-        
+  
         filteredData.forEach((item) => {
           location.push(item.location);
           timeStamp.push(item.timeStamp);
           time.push(item.time);
-          
+  
           const dateObj = new Date(item.date);
           const year = dateObj.getFullYear();
           const month = dateObj.getMonth() + 1;
           const day = dateObj.getDate();
           const formatted = `${day}-${month < 10 ? "0" + month : month}-${year}`;
           formattedDate.push(formatted);
-        
-          // Convert time string to Date object and extract time components
+  
           const timeObj = new Date(item.time);
           const hours = timeObj.getUTCHours().toString().padStart(2, "0");
           const minutes = timeObj.getUTCMinutes().toString().padStart(2, "0");
           const seconds = timeObj.getUTCSeconds().toString().padStart(2, "0");
           const formattedTimeStr = `${hours}:${minutes}:${seconds}`;
           formattedTime.push(formattedTimeStr);
-        
+  
           pm25.push(item.pm25);
           pm10.push(item.pm10);
           so2.push(item.so2);
@@ -106,12 +107,10 @@ const AqiDashboard = () => {
           NO2.push(item.NO2);
           co2.push(item.co2);
         });
-        
+  
         setEnviroTime(formattedTime);
-        
         setEnviroLocation(location);
         setEnviroTimeStamp(timeStamp);
-        setEnviroTime(formattedTime);
         setEnviroDate(formattedDate);
         setEnviroPM25(pm25);
         setEnviroPM10(pm10);
@@ -120,11 +119,21 @@ const AqiDashboard = () => {
         setEnviroNO2(NO2);
         setEnviroco2(co2);
   
-        // Update the AQI value and status
+        // Calculate the average AQI
         if (filteredData.length > 0) {
-          const latestData = filteredData[filteredData.length - 1];
-          setAqiValue(latestData.AQI);
-          setAqiStatus(getAqiStatus(latestData.AQI));
+          const averageAqi = (filteredData.reduce((sum, item) => sum + item.AQI, 0) / filteredData.length).toFixed(2);
+          const averagepm25 = (filteredData.reduce((sum, item) => sum + item.pm25, 0) / filteredData.length).toFixed(2);
+          const averagepm10 = (filteredData.reduce((sum, item) => sum + item.pm10, 0) / filteredData.length).toFixed(2);
+          console.log(averagepm25);
+          console.log(averagepm10);
+          setPM25value(averagepm25);
+          setPM10value(averagepm25);
+          setAqiValue(averageAqi);
+           // Pass data to the parent component
+      if (onDataChange) {
+        onDataChange({ aqiValue: averageAqi, pm25Value: averagepm25, pm10Value: averagepm10 });
+      }
+          setAqiStatus(getAqiStatus(averageAqi));
         } else {
           setAqiValue(null);
           setAqiStatus({ status: '', color: '', textColor: '', image: null });
@@ -134,24 +143,23 @@ const AqiDashboard = () => {
           .filter(item => item.AQI > 400)
           .map(item => ({
             date: formatDateNew(new Date(item.date)),
-
             time: formatTimeToHHMMSS(item.time),
             aqi: item.AQI,
             deviationPercentage: ((item.AQI - 400) / 400 * 100).toFixed(2) + "%"
           }));
-        
+  
         setDataTableData(filteredDataWithDeviation);
   
       } catch (error) {
         console.error("Error fetching data:", error);
-      }
-      finally {
+      } finally {
         setLoading(false); // End loading
       }
     };
   
     fetchData();
   }, [startDate, endDate, selectedLocation]);
+  
   
   function formatTimeToHHMMSS(isoDateString) {
     const dateObj = new Date(isoDateString);
