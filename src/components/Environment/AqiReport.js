@@ -25,7 +25,7 @@ const AqiReport = () => {
   const fetchData = async () => {
     try {
       const aqi_response = await axios.get(
-        "http://13.232.104.132:8009/data/environment"
+        "https://api-csi.arahas.com/data/environment"
       );
       const data = aqi_response.data.data;
       const location = [];
