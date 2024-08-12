@@ -23,22 +23,22 @@ const OtherIndicator = ({ departmentName }) => {
     try {
       const responses = await Promise.all([
         axios.get(
-          "https://arahas-data-upload-back.onrender.com/data/electricity"
+          "https://api-csi.arahas.com//data/electricity"
         ),
         axios.get(
-          "https://arahas-data-upload-back.onrender.com/data/sex-ratio"
+          "https://api-csi.arahas.com//data/sex-ratio"
         ),
         axios.get(
-          "https://arahas-data-upload-back.onrender.com/data/socio-cultural-activities"
+          "https://api-csi.arahas.com//data/socio-cultural-activities"
         ),
-        axios.get("https://arahas-data-upload-back.onrender.com/data/health"),
+        axios.get("https://api-csi.arahas.com//data/health"),
         axios.get(
-          "https://arahas-data-upload-back.onrender.com/data/health/doctors"
+          "https://api-csi.arahas.com//data/health/doctors"
         ),
         axios.get(
-          "https://arahas-data-upload-back.onrender.com/data/education"
+          "https://api-csi.arahas.com//data/education"
         ),
-        axios.get("https://arahas-data-upload-back.onrender.com/data/crime"),
+        axios.get("https://api-csi.arahas.com//data/crime"),
       ]);
 
       setElectricity(responses[0].data.data);

@@ -33,8 +33,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Electricity"
-            apiUrl="http://13.232.104.132:8009/data/electricity"
-            uploadUrl="http://13.232.104.132:8009/data/upload/electricity"
+            apiUrl="https://api-csi.arahas.com/data/electricity"
+            uploadUrl="https://api-csi.arahas.com/data/upload/electricity"
           />
         }
       ></Route>
@@ -43,8 +43,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Electricity"
-            apiUrl="http://13.232.104.132:8009/data/electricity"
-            uploadUrl="http://13.232.104.132:8009/data/upload/electricity"
+            apiUrl="https://api-csi.arahas.com/data/electricity"
+            uploadUrl="https://api-csi.arahas.com/data/upload/electricity"
           />
         }
       ></Route>
@@ -53,8 +53,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Education"
-            apiUrl="http://13.232.104.132:8009/data/education"
-            uploadUrl="http://13.232.104.132:8009/data/upload/education"
+            apiUrl="https://api-csi.arahas.com/data/education"
+            uploadUrl="https://api-csi.arahas.com/data/upload/education"
           />
         }
       ></Route>
@@ -63,8 +63,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Education"
-            apiUrl="http://13.232.104.132:8009/data/education"
-            uploadUrl="http://13.232.104.132:8009/data/upload/education"
+            apiUrl="https://api-csi.arahas.com/data/education"
+            uploadUrl="https://api-csi.arahas.com/data/upload/education"
           />
         }
       ></Route>
@@ -73,8 +73,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Health"
-            apiUrl="http://13.232.104.132:8009/data/health"
-            uploadUrl="http://13.232.104.132:8009/data/upload/health"
+            apiUrl="https://api-csi.arahas.com/data/health"
+            uploadUrl="https://api-csi.arahas.com/data/upload/health"
           />
         }
       ></Route>
@@ -83,8 +83,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Health"
-            apiUrl="http://13.232.104.132:8009/data/health"
-            uploadUrl="http://13.232.104.132:8009/data/upload/health"
+            apiUrl="https://api-csi.arahas.com/data/health"
+            uploadUrl="https://api-csi.arahas.com/data/upload/health"
           />
         }
       ></Route>
@@ -93,8 +93,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Crime"
-            apiUrl="http://13.232.104.132:8009/data/crime"
-            uploadUrl="http://13.232.104.132:8009/data/upload/crime"
+            apiUrl="https://api-csi.arahas.com/data/crime"
+            uploadUrl="https://api-csi.arahas.com/data/upload/crime"
           />
         }
       ></Route>
@@ -103,8 +103,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Crime"
-            apiUrl="http://13.232.104.132:8009/data/crime"
-            uploadUrl="http://13.232.104.132:8009/data/upload/crime"
+            apiUrl="https://api-csi.arahas.com/data/crime"
+            uploadUrl="https://api-csi.arahas.com/data/upload/crime"
           />
         }
       ></Route>
@@ -113,8 +113,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Sex-Ratio"
-            apiUrl="http://13.232.104.132:8009/data/sex-ratio"
-            uploadUrl="http://13.232.104.132:8009/data/upload/sex-ratio"
+            apiUrl="https://api-csi.arahas.com/data/sex-ratio"
+            uploadUrl="https://api-csi.arahas.com/data/upload/sex-ratio"
           />
         }
       ></Route>
@@ -123,8 +123,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Sex-Ratio"
-            apiUrl="http://13.232.104.132:8009/data/sex-ratio"
-            uploadUrl="http://13.232.104.132:8009/data/upload/sex-ratio"
+            apiUrl="https://api-csi.arahas.com/data/sex-ratio"
+            uploadUrl="https://api-csi.arahas.com/data/upload/sex-ratio"
           />
         }
       ></Route>
@@ -133,8 +133,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Socio-Cultural-Activities"
-            apiUrl="http://13.232.104.132:8009/data/socio-cultural-activities"
-            uploadUrl="http://13.232.104.132:8009/data/upload/socio-cultural-activities"
+            apiUrl="https://api-csi.arahas.com/data/socio-cultural-activities"
+            uploadUrl="https://api-csi.arahas.com/data/upload/socio-cultural-activities"
           />
         }
       ></Route>
@@ -143,8 +143,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Socio-Cultural-Activities"
-            apiUrl="http://13.232.104.132:8009/data/socio-cultural-activities"
-            uploadUrl="http://13.232.104.132:8009/data/upload/socio-cultural-activities"
+            apiUrl="https://api-csi.arahas.com/data/socio-cultural-activities"
+            uploadUrl="https://api-csi.arahas.com/data/upload/socio-cultural-activities"
           />
         }
       ></Route>
@@ -153,8 +153,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Tourism"
-            apiUrl="http://13.232.104.132:8009/data/tourism"
-            uploadUrl="http://13.232.104.132:8009/upload/tourism"
+            apiUrl="https://api-csi.arahas.com/data/tourism"
+            uploadUrl="https://api-csi.arahas.com/upload/tourism"
           />
         }
       ></Route>
@@ -163,8 +163,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Tourism"
-            apiUrl="http://13.232.104.132:8009/data/tourism"
-            uploadUrl="http://13.232.104.132:8009/upload/tourism"
+            apiUrl="https://api-csi.arahas.com/data/tourism"
+            uploadUrl="https://api-csi.arahas.com/upload/tourism"
           />
         }
       ></Route>
@@ -173,8 +173,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Housing"
-            apiUrl="http://13.232.104.132:8009/data/housing"
-            uploadUrl="http://13.232.104.132:8009/upload/housing"
+            apiUrl="https://api-csi.arahas.com/data/housing"
+            uploadUrl="https://api-csi.arahas.com/upload/housing"
           />
         }
       ></Route>
@@ -183,8 +183,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Housing"
-            apiUrl="http://13.232.104.132:8009/data/housing"
-            uploadUrl="http://13.232.104.132:8009/upload/housing"
+            apiUrl="https://api-csi.arahas.com/data/housing"
+            uploadUrl="https://api-csi.arahas.com/upload/housing"
           />
         }
       ></Route>
@@ -193,8 +193,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Transport"
-            apiUrl="http://13.232.104.132:8009/data/transport"
-            uploadUrl="http://13.232.104.132:8009/upload/transport"
+            apiUrl="https://api-csi.arahas.com/data/transport"
+            uploadUrl="https://api-csi.arahas.com/upload/transport"
           />
         }
       ></Route>
@@ -203,8 +203,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Transport"
-            apiUrl="http://13.232.104.132:8009/data/transport"
-            uploadUrl="http://13.232.104.132:8009/upload/transport"
+            apiUrl="https://api-csi.arahas.com/data/transport"
+            uploadUrl="https://api-csi.arahas.com/upload/transport"
           />
         }
       ></Route>
@@ -213,8 +213,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Environment"
-            apiUrl="http://13.232.104.132:8009/data/environment"
-            uploadUrl="http://13.232.104.132:8009/upload/environment"
+            apiUrl="https://api-csi.arahas.com/data/environment"
+            uploadUrl="https://api-csi.arahas.com/upload/environment"
           />
         }
       ></Route>
@@ -223,8 +223,8 @@ function App() {
         element={
           <DepartmentPage
             departmentName="Environment"
-            apiUrl="http://13.232.104.132:8009/data/environment"
-            uploadUrl="http://13.232.104.132:8009/upload/environment"
+            apiUrl="https://api-csi.arahas.com/data/environment"
+            uploadUrl="https://api-csi.arahas.com/upload/environment"
           />
         }
       ></Route>

@@ -142,7 +142,7 @@ const PaymentForm = () => {
     if (validateForm()) {
       try {
         const formDataToSend = { ...formValues, planName }; // Include planName in form data
-        const response = await axios.post(`https://arahas-data-upload-back.onrender.com/submitForm`, formDataToSend);
+        const response = await axios.post(`https://api-csi.arahas.com//submitForm`, formDataToSend);
         console.log('Form data saved successfully:', response.data);
         if (price === 0) {
           navigate('/csi/admin');

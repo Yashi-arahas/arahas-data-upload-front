@@ -61,7 +61,7 @@ const Map = () => {
             <h1 style={{ fontSize: "0.6vw", fontWeight: "600" }}>
               Lat: {p1[0].toFixed(2)} &nbsp; Long: {p1[1].toFixed(2)}
             </h1>
-            1>
+          
           </Tooltip>
         </Marker>
         <Marker position={p2} icon={greenIcon}>

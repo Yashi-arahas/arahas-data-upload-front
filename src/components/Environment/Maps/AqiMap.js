@@ -67,11 +67,11 @@ const AqiMap = ({ averageAQI, latestDate }) => {
       source: geojsonSource,
       style: new Style({
         stroke: new Stroke({
-          color: '#fd9d24',
-          width: 3,
+          color: '#00a269',
+          width: 2,
         }),
         fill: new Fill({
-          color: 'rgba(253, 157, 36, 0.3)',
+          color: '#a9f3e0'
         }),
       }),
     });

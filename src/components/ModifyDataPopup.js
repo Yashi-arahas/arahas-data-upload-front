@@ -30,7 +30,7 @@ const ModifyDataPopup = ({ onClose, modifiedData, handleChange }) => {
   const handleSubmit = async () => {
     try {
       // Send modified data to the server
-      await axios.post('http://localhost:8009/modify', modifiedValues);
+      await axios.post('https://api-csi.arahas.com/modify', modifiedValues);
       console.log("Data modified successfully!");
       setModifySuccess(true); // Set modifySuccess to true on successful modification
       setTimeout(() => {

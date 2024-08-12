@@ -45,7 +45,7 @@ const RegisterModal = ({ onClose }) => {
     } else {
       try {
         const response = await axios.post(
-          "https://arahas-data-upload-back.onrender.com/register",
+          "https://api-csi.arahas.com//register",
           {
             fname,
             department, // Change here

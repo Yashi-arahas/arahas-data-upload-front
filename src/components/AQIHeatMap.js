@@ -8,7 +8,7 @@ const AQIHeatMap = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://mapapi-ezzq.onrender.com/map?start_date=2024-01-08&end_date=2024-02-28&param=temp');
+        const response = await fetch('https://api-csi.arahas.com/map?start_date=2024-01-08&end_date=2024-02-28&param=temp');
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

@@ -21,7 +21,7 @@ const EDash = () => {
 
     const fetchData = async () => {
         try {
-            const temp = await axios.get("https://arahas-data-upload-back.onrender.com/data/environment/temperature");
+            const temp = await axios.get("https://api-csi.arahas.com/data/environment/temperature");
             const tlocation = [];
             const ttimeStamp = [];
             const ttime = [];

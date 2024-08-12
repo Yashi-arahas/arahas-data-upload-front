@@ -90,7 +90,7 @@ const Login_VCSI = () => {
       try {
         setLoading(true); // Set loading to true during authentication
         const response = await axios.post(
-          "https://arahas-data-upload-back.onrender.com/login",
+          "https://api-csi.arahas.com/login",
           {
             email,
             password,

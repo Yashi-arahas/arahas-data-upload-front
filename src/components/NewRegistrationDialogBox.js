@@ -79,7 +79,7 @@ const NewRegistrationDialogBox = ({
 
     try {
       const response = await fetch(
-        "http://13.232.104.132:8009/new/register",
+        "https://api-csi.arahas.com/new/register",
         {
           method: "POST",
           headers: {
