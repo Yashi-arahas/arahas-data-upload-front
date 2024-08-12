@@ -71,7 +71,8 @@ const AqiMap = ({ averageAQI, latestDate }) => {
           width: 2,
         }),
         fill: new Fill({
-          color: '#a9f3e0'
+          color: 'rgba(169, 243, 224, 0.3)',
+          
         }),
       }),
     });
