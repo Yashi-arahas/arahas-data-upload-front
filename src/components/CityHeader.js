@@ -29,6 +29,8 @@ import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
 import AqiDashboard from "./DashBoards/AqiDashboard";
 import AQIRecommendations from "./DashBoards/Recommendations/AQIRecommendations";
 import GenerateAqiReport from "./DashBoards/GenerateAQIReport";
+import { NavLink } from "react-router-dom";
+import { Button } from "primereact/button";
 
 function CityHeader({ pageName }) {
   const [expandedSection, setExpandedSection] = useState(null); // State to track expanded section
@@ -131,6 +133,7 @@ function CityHeader({ pageName }) {
               )}
             </TabPanel>
           </TabView>
+          
         </div>
       );
     } else if (!expandedSection && !activeSubTab) {
@@ -261,7 +264,17 @@ function CityHeader({ pageName }) {
                 <AccountBalance className="icon-section" />
                 <span>Administration</span>
               </div>
+             
+          
             </div>
+            <NavLink to="/csi/kyc">
+              <div
+                className="nav-section-header"
+              >
+                <i className="pi pi-building"></i>
+                <span>About City</span>
+              </div>
+              </NavLink>
 
             {/* <ReportPrint /> */}
           </nav>

@@ -274,33 +274,38 @@ const AqiDashboard = ({ onDataChange , show, pSelectedLocation, pSelectedStartDa
           />
         </div>
         <div className="flex align-items-center justify-content-center flex-row gap-2">
-          <div className="text-sm p-1">
-            <div className="p-field text-sm">
-              <label htmlFor="start-date">Start Date : </label>
-              <Calendar
-                id="start-date"
-                value={startDate}
-                onChange={handleStartDateChange}
-                showIcon
-                dateFormat="yy-mm-dd"
-                placeholder="Select a start date"
-              />
-            </div>
-          </div>
-          <div className="text-sm p-1">
-            <div className="p-field text-sm">
-              <label htmlFor="end-date">End Date : </label>
-              <Calendar
-                id="end-date"
-                value={endDate}
-                onChange={handleEndDateChange}
-                showIcon
-                dateFormat="yy-mm-dd"
-                placeholder="Select an end date"
-              />
-            </div>
-          </div>
-        </div>
+  <div className="text-sm p-1">
+    <div className="p-field text-sm">
+      <label htmlFor="start-date">Start Date :</label>
+      <Calendar
+        id="start-date"
+        value={startDate}
+        onChange={handleStartDateChange}
+        showIcon
+        dateFormat="yy-mm-dd"
+        placeholder="Select a start date"
+        minDate={new Date("2024-01-19")}  // Set the minimum selectable date
+        maxDate={endDate} // Ensure the start date does not go beyond the end date
+      />
+    </div>
+  </div>
+  <div className="text-sm p-1">
+    <div className="p-field text-sm">
+      <label htmlFor="end-date">End Date :</label>
+      <Calendar
+        id="end-date"
+        value={endDate}
+        onChange={handleEndDateChange}
+        showIcon
+        dateFormat="yy-mm-dd"
+        placeholder="Select an end date"
+        minDate={startDate} // Ensure the end date does not go before the start date
+        maxDate={new Date("2024-04-29")}  // Set the maximum selectable date
+      />
+    </div>
+  </div>
+</div>
+
       </div>
       </>
     )}
@@ -325,11 +330,11 @@ const AqiDashboard = ({ onDataChange , show, pSelectedLocation, pSelectedStartDa
         )}
         <div className='ml-1 mr-1'>
           <Card>
-            <DataTable value={dataTableData} rowClassName={rowClassName} scrollable scrollHeight="15rem" style={{ width: '22rem', textAlign: "center" }}  emptyMessage="No data found.">
-              <Column field="date" header="Date" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#00a269", color: "white" }}></Column>
-              <Column field="time" header="Time" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#00a269", color: "white" }}/>
-              <Column field="aqi" header="AQI" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#00a269", color: "white" }}></Column>
-              <Column field="deviationPercentage" header="Outlier %" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#00a269", color: "white" }}></Column>
+            <DataTable value={dataTableData} rowClassName={rowClassName} scrollable scrollHeight="15rem" style={{ width: '22rem', textAlign: "center",  }}  emptyMessage="No data found.">
+              <Column field="date" header="Date" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#40A2E3", color: "white" }}></Column>
+              <Column field="time" header="Time" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#40A2E3", color: "white" }}/>
+              <Column field="aqi" header="AQI" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#40A2E3", color: "white" }}></Column>
+              <Column field="deviationPercentage" header="Outlier %" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#40A2E3", color: "white" }}></Column>
             </DataTable>
           
           </Card>
