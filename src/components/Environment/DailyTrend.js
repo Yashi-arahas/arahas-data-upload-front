@@ -16,12 +16,12 @@ const DailyTrend = ({
   const [isDrilldown, setIsDrilldown] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [drilldownChartData, setDrilldownChartData] = useState([]);
-  
+  console.log(fifteenDaysData);
   useEffect(() => {
-    console.log(fifteenDaysData);
+    
     const dataPoints = Object.entries(dailyAverage).map(([date, value]) => ({
       label: date,
-      x: new Date(date.split("-").reverse().join("-")),
+      x: new Date(date.split("-").join("-")),
       y: parseFloat(value),
     }));
     dataPoints.sort((a, b) => a.x - b.x);
@@ -35,7 +35,7 @@ const DailyTrend = ({
           type: "area",
           indexLabelFontColor: "red",
           dataPoints: dataPoints,
-          color:"#00a269",
+          color:"#40A2E3",
         
         },
       ],

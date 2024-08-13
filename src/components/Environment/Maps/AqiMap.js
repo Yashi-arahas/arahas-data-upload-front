@@ -185,11 +185,11 @@ const AqiMap = ({ averageAQI, latestDate }) => {
     
         let popupHTML = `
           <div>
-            ${location === 'Ayodhya - Civil line,Tiny tots school' ? `<img src="${school}" alt="School" style="width: 100%; height: 5vw;"/>` : ''}
+            ${location === 'Ayodhya - Civil line,Tiny tots ' ? `<img src="${school}" alt="School" style="width: 100%; height: 5vw;"/>` : ''}
             ${location === 'Ayodhya - Shahadat Ganj' ? `<img src="${Shahadat}" alt="Shahadat" style="width: 100%; height: 5vw;"/>` : ''}
-            ${location === 'Ayodhya-Bank colony near Railway station' ? `<img src="${railway}" alt="Railway" style="width: 100%; height: 5vw;"/>` : ''}
+            ${location === 'Ayodhya-Bank colony' ? `<img src="${railway}" alt="Railway" style="width: 100%; height: 5vw;"/>` : ''}
             ${location === 'Ayodhya-near Airport' ? `<img src="${airport}" alt="Airport" style="width: 100%; height: 6vw;"/>` : ''}
-            ${location === 'Ayodhya-Ranopali near Kila ayodhya' ? `<img src="${temple}" alt="Temple" style="width: 100%; height: 5vw;"/>` : ''}
+            ${location === 'Ayodhya-Ranopali' ? `<img src="${temple}" alt="Temple" style="width: 100%; height: 5vw;"/>` : ''}
             <p><strong>${location}</strong> </p>
             <p>Last Updated on <strong>${latestDate}</strong></p>
           

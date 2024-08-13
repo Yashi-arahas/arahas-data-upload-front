@@ -31,6 +31,7 @@ import AQIRecommendations from "./DashBoards/Recommendations/AQIRecommendations"
 import GenerateAqiReport from "./DashBoards/GenerateAQIReport";
 import { NavLink } from "react-router-dom";
 import { Button } from "primereact/button";
+import DefaultHeader from "./DefaultHeader";
 
 function CityHeader({ pageName }) {
   const [expandedSection, setExpandedSection] = useState(null); // State to track expanded section
@@ -86,9 +87,10 @@ function CityHeader({ pageName }) {
     if (showReportMap) {
       return (
         <div style={{ 
-          marginLeft: "6rem"
+          marginLeft: "7rem"
            }}>
-          <TabView className="w-full ">
+            <DefaultHeader/>
+          <TabView className="w-90 ">
             <TabPanel
               header="Performance"
               className="m-0 "
@@ -150,7 +152,8 @@ function CityHeader({ pageName }) {
   const renderAdminComponent = () => {
     if (showAdminComponent) {
       return (
-        <div style={{ marginLeft: "6vw",  backgroundColor:"white"}}>
+        <div style={{ marginLeft: "6rem",  backgroundColor:"white"}}>
+          <DefaultHeader/>
           <TabView className="w-full p-1">
             <TabPanel
               header="Performance"
@@ -267,14 +270,7 @@ function CityHeader({ pageName }) {
              
           
             </div>
-            <NavLink to="/csi/kyc">
-              <div
-                className="nav-section-header"
-              >
-                <i className="pi pi-building"></i>
-                <span>About City</span>
-              </div>
-              </NavLink>
+            
 
             {/* <ReportPrint /> */}
           </nav>

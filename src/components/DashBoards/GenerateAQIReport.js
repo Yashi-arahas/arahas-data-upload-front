@@ -112,6 +112,13 @@ const GenerateAqiReport = () => {
   }, [selectedLocation, startDate, endDate]);
 
   const allFieldsSelected = selectedLocation && startDate && endDate;
+  const handleStartDateChange = (e) => {
+    setStartDate(e.value);
+  };
+  
+  const handleEndDateChange = (e) => {
+    setEndDate(e.value);
+  };
 
   return (
     <div className="p-fluid align-items-center flex justify-content-center flex-column">
@@ -134,24 +141,31 @@ const GenerateAqiReport = () => {
       <div className="grid w-8 mb-3">
         <div className="col-6">
           <div className="field">
-            <Calendar
-              value={startDate}
-              onChange={(e) => setStartDate(e.value)}
-              placeholder="Start Date"
-              className="w-full"
-              dateFormat="dd/mm/yy"
-            />
+          <Calendar
+        id="start-date"
+        value={startDate}
+        onChange={handleStartDateChange}
+        showIcon
+        dateFormat="dd-mm-yy"
+        placeholder="Select a start date"
+        minDate={new Date("2024-01-01")}  // Set the minimum selectable date
+        maxDate={endDate} // Ensure the start date does not go beyond the end date
+      />
+           
           </div>
         </div>
         <div className="col-6">
           <div className="field">
-            <Calendar
-              value={endDate}
-              onChange={(e) => setEndDate(e.value)}
-              placeholder="End Date"
-              className="w-full"
-              dateFormat="dd/mm/yy"
-            />
+          <Calendar
+        id="end-date"
+        value={endDate}
+        onChange={handleEndDateChange}
+        showIcon
+        dateFormat="dd-mm-yy"
+        placeholder="Select an end date"
+        minDate={startDate} // Ensure the end date does not go before the start date
+        maxDate={new Date("2024-08-13")}  // Set the maximum selectable date
+      />
           </div>
         </div>
       </div>

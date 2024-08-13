@@ -9,7 +9,7 @@ const HeatMap = ({ data }) => {
     // Generate time slots from 00:30:00 to 23:30:00
     const timeSlots = Array.from({ length: 24 }, (_, index) => {
         const hours = index < 10 ? `0${index}` : `${index}`;
-        return `${hours}:30:00`;
+        return `${hours}:00:00`;
     });
 
     // Prepare data for heatmap

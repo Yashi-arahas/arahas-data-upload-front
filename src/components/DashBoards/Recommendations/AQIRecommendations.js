@@ -105,11 +105,34 @@ const AQIRecommendations = ({ aqi, pm25, pm10 }) => {
         );
       }
     } else if (aqi > 400) {
-      return (
-        <>
-          <p>Hazardous: Health warnings of emergency conditions. The entire population is more likely to be affected.</p>
-        </>
-      );
+      if (pm25 >= pm10) {
+        return (
+          <>
+            <ul>
+          <li> It indicates that the air quality is hazardous. This level of pollution poses a serious risk to the health of the general public, particularly when the high AQI is due to elevated levels of PM2.5 (fine particulate matter). PM2.5 particles are tiny, can penetrate deep into the lungs, and even enter the bloodstream, causing significant health issues.</li> 
+          <li> Increased risk of respiratory infections, aggravated asthma, and chronic obstructive pulmonary disease (COPD). Increased risk of heart attacks, strokes, and other cardiovascular issues due to inflammation and oxidative stress. Long-term exposure can lead to chronic respiratory diseases, decreased lung function, and potentially increased mortality rates from cardiovascular and respiratory causes.</li> 
+          <li>Those with chronic respiratory or heart conditions should have a clear plan for medication use and emergencies. Ensure that rescue inhalers or other medications are readily available.</li> 
+          <li>Vulnerable Groups (Children, Elderly, Pregnant Women, and Those with Pre-existing Conditions): These groups should take extra precautions to stay indoors and reduce exposure. They are more susceptible to the adverse health effects of PM2.5.</li> 
+          <li>Consider using N95 or higher-rated masks that can filter out fine particles when going outdoors is unavoidable. Ordinary surgical masks are less effective against PM2.5 particles.</li> 
+          <li>Traffic and Industrial Controls: Implement traffic restrictions and reduce industrial emissions during severe pollution episodes to help reduce PM2.5 levels.</li> 
+            </ul>
+          </>
+        );
+      } else if (pm10 > pm25) {
+        return (
+          <>
+            <ul>
+          <li>  Individuals with pre-existing conditions should keep their medication handy and consult their healthcare provider for an action plan in case of worsening symptoms.</li>
+          <li>High PM10 levels can exacerbate conditions like asthma, bronchitis, and other chronic obstructive pulmonary diseases (COPD), leading to increased respiratory distress and decreased lung function.</li>
+          <li>Exposure to high levels of PM10 is associated with an increased risk of heart attacks, arrhythmias, and other cardiovascular issues, particularly in people with pre-existing heart conditions.</li>
+          <li>Authorities should consider implementing temporary restrictions on vehicle use, promoting carpooling, and encouraging the use of public transportation to reduce emissions.</li>
+          <li>Raise public awareness about the health risks of high AQI and the importance of taking precautions.</li>
+          <li>If going outdoors is necessary, wear an N95 or higher-grade mask to filter out fine particles. Standard surgical masks are not effective against PM10.</li>
+          <li>Minimize outdoor activities and stay indoors as much as possible, especially in well-sealed and air-conditioned buildings. Limit exposure by keeping doors and windows closed.</li>
+            </ul>
+          </>
+        );
+      }
     }
   };
 

@@ -5,138 +5,83 @@ import AqiMap from "./Maps/AqiMap";
 import "./AqiReport.css";
 
 const AqiReport = () => {
-  const [avgAqi, setAvgAqi] = useState("");
+  const [avgAqi, setAvgAqi] = useState([]);
   const [latestDate, setLatestDate] = useState("");
-  const [envirolocation, setEnviroLocation] = useState("");
-  const [envirotime, setEnviroTime] = useState("");
-  const [envirodate, setEnviroDate] = useState("");
-  const [envirotimeStamp, setEnviroTimeStamp] = useState("");
-  const [enviropm25, setEnviroPM25] = useState("");
-  const [enviropm10, setEnviroPM10] = useState("");
-  const [enviroso2, setEnviroSO2] = useState("");
-  const [enviroAQI, setEnviroAQI] = useState("");
-  const [enviroNO2, setEnviroNO2] = useState("");
-  const [enviroco2, setEnviroco2] = useState("");
-  
+  const [locationData, setLocationData] = useState([]);
+
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     try {
-      const aqi_response = await axios.get(
+      const response = await axios.get(
         "https://api-csi.arahas.com/data/environment"
       );
-      const data = aqi_response.data.data;
-      const location = [];
-      const timeStamp = [];
-      const time = [];
-      const formattedDate = [];
-      const formattedTime = [];
-      const pm25 = [];
-      const pm10 = [];
-      const so2 = [];
-      const AQI = [];
-      const NO2 = [];
-      const co2 = [];
-      data.forEach((item) => {
-        location.push(item.location);
-        timeStamp.push(item.timeStamp);
-        time.push(item.time);
-        const dateObj = new Date(item.date);
-        const year = dateObj.getFullYear();
-        const month = dateObj.getMonth() + 1;
-        const day = dateObj.getDate();
-        const formatted = `${day < 10 ? "0" + day : day}-${
-          month < 10 ? "0" + month : month
-        }-${year}`;
-        formattedDate.push(formatted);
+      const data = response.data.data;
 
-        const localDateObj = new Date(
-          dateObj.getTime() + dateObj.getTimezoneOffset() * 60000
-        );
-        const hours = localDateObj.getHours();
-        const minutes = localDateObj.getMinutes();
-        const formattedTimeStr = `${hours}:${
-          minutes < 10 ? "0" + minutes : minutes
-        }`;
-        formattedTime.push(formattedTimeStr);
-        pm25.push(item.pm25);
-        pm10.push(item.pm10);
-        so2.push(item.so2);
-        AQI.push(item.AQI);
-        NO2.push(item.NO2);
-        co2.push(item.co2);
-      });
-      setEnviroLocation(location);
-      setEnviroTimeStamp(timeStamp);
-      setEnviroTime(formattedTime);
-      setEnviroDate(formattedDate);
+      // Process the data
+      const processedData = processAqiData(data);
 
-      const latestDate = new Date(
-        Math.max(
-          ...formattedDate.map((date) => {
-            const [day, month, year] = date.split("-");
-            return new Date(`${year}-${month}-${day}`).getTime();
-          })
-        )
-      );
-
-      const latestDay = latestDate.getDate();
-      const latestMonth = latestDate.getMonth() + 1; // Adding 1 because getMonth() returns zero-based month index
-      const latestYear = latestDate.getFullYear();
-
-      const formattedLatestDate = `${
-        latestDay < 10 ? "0" + latestDay : latestDay
-      }-${latestMonth < 10 ? "0" + latestMonth : latestMonth}-${latestYear}`;
-
-      console.log(formattedLatestDate);
-      const latestDataEntries = data.filter((item) => {
-        const dateObj = new Date(item.date);
-        const year = dateObj.getFullYear();
-        const month = dateObj.getMonth() + 1;
-        const day = dateObj.getDate();
-        const formattedDate = `${day < 10 ? "0" + day : day}-${
-          month < 10 ? "0" + month : month
-        }-${year}`;
-        return formattedDate === formattedLatestDate;
-      });
-      const averageAQIByLocation = latestDataEntries.reduce((acc, item) => {
-        if (!acc[item.location]) {
-          acc[item.location] = { totalAQI: 0, count: 0 };
-        }
-        acc[item.location].totalAQI += item.AQI;
-        acc[item.location].count++;
-
-        return acc;
-      }, {});
-
-      const averageAQI = Object.entries(averageAQIByLocation).map(
-        ([location, { totalAQI, count }]) => ({
-          location,
-          AQI: (totalAQI / count).toFixed(2),
-        })
-      );
-      setLatestDate(formattedLatestDate);
-      setAvgAqi(averageAQI);
-      setEnviroPM25(pm25);
-      setEnviroPM10(pm10);
-      setEnviroSO2(so2);
-      setEnviroAQI(AQI);
-      setEnviroNO2(NO2);
-      setEnviroco2(co2);
+      // Set the processed data to state
+      setLocationData(processedData.locationData);
+      setLatestDate(processedData.latestDate);
+      setAvgAqi(processedData.averageAQI);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
+  const processAqiData = (data) => {
+    const locationData = {};
+    let latestDate = "";
+
+    data.forEach((item) => {
+      const dateObj = new Date(item.date);
+      const formattedDate = `${dateObj.getDate() < 10 ? "0" : ""}${dateObj.getDate()}-${dateObj.getMonth() + 1 < 10 ? "0" : ""}${dateObj.getMonth() + 1}-${dateObj.getFullYear()}`;
+
+      if (!latestDate || new Date(formattedDate) > new Date(latestDate)) {
+        latestDate = formattedDate;
+      }
+
+      if (!locationData[item.location]) {
+        locationData[item.location] = [];
+      }
+
+      locationData[item.location].push({
+        time: item.time,
+        AQI: item.AQI,
+        temp: item.temp,
+        humidity: item.humidity,
+        pm25: item.pm25,
+        pm10: item.pm10,
+        NO2: item.NO2,
+        so2: item.so2,
+        co2: item.co2,
+        tvoc: item.tvoc,
+        date: formattedDate
+      });
+    });
+
+    const averageAQI = Object.keys(locationData).map((location) => {
+      const aqiValues = locationData[location].map((item) => item.AQI);
+      const averageAQI = aqiValues.reduce((sum, value) => sum + value, 0) / aqiValues.length;
+
+      return {
+        location,
+        AQI: averageAQI.toFixed(2),
+      };
+    });
+
+    return { locationData, latestDate, averageAQI };
+  };
+
   return (
     <div className="Aqi-zone-map">
-      {Array.isArray(avgAqi) ? (
-        
+      {Array.isArray(avgAqi) && avgAqi.length > 0 ? (
         <AqiMap averageAQI={avgAqi} latestDate={latestDate} />
       ) : (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "15rem" ,width:"35rem" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "15rem", width: "35rem" }}>
           <CircularProgress />
         </div>
       )}
