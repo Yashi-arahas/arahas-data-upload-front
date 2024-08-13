@@ -330,11 +330,11 @@ const AqiDashboard = ({ onDataChange , show, pSelectedLocation, pSelectedStartDa
         )}
         <div className='ml-1 mr-1'>
           <Card>
-            <DataTable value={dataTableData} rowClassName={rowClassName} scrollable scrollHeight="15rem" style={{ width: '22rem', textAlign: "center",  }}  emptyMessage="No data found.">
-              <Column field="date" header="Date" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#40A2E3", color: "white" }}></Column>
-              <Column field="time" header="Time" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#40A2E3", color: "white" }}/>
-              <Column field="aqi" header="AQI" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#40A2E3", color: "white" }}></Column>
-              <Column field="deviationPercentage" header="Outlier %" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#40A2E3", color: "white" }}></Column>
+            <DataTable value={dataTableData} rowClassName={rowClassName} scrollable scrollHeight="15rem" style={{ width: '22rem', textAlign: "center",  }}  emptyMessage="No Outliear Days Found.">
+              <Column field="date" header="Date" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#00a269", color: "white" }}></Column>
+              <Column field="time" header="Time" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#00a269", color: "white" }}/>
+              <Column field="aqi" header="AQI" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#00a269", color: "white" }}></Column>
+              <Column field="deviationPercentage" header="Outlier %" className='text-xs' headerStyle={{ fontSize: "0.9rem", backgroundColor: "#00a269", color: "white" }}></Column>
             </DataTable>
           
           </Card>

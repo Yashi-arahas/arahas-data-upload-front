@@ -43,7 +43,7 @@ const FileUploadPopup = ({ onClose, onUpload, department, action , subCategory }
         const formData = new FormData();
         formData.append('file', selectedFile); // Ensure the key 'file' matches the key expected by the backend
 
-        const response = await axios.post(`https://arahas-data-upload-back.onrender.com/${action}/${department}/${subCategory}`, formData, {
+        const response = await axios.post(`https://api-csi.arahas.com/${action}/${department}/${subCategory}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

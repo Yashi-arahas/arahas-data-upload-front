@@ -35,7 +35,7 @@ const DailyTrend = ({
           type: "area",
           indexLabelFontColor: "red",
           dataPoints: dataPoints,
-          color:"#40A2E3",
+          color:"#00a269",
         
         },
       ],
