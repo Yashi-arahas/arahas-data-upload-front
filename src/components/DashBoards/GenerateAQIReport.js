@@ -42,9 +42,22 @@ const GenerateAqiReport = () => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await axios.get("https://api-csi.arahas.com/data/environment");
-        const locationsSet = new Set(response.data.data.map(item => item.location));
-        setLocations(Array.from(locationsSet).map(location => ({ label: location, value: location })));
+        const locationsResponse = await axios.get(`https://api-csi.arahas.com/data/locations`);
+        // Extract unique locations
+
+
+        if(locationsResponse.data)
+        {
+          const locationOptions = locationsResponse.data.data.map((data)=>({label:data,value:data}))
+
+          console.log("Options", locationOptions)
+          
+          setLocations(locationOptions);
+        }
+        else{
+          setLocations([])
+        }
+       
       } catch (error) {
         console.error("Error fetching locations:", error);
       }
@@ -58,22 +71,15 @@ const GenerateAqiReport = () => {
       if (!selectedLocation || !startDate || !endDate) return;
 
       try {
-        const startDateFormatted = formatDate(startDate);
-        const endDateFormatted = formatDate(endDate);
-        const response = await axios.get("https://api-csi.arahas.com/data/environment");
+       
+        const response = await axios.get(`https://api-csi.arahas.com/data/environment?location=${selectedLocation}`);
         const data = response.data.data;
 
-        // Filter and sort the data based on selected location and date range
-        const filteredData = data.filter(item =>
-          item.location === selectedLocation &&
-          new Date(item.date) >= new Date(startDateFormatted) &&
-          new Date(item.date) <= new Date(endDateFormatted)
-        ).sort((a, b) => new Date(a.date) - new Date(b.date));
 
         const pm25 = [];
         const pm10 = [];
         const aqi = [];
-        const filteredDataWithDeviation = filteredData
+        const filteredDataWithDeviation = data
           .filter(item => item.AQI > 400)
           .map(item => ({
             date: formatDateNew(new Date(item.date)),
@@ -82,13 +88,13 @@ const GenerateAqiReport = () => {
             deviationPercentage: ((item.AQI - 400) / 400 * 100).toFixed(2) + "%"
           }));
 
-        filteredData.forEach(item => {
+          data.forEach(item => {
           pm25.push(item.pm25);
           pm10.push(item.pm10);
           aqi.push(item.AQI);
         });
 
-        if (filteredData.length > 0) {
+        if (data.length > 0) {
           const avgAqi = (aqi.reduce((sum, value) => sum + value, 0) / aqi.length).toFixed(2);
           const avgPm25 = (pm25.reduce((sum, value) => sum + value, 0) / pm25.length).toFixed(2);
           const avgPm10 = (pm10.reduce((sum, value) => sum + value, 0) / pm10.length).toFixed(2);
@@ -120,6 +126,8 @@ const GenerateAqiReport = () => {
     setEndDate(e.value);
   };
 
+  console.log(locations)
+
   return (
     <div className="p-fluid align-items-center flex justify-content-center flex-column">
       <Lottie
@@ -132,6 +140,7 @@ const GenerateAqiReport = () => {
         <Dropdown
           value={selectedLocation}
           options={locations}
+          optionLabel="label" optionValue="value"
           onChange={(e) => setSelectedLocation(e.value)}
           placeholder="Select Location"
         />

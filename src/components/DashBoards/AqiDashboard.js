@@ -55,15 +55,27 @@ const AqiDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDat
     setLoading(true); // Start loading
     const fetchData = async () => {
       try {
+        const locationsResponse = await axios.get(`https://api-csi.arahas.com/data/locations`);
+        // Extract unique locations
+        
+        if(locationsResponse.data)
+          {
+            const locationOptions = locationsResponse.data.data.map((data)=>({label:data,value:data}))
+  
+            console.log("Options", locationOptions)
+            
+            setLocations(locationOptions);
+          }
+          else{
+            setLocations([])
+          }
+
           const startDateFormatted = formatDate(startDate);
           const endDateFormatted = formatDate(endDate);
-          const response = await axios.get("https://api-csi.arahas.com/data/environment");
+          const response = await axios.get(`https://api-csi.arahas.com/data/environment?location=${selectedLocation}`);
           const data = response.data.data;
           
-          // Extract unique locations
-          const uniqueLocations = Array.from(new Set(data.map(item => item.location)))
-            .map(location => ({ name: location, code: location }));
-          setLocations(uniqueLocations);
+          
   
           // Filter and sort the data based on selected location and date range
           const filteredData = data.filter(item => {
@@ -263,13 +275,12 @@ const AqiDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDat
         <div className="p-field text-sm">
           <label htmlFor="location">Location : </label>
           <Dropdown
-            id="location"
-            value={locations.find(loc => loc.code === selectedLocation)}
-            options={locations}
-            onChange={handleLocationChange}
-            optionLabel="name"
-            placeholder="Select a location"
-          />
+          value={selectedLocation}
+          options={locations}
+          optionLabel="label" optionValue="value"
+          onChange={(e) => setSelectedLocation(e.value)}
+          placeholder="Select Location"
+        />
         </div>
         <div className="flex align-items-center justify-content-center flex-row gap-2">
   <div className="text-sm p-1">
