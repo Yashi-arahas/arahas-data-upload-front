@@ -26,7 +26,7 @@ const AqiDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDat
   const [startDate, setStartDate] = useState(new Date("2024-01-01"));
   const [endDate, setEndDate] = useState(new Date("2024-08-13"));
   const [aqiData, setAqiData] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState("Ayodhya - Civil line,Tiny tots ");
+  const [selectedLocation, setSelectedLocation] = useState("Ayodhya - Civil line,Tiny tots");
   const [aqiValue, setAqiValue] = useState(null);
   const [pm25Value, setPM25value] = useState(null);
   const [pm10Value, setPM10value] = useState(null);
@@ -46,17 +46,20 @@ const AqiDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDat
   
   const handleLocationChange = (e) => {
     if (show) {
-      setSelectedLocation(e.value.code); 
+      setSelectedLocation(e.value.code);
+      setLoading(true); // Start loading when location changes 
     }
   };
 
 
   useEffect(() => {
-    setLoading(true); // Start loading
+   
     const fetchData = async () => {
       try {
+        
         const locationsResponse = await axios.get(`https://api-csi.arahas.com/data/locations`);
         // Extract unique locations
+        console.log(locationsResponse)
         
         if(locationsResponse.data)
           {
@@ -69,7 +72,7 @@ const AqiDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDat
           else{
             setLocations([])
           }
-
+          
           const startDateFormatted = formatDate(startDate);
           const endDateFormatted = formatDate(endDate);
           const response = await axios.get(`https://api-csi.arahas.com/data/environment?location=${selectedLocation}`);
@@ -81,13 +84,11 @@ const AqiDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDat
           const filteredData = data.filter(item => {
               const itemDate = new Date(item.time);
               return (
-                  item.location === selectedLocation &&
                   itemDate >= new Date(startDateFormatted) &&
                   itemDate <= new Date(endDateFormatted)
               );
           }).sort((a, b) => new Date(a.time) - new Date(b.time)); // Sort by time field
           
-          const location = [];
           const time = [];
           const formattedDate = [];
           const formattedTime = [];
@@ -99,7 +100,7 @@ const AqiDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDat
           const co2 = [];
   
           filteredData.forEach((item) => {
-              location.push(item.location);
+              
   
               // Convert date to 'YYYY-MM-DD' format from time
               const dateObj = new Date(item.time);
@@ -126,7 +127,6 @@ const AqiDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDat
           });
   
           setEnviroTime(formattedTime);
-          setEnviroLocation(location);
           setEnviroDate(formattedDate);
           setEnviroPM25(pm25);
           setEnviroPM10(pm10);
@@ -355,7 +355,7 @@ const AqiDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDat
           </Card>
         </div>
         <Card>
-          <AqiReport/>
+          <AqiReport selectedLocation={selectedLocation} startDate={startDate} endDate={endDate}averageAQI={aqiValue}/>
         </Card>
         
       </div>

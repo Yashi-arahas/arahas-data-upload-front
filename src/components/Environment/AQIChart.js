@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { ParetoChart } from "../GraphVisuals";
 import { Select, MenuItem } from "@mui/material";
 import "./AqiReport.css";
-import BaseChartComponent from "./Example";
 import DailyTrend from "./DailyTrend";
 
 const AQIChart = ({
-  envirolocation,
   enviroDate,
   envirotime,
   enviroPM25,
@@ -15,39 +12,32 @@ const AQIChart = ({
   enviroAQI,
   enviroNO2,
   enviroco2,
-  selectedLocation
 }) => {
   const [selectedMonth, setSelectedMonth] = useState("01");
   const [selectedDate, setSelectedDate] = useState("2024-01-01");
   const [chartData, setChartData] = useState([]);
-  const [series, setSeries] = useState([]);
   const [weeklyAverages, setWeeklyAverages] = useState(null);
-  const [filteredAQI, setFilteredAQI] = useState(null);
   const [dailyAverage, setDailyAverage] = useState(null);
   const [dailyData, setDailyData] = useState(null);
   const [fifteenDaysData, setFifteenDaysData] = useState(null);
-  console.log(enviroDate)
 
   const getSelectedYear = () => {
     return selectedDate.split("-")[0]; // Extract year from selectedDate
   };
 
   const calculateDailyAverages = () => {
-    if (!envirolocation || !enviroDate || !enviroAQI) {
+    if (!enviroDate || !enviroAQI) {
       return null;
     }
 
     const dailyAveragesData = {};
 
-    envirolocation.forEach((location, index) => {
-      const date = enviroDate[index];
+    enviroDate.forEach((date, index) => {
       const aqi = enviroAQI[index];
-      if (location === selectedLocation) {
-        if (!dailyAveragesData[date]) {
-          dailyAveragesData[date] = [];
-        }
-        dailyAveragesData[date].push(aqi);
+      if (!dailyAveragesData[date]) {
+        dailyAveragesData[date] = [];
       }
+      dailyAveragesData[date].push(aqi);
     });
 
     const dailyAverages = {};
@@ -61,78 +51,74 @@ const AQIChart = ({
   };
 
   const getDailyData = () => {
-  if (!envirolocation || !enviroDate || !enviroAQI || !envirotime) {
-    return [];
-  }
-
-  const selectedDateData = envirolocation.reduce((acc, location, index) => {
-    const date = enviroDate[index];
-    const time = envirotime[index];
-    const aqi = enviroAQI[index];
-    if (location === selectedLocation && date === selectedDate) {
-      acc.push({ time, aqi });
+    if (!enviroDate || !enviroAQI || !envirotime) {
+      return [];
     }
-    return acc;
-  }, []);
 
-  // Remove duplicates and sort by time
-  const uniqueData = Array.from(new Set(selectedDateData.map(item => item.time)))
-    .map(time => {
-      return selectedDateData.find(item => item.time === time);
-    });
+    const selectedDateData = enviroDate.reduce((acc, date, index) => {
+      const time = envirotime[index];
+      const aqi = enviroAQI[index];
+      if (date === selectedDate) {
+        acc.push({ time, aqi });
+      }
+      return acc;
+    }, []);
 
-  return uniqueData.sort((a, b) => a.time.localeCompare(b.time));
-};
-
-
-const getFifteenDaysData = () => {
-  if (!envirolocation || !enviroDate || !enviroAQI || !envirotime) {
-    return [];
-  }
-
-  const selectedDateParts = selectedDate.split('-').map(Number);
-  const selectedDateObj = new Date(selectedDateParts[0], selectedDateParts[1] - 1, selectedDateParts[2]);
-
-  // Calculate date 15 days ago
-  const fifteenDaysAgo = new Date(selectedDateObj);
-  fifteenDaysAgo.setDate(selectedDateObj.getDate() - 15);
-
-  // Filter data for the last 15 days
-  const filteredData = envirolocation.reduce((acc, location, index) => {
-    const date = new Date(enviroDate[index]);
-    if (location === selectedLocation && date >= fifteenDaysAgo && date <= selectedDateObj) {
-      acc.push({
-        date: enviroDate[index],
-        time: envirotime[index],
-        aqi: enviroAQI[index],
-        pm25: enviroPM25[index],
-        pm10: enviroPM10[index],
-        so2: enviroSO2[index],
-        no2: enviroNO2[index],
-        co2: enviroco2[index],
+    // Remove duplicates and sort by time
+    const uniqueData = Array.from(new Set(selectedDateData.map(item => item.time)))
+      .map(time => {
+        return selectedDateData.find(item => item.time === time);
       });
+
+    return uniqueData.sort((a, b) => a.time.localeCompare(b.time));
+  };
+
+  const getFifteenDaysData = () => {
+    if (!enviroDate || !enviroAQI || !envirotime) {
+      return [];
     }
-    return acc;
-  }, []);
 
-  // Remove duplicates and sort by date and time
-  const uniqueData = Array.from(new Map(filteredData.map(item => [`${item.date}_${item.time}`, item])).values());
-  uniqueData.sort((a, b) => new Date(`${a.date} ${a.time}`) - new Date(`${b.date} ${b.time}`));
- console.log(uniqueData)
-  return uniqueData;
-};
+    const selectedDateParts = selectedDate.split('-').map(Number);
+    const selectedDateObj = new Date(selectedDateParts[0], selectedDateParts[1] - 1, selectedDateParts[2]);
 
+    // Calculate date 15 days ago
+    const fifteenDaysAgo = new Date(selectedDateObj);
+    fifteenDaysAgo.setDate(selectedDateObj.getDate() - 15);
+
+    // Filter data for the last 15 days
+    const filteredData = enviroDate.reduce((acc, date, index) => {
+      const dateObj = new Date(date);
+      if (dateObj >= fifteenDaysAgo && dateObj <= selectedDateObj) {
+        acc.push({
+          date,
+          time: envirotime[index],
+          aqi: enviroAQI[index],
+          pm25: enviroPM25[index],
+          pm10: enviroPM10[index],
+          so2: enviroSO2[index],
+          no2: enviroNO2[index],
+          co2: enviroco2[index],
+        });
+      }
+      return acc;
+    }, []);
+
+    // Remove duplicates and sort by date and time
+    const uniqueData = Array.from(new Map(filteredData.map(item => [`${item.date}_${item.time}`, item])).values());
+    uniqueData.sort((a, b) => new Date(`${a.date} ${a.time}`) - new Date(`${b.date} ${b.time}`));
+    return uniqueData;
+  };
 
   const calculateWeeklyAverages = () => {
-    if (!envirolocation || !enviroDate || !enviroAQI) {
+    if (!enviroDate || !enviroAQI) {
       return null;
     }
 
     const selectedYear = getSelectedYear(); // Define selectedYear
     const sortedData = sortDataByDate(); // Ensure data is sorted by date
 
-    const filteredData = sortedData.filter(item => 
-      item.location === selectedLocation && item.date.startsWith(`${selectedYear}-${selectedMonth}`)
+    const filteredData = sortedData.filter(item =>
+      item.date.startsWith(`${selectedYear}-${selectedMonth}`)
     );
 
     const weeklyAveragesData = Array.from({ length: 4 }, () => []);
@@ -159,13 +145,12 @@ const getFifteenDaysData = () => {
   };
 
   const sortDataByDate = () => {
-    if (!envirolocation || !enviroDate || !enviroAQI) {
+    if (!enviroDate || !enviroAQI) {
       return [];
     }
 
-    const combinedData = envirolocation.map((location, index) => ({
-      location,
-      date: enviroDate[index],
+    const combinedData = enviroDate.map((date, index) => ({
+      date,
       time: envirotime[index],
       aqi: enviroAQI[index],
       pm25: enviroPM25[index],
@@ -187,7 +172,6 @@ const getFifteenDaysData = () => {
   }, [
     selectedMonth,
     selectedDate,
-    envirolocation,
     enviroDate,
     enviroAQI,
     enviroPM25,
@@ -199,23 +183,20 @@ const getFifteenDaysData = () => {
 
   const fetchYearlyData = () => {
     const yearlyData = {};
-    if (envirolocation.length > 0) {
-      envirolocation.forEach((location, index) => {
-        if (location === selectedLocation) {
-          const date = enviroDate[index];
-          const year = date.split("-")[0];
-          const month = date.split("-")[1];
+    if (enviroDate.length > 0) {
+      enviroDate.forEach((date, index) => {
+        const year = date.split("-")[0];
+        const month = date.split("-")[1];
 
-          if (!yearlyData[year]) {
-            yearlyData[year] = {};
-          }
-
-          if (!yearlyData[year][month]) {
-            yearlyData[year][month] = [];
-          }
-
-          yearlyData[year][month].push(enviroAQI[index]);
+        if (!yearlyData[year]) {
+          yearlyData[year] = {};
         }
+
+        if (!yearlyData[year][month]) {
+          yearlyData[year][month] = [];
+        }
+
+        yearlyData[year][month].push(enviroAQI[index]);
       });
     }
 
@@ -243,7 +224,6 @@ const getFifteenDaysData = () => {
           {chartData.length > 0 && (
             <>
               <DailyTrend
-                selectedLocation={selectedLocation}
                 selectedDate={selectedDate}
                 dailyAverage={dailyAverage}
                 dailyData={dailyData}

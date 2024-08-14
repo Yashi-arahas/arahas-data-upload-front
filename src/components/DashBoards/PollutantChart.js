@@ -5,14 +5,12 @@ import "../Environment/AqiReport.css";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const PollutantChart = ({
-  envirolocation,
   envirodate,
   envirotime,
   pollutantData,
-  selectedLocation,
   pollutantName,
-  width , // Default width
-  height,// Default height
+  width, // Default width
+  height, // Default height
   baseChartColor = "lightblue", // Default base chart color
   drilldownChartColor = "lightgreen", // Default drilldown chart color
   safeLimit, // Safe limit value
@@ -22,19 +20,16 @@ const PollutantChart = ({
   const [chartOptions, setChartOptions] = useState({});
 
   const calculateDailyAverages = () => {
-    if (!envirolocation || !envirodate || !pollutantData) return null;
+    if (!envirodate || !pollutantData) return null;
 
     const dailyAveragesData = {};
 
-    envirolocation.forEach((location, index) => {
-      const date = envirodate[index];
+    envirodate.forEach((date, index) => {
       const pollutantValue = pollutantData[index];
-      if (location === selectedLocation) {
-        if (!dailyAveragesData[date]) {
-          dailyAveragesData[date] = [];
-        }
-        dailyAveragesData[date].push(pollutantValue);
+      if (!dailyAveragesData[date]) {
+        dailyAveragesData[date] = [];
       }
+      dailyAveragesData[date].push(pollutantValue);
     });
 
     const dailyAverages = {};
@@ -48,14 +43,12 @@ const PollutantChart = ({
   };
 
   const getDailyData = () => {
-    if (!envirolocation || !envirodate || !pollutantData || !selectedDate)
-      return null;
+    if (!envirodate || !pollutantData || !selectedDate) return null;
 
-    const selectedDateData = envirolocation.reduce((acc, location, index) => {
-      const date = envirodate[index];
+    const selectedDateData = envirodate.reduce((acc, date, index) => {
       const time = envirotime[index];
       const pollutantValue = pollutantData[index];
-      if (location === selectedLocation && date === selectedDate) {
+      if (date === selectedDate) {
         acc.push({ time, value: pollutantValue });
       }
       return acc;
@@ -78,7 +71,7 @@ const PollutantChart = ({
   const prepareChartOptions = () => {
     if (!isDrilldown) {
       const dailyAverage = calculateDailyAverages();
-    
+
       return {
         animationEnabled: true,
         theme: "light2",
@@ -97,10 +90,10 @@ const PollutantChart = ({
           stripLines: [
             {
               value: safeLimit,
-              label: `Safe Limit ( ${safeLimit} )`,
+              label: `Safe Limit (${safeLimit})`,
               color: "rgb(93, 92, 97)",
               lineDashType: "dash",
-              labelFontSize:8,
+              labelFontSize: 8,
               thickness: 1,
             },
           ],
@@ -127,7 +120,7 @@ const PollutantChart = ({
       };
     } else {
       const dailyData = getDailyData();
-    
+
       return {
         animationEnabled: true,
         theme: "light2",
@@ -145,9 +138,9 @@ const PollutantChart = ({
           stripLines: [
             {
               value: safeLimit,
-              label:`Safe Limit ( ${safeLimit} )`,
+              label: `Safe Limit (${safeLimit})`,
               color: "rgb(93, 92, 92)",
-              labelFontSize:8,
+              labelFontSize: 8,
               lineDashType: "dash",
               thickness: 2,
             },
@@ -173,17 +166,15 @@ const PollutantChart = ({
       };
     }
   };
-  
-  
 
   useEffect(() => {
     setChartOptions(prepareChartOptions());
-  }, [isDrilldown, selectedDate, envirolocation, envirodate, pollutantData]);
+  }, [isDrilldown, selectedDate, envirodate, pollutantData]);
 
   return (
     <div className="main-graph-pollutant">
       {isDrilldown && (
-        <button onClick={handleBackButtonClick} >
+        <button onClick={handleBackButtonClick}>
           Back
         </button>
       )}

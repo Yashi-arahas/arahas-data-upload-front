@@ -2,42 +2,34 @@ import React from 'react';
 
 const HeatMap = ({ data }) => {
     console.log(data);
-    
+
     // Extract unique dates
     const dates = [...new Set(data.map(entry => entry.date))].reverse();
-    
-    // Generate time slots from 00:30:00 to 23:30:00
+
+    // Generate time slots from 00:00:00 to 23:00:00
     const timeSlots = Array.from({ length: 24 }, (_, index) => {
         const hours = index < 10 ? `0${index}` : `${index}`;
-        return `${hours}:00:00`;
+        return `${hours}:30:00`;
     });
 
     // Prepare data for heatmap
     const heatmapData = dates.map(date => {
-        const rowData = timeSlots.map(time => {
+        return timeSlots.map(time => {
             const entry = data.find(item => item.date === date && item.time === time);
-            return entry ? { date: date, time: time, value: entry.aqi } : null;
+            return entry ? { date: date, time: time, value: entry.aqi } : { date: date, time: time, value: '-' };
         });
-        return rowData;
     });
 
     // Function to get color class based on AQI
     const getColorClass = (aqi) => {
-        if (aqi >= 0 && aqi <= 50) {
-            return "green-bg";
-        } else if (aqi >= 51 && aqi <= 100) {
-            return "yellow-bg";
-        } else if (aqi >= 101 && aqi <= 200) {
-            return "orange-bg";
-        } else if (aqi >= 201 && aqi <= 300) {
-            return "pink-bg";
-        } else if (aqi >= 301 && aqi <= 400) {
-            return "purple-bg";
-        } else if (aqi >= 401) {
-            return "red-bg";
-        } else {
-            return "";
-        }
+        if (aqi === '-') return '';
+        if (aqi >= 0 && aqi <= 50) return "green-bg";
+        if (aqi >= 51 && aqi <= 100) return "yellow-bg";
+        if (aqi >= 101 && aqi <= 200) return "orange-bg";
+        if (aqi >= 201 && aqi <= 300) return "pink-bg";
+        if (aqi >= 301 && aqi <= 400) return "purple-bg";
+        if (aqi >= 401) return "red-bg";
+        return "";
     };
 
     // Function to format time for display
@@ -62,8 +54,8 @@ const HeatMap = ({ data }) => {
                         <tr key={rowIndex}>
                             <td>{dates[rowIndex]}</td>
                             {rowData.map((entry, colIndex) => (
-                                <td key={colIndex} className={entry ? getColorClass(entry.value) : ''}>
-                                    {entry ? entry.value : '-'}
+                                <td key={colIndex} className={getColorClass(entry.value)}>
+                                    {entry.value}
                                 </td>
                             ))}
                         </tr>
