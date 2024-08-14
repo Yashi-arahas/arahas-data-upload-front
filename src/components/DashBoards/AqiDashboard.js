@@ -253,7 +253,7 @@ const AqiDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDat
     <div className="aqi-dashboard">
     {loading ? (
       <div className="flex align-items-center justify-content-center h-100">
-        <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="8" fill="var(--surface-ground)" animationDuration="1s" />
+        <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="8" fill="var(--surface-ground)" animationDuration="0.3s" />
       </div>
     ) : (
     <>

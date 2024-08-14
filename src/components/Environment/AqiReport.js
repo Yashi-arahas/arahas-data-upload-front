@@ -26,6 +26,7 @@ const AqiReport = () => {
       // Set the processed data to state
       setLocationData(processedData.locationData);
       setLatestDate(processedData.latestDate);
+      console.log(processedData.latestDate)
       setAvgAqi(processedData.averageAQI);
     } catch (error) {
       console.error("Error fetching data:", error);

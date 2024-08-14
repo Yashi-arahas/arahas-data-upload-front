@@ -26,8 +26,8 @@ const formatDateNew = (date) => {
 };
 
 const GenerateAqiReport = () => {
-  const defaultStartDate = new Date(2024, 0, 19); // 19-01-2024
-  const defaultEndDate = new Date(2024, 3, 29); // 29-04-2024
+  const defaultStartDate = new Date(2024, 0, 1); // 19-01-2024
+  const defaultEndDate = new Date(2024, 7, 13); // 29-04-2024
 
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
