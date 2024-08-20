@@ -10,7 +10,9 @@ import {
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
   Spa,
+  
 } from "@mui/icons-material";
+import MovingIcon from '@mui/icons-material/Moving';
 import "./CityHeader.css";
 import CompanyLogo from "./images/arahas-logo.webp";
 import { TabView, TabPanel } from "primereact/tabview";
@@ -141,8 +143,59 @@ function CityHeader({ pageName }) {
     } else if (!expandedSection && !activeSubTab) {
       // Show the video when no subcategory is selected
       return (
-        <div className="video-container">
-          <video src={bg_video} className="video-bg" autoPlay loop muted />
+        // <div className="video-container">
+        //   <video src={bg_video} className="video-bg" autoPlay loop muted />
+        // </div>
+        <div style={{ 
+          marginLeft: "7rem"
+           }}>
+            <DefaultHeader/>
+          <TabView className="w-90 ">
+            <TabPanel
+              header="Performance"
+              className="m-0 "
+              headerClassName="text-teal-600"
+            >
+              {/* {selectedParameter==="aqi" && (
+                <> */}
+                
+                <AqiDashboard onDataChange={handleAqiData} show={true} />
+{/*                 
+                </>
+              )} */}
+               {/* {selectedParameter!=="aqi" && (
+                <ReportMap parameter={selectedParameter} />
+              )} */}
+              
+            </TabPanel>
+            <TabPanel
+              header="Recommendations"
+              className="m-0 "
+              headerClassName="text-teal-600"
+            >
+              {/* {selectedParameter==="aqi" && (
+                <> */}
+                <AQIRecommendations
+                    aqi={aqiValue}
+                    pm25={pm25Value}
+                    pm10={pm10Value}
+                  />
+                {/* </>
+              )} */}
+            </TabPanel>
+
+            <TabPanel
+              header="Report"
+              headerClassName="text-green-500"
+            >
+              {/* {selectedParameter==="aqi" && (
+                <> */}
+                <GenerateAqiReport/>
+                {/* </>
+              )} */}
+            </TabPanel>
+          </TabView>
+          
         </div>
       );
     }
@@ -220,7 +273,7 @@ function CityHeader({ pageName }) {
             >
               <div
                 className="nav-section-header"
-                onClick={() => handleTabClick("cityReportCard")}
+                // onClick={() => handleTabClick("cityReportCard")}
               >
                 <Apartment className="icon-section" />
                 <span>City Report Card</span>
@@ -251,7 +304,7 @@ function CityHeader({ pageName }) {
                 onClick={() => toggleSection("social")}
               >
                 <People className="icon-section" />
-                <span>Social</span>
+                <span>Society</span>
               </div>
             </div>
 
@@ -264,8 +317,8 @@ function CityHeader({ pageName }) {
                 className="nav-section-header"
                 onClick={() => toggleSection("administration")}
               >
-                <AccountBalance className="icon-section" />
-                <span>Administration</span>
+                <MovingIcon className="icon-section" />
+                <span>Progress</span>
               </div>
              
           
@@ -293,16 +346,17 @@ function CityHeader({ pageName }) {
                   className={`link ${
                     activeSubTab === "temp" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("report", "temp")}
+                  // onClick={() => handleTabClick("report", "temp")}
                 >
                   <ThermostatIcon className="icon-sub" />
                   <span>Temperature</span>
                 </div>
                 <div
-                  className={`link ${
+                  className={`link 
+                    ${
                     activeSubTab === "rain" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("report", "rainfall")}
+                  // onClick={() => handleTabClick("report", "rainfall")}
                 >
                   <ThunderstormIcon className="icon-sub" />
 
@@ -312,7 +366,7 @@ function CityHeader({ pageName }) {
                   className={`link ${
                     activeSubTab === "waste" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("report", "waste")}
+                  // onClick={() => handleTabClick("report", "waste")}
                 >
                   <DeleteSweepIcon className="icon-sub" />
                   <span>Waste Management</span>
@@ -321,7 +375,7 @@ function CityHeader({ pageName }) {
                   className={`link ${
                     activeSubTab === "water" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("report", "water")}
+                  // onClick={() => handleTabClick("report", "water")}
                 >
                   <WaterDropIcon className="icon-sub" />
                   <span>Water Conservation & Preservation</span>
@@ -330,7 +384,7 @@ function CityHeader({ pageName }) {
                   className={`link ${
                     activeSubTab === "land" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("report", "land")}
+                  // onClick={() => handleTabClick("report", "land")}
                 >
                   <VillaIcon className="icon-sub" />
                   <span>Land Usage</span>
@@ -343,7 +397,7 @@ function CityHeader({ pageName }) {
                   className={`link ${
                     activeSubTab === "dashboard" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("dashboard")}
+                  // onClick={() => handleTabClick("dashboard")}
                 >
                   <Dashboard className="icon-sub" />
                   <span>Dashboard</span>
@@ -352,7 +406,7 @@ function CityHeader({ pageName }) {
                   className={`link ${
                     activeSubTab === "report" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("report")}
+                  // onClick={() => handleTabClick("report")}
                 >
                   <Assessment className="icon-sub" />
                   <span>Report</span>
@@ -361,7 +415,7 @@ function CityHeader({ pageName }) {
                   className={`link ${
                     activeSubTab === "recommendations" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("recommendations")}
+                  // onClick={() => handleTabClick("recommendations")}
                 >
                   <EmojiObjects className="icon-sub" />
                   <span>Recommendations</span>
@@ -374,7 +428,7 @@ function CityHeader({ pageName }) {
                   className={`link ${
                     activeSubTab === "dashboard" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("dashboard")}
+                  // onClick={() => handleTabClick("dashboard")}
                 >
                   <Dashboard className="icon-sub" />
                   <span>Dashboard</span>
@@ -383,7 +437,7 @@ function CityHeader({ pageName }) {
                   className={`link ${
                     activeSubTab === "report" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("report")}
+                  // onClick={() => handleTabClick("report")}
                 >
                   <Assessment className="icon-sub" />
                   <span>Report</span>
@@ -392,7 +446,7 @@ function CityHeader({ pageName }) {
                   className={`link ${
                     activeSubTab === "recommendations" ? "sub-active" : ""
                   }`}
-                  onClick={() => handleTabClick("recommendations")}
+                  // onClick={() => handleTabClick("recommendations")}
                 >
                   <EmojiObjects className="icon-sub" />
                   <span>Recommendations</span>

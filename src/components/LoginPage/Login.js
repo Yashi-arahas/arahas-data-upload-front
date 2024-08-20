@@ -50,18 +50,19 @@ const Login = () => {
   const sampleCredentials = {
     name: "arahas",
     number: "911234567890",
-    otp: "1234",
+    // otp: "1234",
   };
 
   const loginotpuser = () => {
     if (
       name === sampleCredentials.name &&
-      number === sampleCredentials.number &&
-      otp === sampleCredentials.otp
+      number === sampleCredentials.number 
+      // &&
+      // otp === sampleCredentials.otp
     ) {
       setLoading(true);
       setTimeout(() => {
-        navigate("/csi/overall-score");
+        navigate("/csi/admin");
       }, 1000);
     } else {
       setLoading(false);
@@ -104,7 +105,7 @@ const Login = () => {
         } else if (department === "Urban_heritage") {
           navigate("/csi/urban-heritage");
         } else if (department === "Environment") {
-          navigate("/csi/environment");
+          navigate("/csi/admin");
         } else {
           navigate("/csi/tourism");
         }
@@ -293,10 +294,10 @@ const Login = () => {
                   country="in"
                   className="phone-input"
                 />
-                <div className="otp-input">
+                {/* <div className="otp-input">
                   <p className="otp-label">Enter OTP</p>
                   <MuiOtpInput value={otp} onChange={handleChange} />
-                </div>
+                </div> */}
                 <Button
                   variant="contained"
                   style={{ backgroundColor: "#00A269" }}
