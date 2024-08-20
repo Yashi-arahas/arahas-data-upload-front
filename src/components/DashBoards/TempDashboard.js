@@ -78,7 +78,7 @@ const TempDashboard = ({ onDataChange, show, pSelectedLocation, pSelectedStartDa
           const response = await axios.get(`https://api-csi.arahas.com/data/environment?location=${selectedLocation}`);
           const data = response.data.data;
           
-          
+          console.log(data);
   
           // Filter and sort the data based on selected location and date range
           const filteredData = data.filter(item => {

@@ -36,7 +36,7 @@ function Header({ pageName }) {
               />
             </Link>
           </div>
-          <div
+          {/* <div
             className={`home-btn ${isActive("/csi/kyc") ? "city-active" : ""}`}
           >
             <Link to="/csi/kyc">
@@ -48,7 +48,7 @@ function Header({ pageName }) {
                 outlined
               />
             </Link>
-          </div>
+          </div> */}
           {!pageName && (
             <div
               className={`home-btn ${isActive("/csi/") ? "city-active" : ""}`}
